@@ -1,0 +1,7 @@
+{
+	"name": "test",
+	"type": "mongo",
+	"server": "localhost",
+	"port": "27017",
+	"db": "river_flows"
+}
