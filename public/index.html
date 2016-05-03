@@ -1,7 +1,18 @@
-<meta http-equiv="content-type" content="text/html; charset=UTF8">
-<link rel="stylesheet" type="text/css" href="css/dc.css" media="screen"/>
+<!DOCTYPE html>
+<html>
 
-<body>
-	<h1>Yo</h1>
-</body>
+	<head>
+		<!-- bower:js -->
+		<script src="../bower_components/angular/angular.js"></script>
+		<!-- endbower -->
+	</head>
+
+	<body>
+		<div ng-app="">
+		 	<p>Nme: <input type="text" ng-model="name"></p>
+		 	<p ng-bind="name"></p>
+		</div>
+	</body>
+
+</html>
 
