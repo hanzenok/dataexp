@@ -3,13 +3,9 @@
 
 	<head>
 		<link rel="stylesheet" href="../bower_components/angular-material/angular-material.css">
-		  <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css"> -->
 	</head>
 
-
-
-	<body ng-app="MyApp">
-
+	<body ng-app="MyApp" layout="column" ng-cloak>
 		<!-- bower:js -->
 		<script src="../bower_components/angular/angular.js"></script>
 		<script src="../bower_components/angular-animate/angular-animate.js"></script>
@@ -17,12 +13,45 @@
 		<script src="../bower_components/angular-messages/angular-messages.js"></script>
 		<script src="../bower_components/angular-material/angular-material.js"></script>
 		<!-- endbower -->
-<!-- 		<div ng-app="">
-		 	<p>Nme: <input type="text" ng-model="name"></p>
-		 	<p ng-bind="name"></p>
-		</div> -->
 
-		<md-button class="md-raised md-primary md-hue-1">Click Me</md-button>
+		<md-toolbar class="md-medium-tall">
+			<h1>Maya timeseries exploration tool</h1>
+		</md-toolbar>
+
+		<div class="container" layout="row" flex>
+			<md-sidenav md-is-locked-open="true" class="md-whiteframe-14dp">
+				<md-list>
+					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
+						<md-list-item>
+							<md-checkbox></md-checkbox>
+							<p>SQL</p>
+							<md-icon class="md-secondary" ng-click="alert('toolbox');" md-svg-src="images/settings.svg"></md-icon>
+						</md-list-item>
+						<md-list-item>
+							<md-checkbox></md-checkbox>
+							<p>Mongo</p>
+							<md-icon class="md-secondary" ng-click="alert('toolbox');" md-svg-src="images/settings.svg"></md-icon>
+						</md-list-item>
+						<md-list-item>
+							<md-checkbox></md-checkbox>
+							<p>File</p>
+							<md-icon class="md-secondary" ng-click="alert('toolbox');" md-svg-src="images/settings.svg"></md-icon>
+						</md-list-item>
+						<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
+						<md-list-item><p>temperatures</p></md-list-item>
+						<md-list-item><p>ineso_light</p></md-list-item>
+						<md-list-item><p>ineso_radio</p></md-list-item>
+						<md-list-item><p>test</p></md-list-item>
+						<md-divider></md-divider>
+					<md-subheader class="md-no-sticky">Fields</md-subheader>
+						<md-list-item><p>temp</p></md-list-item>
+						<md-list-item><p>time</p></md-list-item>
+						<md-divider></md-divider>
+				</md-list>
+			</md-sidenav>
+			<md-content id="content" flex>Content</md-content>
+		</div>
 
 		<script>	
 			angular.module('MyApp', ['ngMaterial'])
