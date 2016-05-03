@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="../bower_components/angular-material/angular-material.css">
 	</head>
 
-	<body ng-app="MyApp" layout="column" ng-cloak>
+	<body ng-app="MyApp" layout="column" ng-cloak="">
 		<!-- bower:js -->
 		<script src="../bower_components/angular/angular.js"></script>
 		<script src="../bower_components/angular-animate/angular-animate.js"></script>
@@ -14,12 +14,15 @@
 		<script src="../bower_components/angular-material/angular-material.js"></script>
 		<!-- endbower -->
 
-		<md-toolbar class="md-medium-tall">
+		<md-toolbar class="md-medium-tall md-primary" layout="row">
+			<md-button class="menu">
+				<md-icon md-svg-src="images/menu.svg"></md-icon>
+			</md-button>
 			<h1>Maya timeseries exploration tool</h1>
 		</md-toolbar>
 
 		<div class="container" layout="row" flex>
-			<md-sidenav md-is-locked-open="true" class="md-whiteframe-14dp">
+			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-14dp">
 				<md-list>
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<md-list-item>
@@ -39,10 +42,10 @@
 						</md-list-item>
 						<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
-						<md-list-item><p>temperatures</p></md-list-item>
-						<md-list-item><p>ineso_light</p></md-list-item>
-						<md-list-item><p>ineso_radio</p></md-list-item>
-						<md-list-item><p>test</p></md-list-item>
+						<md-list-item><p>temperatures</p><span>(sql)</span></md-list-item>
+						<md-list-item><p>ineso_light</p><span>(sql)</span></md-list-item>
+						<md-list-item><p>ineso_radio</p><span>(mongo)</span></md-list-item>
+						<md-list-item><p>test</p><span>(sql)</span></md-list-item>
 						<md-divider></md-divider>
 					<md-subheader class="md-no-sticky">Fields</md-subheader>
 						<md-list-item><p>temp</p></md-list-item>
@@ -50,7 +53,7 @@
 						<md-divider></md-divider>
 				</md-list>
 			</md-sidenav>
-			<md-content id="content" flex>Content</md-content>
+			<md-content id="content" flex>Affichage superb</md-content>
 		</div>
 
 		<script>	
