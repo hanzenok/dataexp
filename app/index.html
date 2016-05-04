@@ -18,6 +18,7 @@
 		<script src="js/main.js"></script>
 		<script src="js/controllers/AddSourceController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
+		<script src="js/controllers/SourcesListController.js"></script>
 
 		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button class="menu">
@@ -28,7 +29,7 @@
 
 		<div class="container" layout="row" flex>
 			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-14dp">
-				<md-list ng-controller="SidebarController">
+				<md-list ng-controller="SourcesListController">
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<md-list-item ng-repeat="source in sources">
 							<md-checkbox ng-model="source.wanted"></md-checkbox>
@@ -70,8 +71,6 @@
   				background-color: grey !important; 
   			}
 		</style>
-
-  		<script type="text/ng-template" id="dialog1.tmpl.html" src="AddSource.html"></script>
 
 	</body>
 
