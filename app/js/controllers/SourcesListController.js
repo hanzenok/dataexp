@@ -1,7 +1,10 @@
 angular.module('MainApp')
 	.controller('SourcesListController', function($scope, $mdDialog, sources){
 
-		$scope.sources = sources;
+		sources.b.then(function(res){
+
+			$scope.sources = res.data;
+		});
 
 		$scope.showAlert = function(event){
 

@@ -1,21 +1,31 @@
 angular.module('MainApp')
-	.provider("sources", function(){
+	.service('sources', function($http){
 
-		this.$get = function(){
-			
+		this.b = $http.get('/api/sources');
 
-				/*$http.get('/api/sources')
-					.success(function(data) {
+	});
 
-						console.log(data);
+	/*.provider("sources", function(){
 
-						$scope.sources = 'bi bi';//data;
-					})
-					.error(function(err){
-						
-						$scope.sources = [{}];
+		this.$get = function($q, $http){
+
+			var defer = $q.defer();
+			$http.get('/api/sources').then(function(res){
+						defer.resolve(res);
+					});
+
+			return $http.get('/api/sources');/*$http.get('/api/sources').then(function(res){
+						return res;
 					});*/
-			return [
+
+		/*}function($http){
+
+			console.log('tick');
+			var a = $http.get('/api/sources');
+			console.log(a.then(function(res){return res.data;}));
+			console.log('tock');*/
+
+			/*return [
 
 				{
 					"name": "test",
@@ -33,8 +43,8 @@ angular.module('MainApp')
 					"db": "precipitation",
 					"wanted": false
 				}
-			];
+			];*/
 
 
-		}
-	});
+		//}
+	//});
