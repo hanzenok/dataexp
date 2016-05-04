@@ -16,6 +16,7 @@
 		<!-- endbower -->
 
 		<script src="js/main.js"></script>
+		<script src="js/controllers/AddSourceController.js"></script>
 
 		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button class="menu">
@@ -53,9 +54,11 @@
 				</md-list>
 
 			</md-sidenav>
-					<md-button class="md-fab md-fab-bottom-right" ng-click="showAlert($event)" ng-controller="SidebarController">
-						<md-icon md-svg-src="images/add.svg"></md-icon>
-					</md-button>
+
+			<md-button class="md-fab md-fab-bottom-right" ng-click="showAdvanced($event)" ng-controller="AddSourceController">
+				<md-icon md-svg-src="images/add.svg"></md-icon>
+			</md-button>
+
 			<md-content id="content" flex>
 				Affichage superb
 			</md-content>
@@ -66,6 +69,8 @@
   				background-color: grey !important; 
   			}
 		</style>
+
+  		<script type="text/ng-template" id="dialog1.tmpl.html" src="AddSource.html"></script>
 
 	</body>
 
