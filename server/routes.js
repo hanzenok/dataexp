@@ -1,3 +1,5 @@
+var parseConfig = require('./ParseConfig');
+
 module.exports = function(app){
 
 	//main page
@@ -5,6 +7,9 @@ module.exports = function(app){
 
 		res.sendFile('app/index.html' , { root : __dirname});
 	});
+
+	//REST api
+	app.get('/api/sources', parseConfig);
 
 	//other pages
 	app.use(function(req, res, next){

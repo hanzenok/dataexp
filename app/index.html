@@ -16,6 +16,7 @@
 		<!-- endbower -->
 
 		<script src="js/main.js"></script>
+		<script src="js/providers/SourcesProvider.js"></script>
 		<script src="js/controllers/AddSourceController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SourcesListController.js"></script>
@@ -33,7 +34,8 @@
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<md-list-item ng-repeat="source in sources">
 							<md-checkbox ng-model="source.wanted"></md-checkbox>
-							<p>{{source.name}}</p>
+							<span>{{source.name}}</span>
+							<span>({{source.type}})</span>
 							<md-icon class="md-secondary" ng-click="showAlert($event)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
 						</md-list-item>
 					<md-divider></md-divider>

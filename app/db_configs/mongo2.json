@@ -1,7 +1,0 @@
-{
-	"name": "test2",
-	"type": "mongo",
-	"server": "localhost",
-	"port": "27017",
-	"db": "precipitation"
-}
