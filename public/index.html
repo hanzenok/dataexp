@@ -5,7 +5,7 @@
 		<link rel="stylesheet" href="../bower_components/angular-material/angular-material.css">
 	</head>
 
-	<body ng-app="MainApp" layout="column" ng-cloak="">
+	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- bower:js -->
 		<script src="../bower_components/angular/angular.js"></script>
@@ -21,7 +21,7 @@
 			<md-button class="menu">
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
-			<h1>Maya timeseries exploration tool</h1>
+			<h1>Title</h1>
 		</md-toolbar>
 
 		<div class="container" layout="row" flex>
@@ -39,17 +39,33 @@
 						<md-list-item><p>ineso_light</p><h5>(sql)</h5></md-list-item>
 						<md-list-item><p>ineso_radio</p><h5>(mongo)</h5></md-list-item>
 						<md-list-item><p>test</p><h5>(sql)</h5></md-list-item>
+						<md-list-item><p>temperaures</p><h5>(sql)</h5></md-list-item>
+						<md-list-item><p>ino_light</p><h5>(sql)</h5></md-list-item>
+						<md-list-item><p>ineso_rado</p><h5>(mongo)</h5></md-list-item>
+						<md-list-item><p>tet</p><h5>(sql)</h5></md-list-item>
 						<md-divider></md-divider>
 					<md-subheader class="md-no-sticky">Fields</md-subheader>
 						<md-list-item><p>temp</p></md-list-item>
 						<md-list-item><p>time</p></md-list-item>
+						<md-list-item><p>te</p></md-list-item>
+						<md-list-item><p>tme</p></md-list-item>
 						<md-divider></md-divider>
 				</md-list>
-				<md-fab-toolbar md-direction="left">
 
 			</md-sidenav>
-			<md-content id="content" flex>Affichage superb</md-content>
+					<md-button class="md-fab md-fab-bottom-right" ng-click="showAlert($event)" ng-controller="SidebarController">
+						<md-icon md-svg-src="images/add.svg"></md-icon>
+					</md-button>
+			<md-content id="content" flex>
+				Affichage superb
+			</md-content>
 		</div>
+
+		<style>
+			.md-fab:hover, .md-fab.md-focused {
+  				background-color: grey !important; 
+  			}
+		</style>
 
 	</body>
 
