@@ -1,5 +1,3 @@
-
-
 angular.module('MainApp', ['ngMaterial'])
 .controller('SidebarController', function($scope, $mdDialog){
 
@@ -11,7 +9,7 @@ angular.module('MainApp', ['ngMaterial'])
 
 	$scope.showAlert = function(event){
 
-		$mdDialog.show(
+		$mdDialog.show( 
 
 			$mdDialog.alert()
 				.parent(angular.element(document.querySelector('#content')))

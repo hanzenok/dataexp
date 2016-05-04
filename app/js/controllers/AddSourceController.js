@@ -1,25 +1,7 @@
 angular.module('MainApp')
 .controller('AddSourceController', function($scope, $mdDialog){
 
-
-	$scope.showAlert = function(event){
-
-		$mdDialog.show(
-
-			$mdDialog.alert()
-				.parent(angular.element(document.querySelector('#content')))
-				.clickOutsideToClose(true)
-				.title('Alert')
-				.textContent('Alert')
-				.ariaLabel('Alert')
-				.ok('OK!')
-				.targetEvent(event)
-		);
-	};
-
-	$scope.showAdvanced = function(ev) {
-
-		console.log('Yo');
+	$scope.showDialog = function(ev) {
 
 		$mdDialog.show({
 			controller: DialogController,
@@ -32,6 +14,8 @@ angular.module('MainApp')
 });
 
 function DialogController($scope, $mdDialog) {
+
+	$scope.yo = "YOO";
   $scope.hide = function() {
     $mdDialog.hide();
   };

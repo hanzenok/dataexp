@@ -1,0 +1,54 @@
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{yo}}</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon md-svg-src="../images/delete.svg" aria-label="Delete source"></md-icon>
+			</md-button>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon md-svg-src="../images/close.svg" aria-label="Close dialog"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-dialog-content layout-padding="">
+		<div layout-gt-sm="row">
+			<md-input-container class="md-block" flex-gt-sm="">
+				<label>Name</label>
+				<input>
+			</md-input-container>
+
+			<md-input-container class="md-block" flex-gt-sm="">
+				<label>Type</label>
+				<md-select ng-model="user.state">
+					<md-option>Mongo</md-option>
+					<md-option>MySQL</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+
+		<div layout-gt-sm="row">
+			<md-input-container class="md-block" flex-gt-sm="">
+				<label>Server</label>
+				<input>
+			</md-input-container>
+
+			<md-input-container class="md-block" flex-gt-sm="">
+				<label>Port</label>
+				<input>
+			</md-input-container>
+
+			<md-input-container class="md-block" flex-gt-sm="">
+				<label>Database</label>
+				<input>
+			</md-input-container>
+		</div>
+	</md-dialog-content>
+
+	<md-dialog-actions>
+		<md-button class="md-raised md-primary" ng-click="cancel()">
+			Connect
+		</md-button>
+	</md-dialog-actions>
+</md-dialog>
