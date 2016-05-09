@@ -1,7 +1,7 @@
 angular.module('MainApp')
 	.controller('SourcesListController', function($scope, $mdDialog, sources){
 
-		sources.b.then(function(res){
+		sources.promise.then(function(res){
 
 			$scope.sources = res.data;
 		});
