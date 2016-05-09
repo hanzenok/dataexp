@@ -22,7 +22,7 @@ angular.module('MainApp')
 			});
 
 			$http.post("/api/fields", wanted_stores).success(function(data, status) {
-				console.log(yo);
+				console.log(data);
 			});
 		};
 
