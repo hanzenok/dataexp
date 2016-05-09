@@ -11,7 +11,8 @@ var parseStores = function(req, res){
 		else {
 
 			var config = JSON.parse(data);
-			var url = 'mongodb://' + config[0].server + ':' + config[0].port + '/' + config[0].db;
+			var i = 0;
+			var url = 'mongodb://' + config[i].server + ':' + config[i].port + '/' + config[i].db;
 			
 			mongoose.connect(url);
 			var db = mongoose.connection;
@@ -26,14 +27,22 @@ var parseStores = function(req, res){
 					}
 					else {
 						db.close();
-						var names = [];
+
+						var tmp = {};
+						var stores = [];
 						items.forEach(function(item, index, array){
 
-							if(item.name.indexOf('system.') === -1)
-							names.push(item);
+							if(item.name.indexOf('system.') === -1){
+
+								tmp.name = item.name;
+								tmp.source = config[i];
+								stores.push(tmp);
+
+								tmp = {};
+							}
 						});
 
-						res.json(names);
+						res.json(stores);
 					}
 				});
 			});

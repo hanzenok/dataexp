@@ -36,7 +36,7 @@
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<div ng-controller="SourcesListController">
 							<md-list-item ng-repeat="source in sources">
-								<md-checkbox ng-model="source.wanted" aria-label="Checkbox"></md-checkbox>
+								<md-checkbox ng-model="source.wanted" aria-label="Source checkbox"></md-checkbox>
 								<span>{{source.name}}</span>
 								<span>({{source.type}})</span>
 								<md-icon class="md-secondary" ng-click="showDialog($event)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
@@ -46,7 +46,9 @@
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
 						<div ng-controller="StoresListController">
 							<md-list-item ng-repeat="store in stores">
+								<md-checkbox aria-label="Store checkbox" ng-model="store.wanted" ng-change="test(stores)"></md-checkbox>
 								<span>{{store.name}}</span>
+								<span>({{store.source.type}})</span>
 							</md-list-item>
 						</div>
 					<md-divider></md-divider>
