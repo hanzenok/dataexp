@@ -6,18 +6,13 @@ angular.module('MainApp')
 			$scope.sources = res.data;
 		});
 
-		$scope.showAlert = function(event){
+		$scope.showDialog = function(event){
 
-			$mdDialog.show( 
-
-				$mdDialog.alert()
-					.parent(angular.element(document.querySelector('#content')))
-					.clickOutsideToClose(true)
-					.title('Alert title')
-					.textContent('Alert text')
-					.ariaLabel('Alert Dialog')
-					.ok('OK!')
-					.targetEvent(event)
-			);
+			$mdDialog.show({
+				templateUrl: '../../templates/AddSource.html',
+				parent: angular.element(document.body),
+				targetEvent: event,
+				clickOutsideToClose: true
+			});
 		};
 	});

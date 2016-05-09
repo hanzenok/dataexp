@@ -1,4 +1,5 @@
 var parseSources = require('./ParseSources');
+var parseStores = require('./ParseStores');
 
 module.exports = function(app){
 
@@ -10,6 +11,7 @@ module.exports = function(app){
 
 	//REST api
 	app.get('/api/sources', parseSources);
+	app.get('/api/stores', parseStores);
 
 	//other pages
 	app.use(function(req, res, next){

@@ -9,5 +9,5 @@ angular.module('MainApp')
 				targetEvent: ev,
 				clickOutsideToClose: true,
 			});
-	  };
+	  	};
 	});

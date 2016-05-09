@@ -4,4 +4,8 @@ angular.module('MainApp')
 		$scope.cancel = function() {
 			$mdDialog.cancel();
 		};
+
+		$scope.connect = function() {
+			console.log('Connnect');
+		};
 	});
