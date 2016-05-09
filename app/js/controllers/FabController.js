@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('AddSourceController', function($scope, $mdDialog){
+	.controller('FabController', function($scope, $mdDialog){
 
 		$scope.showDialog = function(ev) {
 

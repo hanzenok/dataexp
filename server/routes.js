@@ -1,4 +1,4 @@
-var parseConfig = require('./ParseConfig');
+var parseSources = require('./ParseSources');
 
 module.exports = function(app){
 
@@ -9,7 +9,7 @@ module.exports = function(app){
 	});
 
 	//REST api
-	app.get('/api/sources', parseConfig);
+	app.get('/api/sources', parseSources);
 
 	//other pages
 	app.use(function(req, res, next){
