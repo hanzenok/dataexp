@@ -17,9 +17,11 @@
 
 		<script src="js/main.js"></script>
 		<script src="js/providers/SourcesProvider.js"></script>
+		<script src="js/providers/StoresProvider.js"></script>
 		<script src="js/controllers/FabController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SourcesListController.js"></script>
+		<script src="js/controllers/StoresListController.js"></script>
 
 		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button class="menu" aria-label="Menu button">
@@ -30,25 +32,24 @@
 
 		<div class="container" layout="row" flex>
 			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-14dp">
-				<md-list ng-controller="SourcesListController">
+				<md-list>
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
-						<md-list-item ng-repeat="source in sources">
-							<md-checkbox ng-model="source.wanted" aria-label="Checkbox"></md-checkbox>
-							<span>{{source.name}}</span>
-							<span>({{source.type}})</span>
-							<md-icon class="md-secondary" ng-click="showDialog($event)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
-						</md-list-item>
+						<div ng-controller="SourcesListController">
+							<md-list-item ng-repeat="source in sources">
+								<md-checkbox ng-model="source.wanted" aria-label="Checkbox"></md-checkbox>
+								<span>{{source.name}}</span>
+								<span>({{source.type}})</span>
+								<md-icon class="md-secondary" ng-click="showDialog($event)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
+							</md-list-item>
+						</div>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
-						<md-list-item><p>temperatures</p><h5>(sql)</h5></md-list-item>
-						<md-list-item><p>ineso_light</p><h5>(sql)</h5></md-list-item>
-						<md-list-item><p>ineso_radio</p><h5>(mongo)</h5></md-list-item>
-						<md-list-item><p>test</p><h5>(sql)</h5></md-list-item>
-						<md-list-item><p>temperaures</p><h5>(sql)</h5></md-list-item>
-						<md-list-item><p>ino_light</p><h5>(sql)</h5></md-list-item>
-						<md-list-item><p>ineso_rado</p><h5>(mongo)</h5></md-list-item>
-						<md-list-item><p>tet</p><h5>(sql)</h5></md-list-item>
-						<md-divider></md-divider>
+						<div ng-controller="StoresListController">
+							<md-list-item ng-repeat="store in stores">
+								<span>{{store.name}}</span>
+							</md-list-item>
+						</div>
+					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky">Fields</md-subheader>
 						<md-list-item><p>temp</p></md-list-item>
 						<md-list-item><p>time</p></md-list-item>
