@@ -1,6 +1,5 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
-var underscore = require('underscore');
 
 var parseStores = function(req, res){
 	

@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('StoresListController', function($scope, stores){
+	.controller('StoresListController', function($scope, $http, stores){
 
 		stores.promise.then(function(res){
 
@@ -12,14 +12,18 @@ angular.module('MainApp')
 
 		$scope.test = function(store) {
 
-			var i,n = $scope.stores.length;
-			console.log('===');
-			for (i=0; i<n; i++){
+			var wanted_stores = [];
+			$scope.stores.forEach(function(store, index, array){
 
-				if ($scope.stores[i].wanted)
-					console.log($scope.stores[i].name);
-			}
-			console.log('==');
+				if (store.wanted){
+
+					wanted_stores.push(store);
+				}
+			});
+
+			$http.post("/api/fields", wanted_stores).success(function(data, status) {
+				console.log(yo);
+			});
 		};
 
 	});
