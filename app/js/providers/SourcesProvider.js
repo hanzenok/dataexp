@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.service('sources', function($http, $resource){
+	.service('sources', function($resource){
 		
 		//sources list for controller
 		this.data = $resource('/api/sources').query();

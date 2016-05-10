@@ -1,6 +1,6 @@
 angular.module('MainApp')
-	.service('stores', function($http, $resource){
-
-		this.promise = $http.get('/api/stores');
+	.service('stores', function($resource){
+		
+		this.data = $resource('/api/stores').query();
 
 	});

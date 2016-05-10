@@ -2,17 +2,7 @@ angular.module('MainApp')
 	.controller('StoresListController', function($scope, $http, stores){
 
 		//get all the stores from the server
-		stores.promise.then(function(res){
-
-			var stores = res.data;
-			stores.forEach(function(store, index, array){
-				store.wanted = false;
-			});
-			$scope.stores = stores;
-
-			console.log('res.data:');
-			console.log(res.data);
-		});
+		$scope.stores = stores.data;
 
 		//get the states of all the checkboxes
 		//triggers the 
