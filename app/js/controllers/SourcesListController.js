@@ -1,11 +1,10 @@
 angular.module('MainApp')
 	.controller('SourcesListController', function($scope, $mdDialog, sources){
 
-		sources.promise.then(function(res){
+		//sources list
+		$scope.sources = sources.data;
 
-			$scope.sources = res.data;
-		});
-
+		//dialog to modify the source
 		$scope.showDialog = function(event){
 
 			$mdDialog.show({

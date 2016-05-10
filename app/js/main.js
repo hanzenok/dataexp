@@ -1,1 +1,1 @@
-angular.module('MainApp', ['ngMaterial', 'ngDraggable']);
+angular.module('MainApp', ['ngMaterial', 'ngDraggable', 'ngResource']);

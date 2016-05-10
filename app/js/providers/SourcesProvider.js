@@ -1,6 +1,7 @@
 angular.module('MainApp')
-	.service('sources', function($http){
-
-		this.promise = $http.get('/api/sources');
+	.service('sources', function($http, $resource){
+		
+		//sources list for controller
+		this.data = $resource('/api/sources').query();
 
 	});

@@ -18,15 +18,6 @@ angular.module('MainApp')
 		//triggers the 
 		$scope.refreshStores = function() {
 
-			stores.promise.then(function(res){
-
-				console.log('test: ');
-				var stores = res.data;
-				stores.forEach(function(store, index, array){
-					console.log(store);
-				});
-			});
-
 			//sort the stores
 			var wanted_stores = [];
 			$scope.stores.forEach(function(store, index, array){
