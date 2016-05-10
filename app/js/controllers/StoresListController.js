@@ -1,6 +1,7 @@
 angular.module('MainApp')
-	.controller('StoresListController', function($scope, $http, $rootScope, stores){
+	.controller('StoresListController', function($scope, $http, stores){
 
+		//get all the stores from the server
 		stores.promise.then(function(res){
 
 			var stores = res.data;
@@ -10,8 +11,11 @@ angular.module('MainApp')
 			$scope.stores = stores;
 		});
 
-		$scope.test = function(store) {
+		//get the states of all the checkboxes
+		//triggers the 
+		$scope.refreshStores = function() {
 
+			//sort the stores
 			var wanted_stores = [];
 			$scope.stores.forEach(function(store, index, array){
 
@@ -21,14 +25,22 @@ angular.module('MainApp')
 				}
 			});
 
-			$http.post("/api/fields", wanted_stores).success(function(data, status) {
-				console.log(data);
-				$rootScope.stores = data;
-				console.log($rootScope.stores);
-			}).error(function(err, status){
+			//trigger thet fields list
+			if (wanted_stores.length){
+				
+				//get the fields of wanted stores from server
+				$http.post("/api/fields", wanted_stores).success(function(data, status) {
+					
+					$scope.stores_with_fields = data;
 
-				throw new Error(err);
-			});
+				}).error(function(err, status){
+
+					throw new Error(err);
+				});
+			}
+			else{
+				$scope.stores_with_fields = [];
+			}
 		};
 
 	});

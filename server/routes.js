@@ -13,8 +13,7 @@ module.exports = function(app){
 	//REST api
 	app.get('/api/sources', parseSources);
 	app.get('/api/stores', parseStores);
-	app.get('/api/fields', parseFields.parseFields);
-	app.post('/api/fields', parseFields.saveFields);
+	app.post('/api/fields', parseFields);
 
 	//other pages
 	app.use(function(req, res, next){

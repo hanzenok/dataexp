@@ -18,12 +18,10 @@
 		<script src="js/main.js"></script>
 		<script src="js/providers/SourcesProvider.js"></script>
 		<script src="js/providers/StoresProvider.js"></script>
-		<script src="js/providers/FieldsProvider.js"></script>
 		<script src="js/controllers/FabController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SourcesListController.js"></script>
 		<script src="js/controllers/StoresListController.js"></script>
-		<script src="js/controllers/FieldsListController.js"></script>
 
 		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button class="menu" aria-label="Menu button">
@@ -48,19 +46,17 @@
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
 						<div ng-controller="StoresListController">
 							<md-list-item ng-repeat="store in stores">
-								<md-checkbox aria-label="Store checkbox" ng-model="store.wanted" ng-change="test(stores)"></md-checkbox>
+								<md-checkbox aria-label="Store checkbox" ng-model="store.wanted" ng-change="refreshStores()"></md-checkbox>
 								<span>{{store.name}}</span>
 								<span>({{store.source.type}})</span>
 							</md-list-item>
-						</div>
-					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky">Fields</md-subheader>
-						<div ng-controller="FieldsListController">
-							<div ng-repeat="store in stores">
-								<md-list-item  ng-repeat="field in store.fields">
-									<span>{{field.name}}</span>
-								</md-list-item>
-							</div>
+							<md-divider></md-divider>
+							<md-subheader class="md-no-sticky">Fields</md-subheader>
+									<div ng-repeat="store in stores_with_fields">
+										<md-list-item  ng-repeat="field in store.fields">
+											<span>{{field.name}}</span>
+										</md-list-item>
+									</div>
 						</div>
 					<md-divider></md-divider>
 				</md-list>

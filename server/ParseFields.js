@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 var fields_file = './server/config/fields.json';
 
-var saveFields = function(req, res){
+var parseFields = function(req, res){
 	
 	var stores = req.body;
 
@@ -76,13 +76,5 @@ var saveFields = function(req, res){
 	}
 }
 
-var parseFields = function(req, res){
 
-	fs.readFile(fields_file, function(err, data){
-		if(err) res.send(JSON.parse('[]'));
-		else res.json(JSON.parse(data));
-	});
-
-}
-
-module.exports = {'saveFields': saveFields, 'parseFields': parseFields};
+module.exports = parseFields;
