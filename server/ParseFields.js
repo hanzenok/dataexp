@@ -66,12 +66,7 @@ var saveFields = function(req, res){
 				entitys[i].source = stores[i].source;
 			}
 
-			//save json to the file
-			fs.writeFile(fields_file, JSON.stringify(entitys), function(err){
-
-				res.send(err);
-			});
-			console.log(JSON.stringify(entitys));
+			//send the response
 			res.json(entitys);
 			
 		})

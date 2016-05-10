@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('StoresListController', function($scope, $http, stores){
+	.controller('StoresListController', function($scope, $http, $rootScope, stores){
 
 		stores.promise.then(function(res){
 
@@ -23,6 +23,8 @@ angular.module('MainApp')
 
 			$http.post("/api/fields", wanted_stores).success(function(data, status) {
 				console.log(data);
+				$rootScope.stores = data;
+				console.log($rootScope.stores);
 			}).error(function(err, status){
 
 				throw new Error(err);
