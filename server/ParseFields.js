@@ -10,6 +10,7 @@ var parseFields = function(req, res){
 		var doc, entity;
 		var url, connection, model;
 
+		//connect to each database in a promise
 		var n = stores.length;
 		var promises = new Array(n);
 		for (var i=0; i<n; i++){
@@ -17,11 +18,12 @@ var parseFields = function(req, res){
 			promises[i] = new Promise(function(resolve, reject){
 
 				url = 'mongodb://' + stores[i].source.server + ':' + stores[i].source.port + '/' + stores[i].source.db;
-
 				connection = mongoose.createConnection(url);
 				model = connection.model('', {}, stores[i].name);
 
-
+				//find the first document
+				//we suppose that it's fields are the same for all
+				//the documents in the collection
 				model.findOne({}, function(err, document){
 
 					if(err) reject(err);
@@ -30,6 +32,7 @@ var parseFields = function(req, res){
 						//delete all the javascript fields
 						doc = JSON.parse(JSON.stringify(document));
 
+						//parse the fields
 						entity = {};
 						entity.fields = [];
 						for(var key in doc){
@@ -41,8 +44,6 @@ var parseFields = function(req, res){
 						}
 
 						resolve(entity);
-						//entity.store = stores[i].name;
-						//entity.source = stores[i].source;
 					}
 				});
 
@@ -50,7 +51,9 @@ var parseFields = function(req, res){
 		}
 
 
-		//wait for fields
+		//wait for parsed fields
+		//add sources and stores 
+		//information
 		Promise.all(promises)
 		.then(function(entitys){
 

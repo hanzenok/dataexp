@@ -18,10 +18,12 @@
 		<script src="js/main.js"></script>
 		<script src="js/providers/SourcesProvider.js"></script>
 		<script src="js/providers/StoresProvider.js"></script>
+		<script src="js/providers/FieldsProvider.js"></script>
 		<script src="js/controllers/FabController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SourcesListController.js"></script>
 		<script src="js/controllers/StoresListController.js"></script>
+		<script src="js/controllers/FieldsListController.js"></script>
 
 		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button class="menu" aria-label="Menu button">
@@ -53,11 +55,13 @@
 						</div>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky">Fields</md-subheader>
-						<md-list-item><p>temp</p></md-list-item>
-						<md-list-item><p>time</p></md-list-item>
-						<md-list-item><p>te</p></md-list-item>
-						<md-list-item><p>tme</p></md-list-item>
-						<md-divider></md-divider>
+						<div ng-controller="FieldsListController">
+							<md-list-item><p>{{a}}</p></md-list-item>
+							<md-list-item><p>time</p></md-list-item>
+							<md-list-item><p>te</p></md-list-item>
+							<md-list-item><p>tme</p></md-list-item>
+						</div>
+					<md-divider></md-divider>
 				</md-list>
 
 			</md-sidenav>
