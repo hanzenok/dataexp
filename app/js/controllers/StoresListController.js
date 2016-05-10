@@ -9,11 +9,23 @@ angular.module('MainApp')
 				store.wanted = false;
 			});
 			$scope.stores = stores;
+
+			console.log('res.data:');
+			console.log(res.data);
 		});
 
 		//get the states of all the checkboxes
 		//triggers the 
 		$scope.refreshStores = function() {
+
+			stores.promise.then(function(res){
+
+				console.log('test: ');
+				var stores = res.data;
+				stores.forEach(function(store, index, array){
+					console.log(store);
+				});
+			});
 
 			//sort the stores
 			var wanted_stores = [];
@@ -25,7 +37,7 @@ angular.module('MainApp')
 				}
 			});
 
-			//trigger thet fields list
+			//trigger the fields list
 			if (wanted_stores.length){
 				
 				//get the fields of wanted stores from server
