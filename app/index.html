@@ -56,10 +56,11 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky">Fields</md-subheader>
 						<div ng-controller="FieldsListController">
-							<md-list-item><p>{{a}}</p></md-list-item>
-							<md-list-item><p>time</p></md-list-item>
-							<md-list-item><p>te</p></md-list-item>
-							<md-list-item><p>tme</p></md-list-item>
+							<div ng-repeat="store in stores">
+								<md-list-item  ng-repeat="field in store.fields">
+									<span>{{field.name}}</span>
+								</md-list-item>
+							</div>
 						</div>
 					<md-divider></md-divider>
 				</md-list>

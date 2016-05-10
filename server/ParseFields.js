@@ -1,7 +1,9 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
 
-var parseFields = function(req, res){
+var fields_file = './server/config/fields.json';
+
+var saveFields = function(req, res){
 	
 	var stores = req.body;
 
@@ -39,7 +41,7 @@ var parseFields = function(req, res){
 
 							if (key !== '_id'){
 
-								entity.fields.push({'field': key});
+								entity.fields.push({'name': key});
 							}
 						}
 
@@ -64,8 +66,14 @@ var parseFields = function(req, res){
 				entitys[i].source = stores[i].source;
 			}
 
-			//send the response
-			res.send(entitys);
+			//save json to the file
+			fs.writeFile(fields_file, JSON.stringify(entitys), function(err){
+
+				res.send(err);
+			});
+			console.log(JSON.stringify(entitys));
+			res.json(entitys);
+			
 		})
 		.catch(function(error){
 			res.send(error);	
@@ -73,4 +81,13 @@ var parseFields = function(req, res){
 	}
 }
 
-module.exports = parseFields;
+var parseFields = function(req, res){
+
+	fs.readFile(fields_file, function(err, data){
+		if(err) res.send(JSON.parse('[]'));
+		else res.json(JSON.parse(data));
+	});
+
+}
+
+module.exports = {'saveFields': saveFields, 'parseFields': parseFields};

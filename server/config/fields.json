@@ -1,0 +1,1 @@
+[{"fields":[{"name":"year"},{"name":"flows_colorado"}],"store":"colorado_river_copy","source":{"name":"test","type":"mongo","server":"localhost","port":"27017","db":"river_flows"}}]

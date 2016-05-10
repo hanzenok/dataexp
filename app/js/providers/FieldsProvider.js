@@ -1,6 +1,6 @@
 angular.module('MainApp')
 	.service('fields', function($http){
 
-		this.a = 'yo';
+		this.promise = $http.get('/api/fields');
 
 	});

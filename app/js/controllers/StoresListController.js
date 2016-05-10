@@ -23,6 +23,9 @@ angular.module('MainApp')
 
 			$http.post("/api/fields", wanted_stores).success(function(data, status) {
 				console.log(data);
+			}).error(function(err, status){
+
+				throw new Error(err);
 			});
 		};
 

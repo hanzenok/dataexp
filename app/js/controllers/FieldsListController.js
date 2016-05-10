@@ -1,5 +1,9 @@
 angular.module('MainApp')
 	.controller('FieldsListController', function($scope, fields){
 
-		$scope.a = fields.a;
+		fields.promise.then(function(res){
+
+			var stores = res.data;
+			$scope.stores = stores;
+		});
 	});
