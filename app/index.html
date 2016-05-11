@@ -53,10 +53,10 @@
         border:solid 1px red;
     }
 
-    [ng-drop] div{
+/*    [ng-drop] div{
         position: relative;
         z-index: 2;
-    }
+    }*/
 
   </style>
 	</head>
@@ -107,7 +107,7 @@
 
 			<md-content flex layout="column">
 
-				<div id="content" flex layout="column"></div>
+				<div ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="column"></div>
 
 				<hr>
 
@@ -115,7 +115,7 @@
 					<div class="md-whiteframe-4dp" layout="row" flex>
 						<md-list layout="row" flex>
 							<md-list-item id="pie-chart">
-								<div ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{type:'pieChart'}">
+								<div ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}">
 									<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
 										{{field.name}}
 									</div>
@@ -123,7 +123,7 @@
 							</md-list-item>
 						</md-list>
 
-						<div ng-controller="DropChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" style="background: rgba(255,0,0, 0.5);">
+						<div ng-controller="RemoveChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" style="background: rgba(255,0,0, 0.5);">
 						</div>
 
 						<div ng-drag-clone=""></div> 
@@ -157,8 +157,8 @@
 		<script src="js/controllers/SourcesListController.js"></script>
 		<script src="js/controllers/StoresListController.js"></script>
 		<script src="js/controllers/PieChartCtrl.js"></script>
-		<script src="js/controllers/DropChartCtrl.js"></script>
-
+		<script src="js/controllers/RemoveChartCtrl.js"></script>
+		<script src="js/controllers/ChartsCtrl.js"></script>
 
 	</body>
 

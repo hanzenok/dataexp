@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('DropChartCtrl', function($scope, $rootScope){
+	.controller('RemoveChartCtrl', function($scope, $rootScope){
 
 		$scope.onDropChart = function(data,evt){
 

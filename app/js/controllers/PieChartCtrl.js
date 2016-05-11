@@ -11,6 +11,7 @@ angular.module('MainApp')
 			var index = $rootScope.droppedFields.indexOf(data);
 			if (index == -1){
 
+				data.chart = "PieChart";
 				$rootScope.droppedFields.push(data);
 			}
 		}
