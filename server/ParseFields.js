@@ -1,8 +1,6 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
 
-var fields_file = './server/config/fields.json';
-
 var parseFields = function(req, res){
 	
 	var stores = req.body;

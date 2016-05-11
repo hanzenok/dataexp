@@ -4,7 +4,8 @@
   "description": "A web data exploration tool",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsproc": "cp -r ../tsproc/lib node_modules/tsproc/; cp ../tsproc/index.js node_modules/tsproc/;"
   },
   "author": "Ganza Mykhailo",
   "license": "MIT",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "grunt": "^1.0.1",
-    "grunt-wiredep": "^3.0.1"
+    "grunt-wiredep": "^3.0.1",
+    "tsproc": "file:../tsproc"
   }
 }

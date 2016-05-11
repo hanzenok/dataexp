@@ -105,7 +105,7 @@
 						<div ng-controller="SourcesListController">
 							<md-list-item ng-repeat="source in sources">
 								<md-checkbox ng-model="source.wanted" aria-label="Source checkbox"></md-checkbox>
-								<span>{{source.name}}</span>
+								<span>{{source.db}}</span>
 								<span>({{source.type}})</span>
 								<md-icon class="md-secondary" ng-click="showDialog($event)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
 							</md-list-item>
@@ -142,7 +142,7 @@
 					<div class="md-whiteframe-4dp" layout="row" flex>
 						<md-list layout="row" flex>
 							<md-list-item id="pie-chart">
-								<div class="chart" ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}">
+								<div class="chart" ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> Pie Chart
 									<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
 										{{field.name}}
 									</div>

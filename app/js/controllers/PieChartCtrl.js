@@ -1,6 +1,7 @@
 angular.module('MainApp')
 	.controller('PieChartCtrl', function ($scope, $rootScope) {
 
+		var count = 0;
 		$rootScope.droppedFields = [];
 
 		$scope.onDropComplete=function(data){

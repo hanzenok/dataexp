@@ -1,6 +1,7 @@
 var parseSources = require('./ParseSources');
 var parseStores = require('./ParseStores');
 var parseFields = require('./ParseFields');
+var parseDataset = require('./ParseDataset');
 
 module.exports = function(app){
 
@@ -14,6 +15,7 @@ module.exports = function(app){
 	app.get('/api/sources', parseSources);
 	app.get('/api/stores', parseStores);
 	app.post('/api/fields', parseFields);
+	app.post('/api/dataset', parseDataset);
 
 	//other pages
 	app.use(function(req, res, next){
