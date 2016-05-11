@@ -105,28 +105,29 @@
 				</md-list>
 			</md-sidenav>
 
-			<md-content id="content" flex layout="column">
+			<md-content flex layout="column">
 
-				<div flex layout="column"></div>
+				<div id="content" flex layout="column"></div>
 
 				<hr>
-				<footer flex="none" >
 
-<!-- <div class="drag-object" ng-drag="true" ng-drag-data="{a:1}"></div> -->
+				<footer flex="none">
 					<div class="md-whiteframe-4dp" layout="row" flex>
+						<md-list layout="row" flex>
+							<md-list-item id="pie-chart">
+								<div ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{type:'pieChart'}">
+									<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
+										{{field.name}}
+									</div>
+								</div>
+							</md-list-item>
+						</md-list>
 
-						<div ng-controller="DragCtrl1" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)" ng-drag="true" ng-drag-data="{type:'pieChart'}">
-							<div ng-repeat="obj in $root.droppedObjects1" ng-drag="false" ng-drag-data="obj">
-								{{obj.name}}
-							</div>
+						<div ng-controller="DropChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" style="background: rgba(255,0,0, 0.5);">
 						</div>
 
-						<div ng-controller="DragCtrl2" ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" style="background: rgba(255,0,0, 0.5);">
-						</div>
+						<div ng-drag-clone=""></div> 
 					</div>
-
-					<div ng-drag-clone="">
-					</div> 
 				</footer> 
 
 			</md-content>
@@ -155,7 +156,8 @@
 		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SourcesListController.js"></script>
 		<script src="js/controllers/StoresListController.js"></script>
-		<script src="js/controllers/DragCtrl.js"></script>
+		<script src="js/controllers/PieChartCtrl.js"></script>
+		<script src="js/controllers/DropChartCtrl.js"></script>
 
 
 	</body>
