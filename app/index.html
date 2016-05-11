@@ -28,22 +28,15 @@
         position: relative;
         overflow: hidden;
     }
-    .drag-object [ng-drag]{
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        top:0; left:0;
-        padding: 0;
-        margin: 0;
-    }
-    [ng-drag-clone]{
+
+	[ng-drag-clone]{
         margin: 0;
     }
     [ng-drag].drag-over{
         border:solid 1px red;
     }
     [ng-drag].dragging{
-        opacity: 0.5;
+		opacity: 0.5;
     }
     [ng-drop]{
         background: rgba(0,255,0, 0.5);
@@ -56,18 +49,9 @@
         position: relative;
     }
     [ng-drop].drag-enter{
-        border:solid 5px red;
+        border:solid 1px red;
     }
-    [ng-drop] span.title{
-        display: block;
-        position: absolute;
-        top:50%;
-        left:50%;
-        width: 200px;
-        height: 20px;
-        margin-left: -100px;
-        margin-top: -10px;
-    }
+
     [ng-drop] div{
         position: relative;
         z-index: 2;
@@ -107,10 +91,9 @@
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
-										<span class="drag-object" ng-repeat="field in fields" sytle="margin:10px;" ng-drag="true" ng-drag-data="field">
-												{{field.name}}
-										
-										</span>
+								<span class="drag-object" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
+										{{field.name}}
+								</span>
 						</div>
 					<md-divider></md-divider>
 				</md-list>
@@ -133,7 +116,6 @@
 					      <hr/>
 
 					      <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-					          <span class="title">Drop area</span>
 
 					          <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj">
 					              {{obj.name}}
@@ -142,8 +124,7 @@
 
 					      </div>
 
-						 <div ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" >
-						  Delete area
+						 <div ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" style="background: rgba(255,0,0, 0.5);">
 						</div>
 					    <hr>
 					  </div>
