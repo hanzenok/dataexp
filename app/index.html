@@ -115,8 +115,8 @@
 <!-- <div class="drag-object" ng-drag="true" ng-drag-data="{a:1}"></div> -->
 					<div class="md-whiteframe-4dp" layout="row" flex>
 
-						<div ng-controller="DragCtrl1" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)" ng-drag="true" ng-drag-data="droppedObjects1">
-							<div ng-repeat="obj in droppedObjects1" ng-drag="false" ng-drag-data="obj">
+						<div ng-controller="DragCtrl1" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)" ng-drag="true" ng-drag-data="{type:'pieChart'}">
+							<div ng-repeat="obj in $root.droppedObjects1" ng-drag="false" ng-drag-data="obj">
 								{{obj.name}}
 							</div>
 						</div>
