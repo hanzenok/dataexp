@@ -107,15 +107,10 @@
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
-									<div ng-repeat="store in stores_with_fields" layout="row">
-										<span class="drag-object" ng-repeat="field in store.fields" sytle="margin:10px;" ng-drag="true" ng-drag-data="store">
+										<span class="drag-object" ng-repeat="field in fields" sytle="margin:10px;" ng-drag="true" ng-drag-data="field">
 												{{field.name}}
 										
 										</span>
-<!-- 										<md-chips  ng-repeat="field in store.fields">
-											<md-chip ng-drag="true" ng-drag-data="store">{{field.name}}</md-chip>
-										</md-chips> -->
-									</div>
 						</div>
 					<md-divider></md-divider>
 				</md-list>

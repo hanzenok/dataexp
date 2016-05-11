@@ -9,7 +9,7 @@ var parseFields = function(req, res){
 
 	if(stores.length){
 
-		var doc, entity;
+		var doc, fields;
 		var url, connection, model;
 
 		//connect to each database in a promise
@@ -35,17 +35,15 @@ var parseFields = function(req, res){
 						doc = JSON.parse(JSON.stringify(document));
 
 						//parse the fields
-						entity = {};
-						entity.fields = [];
+						fields = [];
 						for(var key in doc){
 
 							if (key !== '_id'){
 
-								entity.fields.push({'name': key});
+								fields.push({'name': key});
 							}
 						}
-
-						resolve(entity);
+						resolve(fields);
 					}
 				});
 
@@ -57,17 +55,26 @@ var parseFields = function(req, res){
 		//add sources and stores 
 		//information
 		Promise.all(promises)
-		.then(function(entitys){
+		.then(function(fieldnames){
 
-			var n = entitys.length;
+			var fields = [];
+			var m,n = fieldnames.length;
 			for (var i=0; i<n; i++){
 
-				entitys[i].store = stores[i].name;
-				entitys[i].source = stores[i].source;
+				m = fieldnames[i].length;
+				for(var j=0; j<m; j++){
+
+					//add stores and sources to the fields
+					fieldnames[i][j].store = stores[i].name;
+					fieldnames[i][j].source = stores[i].source;
+
+					//push to the new array
+					fields.push(fieldnames[i][j]);
+				}
 			}
 
 			//send the response
-			res.json(entitys);
+			res.json(fields);
 			
 		})
 		.catch(function(error){

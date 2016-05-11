@@ -24,7 +24,7 @@ angular.module('MainApp')
 				//get the fields of wanted stores from server
 				$http.post("/api/fields", wanted_stores).success(function(data, status) {
 					
-					$scope.stores_with_fields = data;
+					$scope.fields = data;
 
 				}).error(function(err, status){
 
@@ -32,7 +32,7 @@ angular.module('MainApp')
 				});
 			}
 			else{
-				$scope.stores_with_fields = [];
+				$scope.fields = [];
 			}
 		};
 
