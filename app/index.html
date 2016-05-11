@@ -26,7 +26,7 @@
         display: inline-block;
         margin:10px;
         cursor: move;
-        position: relative;
+		position: relative;
         overflow: hidden;
     }
 
@@ -42,8 +42,8 @@
     [ng-drop]{
         background: rgba(0,255,0, 0.5);
         text-align: center;
-        width: 600px;
-        height: 200px;
+        width: 300px;
+        height: 100px;
         padding-top:90px;
         display: block;
         margin:20px auto;
@@ -72,6 +72,11 @@
 
 		<div class="container" layout="row" flex>
 			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-14dp">
+
+				<md-button class="md-fab md-fab-bottom-right" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
+					<md-icon md-svg-src="images/add.svg"></md-icon>
+				</md-button>
+
 				<md-list>
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<div ng-controller="SourcesListController">
@@ -98,42 +103,30 @@
 						</div>
 					<md-divider></md-divider>
 				</md-list>
-
 			</md-sidenav>
 
-			<md-button class="md-fab md-fab-bottom-right" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
-				<md-icon md-svg-src="images/add.svg"></md-icon>
-			</md-button>
+			<md-content id="content" flex layout="column">
 
-			<md-content id="content" flex>
-				Affichage superb
-					  <div class="drag" ng-controller="DragCtrl">
+				<div flex layout="column"></div>
 
-					  	<!-- objects -->
-					      <div class="drag-object" ng-repeat="obj in draggableObjects" ng-drag="true" ng-drag-data="obj">
-					          {{obj.name}}
-					      </div>
+				<hr>
+				<footer flex="none" >
+					<div class="md-whiteframe-4dp" ng-controller="DragCtrl" layout="row" flex>
 
-					      <hr/>
-
-					      <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-
-					          <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj">
-					              {{obj.name}}
-					          </div>
-
-
-					      </div>
-
-						 <div ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" style="background: rgba(255,0,0, 0.5);">
+						<div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+							<div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj">
+								{{obj.name}}
+							</div>
 						</div>
-					    <hr>
-					  </div>
 
+						<div ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" style="background: rgba(255,0,0, 0.5);">
+						</div>
 
-						<div ng-drag-clone="">
-						</div> 
+					</div>
 
+					<div ng-drag-clone="">
+					</div> 
+				</footer> 
 
 			</md-content>
 		</div>
