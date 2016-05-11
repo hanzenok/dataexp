@@ -47,7 +47,7 @@ var parseStores = function(req, res){
 			});
 
 			db.on('error', function(error){
-				throw new Error(err);
+				//throw new Error(err);
 				res.send(JSON.parse('[]'));
 			});
 		}

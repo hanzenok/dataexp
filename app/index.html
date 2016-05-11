@@ -40,18 +40,37 @@
 		opacity: 0.5;
     }
     [ng-drop]{
-        background: rgba(0,255,0, 0.5);
+        /*background: rgba(0,255,0, 0.5);*/
         text-align: center;
         width: 200px;
         height: 150px;
-        padding:5px;
-        display: block;
-        margin:20px auto;
-        position: relative;
+        /*padding:5px;*/
+        /*display: block;*/
+        /*margin:20px auto;*/
+        /*position: relative;*/
     }
     [ng-drop].drag-enter{
         border:solid 1px red;
     }
+
+    .charts{
+        width: auto;
+        height: auto;
+
+    }
+    .chart{
+    	background: rgba(0,255,0, 0.2);
+    	border-radius: 20px;
+    }
+    .delete_chart{
+    	margin:10px;
+    	background: rgba(255,0,0, 0.2);
+    	border-radius: 20px;
+    }
+
+	.md-fab:hover, .md-fab.md-focused {
+			background-color: grey !important; 
+	}
 
 /*    [ng-drop] div{
         position: relative;
@@ -63,6 +82,7 @@
 
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
+		<!-- Toolbar -->
 		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button class="menu" aria-label="Menu button">
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
@@ -70,13 +90,16 @@
 			<h1>Title</h1>
 		</md-toolbar>
 
-		<div class="container" layout="row" flex>
-			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-14dp">
+		<!-- Side Bar -->
+		<div layout="row" flex>
+			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp">
 
+				<!-- Fab Button -->
 				<md-button class="md-fab md-fab-bottom-right" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
 					<md-icon md-svg-src="images/add.svg"></md-icon>
 				</md-button>
 
+				<!-- Sources, Stores, Fields List -->
 				<md-list>
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<div ng-controller="SourcesListController">
@@ -105,17 +128,21 @@
 				</md-list>
 			</md-sidenav>
 
+			<!-- Main Container -->
 			<md-content flex layout="column">
 
-				<div ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="column"></div>
+				<!-- Charts Container -->
+				<div class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
+					
+				</div>
 
+				<!-- Footer -->
 				<hr>
-
 				<footer flex="none">
 					<div class="md-whiteframe-4dp" layout="row" flex>
 						<md-list layout="row" flex>
 							<md-list-item id="pie-chart">
-								<div ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}">
+								<div class="chart" ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}">
 									<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
 										{{field.name}}
 									</div>
@@ -123,7 +150,7 @@
 							</md-list-item>
 						</md-list>
 
-						<div ng-controller="RemoveChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" style="background: rgba(255,0,0, 0.5);">
+						<div class="delete_chart" ng-controller="RemoveChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)">
 						</div>
 
 						<div ng-drag-clone=""></div> 
@@ -132,12 +159,6 @@
 
 			</md-content>
 		</div>
-
-		<style>
-			.md-fab:hover, .md-fab.md-focused {
-  				background-color: grey !important; 
-  			}
-		</style>
 
 		<!-- bower:js -->
 		<script src="../bower_components/angular/angular.js"></script>

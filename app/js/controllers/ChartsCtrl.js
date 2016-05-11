@@ -12,7 +12,6 @@ angular.module('MainApp')
 			var n = fields.length;
 			for (var i=0; i<n; i++){
 
-				console.log();
 				if (fields[i].chart === data.chart){
 					
 					filtered_fields.push(fields[i]);
