@@ -1,25 +1,54 @@
-    angular.module('MainApp').
-      controller('DragCtrl', function ($scope) {
+    angular.module('MainApp')
+        .service('draggables', function(){
+            
+            var objects = [];
 
-        $scope.draggableObjects = [{name:'one', same: 'yes'}, {name:'two', same: 'yes'}, {name:'three', same: 'no'}];
-        $scope.droppedObjects1 = [];
+            this.objects = objects;
 
-        $scope.onDropComplete1=function(data,evt){
-            console.log('onDropComplete:');
-            console.log(data);
-            console.log(evt);
-            var index = $scope.droppedObjects1.indexOf(data);
-            if (index == -1)
-            $scope.droppedObjects1.push(data);
-        }
+            this.clear = function(){
 
-        $scope.onDropComplete2=function(data,evt){
-            console.log('onDropComplete2: ' + data);
-            var index = $scope.droppedObjects1.indexOf(data);
-            if (index > -1) {
-                $scope.droppedObjects1.splice(index, 1);
+                console.log('from clear function: ');
+                console.log(objects);
+
+                objects = [];
+                console.log('from clear function: ');
+                console.log(objects);
+                this.objects = objects;
             }
 
-        }
+        })
+        .controller('DragCtrl1', function ($scope, draggables) {
+            
+            $scope.droppedObjects1 = draggables.objects;
 
-      });
+            $scope.onDropComplete1=function(data,evt){
+                console.log('onDropComplete:');
+                console.log(data);
+                var index = draggables.objects.indexOf(data);
+                if (index == -1){
+
+                    draggables.objects.push(data);
+                    $scope.droppedObjects1 = draggables.objects;
+                }
+                
+
+            }
+
+      })
+
+        .controller('DragCtrl2', function($scope, draggables){
+
+        $scope.onDropComplete2=function(data,evt){
+
+            console.log('onDropComplete2:');
+            //console.log(draggables.objects);
+            console.log(data);
+            draggables.clear();
+
+            // var index = $scope.droppedObjects1.indexOf(data);
+            // if (index > -1) {
+            //     $scope.droppedObjects1.splice(index, 1);
+            // }
+
+        }
+        });

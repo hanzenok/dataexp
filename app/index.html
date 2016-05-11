@@ -111,15 +111,17 @@
 
 				<hr>
 				<footer flex="none" >
-					<div class="md-whiteframe-4dp" ng-controller="DragCtrl" layout="row" flex>
 
-						<div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-							<div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj">
+<!-- <div class="drag-object" ng-drag="true" ng-drag-data="{a:1}"></div> -->
+					<div class="md-whiteframe-4dp" layout="row" flex>
+
+						<div ng-controller="DragCtrl1" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)" ng-drag="true" ng-drag-data="droppedObjects1">
+							<div ng-repeat="obj in droppedObjects1" ng-drag="false" ng-drag-data="obj">
 								{{obj.name}}
 							</div>
 						</div>
 
-						<div ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" style="background: rgba(255,0,0, 0.5);">
+						<div ng-controller="DragCtrl2" ng-drop="true" ng-drop-success="onDropComplete2($data,$event)" style="background: rgba(255,0,0, 0.5);">
 						</div>
 					</div>
 
