@@ -43,6 +43,9 @@ angular.module('MainApp')
 						.hideDelay(4000)
 				);
 
+				//empty the erros list
+				err_message = '';
+
 				return;
 			}
 
