@@ -52,7 +52,9 @@
     [ng-drop].drag-enter{
         border:solid 1px red;
     }
-    [ng-drop] span.title{
+    [ng-drop] .drop_info{
+    	color:gray;
+    	font-size:0.8em;
         display: block;
         position: absolute;
         top:50%;
@@ -69,18 +71,38 @@
 
     }
     .chart{
-    	background: rgba(0,255,0, 0.2);
+    	background: rgba(0,255,0, 0.1);
     	border-radius: 20px;
     }
     .delete_chart{
-    	margin:10px;
     	background: rgba(255,0,0, 0.2);
-    	border-radius: 20px;
     }
 
-    #pie-chart{
+    .platform{
 		background: rgba(240, 240, 240, 0.8);
 		border-radius: 20px;
+    }
+
+    .loader{
+
+    	background: rgba(240, 240, 240, 0.8);
+    }
+    #loader_normal{
+
+    	background: rgba(0, 0, 255, 0.1);;
+    	border-radius: 20px;
+    	margin:5px;
+        width: 200px;
+        height: 100px;
+    }
+
+    #loader_primary{
+
+    	background: rgba(0, 255, 0, 0.1);;
+    	border-radius: 20px;
+    	margin:5px;
+        width: 200px;
+        height: 50px;
     }
 
 	.md-fab:hover, .md-fab.md-focused {
@@ -135,7 +157,7 @@
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
-								<span class="drag-object" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
+								<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
 										{{field.name}}
 								</span>
 						</div>
@@ -155,27 +177,50 @@
 				<hr>
 				<footer flex="none">
 					<div class="md-whiteframe-4dp" layout="row" flex>
+
+						<!-- Loader -->
+						<div ng-controller="LoaderCtrl" class="loader" layout="column">
+
+							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
+								<span class="drop_info">Fields</span>
+							</div>
+
+							<div id="loader_primary" ng-drop="true" ng-drop-success="onPrimaryDropComplete($data)">
+								<span class="drop_info">Primary Fields</span>
+							</div>
+
+							<div layout="row">
+								<md-icon class="md-secondary" md-svg-src="images/download.svg" aria-label="Download" style="color:red;"></md-icon>
+								<!-- <md-progress-circular md-mode="indeterminate" class="md-accent"></md-progress-circular> -->
+							</div>
+						</div>
+
+						<md-divider></md-divider>
 						<md-list layout="row" flex>
 
 							<!-- Pie Chart -->
 							<md-list-item>
-								<div id="pie-chart" ng-controller="PieChartCtrl" layout="column">
+								<div class="platform" ng-controller="PieChartCtrl" layout="column">
 									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart', format: pie_input}"> 
-										<span class="title">Pie Chart</span>
+										<span class="drop_info">Pie Chart</span>
 
-										<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
+										<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field" class="md-whiteframe-4dp">
 											{{field.name}}
 										</div>
 									</div>
 
-									<md-input-container style="margin: 0 auto;">
-										<input style="width:150px; color:gray; text-align:center; font-size:0.8em" ng-model="pie_input">
-									</md-input-container>
+									<div style="margin: 0 auto;">
+										<span style="width:150px; color:gray; text-align:center; font-size:0.8em;">Pie Chart</span>
+									</div>
 								</div>
 							</md-list-item>
 						</md-list>
 
-						<div class="delete_chart" ng-controller="RemoveChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)">
+						<md-divider></md-divider>
+
+						<!-- Delete zone -->
+						<div class="delete_chart" ng-controller="RemoveChartCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout="column">
+							<md-icon md-svg-src="../images/delete2.svg" aria-label="Delete source" class="drop_info" style="height: 60px;"></md-icon>
 						</div>
 
 						<div ng-drag-clone=""></div> 
@@ -205,6 +250,7 @@
 		<script src="js/controllers/PieChartCtrl.js"></script>
 		<script src="js/controllers/RemoveChartCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>
+		<script src="js/controllers/LoaderCtrl.js"></script>
 
 	</body>
 

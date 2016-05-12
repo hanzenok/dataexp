@@ -17,7 +17,7 @@ var parseDataset = function(req, res){
 
 		//process the data
 		Promise.all(promises)
-		.then(function(timeseries){
+		.then(function(stores){
 
 			//callback
 			var callback = function(err, data){
@@ -29,9 +29,9 @@ var parseDataset = function(req, res){
 			//time series description
 			//TODO
 
-			console.log(timeseries);
+			console.log(stores);
 
-			// tsp = new tsproc(timeseries, '', callback);
+			// tsp = new tsproc(stores, '', callback);
 			// tsp.process(date_borders, callback);
 
 		})

@@ -1,7 +1,9 @@
 angular.module('MainApp')
 	.controller('StoresListController', function($scope, $http, stores){
 
-		//get all the stores from the server
+		$scope.fields = [];
+
+		//get all the stores from the provider
 		$scope.stores = stores.data;
 
 		//get the states of all the checkboxes
@@ -35,5 +37,10 @@ angular.module('MainApp')
 				$scope.fields = [];
 			}
 		};
+
+		$scope.loadFields = function(){
+
+			console.log($scope.fields);
+		}
 
 	});
