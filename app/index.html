@@ -89,7 +89,7 @@
     }
     #loader_normal{
 
-    	background: rgba(0, 0, 255, 0.1);;
+    	background: rgba(0, 0, 255, 0.2);;
     	border-radius: 20px;
     	margin:5px;
         width: 200px;
@@ -98,7 +98,7 @@
 
     #loader_primary{
 
-    	background: rgba(0, 255, 0, 0.1);;
+    	background: rgba(0, 255, 0, 0.2);;
     	border-radius: 20px;
     	margin:5px;
         width: 200px;
@@ -183,10 +183,18 @@
 
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
+
+								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="md-whiteframe-4dp">
+									{{field.name}}
+								</div>
 							</div>
 
 							<div id="loader_primary" ng-drop="true" ng-drop-success="onPrimaryDropComplete($data)">
 								<span class="drop_info">Primary Fields</span>
+
+								<div ng-repeat="field in $root.droppedPrimaryFields" ng-drag="true" ng-drag-data="field" class="md-whiteframe-4dp">
+									{{field.name}}
+								</div>
 							</div>
 
 							<div layout="row">
