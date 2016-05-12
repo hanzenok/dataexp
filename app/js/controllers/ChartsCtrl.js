@@ -3,12 +3,19 @@ angular.module('MainApp')
 
 
 		/*********On dropping chart*******/
-		$scope.onDropChart=function(data){
+		$scope.onDropChart = function(data){
 
 			var filtered_fields = [];
-			var fields = $rootScope.droppedFields;
+
+			//check the format
+			var err_message='';
+			if (!data.format) {
+
+				err_message = err_message + data.chart + ': format is missing';
+			}
 
 			//filtering all the dropped fields
+			var fields = $rootScope.droppedFields;
 			var n = fields.length;
 			for (var i=0; i<n; i++){
 
@@ -18,12 +25,7 @@ angular.module('MainApp')
 				}
 			}
 
-			//checks
-			var err_message='';
-			if (!data.format) {
-
-				err_message = err_message + data.chart + ': format is missing';
-			}
+			//check quantity of fields
 			if (filtered_fields.length !== 2) {
 
 				if(err_message.length)
@@ -32,6 +34,8 @@ angular.module('MainApp')
 				else
 					err_message = err_message + '2 fields should be specified';
 			}
+
+			//if the are erros, show them in a toaster
 			if(err_message.length){
 
 				//show a error toaster
@@ -49,7 +53,7 @@ angular.module('MainApp')
 				return;
 			}
 
-			//sending all the infor to the server
+			//sending all the info to the server
 			//and waiting for the merged dataset
 			$http.post("/api/dataset", filtered_fields).success(function(data, status) {
 				
