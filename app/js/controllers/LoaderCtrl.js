@@ -22,9 +22,13 @@ angular.module('MainApp')
 
 				//ask the format of the timestamp field
 				$mdDialog.show({
-					templateUrl: '../../templates/AddFormat.html',
+					templateUrl: '../../templates/SaveFormat.html',
 					parent: angular.element(document.body),
 					clickOutsideToClose: true
+				}).then(function(answer){
+
+					data.format = answer;
+					console.log(data);
 				});
 
 				$rootScope.droppedTSFields.push(data);

@@ -1,13 +1,13 @@
-<md-dialog aria-label="Add Format" ng-controller="DialogController" ng-cloak layout="column">
+<md-dialog aria-label="Save Format" ng-controller="DialogController" ng-cloak layout="column">
 
 	<div layout="column" layout-padding>
 		<div layout="row" flex>
 			<md-input-container flex class="md-icon-float md-block md-title">
 				<label>Format</label>
-				<input type="text" placeholder="ISO">
+				<input type="text" ng-model="format">
 			</md-input-container>
 			<div>
-				<md-button class="md-raised" ng-click="connect()">OK</md-button>
+				<md-button class="md-raised" ng-click="saveFormat()">OK</md-button>
 			</div>
 		</div>
 
