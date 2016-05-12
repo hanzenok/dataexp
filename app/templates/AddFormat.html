@@ -1,0 +1,16 @@
+<md-dialog aria-label="Add Format" ng-controller="DialogController" ng-cloak layout="column">
+
+	<div layout="column" layout-padding>
+		<div layout="row" flex>
+			<md-input-container flex class="md-icon-float md-block md-title">
+				<label>Format</label>
+				<input type="text" placeholder="ISO">
+			</md-input-container>
+			<div>
+				<md-button class="md-raised" ng-click="connect()">OK</md-button>
+			</div>
+		</div>
+
+		<p>More info <a href='http://momentjs.com/docs/#/parsing/string-format/'>here</a></p>
+	</div>
+</md-dialog>

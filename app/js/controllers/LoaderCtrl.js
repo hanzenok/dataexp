@@ -1,8 +1,8 @@
 angular.module('MainApp')
-	.controller('LoaderCtrl', function($scope, $rootScope){
+	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog){
 
 		$rootScope.droppedFields = [];//dropped fields container
-		$rootScope.droppedPrimaryFields = []; //dropped primary fields container
+		$rootScope.droppedTSFields = []; //dropped primary fields container
 
 		//a field dropped
 		$scope.onDropComplete = function(data){
@@ -15,12 +15,19 @@ angular.module('MainApp')
 		}
 
 		//a primary field dropped
-		$scope.onPrimaryDropComplete = function(data){
+		$scope.onTSDropComplete = function(data){
 
-			var index = $rootScope.droppedPrimaryFields.indexOf(data);
+			var index = $rootScope.droppedTSFields.indexOf(data);
 			if (index == -1){
 
-				$rootScope.droppedPrimaryFields.push(data);
+				//ask the format of the timestamp field
+				$mdDialog.show({
+					templateUrl: '../../templates/AddFormat.html',
+					parent: angular.element(document.body),
+					clickOutsideToClose: true
+				});
+
+				$rootScope.droppedTSFields.push(data);
 			}	
 		}
 	});
