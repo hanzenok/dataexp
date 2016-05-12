@@ -1,18 +1,27 @@
 var tsproc = require('tsproc');
 var loadData = require('./LoadData');
+var modifyConfig = require('./ModifyConfig');
+var moment = require('moment');
+
+var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
 
 var parseDataset = function(req, res){
 	
-	var fields = req.body;
+	var config = req.body;
 
-	if(fields.length){
+	if(config.length){
+
+		//console.log('config:'); console.log(config);
+		var new_config = modifyConfig(config);
+		// console.log('new_config:'); console.log(new_config);
 
 		//load all the data
-		var n = fields.length;
+		//from the specified sources
+		var n = new_config.length;
 		var promises = new Array(n);
 		for(var i=0; i<n; i++){
 
-			promises[i] = loadData(fields[i]);
+			promises[i] = loadData(new_config[i]);
 		}
 
 		//process the data
@@ -26,91 +35,21 @@ var parseDataset = function(req, res){
 				if (data) res.json(data);
 			}
 
-			//time series description
-			//TODO
+			//parse new config
+			var tsproc_config = {};
+			tsproc_config.timeseries = [];
+			new_config.forEach(function(config, index, array){
 
-			console.log(stores);
+				tsproc_config.timeseries.push(config);
+			});
 
-			// tsp = new tsproc(stores, '', callback);
-			// tsp.process(date_borders, callback);
+			tsp = new tsproc(stores, tsproc_config, callback);
+			tsp.process(date_borders, callback);
 
 		})
 		.catch(function(error){
 			res.send(error);	
 		});
-
-
-		// var doc, fields;
-		// var url, connection, model;
-
-		// //connect to each database in a promise
-		// var n = stores.length;
-		// var promises = new Array(n);
-		// for (var i=0; i<n; i++){
-
-		// 	promises[i] = new Promise(function(resolve, reject){
-
-		// 		url = 'mongodb://' + stores[i].source.server + ':' + stores[i].source.port + '/' + stores[i].source.db;
-		// 		connection = mongoose.createConnection(url);
-		// 		model = connection.model('', {}, stores[i].name);
-
-		// 		//find the first document
-		// 		//we suppose that it's fields are the same for all
-		// 		//the documents in the collection
-		// 		model.findOne({}, function(err, document){
-
-		// 			if(err) reject(err);
-		// 			else {
-
-		// 				//delete all the javascript fields
-		// 				doc = JSON.parse(JSON.stringify(document));
-
-		// 				//parse the fields
-		// 				fields = [];
-		// 				for(var key in doc){
-
-		// 					if (key !== '_id'){
-
-		// 						fields.push({'name': key});
-		// 					}
-		// 				}
-		// 				resolve(fields);
-		// 			}
-		// 		});
-
-		// 	});
-		// }
-
-
-		// //wait for parsed fields
-		// //add sources and stores 
-		// //information
-		// Promise.all(promises)
-		// .then(function(fieldnames){
-
-		// 	var fields = [];
-		// 	var m,n = fieldnames.length;
-		// 	for (var i=0; i<n; i++){
-
-		// 		m = fieldnames[i].length;
-		// 		for(var j=0; j<m; j++){
-
-		// 			//add stores and sources to the fields
-		// 			fieldnames[i][j].store = stores[i].name;
-		// 			fieldnames[i][j].source = stores[i].source;
-
-		// 			//push to the new array
-		// 			fields.push(fieldnames[i][j]);
-		// 		}
-		// 	}
-
-		// 	//send the response
-		// 	res.json(fields);
-			
-		// })
-		// .catch(function(error){
-		// 	res.send(error);	
-		// });
 	}
 }
 

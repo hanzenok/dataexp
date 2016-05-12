@@ -1,0 +1,15 @@
+{
+	"interpolation":{"type":"linear"},
+	"reduction":{"type":"min"},
+	"timeseries":[
+		{
+			"fields":[
+				{"field":"a","from":"Dimming value (%)"},
+				{"field":"b","from":"Instantaneous power (W)"}
+			],
+			"timestamp":{"field":"time","from":"Status created","format":"ISO"}
+		}
+	]
+}
+
+//change timestamp.field to timestamp.name
