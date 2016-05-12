@@ -3,10 +3,9 @@ angular.module('MainApp')
 
 		var CHART_TYPE = 'PieChart';
 		$rootScope.droppedFields = [];
+		$scope.pie_input = 'ISO'; //a placeholder for the input
 
 		$scope.onDropComplete = function(data){
-
-			console.log($scope.pie_input);
 
 			var index = $rootScope.droppedFields.indexOf(data);
 			if (index == -1){

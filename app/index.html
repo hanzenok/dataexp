@@ -79,7 +79,7 @@
     }
 
     #pie-chart{
-		background: rgba(240, 240, 240, 0.5);
+		background: rgba(240, 240, 240, 0.8);
 		border-radius: 20px;
     }
 
@@ -160,7 +160,7 @@
 							<!-- Pie Chart -->
 							<md-list-item>
 								<div id="pie-chart" ng-controller="PieChartCtrl" layout="column">
-									<div class="chart" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart', format: pie_input}"> 
+									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart', format: pie_input}"> 
 										<span class="title">Pie Chart</span>
 
 										<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
@@ -168,9 +168,8 @@
 										</div>
 									</div>
 
-									<md-input-container>
-										<label>Format</label>
-										<input style="width:195px;" ng-model="pie_input">
+									<md-input-container style="margin: 0 auto;">
+										<input style="width:150px; color:gray; text-align:center; font-size:0.8em" ng-model="pie_input">
 									</md-input-container>
 								</div>
 							</md-list-item>
