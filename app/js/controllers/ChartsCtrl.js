@@ -1,10 +1,10 @@
 angular.module('MainApp')
-	.controller('ChartsCtrl', function ($scope, $rootScope, $http) {
+	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast) {
 
 
-		//chart is a type of the chart
+		/*********On dropping chart*******/
 		$scope.onDropChart=function(data){
-		
+
 			var filtered_fields = [];
 			var fields = $rootScope.droppedFields;
 
@@ -18,6 +18,33 @@ angular.module('MainApp')
 				}
 			}
 
+			//checks
+			var err_message='';
+			if (!data.format) {
+
+				err_message = err_message + data.chart + ': format is missing';
+			}
+			if (filtered_fields.length !== 2) {
+
+				if(err_message.length)
+
+					err_message = err_message + ', 2 fields should be specified';
+				else
+					err_message = err_message + '2 fields should be specified';
+			}
+			if(err_message.length){
+
+				//show a error toaster
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent(err_message)
+						.action('OK')
+						.position('bottom')
+						.hideDelay(4000)
+				);
+
+				return;
+			}
 
 			//sending all the infor to the server
 			//and waiting for the merged dataset
@@ -32,4 +59,5 @@ angular.module('MainApp')
 				throw new Error(err);
 			});
 		}
+
 	});

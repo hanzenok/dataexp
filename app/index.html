@@ -47,10 +47,20 @@
         /*padding:5px;*/
         /*display: block;*/
         /*margin:20px auto;*/
-        /*position: relative;*/
+        position: relative;
     }
     [ng-drop].drag-enter{
         border:solid 1px red;
+    }
+    [ng-drop] span.title{
+        display: block;
+        position: absolute;
+        top:50%;
+        left:50%;
+        width: 200px;
+        height: 20px;
+        margin-left: -100px;
+        margin-top: -10px;
     }
 
     .charts{
@@ -66,6 +76,11 @@
     	margin:10px;
     	background: rgba(255,0,0, 0.2);
     	border-radius: 20px;
+    }
+
+    #pie-chart{
+		background: rgba(240, 240, 240, 0.5);
+		border-radius: 20px;
     }
 
 	.md-fab:hover, .md-fab.md-focused {
@@ -141,11 +156,25 @@
 				<footer flex="none">
 					<div class="md-whiteframe-4dp" layout="row" flex>
 						<md-list layout="row" flex>
-							<md-list-item id="pie-chart">
-								<div class="chart" ng-controller="PieChartCtrl" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> Pie Chart
-									<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
-										{{field.name}}
+
+							<!-- Pie Chart -->
+							<md-list-item>
+								<div id="pie-chart" ng-controller="PieChartCtrl" layout="column">
+									<div class="chart" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart', format: pie_input}"> 
+										<span class="title">Pie Chart</span>
+
+										<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field">
+											{{field.name}}
+										</div>
 									</div>
+
+									<md-input-container>
+										<label>Format</label>
+										<input style="width:195px;" ng-model="pie_input">
+										<div ng-messages="">
+											<div ng-message="required">This is required.</div>
+										</div>
+									</md-input-container>
 								</div>
 							</md-list-item>
 						</md-list>
