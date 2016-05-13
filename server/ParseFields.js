@@ -5,9 +5,6 @@ var parseFields = function(req, res){
 	
 	var stores = req.body;
 
-	console.log('stores:');
-	console.log(stores);
-
 	if(stores.length){
 
 		var doc, fields;

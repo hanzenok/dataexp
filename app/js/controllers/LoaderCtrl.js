@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $http, $mdToast){
+	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, DatasetService){
 
 		//containers
 		$rootScope.droppedFields = [];//fields that are dropped to the loader
@@ -43,30 +43,31 @@ angular.module('MainApp')
 			var all_fields = [$rootScope.droppedTSFields, $rootScope.droppedFields];
 
 			//send them to the server
-			$http.post("/api/dataset", all_fields).success(function(data, status) {
+			DatasetService.getRes().post(all_fields, 
+				function(data){
 
-				//mark all the fields as loaded
-				all_fields.forEach(function(fields, index){
-					
-					fields.forEach(function(field, index){
-						field.status = 'loaded';
+					//mark all the fields as loaded
+					all_fields.forEach(function(fields, index){
+						
+						fields.forEach(function(field, index){
+							field.status = 'loaded';
+						});
 					});
 
+					//save data
+					$rootScope.dataset = data;
+
+				},
+				function(err){
+
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent(err.data)
+							.action('OK')
+							.position('bottom')
+							.hideDelay(4000)
+					);
 				});
-
-				//save data
-				$rootScope.dataset = data;
-
-			}).error(function(err, status){
-
-				$mdToast.show(
-					$mdToast.simple()
-						.textContent(err)
-						.action('OK')
-						.position('bottom')
-						.hideDelay(4000)
-				);
-			});
 
 		};
 	});
