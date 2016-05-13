@@ -43,9 +43,4 @@ angular.module('MainApp')
 			}
 		};
 
-		$scope.loadFields = function(){
-
-			console.log($scope.fields);
-		}
-
 	});

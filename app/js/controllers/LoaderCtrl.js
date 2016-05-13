@@ -30,7 +30,6 @@ angular.module('MainApp')
 				}).then(function(answer){
 
 					data.format = answer;
-					console.log(data);
 				});
 
 				$rootScope.droppedTSFields.push(data);
@@ -46,8 +45,6 @@ angular.module('MainApp')
 			//send them to the server
 			$http.post("/api/dataset", all_fields).success(function(data, status) {
 
-				console.log(data);
-
 				//mark all the fields as loaded
 				all_fields.forEach(function(fields, index){
 					
@@ -57,7 +54,7 @@ angular.module('MainApp')
 
 				});
 
-				//console.log(data);
+				//save data
 				$rootScope.dataset = data;
 
 			}).error(function(err, status){

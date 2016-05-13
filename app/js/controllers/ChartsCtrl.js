@@ -19,13 +19,6 @@ angular.module('MainApp')
 				}
 			}
 
-			console.log('chart type:');
-			console.log(data.chart);
-			console.log('filtered_fields:');
-			console.log(filtered_fields);
-			console.log('dataset:');
-			console.log($rootScope.dataset);
-
 			//check quantity of fields
 			if (filtered_fields.length !== 2) {
 
@@ -35,10 +28,17 @@ angular.module('MainApp')
 						.action('OK')
 						.position('bottom')
 						.hideDelay(4000)
-				);				
+				);
+
+				return;				
 			}
 
-				return;
+			console.log('chart type:');
+			console.log(data.chart);
+			console.log('filtered_fields:');
+			console.log(filtered_fields);
+			console.log('dataset:');
+			console.log($rootScope.dataset);
 
 		}
 
