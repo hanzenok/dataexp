@@ -1,10 +1,10 @@
 angular.module('MainApp')
-	.controller('StoresListController', function($scope, $http, stores){
+	.controller('StoresListController', function($scope, $http, StoresService, FieldsService){
 
 		$scope.fields = [];
 
 		//get all the stores from the provider
-		$scope.stores = stores.data;
+		$scope.stores = StoresService.getData();
 
 		//get the states of all the checkboxes
 		//triggers the 
@@ -20,29 +20,27 @@ angular.module('MainApp')
 				}
 			});
 
-			//trigger the fields list
+			//show the fields list
 			if (wanted_stores.length){
-				
-				//get the fields of wanted stores from server
-				$http.post("/api/fields", wanted_stores).success(function(data, status) {
-					
-					//process each field information
-					data.forEach(function(field, index){
+
+				//get the fields of wanted stores
+				FieldsService.getRes().post(wanted_stores, function(fields){
+
+					//process each field
+					fields.forEach(function(field, index){
 
 						//dataset is not loaded yet
 						field.status = 'ready';
 
 						//check the field name
-						field.html={};
-						field.html.name = (field.name.length > 6) ? field.name.slice(0,6) + '..' : field.name;
+						field.shortname = (field.name.length > 6) ? field.name.slice(0,6) + '..' : field.name;
 					});
 
-					$scope.fields = data;
+					//save
+					$scope.fields = fields;
 
-				}).error(function(err, status){
-
-					throw new Error(err);
 				});
+
 			}
 			else{
 				$scope.fields = [];

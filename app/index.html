@@ -173,7 +173,7 @@
 								<md-list-item>
 									<div>
 										<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
-												{{field.html.name}}
+												{{field.shortname}}
 										</span>
 									</div>
 								</md-list-item>
@@ -202,7 +202,7 @@
 								<span class="drop_info">Fields</span>
 
 								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-4dp">
-									{{field.html.name}}
+									{{field.shortname}}
 								</div>
 							</div>
 
@@ -210,7 +210,7 @@
 								<span class="drop_info">Timestamp Fields</span>
 
 								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-4dp">
-									{{field.html.name}}
+									{{field.shortname}}
 								</div>
 							</div>
 
@@ -331,8 +331,9 @@
 		<!-- endbower -->
 
 		<script src="js/main.js"></script>
-		<script src="js/providers/SourcesProvider.js"></script>
-		<script src="js/providers/StoresProvider.js"></script>
+		<script src="js/services/SourcesService.js"></script>
+		<script src="js/services/StoresService.js"></script>
+		<script src="js/services/FieldsService.js"></script>
 		<script src="js/controllers/FabController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SourcesListController.js"></script>
