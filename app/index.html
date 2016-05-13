@@ -18,7 +18,7 @@
     .drag-object, [ng-drag-clone], [ng-drop] [ng-drag]{
         width: 70px;
         height: 20px;
-        background: #01579b;
+        background: rgba(1, 87, 155, 0.7);/*#01579b;*/
         color:white;
         text-align: center;
         font-size:80%;
@@ -71,8 +71,10 @@
 
     }
     .chart{
+
     	background: rgba(0,255,0, 0.1);
     	border-radius: 20px;
+    	cursor: move;
     }
     .delete_chart{
     	background: rgba(255,0,0, 0.2);
@@ -103,6 +105,11 @@
     	margin:5px;
         width: 200px;
         height: 50px;
+    }
+
+    [ng-drag].loaded{
+
+    	background: rgba(1, 87, 155, 1);
     }
 
 	.md-fab:hover, .md-fab.md-focused {
@@ -184,7 +191,7 @@
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
-								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="md-whiteframe-4dp">
+								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{getClass()}}">
 									{{field.name}}
 								</div>
 							</div>
@@ -192,7 +199,7 @@
 							<div id="loader_timestamp" ng-drop="true" ng-drop-success="onTSDropComplete($data)">
 								<span class="drop_info">Timestamp Fields</span>
 
-								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="md-whiteframe-4dp">
+								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{getClass()}}">
 									{{field.name}}
 								</div>
 							</div>
@@ -210,9 +217,8 @@
 							<md-list-item>
 								<div class="platform" ng-controller="PieChartCtrl" layout="column">
 									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart', format: pie_input}"> 
-										<span class="drop_info">Pie Chart</span>
 
-										<div ng-repeat="field in $root.droppedFields" ng-drag="false" ng-drag-data="field" class="md-whiteframe-4dp">
+										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="md-whiteframe-4dp loaded">
 											{{field.name}}
 										</div>
 									</div>

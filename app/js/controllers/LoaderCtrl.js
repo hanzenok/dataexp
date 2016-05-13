@@ -2,8 +2,9 @@ angular.module('MainApp')
 	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $http){
 
 		//containers
-		$rootScope.droppedFields = [];//dropped fields container
-		$rootScope.droppedTSFields = []; //dropped primary fields container
+		$rootScope.droppedFields = [];//fields that are dropped to the loader
+		$rootScope.droppedTSFields = []; //timestamp fields that are dropped to the loader
+		$rootScope.chartFields = []; //loaded fields that are dropped to any chart
 
 		//a field dropped
 		$scope.onDropComplete = function(data){
@@ -44,7 +45,13 @@ angular.module('MainApp')
 
 			//send them to the server
 			$http.post("/api/dataset", all_fields).success(function(data, status) {
+
+				//mark all the fields as loaded
+				console.log('mark as loaded');
+				all_fields.forEach(function(field, index){field[0].loaded = true;});
+
 				console.log(data);
+				$rootScope.dataset = data;
 
 			}).error(function(err, status){
 
@@ -52,4 +59,12 @@ angular.module('MainApp')
 			});
 
 		};
+
+		$scope.getClass = function(){
+
+			if($rootScope.dataset)
+				return 'md-whiteframe-4dp loaded';
+			else
+				return 'md-whiteframe-4dp';
+		}
 	});

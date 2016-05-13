@@ -7,11 +7,16 @@ angular.module('MainApp')
 
 		$scope.onDropComplete = function(data){
 
-			var index = $rootScope.droppedFields.indexOf(data);
-			if (index == -1){
+			console.log(data);
 
-				data.chart = CHART_TYPE;
-				$rootScope.droppedFields.push(data);
+			if(data.loaded){
+
+				var index = $rootScope.chartFields.indexOf(data);
+				if (index == -1){
+
+					data.chart = CHART_TYPE;
+					$rootScope.chartFields.push(data);
+				}
 			}
 		}
 	});

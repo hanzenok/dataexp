@@ -27,7 +27,14 @@ angular.module('MainApp')
 			//chart
 			else{
 
-				$rootScope.droppedFields = [];
+				//delete loaded dataset
+				if($rootScope.dataset){
+					delete $rootScope.dataset;
+					$rootScope.dataset = undefined;
+				}
+				
+				//delete the fields
+				$rootScope.chartFields = [];
 			}
 
 			
