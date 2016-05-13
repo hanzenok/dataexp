@@ -52,7 +52,7 @@ angular.module('MainApp')
 				all_fields.forEach(function(fields, index){
 					
 					fields.forEach(function(field, index){
-						field.loaded = true;
+						field.status = 'loaded';
 					});
 
 				});
@@ -72,12 +72,4 @@ angular.module('MainApp')
 			});
 
 		};
-
-		$scope.getLoaded = function(){
-
-			if($rootScope.dataset)
-				return 'loaded';
-			else
-				return '';
-		}
 	});

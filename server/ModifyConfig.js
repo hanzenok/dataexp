@@ -59,7 +59,6 @@ function ModifyConfig(config){
 
 	//check if all fields were assciated
 	//with a timestamp field:
-	console.log(fields_count + ': ' + m);
 	if(fields_count !== m)
 		return null;
 

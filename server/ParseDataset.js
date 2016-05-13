@@ -16,9 +16,8 @@ var parseDataset = function(req, res){
 		if(!new_config){
 
 			res.status(500).send('Some field is missing a timestamp');
+			return;
 		}
-		console.log(new_config);
-		// console.log('new_config:'); console.log(new_config);
 
 		//load all the data
 		//from the specified sources

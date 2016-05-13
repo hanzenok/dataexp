@@ -28,7 +28,7 @@ angular.module('MainApp')
 					
 					//mark all the fields as unloaded
 					data.forEach(function(field, index){
-						field.loaded = false;
+						field.status = 'ready';
 					});
 
 					$scope.fields = data;

@@ -9,7 +9,7 @@ angular.module('MainApp')
 
 			console.log(data);
 
-			if(data.loaded){
+			if(data.status === 'loaded' && !data.format){
 
 				var index = $rootScope.chartFields.indexOf(data);
 				if (index == -1){
