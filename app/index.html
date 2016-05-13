@@ -17,12 +17,15 @@
     }
     .drag-object, [ng-drag-clone], [ng-drop] [ng-drag]{
         width: 70px;
-        height: 20px;
-        background: rgba(1, 87, 155, 0.7);/*#01579b;*/
-        color:white;
+        height: 30px;
+        background: rgba(1, 87, 155, 0.8);/*#01579b;*/
+        border:solid 2px rgb(1, 87, 100);
+        color: rgba(250, 250, 250, 0.8);
         text-align: center;
-        font-size:80%;
-        border-radius: 5px;
+        font-weight: bold;
+        line-height:30px;
+        font-size: 75%;
+        border-radius: 10px;
         display: inline-block;
         margin:10px;
         cursor: move;
@@ -111,7 +114,8 @@
 
     [ng-drag].loaded{
 
-    	background: rgba(1, 87, 155, 1);
+    	background: rgb(1, 87, 155);
+    	color: white;
     }
 
 	.md-fab:hover, .md-fab.md-focused {
@@ -166,8 +170,8 @@
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
-								<span class="drag-object md-whiteframe-8dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
-										{{field.name}}
+								<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
+										{{field.html.name}}
 								</span>
 						</div>
 					<md-divider></md-divider>
@@ -193,16 +197,16 @@
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
-								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-8dp">
-									{{field.name}}
+								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-4dp">
+									{{field.html.name}}
 								</div>
 							</div>
 
 							<div id="loader_timestamp" ng-drop="true" ng-drop-success="onTSDropComplete($data)">
 								<span class="drop_info">Timestamp Fields</span>
 
-								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-8dp">
-									{{field.name}}
+								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-4dp">
+									{{field.html.name}}
 								</div>
 							</div>
 

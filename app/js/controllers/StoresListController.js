@@ -26,9 +26,15 @@ angular.module('MainApp')
 				//get the fields of wanted stores from server
 				$http.post("/api/fields", wanted_stores).success(function(data, status) {
 					
-					//mark all the fields as unloaded
+					//process each field information
 					data.forEach(function(field, index){
+
+						//dataset is not loaded yet
 						field.status = 'ready';
+
+						//check the field name
+						field.html={};
+						field.html.name = (field.name.length > 6) ? field.name.slice(0,6) + '..' : field.name;
 					});
 
 					$scope.fields = data;

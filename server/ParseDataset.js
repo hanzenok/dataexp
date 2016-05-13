@@ -15,7 +15,7 @@ var parseDataset = function(req, res){
 		var new_config = modifyConfig(config);
 		if(!new_config){
 
-			res.status(500).send('Some field is missing a timestamp');
+			res.status(500).send('Some field(s) is missing a timestamp');
 			return;
 		}
 
