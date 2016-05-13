@@ -33,11 +33,10 @@ angular.module('MainApp')
 				return;				
 			}
 
-			console.log('chart type:');
-			console.log(data.chart);
-			console.log('filtered_fields:');
+			console.log('Chart: ' + data.chart);
+			console.log('Fields:');
 			console.log(filtered_fields);
-			console.log('dataset:');
+			console.log('Dataset:');
 			console.log($rootScope.dataset);
 
 		}

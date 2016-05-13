@@ -9,6 +9,7 @@ angular.module('MainApp')
 				//timestamp field
 				if (data.format){
 
+					//delete timestamp field
 					var index = $rootScope.droppedTSFields.indexOf(data);
 					if (index > -1){
 
@@ -24,10 +25,18 @@ angular.module('MainApp')
 						$rootScope.droppedFields.splice(index, 1);
 					}
 				}
+
+				//if one loaded field deleted, delete all dataset
+				if($rootScope.dataset){
+					delete $rootScope.dataset;
+					$rootScope.dataset = undefined;
+				}
+
+				$rootScope.droppedTSFields.forEach(function(field, index){field.status='ready';});
+				$rootScope.droppedFields.forEach(function(field, index){field.status='ready';});
 			}
 			//chart
 			else{
-
 				
 				//delete the fields
 				$rootScope.chartFields = [];

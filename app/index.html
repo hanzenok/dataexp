@@ -50,7 +50,7 @@
         position: relative;
     }
     [ng-drop].drag-enter{
-        border:solid 1px red;
+        border:solid 3px white;
     }
     [ng-drop] .drop_info{
     	color:gray;
@@ -78,10 +78,12 @@
     }
     .delete_chart{
     	background: rgba(255,0,0, 0.2);
+    	height: auto;
+    	/*margin-left: 720px;*/
     }
 
     .platform{
-		background: rgba(240, 240, 240, 0.8);
+		background: rgba(220, 220, 220, 0.8);
 		border-radius: 20px;
     }
 
@@ -211,10 +213,11 @@
 						</div>
 
 						<md-divider></md-divider>
+
 						<md-list layout="row" flex>
 
 							<!-- Pie Chart -->
-							<md-list-item>
+							<md-list-item layout="column">
 								<div class="platform" ng-controller="PieChartCtrl" layout="column">
 									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> 
 
@@ -228,6 +231,71 @@
 									</div>
 								</div>
 							</md-list-item>
+
+							<!-- Graph -->
+							<md-list-item layout="column">
+								<div class="platform"  layout="column">
+									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+
+<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
+											{{field.name}}
+										</div> -->
+									</div>
+
+									<div style="margin: 0 auto;">
+										<span style="width:150px; color:gray; text-align:center; font-size:0.8em;">Graph</span>
+									</div>
+								</div>
+							</md-list-item>
+
+							<!-- Scatter Plot -->
+							<md-list-item layout="column">
+								<div class="platform"  layout="column">
+									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+
+<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
+											{{field.name}}
+										</div> -->
+									</div>
+
+									<div style="margin: 0 auto;">
+										<span style="width:150px; color:gray; text-align:center; font-size:0.8em;">Scatter Plot</span>
+									</div>
+								</div>
+							</md-list-item>
+
+							<!-- Row Chart -->
+							<md-list-item layout="column">
+								<div class="platform"  layout="column">
+									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+
+<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
+											{{field.name}}
+										</div> -->
+									</div>
+
+									<div style="margin: 0 auto;">
+										<span style="width:150px; color:gray; text-align:center; font-size:0.8em;">Row Chart</span>
+									</div>
+								</div>
+							</md-list-item>
+
+							<!-- Bar Chart -->
+							<md-list-item layout="column">
+								<div class="platform"  layout="column">
+									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+
+<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
+											{{field.name}}
+										</div> -->
+									</div>
+
+									<div style="margin: 0 auto;">
+										<span style="width:150px; color:gray; text-align:center; font-size:0.8em;">Bar Chart</span>
+									</div>
+								</div>
+							</md-list-item>
+
 						</md-list>
 
 						<md-divider></md-divider>
