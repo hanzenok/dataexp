@@ -170,9 +170,13 @@
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
-								<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
-										{{field.html.name}}
-								</span>
+								<md-list-item>
+									<div>
+										<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
+												{{field.html.name}}
+										</span>
+									</div>
+								</md-list-item>
 						</div>
 					<md-divider></md-divider>
 				</md-list>
