@@ -14,6 +14,7 @@ angular.module('MainApp')
 
 						$rootScope.droppedTSFields.splice(index, 1);
 					}
+
 				}
 				else{
 					
@@ -27,11 +28,6 @@ angular.module('MainApp')
 			//chart
 			else{
 
-				//delete loaded dataset
-				if($rootScope.dataset){
-					delete $rootScope.dataset;
-					$rootScope.dataset = undefined;
-				}
 				
 				//delete the fields
 				$rootScope.chartFields = [];

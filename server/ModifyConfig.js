@@ -42,6 +42,7 @@ function ModifyConfig(config){
 	//regroupe the other fields
 	var fields_config = config[1];
 	var m = fields_config.length;
+	var fields_count = 0;
 	for (var i=0; i<m; i++){
 
 		for (var j=0; j<n; j++){
@@ -51,9 +52,16 @@ function ModifyConfig(config){
 				fields_config[i].source.db === new_config[j].source.db ){
 
 				new_config[j].fields.push({'field': fields_config[j].name});
+				fields_count ++;
 			}
 		}
 	}
+
+	//check if all fields were assciated
+	//with a timestamp field:
+	console.log(fields_count + ': ' + m);
+	if(fields_count !== m)
+		return null;
 
 	return new_config;
 }

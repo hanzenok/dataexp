@@ -164,7 +164,7 @@
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
-								<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
+								<span class="drag-object md-whiteframe-8dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
 										{{field.name}}
 								</span>
 						</div>
@@ -191,7 +191,7 @@
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
-								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{getClass()}}">
+								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{getLoaded()}} md-whiteframe-8dp">
 									{{field.name}}
 								</div>
 							</div>
@@ -199,7 +199,7 @@
 							<div id="loader_timestamp" ng-drop="true" ng-drop-success="onTSDropComplete($data)">
 								<span class="drop_info">Timestamp Fields</span>
 
-								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{getClass()}}">
+								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{getLoaded()}} md-whiteframe-8dp">
 									{{field.name}}
 								</div>
 							</div>
@@ -218,7 +218,7 @@
 								<div class="platform" ng-controller="PieChartCtrl" layout="column">
 									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart', format: pie_input}"> 
 
-										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="md-whiteframe-4dp loaded">
+										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
 											{{field.name}}
 										</div>
 									</div>

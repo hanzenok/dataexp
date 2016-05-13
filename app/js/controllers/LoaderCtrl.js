@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $http){
+	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $http, $mdToast){
 
 		//containers
 		$rootScope.droppedFields = [];//fields that are dropped to the loader
@@ -46,25 +46,38 @@ angular.module('MainApp')
 			//send them to the server
 			$http.post("/api/dataset", all_fields).success(function(data, status) {
 
-				//mark all the fields as loaded
-				console.log('mark as loaded');
-				all_fields.forEach(function(field, index){field[0].loaded = true;});
-
 				console.log(data);
+
+				//mark all the fields as loaded
+				all_fields.forEach(function(fields, index){
+					
+					fields.forEach(function(field, index){
+						field.loaded = true;
+					});
+
+				});
+
+				//console.log(data);
 				$rootScope.dataset = data;
 
 			}).error(function(err, status){
 
-				throw new Error(err);
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent(err)
+						.action('OK')
+						.position('bottom')
+						.hideDelay(4000)
+				);
 			});
 
 		};
 
-		$scope.getClass = function(){
+		$scope.getLoaded = function(){
 
 			if($rootScope.dataset)
-				return 'md-whiteframe-4dp loaded';
+				return 'loaded';
 			else
-				return 'md-whiteframe-4dp';
+				return '';
 		}
 	});

@@ -13,6 +13,11 @@ var parseDataset = function(req, res){
 
 		//console.log('config:'); console.log(config);
 		var new_config = modifyConfig(config);
+		if(!new_config){
+
+			res.status(500).send('Some field is missing a timestamp');
+		}
+		console.log(new_config);
 		// console.log('new_config:'); console.log(new_config);
 
 		//load all the data
@@ -31,7 +36,7 @@ var parseDataset = function(req, res){
 			//callback
 			var callback = function(err, data){
 
-				if (err) console.log(err.stack);
+				if (err) res.send(err.stack);
 				if (data) res.json(data);
 			}
 
