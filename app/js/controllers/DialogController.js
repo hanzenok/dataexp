@@ -1,19 +1,20 @@
 angular.module('MainApp')
 	.controller('DialogController', function($scope, $mdDialog){
 
-		//AddSource.html
+		/*******AddSource.html********/
+		$scope.type = 'mongo';
 		$scope.connect = function() {
-			console.log('Connnect');
+			console.log('Connnect ' + $scope.name + ' ' + $scope.type + ' ' + $scope.server + ' ' + $scope.port + ' ' + $scope.db);
 		};
 
-		//SaveFormat.html
+		/*******SaveFormat.html********/
 		$scope.format = 'ISO';
 		$scope.saveFormat = function(){
 			
 			$mdDialog.hide($scope.format);
 		};
 
-		//both
+		/***********Both***********/
 		$scope.cancel = function() {
 			$mdDialog.cancel();
 		};

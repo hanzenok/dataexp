@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var parseConfig = function(req, res){
+var getSources = function(req, res){
 	
 	var config_file = './server/config/sources.json';
 
@@ -10,4 +10,4 @@ var parseConfig = function(req, res){
 	});
 }
 
-module.exports = parseConfig;
+module.exports = getSources;

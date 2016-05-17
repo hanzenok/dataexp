@@ -1,7 +1,7 @@
 <md-dialog aria-label="Add Source" ng-controller="DialogController" ng-cloak>
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<h2>{{yo}}</h2>
+			<h2>Adding a new source</h2>
 			<span flex></span>
 			<md-button class="md-icon-button" ng-click="cancel()">
 				<md-icon md-svg-src="../images/delete.svg" aria-label="Delete source"></md-icon>
@@ -13,37 +13,42 @@
 	</md-toolbar>
 
 	<md-dialog-content layout-padding="">
-		<div layout-gt-sm="row">
-			<md-input-container class="md-block" flex-gt-sm="">
-				<label>Name</label>
-				<input>
-			</md-input-container>
+		<form name="dialogForm">
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Name</label>
+					<input name="name" required ng-model="name">
+<!-- 					<div ng-messages="dialogForm.name.$error">
+						<div ng-message="required">Name is required.</div>
+					</div> -->
+				</md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm="">
-				<label>Type</label>
-				<md-select ng-model="user.state">
-					<md-option>Mongo</md-option>
-					<md-option>MySQL</md-option>
-				</md-select>
-			</md-input-container>
-		</div>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Type</label>
+					<md-select name="type" ng-model="type">
+						<md-option value="mongo">Mongo</md-option>
+						<md-option value="sql">MySQL</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
 
-		<div layout-gt-sm="row">
-			<md-input-container class="md-block" flex-gt-sm="">
-				<label>Server</label>
-				<input>
-			</md-input-container>
+			<div layout-gt-sm="row">
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Server</label>
+					<input name="server" required ng-model="server">
+				</md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm="">
-				<label>Port</label>
-				<input>
-			</md-input-container>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Port</label>
+					<input name="port" ng-model="port">
+				</md-input-container>
 
-			<md-input-container class="md-block" flex-gt-sm="">
-				<label>Database</label>
-				<input>
-			</md-input-container>
-		</div>
+				<md-input-container class="md-block" flex-gt-sm="">
+					<label>Database</label>
+					<input name="db" required ng-model="db">
+				</md-input-container>
+			</div>
+		</form>
 	</md-dialog-content>
 
 	<md-dialog-actions layout="row">

@@ -1,7 +1,7 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
 
-var parseStores = function(req, res){
+var getStores = function(req, res){
 	
 	var config_file = './server/config/sources.json';
 
@@ -47,11 +47,11 @@ var parseStores = function(req, res){
 			});
 
 			db.on('error', function(error){
-				//throw new Error(err);
+
 				res.send(JSON.parse('[]'));
 			});
 		}
 	});
 }
 
-module.exports = parseStores;
+module.exports = getStores;

@@ -1,7 +1,7 @@
-var parseSources = require('./ParseSources');
-var parseStores = require('./ParseStores');
-var parseFields = require('./ParseFields');
-var parseDataset = require('./ParseDataset');
+var getSources = require('./rest/GetSources');
+var getStores = require('./rest/GetStores');
+var putFields = require('./rest/PutFields');
+var putDataset = require('./rest/PutDataset');
 
 module.exports = function(app){
 
@@ -12,10 +12,10 @@ module.exports = function(app){
 	});
 
 	//REST api
-	app.get('/api/sources', parseSources);
-	app.get('/api/stores', parseStores);
-	app.post('/api/fields', parseFields);
-	app.post('/api/dataset', parseDataset);
+	app.get('/api/sources', getSources);
+	app.get('/api/stores', getStores);
+	app.post('/api/fields', putFields);
+	app.post('/api/dataset', putDataset);
 
 	//other pages
 	app.use(function(req, res, next){

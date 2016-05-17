@@ -1,8 +1,8 @@
-var fs = require('fs');
 var mongoose = require('mongoose');
 
-var parseFields = function(req, res){
+var putFields = function(req, res){
 	
+	//get the requested stores
 	var stores = req.body;
 
 	if(stores.length){
@@ -82,4 +82,4 @@ var parseFields = function(req, res){
 }
 
 
-module.exports = parseFields;
+module.exports = putFields;

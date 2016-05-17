@@ -82,7 +82,6 @@
     .delete_chart{
     	background: rgba(255,0,0, 0.2);
     	height: auto;
-    	/*margin-left: 720px;*/
     }
 
     .platform{
@@ -150,9 +149,9 @@
 				</md-button>
 
 				<!-- Sources, Stores, Fields List -->
-				<md-list>
+				<md-list ng-controller="SidenavCtrl">
 					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
-						<div ng-controller="SourcesListController">
+						<div>
 							<md-list-item ng-repeat="source in sources">
 								<md-checkbox ng-model="source.wanted" aria-label="Source checkbox"></md-checkbox>
 								<span>{{source.db}}</span>
@@ -162,9 +161,9 @@
 						</div>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
-						<div ng-controller="StoresListController">
+						<div>
 							<md-list-item ng-repeat="store in stores">
-								<md-checkbox aria-label="Store checkbox" ng-model="store.wanted" ng-change="refreshStores()"></md-checkbox>
+								<md-checkbox aria-label="Store checkbox" ng-model="store.wanted" ng-change="loadFields()"></md-checkbox>
 								<span>{{store.name}}</span>
 								<span>({{store.source.type}})</span>
 							</md-list-item>
@@ -337,8 +336,7 @@
 		<script src="js/services/DatasetService.js"></script>
 		<script src="js/controllers/FabController.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
-		<script src="js/controllers/SourcesListController.js"></script>
-		<script src="js/controllers/StoresListController.js"></script>
+		<script src="js/controllers/SidenavCtrl.js"></script>
 		<script src="js/controllers/PieChartCtrl.js"></script>
 		<script src="js/controllers/RemoveChartCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>

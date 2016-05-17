@@ -1,16 +1,30 @@
 angular.module('MainApp')
-	.controller('StoresListController', function($scope, $http, StoresService, FieldsService){
+	.controller('SidenavCtrl', function($scope, SourcesService, StoresService, FieldsService){
 
-		$scope.fields = [];
 
-		//get all the stores from the provider
+		/*Sources List*/
+		$scope.sources = SourcesService.getData()
+		console.log($scope.sources);
+
+		//dialog to modify the source
+		$scope.showDialog = function(event){
+
+			$mdDialog.show({
+				templateUrl: '../../templates/AddSource.html',
+				parent: angular.element(document.body),
+				targetEvent: event,
+				clickOutsideToClose: true
+			});
+		};
+
+		/*Stores List*/
 		$scope.stores = StoresService.getData();
 
-		//get the states of all the checkboxes
-		//triggers the 
-		$scope.refreshStores = function() {
+		/*Fields List*/
+		$scope.fields = []; 
+		$scope.loadFields = function() {
 
-			//sort the stores
+			//determine the choosen stores
 			var wanted_stores = [];
 			$scope.stores.forEach(function(store, index, array){
 

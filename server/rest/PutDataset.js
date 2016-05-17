@@ -1,12 +1,13 @@
 var tsproc = require('tsproc');
-var loadData = require('./LoadData');
-var modifyConfig = require('./ModifyConfig');
+var loadData = require('./../LoadData');
+var modifyConfig = require('./../ModifyConfig');
 var moment = require('moment');
 
 var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
 
-var parseDataset = function(req, res){
+var putDataset = function(req, res){
 	
+	//get the requested dataset
 	var config = req.body;
 
 	if(config.length){
@@ -15,7 +16,7 @@ var parseDataset = function(req, res){
 		var new_config = modifyConfig(config);
 		if(!new_config){
 
-			res.status(500).send('Some field(s) is missing a timestamp');
+			res.status(500).send('Some field(s) are missing the timestamp');
 			return;
 		}
 
@@ -58,4 +59,4 @@ var parseDataset = function(req, res){
 }
 
 
-module.exports = parseDataset;
+module.exports = putDataset;
