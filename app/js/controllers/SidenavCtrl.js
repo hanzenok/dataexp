@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('SidenavCtrl', function($scope, $mdDialog, SourcesService, StoresService, FieldsService){
+	.controller('SidenavCtrl', function($scope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
 		/*Sources List*/
 		SourcesService.getRes().query(function(sources){
@@ -32,10 +32,23 @@ angular.module('MainApp')
 		};
 
 		/*Stores List*/
-		StoresService.getRes().query(function(stores){
+		StoresService.getRes().query(
+			function(stores){
 
-			$scope.stores = stores;
-		});
+				$scope.stores = stores;
+		},
+			function(err){
+
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent(err.data)
+						.action('OK')
+						.position('bottom')
+						.hideDelay(4000)
+				);
+
+				$scope.stores = [];
+			});
 
 		/*Fields List*/
 		$scope.fields = []; 

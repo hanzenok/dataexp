@@ -21,6 +21,7 @@ var putSource = function(req, res){
 				var old_conf = JSON.parse(data);
 				console.log(old_conf);
 				console.log(source);
+				//check if the source if available
 			}
 		});
 	}

@@ -1,55 +1,86 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
+var async = require('async');
+var mongo_connector = require('../connectors/MongoConnector');
+
+var ConnectorsEnum = {'mongo': mongo_connector};
+
+var config_file = './server/config/sources.json';
 
 var getStores = function(req, res){
-	
-	var config_file = './server/config/sources.json';
 
+	//read the sources config file
 	fs.readFile(config_file, function(err, data){
-		if (err) res.send(JSON.parse('[]'));
+
+		if (err) {
+
+			res.status(500).send('Error reading config file');
+			return;
+		}
 		else {
 
-			var config = JSON.parse(data);
-			var i = 0;
-			var url = 'mongodb://' + config[i].server + ':' + config[i].port + '/' + config[i].db;
-			
-			mongoose.connect(url);
-			var db = mongoose.connection;
+			var configs = JSON.parse(data);
+			var n = configs.length;
+			var promises = new Array(n);
 
-			db.once('open', function(){
+			async.series([
+					function(callback){
+						ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
 
-				mongoose.connection.db.listCollections(true).toArray(function(err, items){
+							if (stores) console.log(stores);//callback(null, stores);
+							if (error) console.log(error);
+						});	
+					},
+					function(callback){
+						ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
 
-					if (err) {
-						throw new Error(err);
-						res.send(JSON.parse('[]'));
+							if (stores) console.log(stores);//callback(null, stores);
+							if (error) console.log(error);
+						});	
 					}
-					else {
-						db.close();
+				]
+			);
 
-						var tmp = {};
-						var stores = [];
-						items.forEach(function(item, index, array){
+			/*ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
 
-							if(item.name.indexOf('system.') === -1){
+				if (stores) console.log(stores);
+				if (error) console.log(error);
+			});
 
-								tmp.name = item.name;
-								tmp.source = config[i];
-								stores.push(tmp);
+			setTimeout(function(){
 
-								tmp = {};
-							}
-						});
+				ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
 
-						res.json(stores);
-					}
+					if (stores) console.log(stores);
+					if (error) console.log(error);
+				});				
+			}, 3000);*/
+
+			//load the stoars of each source
+			/*for(i=0; i<n; i++){
+
+				promises[i] = new Promise(function(resolve, reject){
+
+					ConnectorsEnum['mongo'].getStores(configs[i], function(error, stores){
+
+						if (stores) resolve(stores);
+						if (error) reject(error);
+					});
 				});
-			});
+				
+			}
 
-			db.on('error', function(error){
+			//wait for all the stores
+			Promise.all(promises)
+			.then(function(stores){
 
-				res.send(JSON.parse('[]'));
-			});
+
+				console.log(stores);
+			})
+			.catch(function(error){
+				console.log(error);
+				res.status(500).send(error);	
+			});*/
 		}
 	});
 }
