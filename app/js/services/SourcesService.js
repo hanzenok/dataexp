@@ -1,9 +1,9 @@
 angular.module('MainApp')
 	.service('SourcesService', function($resource){
 		
-		this.getData = function(){
+		this.getRes= function(){
 
-			return $resource('/api/sources').query();
+			return $resource('/api/sources');
 		}
 
 	});

@@ -1,10 +1,12 @@
 angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, SourcesService, StoresService, FieldsService){
 
-
 		/*Sources List*/
-		$scope.sources = SourcesService.getData()
-		console.log($scope.sources);
+		SourcesService.getRes().query(function(sources){
+
+			$scope.sources = sources;
+			console.log(sources);
+		});
 
 		//dialog to modify the source
 		$scope.showDialog = function(event){
@@ -18,7 +20,10 @@ angular.module('MainApp')
 		};
 
 		/*Stores List*/
-		$scope.stores = StoresService.getData();
+		StoresService.getRes().query(function(stores){
+
+			$scope.stores = stores;
+		});
 
 		/*Fields List*/
 		$scope.fields = []; 

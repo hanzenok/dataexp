@@ -17,15 +17,15 @@
 			<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Name</label>
-					<input name="name" required ng-model="name">
-<!-- 					<div ng-messages="dialogForm.name.$error">
-						<div ng-message="required">Name is required.</div>
-					</div> -->
+					<input name="name" required ng-model="source.name">
+					<div ng-messages="dialogForm.name.$error" ng-if="showHints">
+						<div ng-message="required">Name is required</div>
+					</div>
 				</md-input-container>
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Type</label>
-					<md-select name="type" ng-model="type">
+					<md-select name="type" ng-model="source.type">
 						<md-option value="mongo">Mongo</md-option>
 						<md-option value="sql">MySQL</md-option>
 					</md-select>
@@ -35,17 +35,23 @@
 			<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Server</label>
-					<input name="server" required ng-model="server">
+					<input name="server" required ng-model="source.server">
+					<div ng-messages="dialogForm.server.$error" ng-if="showHints">
+						<div ng-message="required">Server addres is required</div>
+					</div>
 				</md-input-container>
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Port</label>
-					<input name="port" ng-model="port">
+					<input name="port" ng-model="source.port">
 				</md-input-container>
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Database</label>
-					<input name="db" required ng-model="db">
+					<input name="db" required ng-model="source.db">
+					<div ng-messages="dialogForm.db.$error" ng-if="showHints">
+						<div ng-message="required">Database name is required.</div>
+					</div>
 				</md-input-container>
 			</div>
 		</form>
