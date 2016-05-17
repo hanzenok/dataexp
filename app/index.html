@@ -132,12 +132,12 @@
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- Toolbar -->
-		<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
-			<md-button class="menu" aria-label="Menu button">
-				<md-icon md-svg-src="images/menu.svg"></md-icon>
-			</md-button>
-			<h1>Title</h1>
-		</md-toolbar>
+			<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
+				<md-button class="menu" aria-label="Menu button">
+					<md-icon md-svg-src="images/menu.svg"></md-icon>
+				</md-button>
+				<h1>Title</h1>
+			</md-toolbar>
 
 		<!-- Side Bar -->
 		<div layout="row" flex>
@@ -156,7 +156,7 @@
 								<md-checkbox ng-model="source.wanted" aria-label="Source checkbox"></md-checkbox>
 								<span>{{source.db}}</span>
 								<span>({{source.type}})</span>
-								<md-icon class="md-secondary" ng-click="showDialog($event)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
+								<md-icon class="md-secondary" ng-click="modifySource($event, source)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
 							</md-list-item>
 						</div>
 					<md-divider></md-divider>
@@ -183,6 +183,9 @@
 
 			<!-- Main Container -->
 			<md-content flex layout="column">
+
+				<!-- Progress Bar -->
+				<md-progress-linear md-mode="indeterminate" class="md-warn"></md-progress-linear>
 
 				<!-- Charts Container -->
 				<div class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
@@ -335,8 +338,8 @@
 		<script src="js/services/FieldsService.js"></script>
 		<script src="js/services/DatasetService.js"></script>
 		<script src="js/controllers/FabController.js"></script>
-		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/SidenavCtrl.js"></script>
+		<script src="js/controllers/DialogController.js"></script>
 		<script src="js/controllers/PieChartCtrl.js"></script>
 		<script src="js/controllers/RemoveChartCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>

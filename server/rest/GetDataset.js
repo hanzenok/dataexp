@@ -5,7 +5,7 @@ var moment = require('moment');
 
 var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
 
-var putDataset = function(req, res){
+var getDataset = function(req, res){
 	
 	//get the requested dataset
 	var config = req.body;
@@ -59,4 +59,4 @@ var putDataset = function(req, res){
 }
 
 
-module.exports = putDataset;
+module.exports = getDataset;

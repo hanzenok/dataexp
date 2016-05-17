@@ -43,14 +43,19 @@
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Port</label>
-					<input name="port" ng-model="source.port">
+					<input name="port" type="number" min="0" max="65535" ng-model="source.port" ng-pattern="/^\d*$/">
+					<div ng-messages="dialogForm.port.$error" ng-if="showHints">
+						<div ng-message="pattern">Port format is incorrect</div>
+						<div ng-message="max">Port format is incorrect</div>
+						<div ng-message="min">Port format is incorrect</div>
+					</div>
 				</md-input-container>
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Database</label>
 					<input name="db" required ng-model="source.db">
 					<div ng-messages="dialogForm.db.$error" ng-if="showHints">
-						<div ng-message="required">Database name is required.</div>
+						<div ng-message="required">Database name is required</div>
 					</div>
 				</md-input-container>
 			</div>

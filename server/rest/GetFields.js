@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var putFields = function(req, res){
+var getFields = function(req, res){
 	
 	//get the requested stores
 	var stores = req.body;
@@ -82,4 +82,4 @@ var putFields = function(req, res){
 }
 
 
-module.exports = putFields;
+module.exports = getFields;

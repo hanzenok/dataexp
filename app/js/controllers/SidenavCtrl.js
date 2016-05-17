@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('SidenavCtrl', function($scope, SourcesService, StoresService, FieldsService){
+	.controller('SidenavCtrl', function($scope, $mdDialog, SourcesService, StoresService, FieldsService){
 
 		/*Sources List*/
 		SourcesService.getRes().query(function(sources){
@@ -9,13 +9,25 @@ angular.module('MainApp')
 		});
 
 		//dialog to modify the source
-		$scope.showDialog = function(event){
+		$scope.modifySource = function(event, source){
+
+			console.log('modifySource:');
+			console.log(source);
+
+			//used to pass data to the 
+			//DialogController
+			var shareSourceCtrl = function ($scope, source) {
+
+				$scope.source = source;
+			}
 
 			$mdDialog.show({
 				templateUrl: '../../templates/AddSource.html',
 				parent: angular.element(document.body),
 				targetEvent: event,
-				clickOutsideToClose: true
+				clickOutsideToClose: true,
+				controller: shareSourceCtrl,
+				locals: {'source': source}
 			});
 		};
 
