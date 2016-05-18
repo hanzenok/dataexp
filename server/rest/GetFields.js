@@ -3,23 +3,23 @@ var mongoose = require('mongoose');
 var getFields = function(req, res){
 	
 	//get the requested stores
-	var stores = req.body;
+	var stores_conf = req.body;
 
-	if(stores.length){
+	if(stores_conf.length){
 
 		var doc, fields;
 		var url, connection, model;
 
 		//connect to each database in a promise
-		var n = stores.length;
+		var n = stores_conf.length;
 		var promises = new Array(n);
 		for (var i=0; i<n; i++){
 
 			promises[i] = new Promise(function(resolve, reject){
 
-				url = 'mongodb://' + stores[i].source.server + ':' + stores[i].source.port + '/' + stores[i].source.db;
+				url = 'mongodb://' + stores_conf[i].source.server + ':' + stores_conf[i].source.port + '/' + stores_conf[i].source.db;
 				connection = mongoose.createConnection(url);
-				model = connection.model('', {}, stores[i].name);
+				model = connection.model('', {}, stores_conf[i].store);
 
 				//find the first document
 				//we suppose that it's fields are the same for all
@@ -38,7 +38,7 @@ var getFields = function(req, res){
 
 							if (key !== '_id'){
 
-								fields.push({'name': key});
+								fields.push({'field': key});
 							}
 						}
 
@@ -65,8 +65,8 @@ var getFields = function(req, res){
 				for(var j=0; j<m; j++){
 
 					//add stores and sources to the fields
-					fieldnames[i][j].store = stores[i].name;
-					fieldnames[i][j].source = stores[i].source;
+					fieldnames[i][j].store = stores_conf[i].store;
+					fieldnames[i][j].source = stores_conf[i].source;
 
 					//push to the new array
 					fields.push(fieldnames[i][j]);

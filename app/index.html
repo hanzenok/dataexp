@@ -162,17 +162,17 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
 						<div>
-							<md-list-item ng-repeat="store in stores">
-								<md-checkbox aria-label="Store checkbox" ng-model="store.wanted" ng-change="loadFields()"></md-checkbox>
-								<span>{{store.name}}</span>
-								<span>({{store.source.type}})</span>
+							<md-list-item ng-repeat="store_config in stores_conf">
+								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields()"></md-checkbox>
+								<span>{{store_config.store}}</span>
+								<span>({{store_config.source.type}})</span>
 							</md-list-item>
 							<md-divider></md-divider>
 							<md-subheader class="md-no-sticky">Fields</md-subheader>
 								<md-list-item>
 									<div>
-										<span class="drag-object md-whiteframe-4dp" ng-repeat="field in fields" ng-drag="true" ng-drag-data="field">
-												{{field.shortname}}
+										<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
+												{{field_config.short}}
 										</span>
 									</div>
 								</md-list-item>
@@ -203,16 +203,16 @@
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
-								<div ng-repeat="field in $root.droppedFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-4dp">
-									{{field.shortname}}
+								<div ng-repeat="field_config in $root.droppedFields" ng-drag="true" ng-drag-data="field_config" class="{{field_config.status}} md-whiteframe-4dp">
+									{{field_config.short}}
 								</div>
 							</div>
 
 							<div id="loader_timestamp" ng-drop="true" ng-drop-success="onTSDropComplete($data)">
 								<span class="drop_info">Timestamp Fields</span>
 
-								<div ng-repeat="field in $root.droppedTSFields" ng-drag="true" ng-drag-data="field" class="{{field.status}} md-whiteframe-4dp">
-									{{field.shortname}}
+								<div ng-repeat="field_config in $root.droppedTSFields" ng-drag="true" ng-drag-data="field_config" class="{{field_config.status}} md-whiteframe-4dp">
+									{{field_config.short}}
 								</div>
 							</div>
 
@@ -231,8 +231,8 @@
 								<div class="platform" ng-controller="PieChartCtrl" layout="column">
 									<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> 
 
-										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
-											{{field.name}}
+										<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded">
+											{{field_config.short}}
 										</div>
 									</div>
 

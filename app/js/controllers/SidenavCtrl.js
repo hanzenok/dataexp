@@ -44,11 +44,11 @@ angular.module('MainApp')
 
 		/****************Stores List*****************/
 		StoresService.getRes().query(
-			function(stores){
+			function(stores_conf){
 
-				console.log('stores:');
-				console.log(stores);
-				$scope.stores = stores;
+				console.log('stores_conf:');
+				console.log(stores_conf);
+				$scope.stores_conf = stores_conf;
 		},
 			function(err){
 
@@ -60,16 +60,16 @@ angular.module('MainApp')
 						.hideDelay(4000)
 				);
 
-				$scope.stores = [];
+				$scope.stores_conf = [];
 			});
 
 		/****************Fields List********************/
-		$scope.fields = []; 
+		$scope.fields_conf = []; 
 		$scope.loadFields = function() {
 
 			//determine the choosen stores
 			var wanted_stores = [];
-			$scope.stores.forEach(function(store, index, array){
+			$scope.stores_conf.forEach(function(store, index, array){
 
 				if (store.wanted){
 
@@ -81,28 +81,28 @@ angular.module('MainApp')
 			if (wanted_stores.length){
 
 				//get the fields of wanted stores
-				FieldsService.getRes().post(wanted_stores, function(fields){
+				FieldsService.getRes().post(wanted_stores, function(fields_conf){
 
 					//process each field
-					fields.forEach(function(field, index){
+					fields_conf.forEach(function(field_conf, index){
 
 						//dataset is not loaded yet
-						field.status = 'ready';
+						field_conf.status = 'ready';
 
 						//check the field name
-						field.shortname = (field.name.length > 6) ? field.name.slice(0,6) + '..' : field.name;
+						field_conf.short = (field_conf.field.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
 					});
 
 					//save
-					console.log('fields:');
-					console.log(fields);
-					$scope.fields = fields;
+					console.log('fields_conf:');
+					console.log(fields_conf);
+					$scope.fields_conf = fields_conf;
 
 				});
 
 			}
 			else{
-				$scope.fields = [];
+				$scope.fields_conf = [];
 			}
 		};
 

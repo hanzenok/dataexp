@@ -30,6 +30,8 @@ angular.module('MainApp')
 				}).then(function(answer){
 
 					data.format = answer;
+					console.log('data:');
+					console.log(data);
 				});
 
 				$rootScope.droppedTSFields.push(data);
@@ -40,22 +42,24 @@ angular.module('MainApp')
 		$scope.load = function(){
 
 			//compose all the fields that needs to be downloaded into one
-			var all_fields = [$rootScope.droppedTSFields, $rootScope.droppedFields];
+			var all_fields_conf = [$rootScope.droppedTSFields, $rootScope.droppedFields];
 
 			//send them to the server
-			DatasetService.getRes().post(all_fields, 
+			DatasetService.getRes().post(all_fields_conf, 
 				function(data){
 
 					//mark all the fields as loaded
-					all_fields.forEach(function(fields, index){
+					all_fields_conf.forEach(function(fields_per_source, index){
 						
-						fields.forEach(function(field, index){
-							field.status = 'loaded';
+						fields_per_source.forEach(function(field_conf, index){
+							field_conf.status = 'loaded';
 						});
 					});
 
 					//save data
 					$rootScope.dataset = data;
+					console.log('dataset:');
+					console.log(data);
 
 				},
 				function(err){
