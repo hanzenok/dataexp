@@ -14,7 +14,7 @@ module.exports = function(app){
 
 	//REST api
 	app.get('/api/sources', getSources);
-	app.get('/api/stores', getStores);
+	app.post('/api/stores', getStores);
 	app.post('/api/fields', getFields);
 	app.post('/api/dataset', getDataset);
 	app.post('/api/sources', putSource);

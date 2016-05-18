@@ -64,7 +64,7 @@ var getDataset = function(req, res){
 		})
 		.catch(function(error){
 
-			res.status(500).send(error);	
+			res.status(500).send(error.message);	
 		});
 	}
 }

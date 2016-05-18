@@ -12,6 +12,6 @@
 		"server": "localhost",
 		"port": 27017,
 		"db": "precipitation",
-		"wanted": true
+		"wanted": false
 	}
 ]

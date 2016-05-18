@@ -3,7 +3,13 @@ angular.module('MainApp')
 		
 		this.getRes = function(){
 
-			return $resource('/api/stores');
+			var res = $resource('/api/stores', {}, 
+				{
+					post: {method: 'POST', isArray: true}
+				}
+			);
+
+			return res;
 
 		}
 

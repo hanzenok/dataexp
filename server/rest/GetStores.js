@@ -10,58 +10,51 @@ var config_file = './server/config/sources.json';
 //of sources specified in the sources config file
 var getStores = function(req, res){
 
-	//read the sources config file
-	fs.readFile(config_file, function(err, data){
+	//get the requested sources
+	var sources_conf = req.body;
 
-		if (err) {
+	if (sources_conf.length){
 
-			res.status(500).send('Error reading config file');
-			return;
-		}
-		else {
+		var n = sources_conf.length;
+		var promises = new Array(n);
 
-			var sources_conf = JSON.parse(data);
-			var n = sources_conf.length;
-			var promises = new Array(n);
+		//load the stoars of each source
+		for(i=0; i<n; i++){
 
+			promises[i] = new Promise(function(resolve, reject){
 
-			//load the stoars of each source
-			for(i=0; i<n; i++){
+				ConnectorsEnum[sources_conf[i].type].getStores(sources_conf[i], function(error, stores){
 
-				promises[i] = new Promise(function(resolve, reject){
-
-					ConnectorsEnum[sources_conf[i].type].getStores(sources_conf[i], function(error, stores){
-
-						if (stores) resolve(stores);
-						if (error) reject(error);
-					});
+					if (stores) resolve(stores);
+					if (error) reject(error);
 				});
-				
-			}
-
-			//wait for all the stores
-			Promise.all(promises)
-			.then(function(stores_per_source){
-
-				//recompact the stores
-				var stores = [];
-				stores_per_source.forEach(function(source, index){
-
-					source.forEach(function(store, index){
-
-						stores.push(store);
-					});
-				});
-
-				//send the response
-				res.json(stores);
-			})
-			.catch(function(error){
-				console.log(error);
-				res.status(500).send(error);	
 			});
+			
 		}
-	});
+
+		//wait for all the stores
+		Promise.all(promises)
+		.then(function(stores_per_source){
+
+			//recompact the stores
+			//leave only wanted stores
+			var stores = [];
+			stores_per_source.forEach(function(source, index){
+
+				source.forEach(function(store, index){
+
+					stores.push(store);
+				});
+			});
+
+			//send the response
+			res.json(stores);
+		})
+		.catch(function(error){
+
+			res.status(500).send(error.message);	
+		});
+	}
 }
 
 module.exports = getStores;

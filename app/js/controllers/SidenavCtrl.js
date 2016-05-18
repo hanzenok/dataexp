@@ -11,13 +11,45 @@ angular.module('MainApp')
 			},
 			function(err){
 				$mdToast.show(
+
 					$mdToast.simple()
 						.textContent(err.data)
 						.action('OK')
 						.position('bottom')
 						.hideDelay(4000)
 				);
+			}
+		);
+
+		$scope.loadStores = function(source_conf){
+
+			//filter the choosen sources
+			var wanted_sources = [];
+			$scope.sources_conf.forEach(function(source_conf, index){
+
+				if(source_conf.wanted)
+					wanted_sources.push(source_conf);
 			});
+
+			console.log('wanted_sources:');
+			console.log(wanted_sources);
+
+			if (wanted_sources.length){
+
+				//get the fields of wanted stores
+				StoresService.getRes().post(wanted_sources, function(stores_conf){
+
+					console.log('from server:');
+					console.log(stores_conf);
+					$scope.stores_conf = stores_conf;
+
+				});
+
+			}
+			else{
+				$scope.stores_conf = [];
+			}
+		}
 
 		//dialog to modify the source
 		$scope.modifySource = function(event, source_conf){
@@ -33,6 +65,7 @@ angular.module('MainApp')
 			}
 
 			$mdDialog.show({
+
 				templateUrl: '../../templates/AddSource.html',
 				parent: angular.element(document.body),
 				targetEvent: event,
@@ -43,7 +76,7 @@ angular.module('MainApp')
 		};
 
 		/****************Stores List*****************/
-		StoresService.getRes().query(
+		/*StoresService.getRes().query(
 			function(stores_conf){
 
 				console.log('stores_conf:');
@@ -61,7 +94,8 @@ angular.module('MainApp')
 				);
 
 				$scope.stores_conf = [];
-			});
+			}
+		);*/
 
 		/****************Fields List********************/
 		$scope.fields_conf = []; 
@@ -106,4 +140,4 @@ angular.module('MainApp')
 			}
 		};
 
-	});
+	})
