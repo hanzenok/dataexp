@@ -41,6 +41,8 @@ var getFields = function(req, res){
 								fields.push({'name': key});
 							}
 						}
+
+						connection.close();
 						resolve(fields);
 					}
 				});

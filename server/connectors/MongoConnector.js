@@ -17,17 +17,17 @@ MongoConnector.getStores = function(config, callback){
 	
 	//connection to mongo
 	var url = 'mongodb://' + config.server + ':' + config.port + '/' + config.db;
-	mongoose.connect(url);
-	var db = mongoose.connection;
-	db.once('open', function(){
+	//mongoose.connect(url);
+	var connection = mongoose.createConnection(url);
+	connection.once('open', function(){
 
-		mongoose.connection.db.listCollections(true).toArray(function(err, items){
+		connection.db.listCollections(true).toArray(function(err, items){
 
 			if (err) {
 				callback('Cannot list the stores');
 			}
 			else {
-				db.close();
+				//db.close();
 
 				var tmp = {};
 				var stores = [];
@@ -50,7 +50,7 @@ MongoConnector.getStores = function(config, callback){
 		});
 	});
 
-	db.on('error', function(error){
+	connection.on('error', function(error){
 
 		console.log(error);
 

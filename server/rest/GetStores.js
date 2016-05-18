@@ -23,23 +23,49 @@ var getStores = function(req, res){
 			var n = configs.length;
 			var promises = new Array(n);
 
-			async.series([
-					function(callback){
-						ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
 
-							if (stores) console.log(stores);//callback(null, stores);
-							if (error) console.log(error);
-						});	
-					},
-					function(callback){
-						ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
+			// async.series([
+			// 	function(callback){
 
-							if (stores) console.log(stores);//callback(null, stores);
-							if (error) console.log(error);
-						});	
-					}
-				]
-			);
+			// 		ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
+			// 			if (stores) {console.log(stores); callback(null, stores);}
+			// 			if (error) {console.log(error); callback(error, null);}
+			// 		});	
+			//     },
+			//     function(callback){
+			//         console.log('two');
+			//         callback(null, 'two');
+			//     },
+			// 	function(callback){
+
+			// 		ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
+			// 			if (stores) {console.log(stores); callback(null, stores);}
+			// 			if (error) {console.log(error); callback(error, null);}
+			// 		});	
+			//     }
+			// ],
+			// // optional callback
+			// function(err, results){
+			//     console.log(results);
+			// });
+
+			// async.series([
+			// 		function(callback){
+			// 			ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
+
+			// 				if (stores) console.log(stores);//callback(null, stores);
+			// 				if (error) console.log(error);
+			// 			});	
+			// 		},
+			// 		function(callback){
+			// 			ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
+
+			// 				if (stores) console.log(stores);//callback(null, stores);
+			// 				if (error) console.log(error);
+			// 			});	
+			// 		}
+			// 	]
+			// );
 
 			/*ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
 
@@ -57,7 +83,7 @@ var getStores = function(req, res){
 			}, 3000);*/
 
 			//load the stoars of each source
-			/*for(i=0; i<n; i++){
+			for(i=0; i<n; i++){
 
 				promises[i] = new Promise(function(resolve, reject){
 
@@ -80,7 +106,7 @@ var getStores = function(req, res){
 			.catch(function(error){
 				console.log(error);
 				res.status(500).send(error);	
-			});*/
+			});
 		}
 	});
 }
