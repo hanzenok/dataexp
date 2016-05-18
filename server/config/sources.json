@@ -1,18 +1,16 @@
 [
 
 	{
-		"name": "first",
 		"type": "mongo",
 		"server": "localhost",
-		"port": "27017",
+		"port": 27017,
 		"db": "river_flows",
 		"wanted": false
 	},
 	{
-		"name": "second",
 		"type": "mongo",
 		"server": "localhost",
-		"port": "27017",
+		"port": 27017,
 		"db": "precipitation",
 		"wanted": true
 	}

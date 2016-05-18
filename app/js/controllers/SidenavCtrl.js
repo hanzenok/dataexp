@@ -1,24 +1,35 @@
 angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
-		/*Sources List*/
-		SourcesService.getRes().query(function(sources){
+		/***************Sources List****************/
+		SourcesService.getRes().query(
+			function(sources_conf){
 
-			$scope.sources = sources;
-			console.log(sources);
-		});
+				console.log('sources_conf:');
+				console.log(sources_conf);
+				$scope.sources_conf = sources_conf;
+			},
+			function(err){
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent(err.data)
+						.action('OK')
+						.position('bottom')
+						.hideDelay(4000)
+				);
+			});
 
 		//dialog to modify the source
-		$scope.modifySource = function(event, source){
+		$scope.modifySource = function(event, source_conf){
 
 			console.log('modifySource:');
-			console.log(source);
+			console.log(source_conf);
 
 			//used to pass data to the 
 			//DialogController
-			var shareSourceCtrl = function ($scope, source) {
+			var shareSourceCtrl = function ($scope, source_conf) {
 
-				$scope.source = source;
+				$scope.source_conf = source_conf;
 			}
 
 			$mdDialog.show({
@@ -27,14 +38,16 @@ angular.module('MainApp')
 				targetEvent: event,
 				clickOutsideToClose: true,
 				controller: shareSourceCtrl,
-				locals: {'source': source}
+				locals: {'source_conf': source_conf}
 			});
 		};
 
-		/*Stores List*/
+		/****************Stores List*****************/
 		StoresService.getRes().query(
 			function(stores){
 
+				console.log('stores:');
+				console.log(stores);
 				$scope.stores = stores;
 		},
 			function(err){
@@ -50,7 +63,7 @@ angular.module('MainApp')
 				$scope.stores = [];
 			});
 
-		/*Fields List*/
+		/****************Fields List********************/
 		$scope.fields = []; 
 		$scope.loadFields = function() {
 
@@ -81,6 +94,8 @@ angular.module('MainApp')
 					});
 
 					//save
+					console.log('fields:');
+					console.log(fields);
 					$scope.fields = fields;
 
 				});

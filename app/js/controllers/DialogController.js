@@ -4,9 +4,9 @@ angular.module('MainApp')
 		/*******AddSource.html********/
 		$scope.showHints = false;
 
-		if (!$scope.source){
+		if (!$scope.source_conf){
 
-			$scope.source = {
+			$scope.source_conf = {
 				name: '',
 				type: 'mongo',
 				server: 'localhost',
@@ -21,9 +21,9 @@ angular.module('MainApp')
 			$scope.showHints = true;
 			
 			console.log('DialogController:');
-			console.log($scope.source);
-			if($scope.source.name && $scope.source.type && $scope.source.server && $scope.source.db)
-			SourcesService.getRes().post($scope.source);
+			console.log($scope.source_conf);
+			if($scope.source_conf.type && $scope.source_conf.server && $scope.source_conf.db)
+			SourcesService.getRes().post($scope.source_conf);
 		};
 
 		/*******SaveFormat.html********/

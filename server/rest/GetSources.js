@@ -5,7 +5,7 @@ var getSources = function(req, res){
 	var config_file = './server/config/sources.json';
 
 	fs.readFile(config_file, function(err, data){
-		if(err) res.send(JSON.parse('[]'));
+		if(err) res.status(500).send(err);
 		else res.json(JSON.parse(data));
 	});
 }

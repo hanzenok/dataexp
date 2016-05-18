@@ -15,25 +15,26 @@ MongoConnector.getStores = function(config, callback){
 	
 	//connection to mongo
 	var url = 'mongodb://' + config.server + ':' + config.port + '/' + config.db;
-	//mongoose.connect(url);
 	var connection = mongoose.createConnection(url);
 	connection.once('open', function(){
 
+		//get the liste of all the collections(stores) of the database
 		connection.db.listCollections(true).toArray(function(err, items){
 
 			if (err) {
 				callback('Cannot list the stores');
 			}
 			else {
-				//db.close();
+				connection.close();
 
+				//pack the collection(store) names
 				var tmp = {};
 				var stores = [];
 				items.forEach(function(item, index, array){
 
 					if (item.name.indexOf('system.') === -1){
 
-						tmp.name = item.name;
+						tmp.store = item.name;
 						tmp.source = config;
 						stores.push(tmp);
 
@@ -63,7 +64,7 @@ function isValidConfig(config){
 	if (!config || typeof config !== 'object') 
 		return false;
 
-	if(!config.name || !config.type || !config.server || !config.db)
+	if(!config.type || !config.server || !config.db)
 		return false;
 
 	return true;
