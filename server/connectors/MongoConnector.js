@@ -4,8 +4,6 @@ var MongoConnector = {};
 
 MongoConnector.getStores = function(config, callback){
 
-	console.log('getStores');
-
 	//check the config
 	if (!isValidConfig.call(this, config)){
 

@@ -1,11 +1,11 @@
 var fs = require('fs');
 var mongoose = require('mongoose');
-var async = require('async');
-var mongo_connector = require('../connectors/MongoConnector');
 
+var mongo_connector = require('../connectors/MongoConnector');
 var ConnectorsEnum = {'mongo': mongo_connector};
 
 var config_file = './server/config/sources.json';
+
 
 var getStores = function(req, res){
 
@@ -24,64 +24,6 @@ var getStores = function(req, res){
 			var promises = new Array(n);
 
 
-			// async.series([
-			// 	function(callback){
-
-			// 		ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
-			// 			if (stores) {console.log(stores); callback(null, stores);}
-			// 			if (error) {console.log(error); callback(error, null);}
-			// 		});	
-			//     },
-			//     function(callback){
-			//         console.log('two');
-			//         callback(null, 'two');
-			//     },
-			// 	function(callback){
-
-			// 		ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
-			// 			if (stores) {console.log(stores); callback(null, stores);}
-			// 			if (error) {console.log(error); callback(error, null);}
-			// 		});	
-			//     }
-			// ],
-			// // optional callback
-			// function(err, results){
-			//     console.log(results);
-			// });
-
-			// async.series([
-			// 		function(callback){
-			// 			ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
-
-			// 				if (stores) console.log(stores);//callback(null, stores);
-			// 				if (error) console.log(error);
-			// 			});	
-			// 		},
-			// 		function(callback){
-			// 			ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
-
-			// 				if (stores) console.log(stores);//callback(null, stores);
-			// 				if (error) console.log(error);
-			// 			});	
-			// 		}
-			// 	]
-			// );
-
-			/*ConnectorsEnum['mongo'].getStores(configs[0], function(error, stores){
-
-				if (stores) console.log(stores);
-				if (error) console.log(error);
-			});
-
-			setTimeout(function(){
-
-				ConnectorsEnum['mongo'].getStores(configs[1], function(error, stores){
-
-					if (stores) console.log(stores);
-					if (error) console.log(error);
-				});				
-			}, 3000);*/
-
 			//load the stoars of each source
 			for(i=0; i<n; i++){
 
@@ -98,10 +40,20 @@ var getStores = function(req, res){
 
 			//wait for all the stores
 			Promise.all(promises)
-			.then(function(stores){
+			.then(function(stores_per_source){
 
+				//recompact the stores
+				var stores = [];
+				stores_per_source.forEach(function(source, index){
 
-				console.log(stores);
+					source.forEach(function(store, index){
+
+						stores.push(store);
+					});
+				});
+
+				//send the response
+				res.json(stores);
 			})
 			.catch(function(error){
 				console.log(error);
