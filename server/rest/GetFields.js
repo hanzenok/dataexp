@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 
+var mongo_connector = require('../connectors/MongoConnector');
+var ConnectorsEnum = {'mongo': mongo_connector};
+
 var getFields = function(req, res){
 	
 	//get the requested stores
 	var stores_conf = req.body;
 
 	if(stores_conf.length){
-
-		var doc, fields;
-		var url, connection, model;
 
 		//connect to each database in a promise
 		var n = stores_conf.length;
@@ -17,36 +17,11 @@ var getFields = function(req, res){
 
 			promises[i] = new Promise(function(resolve, reject){
 
-				url = 'mongodb://' + stores_conf[i].source.server + ':' + stores_conf[i].source.port + '/' + stores_conf[i].source.db;
-				connection = mongoose.createConnection(url);
-				model = connection.model('', {}, stores_conf[i].store);
+				ConnectorsEnum[stores_conf[i].source.type].getFields(stores_conf[i], function(error, fields){
 
-				//find the first document
-				//we suppose that it's fields are the same for all
-				//the documents in the collection
-				model.findOne({}, function(err, document){
-
-					if(err) reject(err);
-					else {
-
-						//delete all the javascript fields
-						doc = JSON.parse(JSON.stringify(document));
-
-						//parse the fields
-						fields = [];
-						for(var key in doc){
-
-							if (key !== '_id'){
-
-								fields.push({'field': key});
-							}
-						}
-
-						connection.close();
-						resolve(fields);
-					}
+					if (fields) resolve(fields);
+					if (error) reject(error);
 				});
-
 			});
 		}
 
@@ -78,7 +53,8 @@ var getFields = function(req, res){
 			
 		})
 		.catch(function(error){
-			res.send(error);	
+
+			res.status(500).send(error);
 		});
 	}
 }

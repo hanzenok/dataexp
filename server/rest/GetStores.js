@@ -6,7 +6,8 @@ var ConnectorsEnum = {'mongo': mongo_connector};
 
 var config_file = './server/config/sources.json';
 
-
+//return the config file with all the stores
+//of sources specified in the sources config file
 var getStores = function(req, res){
 
 	//read the sources config file
@@ -19,8 +20,8 @@ var getStores = function(req, res){
 		}
 		else {
 
-			var configs = JSON.parse(data);
-			var n = configs.length;
+			var sources_conf = JSON.parse(data);
+			var n = sources_conf.length;
 			var promises = new Array(n);
 
 
@@ -29,7 +30,7 @@ var getStores = function(req, res){
 
 				promises[i] = new Promise(function(resolve, reject){
 
-					ConnectorsEnum['mongo'].getStores(configs[i], function(error, stores){
+					ConnectorsEnum[sources_conf[i].type].getStores(sources_conf[i], function(error, stores){
 
 						if (stores) resolve(stores);
 						if (error) reject(error);
@@ -56,7 +57,7 @@ var getStores = function(req, res){
 				res.json(stores);
 			})
 			.catch(function(error){
-				console.log(error);
+
 				res.status(500).send(error);	
 			});
 		}
