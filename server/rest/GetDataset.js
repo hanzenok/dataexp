@@ -1,19 +1,22 @@
 var tsproc = require('tsproc');
-var loadData = require('./../LoadData');
 var modifyConfig = require('./../ModifyConfig');
 var moment = require('moment');
+
+var mongo_connector = require('../connectors/MongoConnector');
+var ConnectorsEnum = {'mongo': mongo_connector};
 
 var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
 
 var getDataset = function(req, res){
 	
 	//get the requested dataset
-	var config = req.body;
+	var fields_config = req.body;
 
-	if(config.length){
+	if(fields_config.length){
 
-		//console.log('config:'); console.log(config);
-		var new_config = modifyConfig(config);
+		//fuse configs into one
+		//determine the timestamp fields
+		var new_config = modifyConfig(fields_config);
 		if(!new_config){
 
 			res.status(500).send('Some field(s) are missing the timestamp');
@@ -24,23 +27,30 @@ var getDataset = function(req, res){
 		//from the specified sources
 		var n = new_config.length;
 		var promises = new Array(n);
-		for(var i=0; i<n; i++){
+		for (var i=0; i<n; i++){
 
-			promises[i] = loadData(new_config[i]);
+			promises[i] = new Promise(function(resolve, reject){
+
+				ConnectorsEnum[new_config[i].source.type].getDataset(new_config[i], function(error, dataset){
+
+					if (dataset) resolve(dataset);
+					if (error) reject(error);
+				});
+			});
 		}
 
 		//process the data
 		Promise.all(promises)
-		.then(function(stores){
+		.then(function(datasets){
 
 			//callback
 			var callback = function(err, data){
 
-				if (err) res.send(err.stack);
+				if (err) res.status(500).send(err.message);
 				if (data) res.json(data);
 			}
 
-			//parse new config
+			//parse new config for ts proc
 			var tsproc_config = {};
 			tsproc_config.timeseries = [];
 			new_config.forEach(function(config, index, array){
@@ -48,12 +58,13 @@ var getDataset = function(req, res){
 				tsproc_config.timeseries.push(config);
 			});
 
-			tsp = new tsproc(stores, tsproc_config, callback);
+			tsp = new tsproc(datasets, tsproc_config, callback);
 			tsp.process(date_borders, callback);
 
 		})
 		.catch(function(error){
-			res.send(error);	
+
+			res.status(500).send(error);	
 		});
 	}
 }

@@ -57,7 +57,7 @@ var getStores = function(req, res){
 				res.json(stores);
 			})
 			.catch(function(error){
-
+				console.log(error);
 				res.status(500).send(error);	
 			});
 		}

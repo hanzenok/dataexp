@@ -5,10 +5,10 @@ var MongoConnector = {};
 MongoConnector.getStores = function(source_config, callback){
 
 	//check the source config
-	if (!isValidSourceConfig.call(this, source_config)){
+	if (!isValidSourceConfig(source_config)){
 
 		if (callback) 
-			callback('Invalid source config file');
+			callback('Invalid source config file', null);
 
 		return;
 	}
@@ -51,8 +51,6 @@ MongoConnector.getStores = function(source_config, callback){
 
 	connection.on('error', function(error){
 
-		console.log(error);
-
 		if (callback)
 			callback('Cannot connect to the mongo database ' + source_config.db + ' from ' + source_config.server + ' server');
 	});
@@ -62,11 +60,11 @@ MongoConnector.getStores = function(source_config, callback){
 //get all the fields of a store
 MongoConnector.getFields = function(store_config, callback){
 
-	//check the sourceconfig
+	//check the store config
 	if (!isValidStoreConfig.call(this, store_config)){
 
 		if (callback) 
-			callback('Invalid store config file');
+			callback('Invalid store config');
 
 		return;
 	}
@@ -108,12 +106,49 @@ MongoConnector.getFields = function(store_config, callback){
 	});
 }
 
+MongoConnector.getDataset = function(dataset_config, callback){
+
+	//check the field config
+	if (!isValidDatasetConfig.call(this, dataset_config)){
+
+		if (callback) 
+			callback('Invalid dataset config');
+
+		return;
+	}
+
+	//connection to mongo
+	var url = 'mongodb://' + dataset_config.source.server + ':' + dataset_config.source.port + '/' + dataset_config.source.db;
+	var connection = mongoose.createConnection(url);
+	var model = connection.model('', {}, dataset_config.store);
+	
+	//document fields to load
+	var fields = {};
+	fields['_id'] = 0; //do not include id field
+	fields[dataset_config.timestamp.field] = 1; //include one field
+	dataset_config.fields.forEach(function(config, index){
+
+		fields[config.field] = 1;
+	});
+
+	//launch query
+	model.aggregate([{$project: fields}],
+		function(err, result){
+			if (err) {
+				callback(err);
+			}
+			else {
+				callback(null, result);
+			}
+	});
+}
+
 function isValidSourceConfig(source_config){
 
 	if (!source_config || typeof source_config !== 'object') 
 		return false;
 
-	if(!source_config.type || !source_config.server || !source_config.db)
+	if (!source_config.type || !source_config.server || !source_config.db)
 		return false;
 
 	return true;
@@ -124,7 +159,18 @@ function isValidStoreConfig(store_config){
 	if (!isValidSourceConfig(store_config.source))
 		return false;
 
-	if(!store_config.store)
+	if (!store_config.store)
+		return false;
+
+	return true;
+}
+
+function isValidDatasetConfig(dataset_config){
+
+	if (!isValidStoreConfig(dataset_config))
+		return false;
+
+	if (!dataset_config.fields || !dataset_config.timestamp)
 		return false;
 
 	return true;

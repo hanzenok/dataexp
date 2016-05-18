@@ -26,8 +26,9 @@ angular.module('MainApp')
 				$mdDialog.show({
 					templateUrl: '../../templates/SaveFormat.html',
 					parent: angular.element(document.body),
-					clickOutsideToClose: true
-				}).then(function(answer){
+					clickOutsideToClose: false
+				})
+				.then(function(answer){
 
 					data.format = answer;
 					console.log('data:');
@@ -43,6 +44,7 @@ angular.module('MainApp')
 
 			//compose all the fields that needs to be downloaded into one
 			var all_fields_conf = [$rootScope.droppedTSFields, $rootScope.droppedFields];
+			console.log(all_fields_conf);
 
 			//send them to the server
 			DatasetService.getRes().post(all_fields_conf, 

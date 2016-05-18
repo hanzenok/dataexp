@@ -3,6 +3,9 @@ angular.module('MainApp')
 
 		$scope.onDropRemove = function(data){
 
+			console.log('delete:');
+			console.log(data);
+
 			//if it is a field
 			if (data.store && data.source){
 
