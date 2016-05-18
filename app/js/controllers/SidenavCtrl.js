@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('SidenavCtrl', function($scope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
+	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
 		/***************Sources List****************/
 		SourcesService.getRes().query(
@@ -21,7 +21,7 @@ angular.module('MainApp')
 			}
 		);
 
-		$scope.loadStores = function(source_conf){
+		$rootScope.loadStores = function(source){
 
 			//filter the choosen sources
 			var wanted_sources = [];

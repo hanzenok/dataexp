@@ -1,17 +1,1 @@
-[
-
-	{
-		"type": "mongo",
-		"server": "localhost",
-		"port": 27017,
-		"db": "river_flows",
-		"wanted": false
-	},
-	{
-		"type": "mongo",
-		"server": "localhost",
-		"port": 27017,
-		"db": "precipitation",
-		"wanted": false
-	}
-]
+[{"type":"mongo","server":"localhost","port":27017,"db":"river_flows","wanted":false},{"type":"mongo","server":"localhost","port":27017,"db":"precipitation","wanted":false},{"type":"mongo","server":"localhost","port":27017,"db":"donorschoose","wanted":false}]

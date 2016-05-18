@@ -14,10 +14,10 @@ module.exports = function(app){
 
 	//REST api
 	app.get('/api/sources', getSources);
+	app.post('/api/sources', putSource);
 	app.post('/api/stores', getStores);
 	app.post('/api/fields', getFields);
 	app.post('/api/dataset', getDataset);
-	app.post('/api/sources', putSource);
 
 	//other pages
 	app.use(function(req, res, next){
