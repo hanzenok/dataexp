@@ -8,7 +8,7 @@ MongoConnector.getStores = function(source_config, callback){
 	if (!isValidSourceConfig(source_config)){
 
 		if (callback) 
-			callback('Invalid source config file', null);
+			callback(new Error('Invalid source config file'));
 
 		return;
 	}
@@ -22,7 +22,7 @@ MongoConnector.getStores = function(source_config, callback){
 		connection.db.listCollections(true).toArray(function(err, items){
 
 			if (err) {
-				callback('Cannot list the stores');
+				callback(new Error('Cannot list the stores'));
 			}
 			else {
 				connection.close();
@@ -43,8 +43,13 @@ MongoConnector.getStores = function(source_config, callback){
 				});
 
 				//call the callback
-				if (callback)
+				if (stores.length){
+
 					callback(null, stores);
+				}
+				else{
+					callback(new Error('Cannot list the stores'));
+				}
 			}
 		});
 	});
@@ -52,7 +57,7 @@ MongoConnector.getStores = function(source_config, callback){
 	connection.on('error', function(error){
 
 		if (callback)
-			callback('Cannot connect to the mongo database ' + source_config.db + ' from ' + source_config.server + ' server');
+			callback(new Error('Cannot connect to the mongo database ' + source_config.db + ' from ' + source_config.server + ' server'));
 	});
 
 }
@@ -64,7 +69,7 @@ MongoConnector.getFields = function(store_config, callback){
 	if (!isValidStoreConfig.call(this, store_config)){
 
 		if (callback) 
-			callback('Invalid store config');
+			callback(new Error('Invalid store config'));
 
 		return;
 	}
@@ -82,7 +87,7 @@ MongoConnector.getFields = function(store_config, callback){
 
 		if (err){
 
-			callback('Cannot load the field');
+			callback(new Error('Cannot load the field'));
 		}
 		else {
 
@@ -112,7 +117,7 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	if (!isValidDatasetConfig.call(this, dataset_config)){
 
 		if (callback) 
-			callback('Invalid dataset config');
+			callback(new Error('Invalid dataset config'));
 
 		return;
 	}

@@ -2,7 +2,8 @@ angular.module('MainApp')
 	.controller('DialogController', function($scope, $rootScope, $mdDialog, SourcesService){
 
 		/*******AddSource.html********/
-		$scope.showHints = false;
+		$scope.showHints = false; //managin the error hints
+		$scope.deletable = true; //wheather to activate the delete button on the AddSource.html
 
 		if (!$scope.source_conf){
 
@@ -13,6 +14,8 @@ angular.module('MainApp')
 				db:'',
 				wanted: false
 			};
+
+			$scope.deletable = false;
 		}
 
 		$scope.connect = function() {

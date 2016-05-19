@@ -46,13 +46,24 @@ angular.module('MainApp')
 			if (wanted_sources.length){
 
 				//get the fields of wanted stores
-				StoresService.getRes().post(wanted_sources, function(stores_conf){
+				StoresService.getRes().post(wanted_sources, 
+					function(stores_conf){
 
-					console.log('from server:');
-					console.log(stores_conf);
-					$scope.stores_conf = stores_conf;
+						console.log('from server:');
+						console.log(stores_conf);
+						$scope.stores_conf = stores_conf;
+					},
+					function(err){
 
-				});
+						$mdToast.show(
+							$mdToast.simple()
+								.textContent(err.data)
+								.action('OK')
+								.position('bottom')
+								.hideDelay(4000)
+						);
+					}
+				);
 
 			}
 			else{

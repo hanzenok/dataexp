@@ -158,8 +158,8 @@
 
 				<!-- Sources, Stores, Fields List -->
 				<div ng-controller="SidenavCtrl" layout="column" flex layout-align="start">
+					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 					<md-content flex="33"> <!-- md-content is scrollable -->
-						<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf">
 								<md-checkbox ng-model="source_config.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
@@ -189,7 +189,9 @@
 							<div>
 								<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
 										{{field_config.short}}
-								    	<md-tooltip md-visible="false">{{field_config.field}}</md-tooltip>
+								    	<md-tooltip md-visible="false" md-direction="top">
+								    		{{field_config.field}}
+								    	</md-tooltip>
 								</span>
 							</div>
 						</md-list-item>
@@ -325,7 +327,7 @@
 
 						<div ng-drag-clone=""></div> 
 					</div>
-				</footer> 
+				</footer>
 
 			</md-content>
 		</div>
