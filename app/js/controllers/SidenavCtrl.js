@@ -1,6 +1,10 @@
 angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
+		$scope.mouseTest = function(){
+			console.log('mouse!!');
+		}
+
 		/***************Sources List****************/
 		$rootScope.loadSources = function(){
 

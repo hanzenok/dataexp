@@ -150,7 +150,7 @@
 
 				<!-- Sources, Stores, Fields List -->
 				<div ng-controller="SidenavCtrl" layout="column" flex layout-align="start">
-					<md-content flex="33">
+					<md-content flex="33"> <!-- md-content is scrollable -->
 						<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
 						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf">
@@ -177,15 +177,14 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky">Fields</md-subheader>
 					<md-content flex="33">
-						<md-list>
-							<md-list-item>
-								<div>
-									<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
-											{{field_config.short}}
-									</span>
-								</div>
-							</md-list-item>
-						</md-list>
+						<md-list-item> <!-- md list because it centers the fields -->
+							<div>
+								<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
+										{{field_config.short}}
+								    	<md-tooltip md-visible="false">{{field_config.field}}</md-tooltip>
+								</span>
+							</div>
+						</md-list-item>
 					</md-content>
 				</div>
 			</md-sidenav>
