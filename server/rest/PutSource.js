@@ -14,7 +14,7 @@ var putSource = function(req, res){
 		fs.readFile(config_file, function(err, data){
 			if (err) {
 
-				res.status(500).send('Source config file error');
+				res.status(500).send('Sources config file error');
 				return;
 			}
 			if (data){

@@ -67,8 +67,26 @@ angular.module('MainApp')
 
 			console.log('delete!!');
 			console.log($scope.source_conf);
-			var a = $resource('/api/sources/:source_name', {source_name: 'name'});
-			a.delete({source_name: $scope.source_conf.name});
+			SourcesService.delete($scope.source_conf.name, 
+				function(){
+					
+					$rootScope.loadSources();
+					$rootScope.loadStores();
+					$mdDialog.hide();
+				},
+				function(err){
+
+					$mdDialog.hide();
+
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent(err.data)
+							.action('OK')
+							.position('bottom')
+							.hideDelay(4000)
+					);
+				}
+			);
 		}
 
 		/*******SaveFormat.html********/

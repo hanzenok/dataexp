@@ -1,12 +1,19 @@
 var fs = require('fs');
 
+var config_file = './server/config/sources.json';
+
 var getSources = function(req, res){
-	
-	var config_file = './server/config/sources.json';
 
 	fs.readFile(config_file, function(err, data){
-		if(err) res.status(500).send(err.message);
-		else res.json(JSON.parse(data));
+
+		if (err){
+		
+			res.status(500).send('Sources config file error');
+		}
+		else{
+
+			res.json(JSON.parse(data));
+		}
 	});
 }
 

@@ -1,4 +1,3 @@
-var fs = require('fs');
 var mongoose = require('mongoose');
 
 var mongo_connector = require('../connectors/MongoConnector');
