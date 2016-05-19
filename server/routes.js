@@ -18,6 +18,10 @@ module.exports = function(app){
 	app.post('/api/stores', getStores);
 	app.post('/api/fields', getFields);
 	app.post('/api/dataset', getDataset);
+	app.delete('/api/sources/:test_id', function(req, res){
+
+		console.log(req.params.test_id.type);
+	});
 
 	//other pages
 	app.use(function(req, res, next){

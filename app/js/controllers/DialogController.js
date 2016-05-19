@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('DialogController', function($scope, $rootScope, $mdDialog, SourcesService){
+	.controller('DialogController', function($scope, $rootScope, $mdDialog, SourcesService, $resource){
 
 		/*******AddSource.html********/
 		$scope.showHints = false; //managin the error hints
@@ -51,6 +51,14 @@ angular.module('MainApp')
 				);
 			}
 		};
+
+		$scope.deleteSource = function(){
+
+			console.log('delete!!');
+			console.log($scope.source_conf);
+			var a = $resource('/api/sources/:test_id', {test_id: 'id'});
+			a.delete({test_id: $scope.source_conf});
+		}
 
 		/*******SaveFormat.html********/
 		$scope.format = 'ISO';
