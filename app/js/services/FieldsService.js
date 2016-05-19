@@ -1,16 +1,15 @@
 angular.module('MainApp')
 	.service('FieldsService', function($resource){
 		
-		this.getRes = function(){
+		var res = $resource('/api/fields', {}, 
+			{
+				post: {method: 'POST', isArray: true}
+			}
+		);
 
-			var res = $resource('/api/fields', {}, 
-				{
-					post: {method: 'POST', isArray: true}
-				}
-			);
+		this.post = function(wanted_stores, success_cb, error_cb){
 
-			return res;
-
+			res.post(wanted_stores, success_cb, error_cb);
 		}
 
 	});

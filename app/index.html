@@ -163,7 +163,7 @@
 						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf">
 								<md-checkbox ng-model="source_config.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
-								<span>{{source_config.db}}</span>
+								<span>{{source_config.name}}</span>
 								<span>({{source_config.type}})</span>
 								<md-icon class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
 							</md-list-item>

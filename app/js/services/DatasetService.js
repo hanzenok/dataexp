@@ -1,16 +1,15 @@
 angular.module('MainApp')
 	.service('DatasetService', function($resource){
 		
-		this.getRes = function(){
+		var res = $resource('/api/dataset', {}, 
+			{
+				post: {method: 'POST', isArray: true}
+			}
+		);
 
-			var res = $resource('/api/dataset', {}, 
-				{
-					post: {method: 'POST', isArray: true}
-				}
-			);
+		this.post = function(fields, success_cb, error_cb){
 
-			return res;
-
+			res.post(fields, success_cb, error_cb);
 		}
 
 	});

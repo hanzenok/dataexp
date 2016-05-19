@@ -8,7 +8,7 @@ angular.module('MainApp')
 		/***************Sources List****************/
 		$rootScope.loadSources = function(){
 
-			SourcesService.getRes().query(
+			SourcesService.query(
 				function(sources_conf){
 
 					console.log('sources_conf:');
@@ -27,7 +27,6 @@ angular.module('MainApp')
 				}
 			);
 		}
-
 		$rootScope.loadSources();
 
 		$rootScope.loadStores = function(source){
@@ -46,7 +45,7 @@ angular.module('MainApp')
 			if (wanted_sources.length){
 
 				//get the fields of wanted stores
-				StoresService.getRes().post(wanted_sources, 
+				StoresService.post(wanted_sources, 
 					function(stores_conf){
 
 						console.log('from server:');
@@ -135,7 +134,7 @@ angular.module('MainApp')
 			if (wanted_stores.length){
 
 				//get the fields of wanted stores
-				FieldsService.getRes().post(wanted_stores, function(fields_conf){
+				FieldsService.post(wanted_stores, function(fields_conf){
 
 					//process each field
 					fields_conf.forEach(function(field_conf, index){

@@ -16,8 +16,8 @@
 		<form name="dialogForm">
 			<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm="">
-					<label>Name (Delete it)</label>
-					<input name="name">
+					<label>Name</label>
+					<input name="name" required ng-model="source_conf.name">
 					<div ng-messages="dialogForm.name.$error" ng-if="showHints">
 						<div ng-message="required">Name is required</div>
 					</div>

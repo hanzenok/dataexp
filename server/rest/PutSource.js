@@ -22,9 +22,10 @@ var putSource = function(req, res){
 				var sources_conf = JSON.parse(data);
 
 				//if config already exists
-				if (underscore.where(sources_conf, source_conf).length){
+				if (underscore.where(sources_conf, {name: source_conf.name}).length){
 
-					res.send([]);
+					res.status(500).send('Specified source name alredy exists');
+					return;
 				}
 				else{
 

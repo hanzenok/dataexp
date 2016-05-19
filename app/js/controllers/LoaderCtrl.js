@@ -47,7 +47,7 @@ angular.module('MainApp')
 			console.log(all_fields_conf);
 
 			//send them to the server
-			DatasetService.getRes().post(all_fields_conf, 
+			DatasetService.post(all_fields_conf, 
 				function(data){
 
 					//mark all the fields as loaded

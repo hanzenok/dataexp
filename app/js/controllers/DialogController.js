@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('DialogController', function($scope, $rootScope, $mdDialog, SourcesService, $resource){
+	.controller('DialogController', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, $resource){
 
 		/*******AddSource.html********/
 		$scope.showHints = false; //managin the error hints
@@ -8,6 +8,7 @@ angular.module('MainApp')
 		if (!$scope.source_conf){
 
 			$scope.source_conf = {
+				name: '',
 				type: 'mongo',
 				server: 'localhost',
 				port: null,
@@ -26,29 +27,39 @@ angular.module('MainApp')
 			console.log($scope.source_conf);
 
 			//if all the inputs are specified
-			if ($scope.source_conf.type && $scope.source_conf.server && $scope.source_conf.db){
 
-				SourcesService.getRes().post($scope.source_conf, 
+			if (!$scope.deletable && $scope.source_conf.name && $scope.source_conf.type && 
+				$scope.source_conf.server && $scope.source_conf.db){
+
+				SourcesService.post($scope.source_conf, 
 					function(result){
+
 						console.log('SourcesService');
-						if (result.length){
-							console.log('here');
-							console.log($scope.source_conf);
-							$rootScope.loadSources();
-							$mdDialog.hide();
-						}
-						else{
-							console.log('here1');
-							$scope.source_conf.wanted = true;
-							$rootScope.loadStores();
-							$mdDialog.hide();
-						}
+						console.log('here');
+						console.log($scope.source_conf);
+						$rootScope.loadSources();
+						$mdDialog.hide();
+
 					},
 					function(err){
-						console.log('error:');
-						console.log(err);
+
+						$mdDialog.hide();
+
+						$mdToast.show(
+							$mdToast.simple()
+								.textContent(err.data)
+								.action('OK')
+								.position('bottom')
+								.hideDelay(4000)
+						);
 					}
 				);
+			}
+			else{
+				console.log('here1');
+				$scope.source_conf.wanted = true;
+				$rootScope.loadStores();
+				$mdDialog.hide();
 			}
 		};
 
@@ -56,8 +67,8 @@ angular.module('MainApp')
 
 			console.log('delete!!');
 			console.log($scope.source_conf);
-			var a = $resource('/api/sources/:test_id', {test_id: 'id'});
-			a.delete({test_id: $scope.source_conf});
+			var a = $resource('/api/sources/:source_name', {source_name: 'name'});
+			a.delete({source_name: $scope.source_conf.name});
 		}
 
 		/*******SaveFormat.html********/
