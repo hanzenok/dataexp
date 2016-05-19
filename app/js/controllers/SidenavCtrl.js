@@ -70,6 +70,16 @@ angular.module('MainApp')
 			}
 		}
 
+		$scope.getSourceType = function(source_conf){
+
+			var types = {
+
+				mongo: 'MongoDB'
+			};
+
+			return types[source_conf.type];
+		}
+
 		//dialog to modify the source
 		$scope.modifySource = function(event, source_conf){
 
