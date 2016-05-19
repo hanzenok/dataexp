@@ -141,7 +141,7 @@
 
 		<!-- Side Bar -->
 		<div layout="row" flex>
-			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp">
+			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" layout="column">
 
 				<!-- Fab Button -->
 				<md-button class="md-fab md-fab-bottom-right" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
@@ -149,36 +149,45 @@
 				</md-button>
 
 				<!-- Sources, Stores, Fields List -->
-				<md-list ng-controller="SidenavCtrl">
-					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
-						<div>
+				<div ng-controller="SidenavCtrl" layout="column" flex layout-align="start">
+					<md-content flex="33">
+						<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
+						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf">
 								<md-checkbox ng-model="source_config.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
 								<span>{{source_config.db}}</span>
 								<span>({{source_config.type}})</span>
 								<md-icon class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
 							</md-list-item>
-						</div>
+						</md-list>
+					</md-content>
+
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
-						<div>
+					<md-content flex="33">
+						<md-list>
 							<md-list-item ng-repeat="store_config in stores_conf">
 								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields()"></md-checkbox>
 								<span>{{store_config.store}}</span>
 								<span>({{store_config.source.type}})</span>
 							</md-list-item>
-							<md-divider></md-divider>
-							<md-subheader class="md-no-sticky">Fields</md-subheader>
-								<md-list-item>
-									<div>
-										<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
-												{{field_config.short}}
-										</span>
-									</div>
-								</md-list-item>
-						</div>
+						</md-list>
+					</md-content>
+
 					<md-divider></md-divider>
-				</md-list>
+					<md-subheader class="md-no-sticky">Fields</md-subheader>
+					<md-content flex="33">
+						<md-list>
+							<md-list-item>
+								<div>
+									<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
+											{{field_config.short}}
+									</span>
+								</div>
+							</md-list-item>
+						</md-list>
+					</md-content>
+				</div>
 			</md-sidenav>
 
 			<!-- Main Container -->
