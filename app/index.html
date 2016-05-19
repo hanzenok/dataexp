@@ -68,6 +68,18 @@
         margin-top: -10px;
     }
 
+    .subheader{
+    	background-color: rgba(230, 230, 230, 0.8);
+    }
+
+    .list_container{
+
+    	border-style: solid;
+    	border-width: 5px;
+    	border-color: rgba(230, 230, 230, 0.8);
+    	padding: 1px 10px 1px 10px;
+    }
+
     .charts{
         width: auto;
         height: auto;
@@ -158,35 +170,41 @@
 
 				<!-- Sources, Stores, Fields List -->
 				<div ng-controller="SidenavCtrl" layout="column" flex layout-align="start">
-					<md-subheader class="md-no-sticky md-primary">Sources</md-subheader>
-					<md-content flex="33"> <!-- md-content is scrollable -->
+					<md-subheader class="md-no-sticky md-primary subheader">Sources ({{sources_conf.length}})</md-subheader>
+					<md-content flex="33" class="list_container"> <!-- md-content is scrollable -->
+						<md-divider></md-divider>
 						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf">
 								<md-checkbox ng-model="source_config.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
 								<span>{{source_config.name}}</span>
 								<span>({{source_config.type}})</span>
 								<md-icon class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
+								<md-divider></md-divider>
 							</md-list-item>
 						</md-list>
 					</md-content>
 
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-warn">Stores</md-subheader>
-					<md-content flex="33">
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-warn subheader">Stores ({{stores_conf.length}})</md-subheader>
+					<md-content flex="33" class="list_container">
+						<md-divider></md-divider>
 						<md-list>
 							<md-list-item ng-repeat="store_config in stores_conf">
 								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields()"></md-checkbox>
 								<span>{{store_config.store}}</span>
 								<span>({{store_config.source.type}})</span>
+								<md-divider></md-divider>
 							</md-list-item>
 						</md-list>
 					</md-content>
 
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky">Fields</md-subheader>
-					<md-content flex="33">
-						<md-list-item> <!-- md list because it centers the fields -->
-							<div>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky subheader">Fields ({{fields_conf.length}})</md-subheader>
+					<md-content flex="33" class="list_container">
+						<div>
+							<div layout-align="center">
 								<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
 										{{field_config.short}}
 								    	<md-tooltip md-visible="false" md-direction="top">
@@ -194,7 +212,7 @@
 								    	</md-tooltip>
 								</span>
 							</div>
-						</md-list-item>
+						</div>
 					</md-content>
 				</div>
 			</md-sidenav>
