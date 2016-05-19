@@ -2,24 +2,29 @@ angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
 		/***************Sources List****************/
-		SourcesService.getRes().query(
-			function(sources_conf){
+		$rootScope.loadSources = function(){
 
-				console.log('sources_conf:');
-				console.log(sources_conf);
-				$scope.sources_conf = sources_conf;
-			},
-			function(err){
-				$mdToast.show(
+			SourcesService.getRes().query(
+				function(sources_conf){
 
-					$mdToast.simple()
-						.textContent(err.data)
-						.action('OK')
-						.position('bottom')
-						.hideDelay(4000)
-				);
-			}
-		);
+					console.log('sources_conf:');
+					console.log(sources_conf);
+					$scope.sources_conf = sources_conf;
+				},
+				function(err){
+					$mdToast.show(
+
+						$mdToast.simple()
+							.textContent(err.data)
+							.action('OK')
+							.position('bottom')
+							.hideDelay(4000)
+					);
+				}
+			);
+		}
+
+		$rootScope.loadSources();
 
 		$rootScope.loadStores = function(source){
 

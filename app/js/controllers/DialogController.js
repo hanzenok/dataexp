@@ -27,11 +27,11 @@ angular.module('MainApp')
 
 				SourcesService.getRes().post($scope.source_conf, 
 					function(result){
-
+						console.log('SourcesService');
 						if (result.length){
 							console.log('here');
-							$scope.source_conf.wanted = true;
-							$rootScope.loadStores();
+							console.log($scope.source_conf);
+							$rootScope.loadSources();
 							$mdDialog.hide();
 						}
 						else{

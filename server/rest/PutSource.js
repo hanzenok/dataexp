@@ -11,7 +11,6 @@ var putSource = function(req, res){
 
 	if (source_conf){
 
-
 		fs.readFile(config_file, function(err, data){
 			if (err) {
 
@@ -31,18 +30,14 @@ var putSource = function(req, res){
 
 					//assemble the new config file
 					var new_config = sources_conf.concat(source_conf);
-					console.log(new_config);
 
 					//save it to the fiels
-					fs.writeFile(config_file, JSON.stringify(new_config), function(err, data){
+					fs.writeFile(config_file, JSON.stringify(new_config), function(err){
 
 						if (err){
-							console.log('error');
 							res.status(500).send('Source config file error');
-							return;
 						}
-						if (data){
-							console.log('here');
+						else{
 							res.send([{}]);
 						}
 
