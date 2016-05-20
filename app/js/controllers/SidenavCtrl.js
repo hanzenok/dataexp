@@ -1,11 +1,36 @@
 angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
+		$rootScope.testStores = [];
+		$rootScope.addStore = function(stores){
+
+			stores.forEach(function(store, index){
+
+				$rootScope.testStores.push(store);
+			});
+		}
+
+		$rootScope.removeStore = function(source){
+
+			var indexes = [];
+			$rootScope.testStores.forEach(function(store, index){
+
+				if(store.source.name === source.name)
+					indexes.push(index);
+			});
+
+
+			indexes.forEach(function(index, i){
+
+				$rootScope.testStores.splice(index - i, 1);
+			});
+		}
+
 		/***************Progress Bar****************/
 		$rootScope.activatePB = '';
 		$rootScope.showPB = function(activate){
 
-			if(activate)
+			if (activate)
 				$rootScope.activatePB = 'indeterminate';
 			else{
 				$rootScope.activatePB = '';
@@ -21,8 +46,8 @@ angular.module('MainApp')
 			SourcesService.query(
 				function(sources_conf){
 
-					console.log('sources_conf:');
-					console.log(sources_conf);
+					//consle.log('sources_conf:');
+					//consle.log(sources_conf);
 					$scope.sources_conf = sources_conf;
 					$rootScope.showPB(false);
 				},
@@ -44,6 +69,21 @@ angular.module('MainApp')
 
 		$rootScope.loadStores = function(source){
 
+			if (source.wanted){
+
+				StoresService.post([source], 
+					function(stores_conf){
+
+						$rootScope.addStore(stores_conf);
+
+						console.log($rootScope.testStores);
+					});
+			}else{
+
+				$rootScope.removeStore(source);
+				console.log($rootScope.testStores);
+			}
+
 			//filter the choosen sources
 			var wanted_sources = [];
 			$scope.sources_conf.forEach(function(source_conf, index){
@@ -52,8 +92,8 @@ angular.module('MainApp')
 					wanted_sources.push(source_conf);
 			});
 
-			console.log('wanted_sources:');
-			console.log(wanted_sources);
+			//consle.log('wanted_sources:');
+			//consle.log(wanted_sources);
 
 			//go through the sources
 			//and load their stores
@@ -66,8 +106,8 @@ angular.module('MainApp')
 				StoresService.post(wanted_sources, 
 					function(stores_conf){
 
-						console.log('from server:');
-						console.log(stores_conf);
+						//consle.log('from server:');
+						//consle.log(stores_conf);
 						$scope.stores_conf = stores_conf;
 						$rootScope.showPB(false);
 					},
@@ -104,8 +144,8 @@ angular.module('MainApp')
 		//dialog to modify the source
 		$scope.modifySource = function(event, source_conf){
 
-			console.log('modifySource:');
-			console.log(source_conf);
+			//consle.log('modifySource:');
+			//consle.log(source_conf);
 
 			//used to pass data to the 
 			//DialogController
@@ -158,8 +198,8 @@ angular.module('MainApp')
 					});
 
 					//save
-					console.log('fields_conf:');
-					console.log(fields_conf);
+					//consle.log('fields_conf:');
+					//consle.log(fields_conf);
 					$scope.fields_conf = fields_conf;
 					$rootScope.showPB(false);
 
