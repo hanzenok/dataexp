@@ -14,7 +14,8 @@ MongoConnector.getStores = function(source_config, callback){
 	}
 	
 	//connection to mongo
-	var url = 'mongodb://' + source_config.server + ':' + source_config.port + '/' + source_config.db;
+	var user_and_pass = (source_config.user && source_config.passw) ? source_config.user + ':' + source_config.passw + '@' : '';
+	var url = 'mongodb://' + user_and_pass + source_config.server + ':' + source_config.port + '/' + source_config.db;
 	var connection = mongoose.createConnection(url);
 
 	connection.once('open', function(){
@@ -76,7 +77,8 @@ MongoConnector.getFields = function(store_config, callback){
 	}
 
 	//connection to mongo
-	var url = 'mongodb://' + store_config.source.server + ':' + store_config.source.port + '/' + store_config.source.db;
+	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
+	var url = 'mongodb://' + user_and_pass + store_config.source.server + ':' + store_config.source.port + '/' + store_config.source.db;
 	var connection = mongoose.createConnection(url);
 	var model = connection.model('', {}, store_config.store);
 	var doc, fields;
@@ -124,7 +126,8 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	}
 
 	//connection to mongo
-	var url = 'mongodb://' + dataset_config.source.server + ':' + dataset_config.source.port + '/' + dataset_config.source.db;
+	var user_and_pass = (dataset_config.source.user && dataset_config.source.passw) ? dataset_config.source.user + ':' + dataset_config.source.passw + '@' : '';
+	var url = 'mongodb://' + user_and_pass +  dataset_config.source.server + ':' + dataset_config.source.port + '/' + dataset_config.source.db;
 	var connection = mongoose.createConnection(url);
 	var model = connection.model('', {}, dataset_config.store);
 	

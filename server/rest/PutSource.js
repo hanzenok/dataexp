@@ -69,7 +69,6 @@ var putSource = function(req, res){
 
 						//modify the source config
 						sources_conf[index] = source_conf;
-						console.log(source_conf);
 
 						//write the modif to the file
 						fs.writeFile('./server/config/sources.json', JSON.stringify(sources_conf), 

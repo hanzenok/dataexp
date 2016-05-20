@@ -16,6 +16,8 @@ angular.module('MainApp')
 			$scope.source_conf = {
 				name: '',
 				type: 'mongo',
+				user: '',
+				passw: '',
 				server: 'localhost',
 				port: null,
 				db:'',
