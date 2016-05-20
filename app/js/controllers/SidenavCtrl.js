@@ -55,12 +55,14 @@ angular.module('MainApp')
 			console.log('wanted_sources:');
 			console.log(wanted_sources);
 
+			//go through the sources
+			//and load their stores
 			if (wanted_sources.length){
 
 				//launch the progress bar
 				$rootScope.showPB(true);
 
-				//get the fields of wanted stores
+				//get the stores
 				StoresService.post(wanted_sources, 
 					function(stores_conf){
 
@@ -124,7 +126,6 @@ angular.module('MainApp')
 		};
 
 		/****************Fields List********************/
-		$scope.fields_conf = []; 
 		$scope.loadFields = function() {
 
 			//determine the choosen stores
