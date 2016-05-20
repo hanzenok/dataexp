@@ -23,12 +23,25 @@ angular.module('MainApp')
 
 		this.post = function(source_conf, success_cb, error_cb){
 
+			//adding a new source
+			source_conf.isNew = true;
+
 			res.post(source_conf, success_cb, error_cb);
+
 		}
 
 		this.delete = function(source_name, success_cb, error_cb){
 
 			res2.delete({source_name: source_name}, success_cb, error_cb);
+		}
+
+		this.modify = function(source_conf, success_cb, error_cb){
+
+			//modifying an existing source
+			source_conf.isNew = false;
+			source_conf.wanted = false;
+
+			res.post(source_conf, success_cb, error_cb);
 		}
 
 	});

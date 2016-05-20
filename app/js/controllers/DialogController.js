@@ -1,10 +1,16 @@
 angular.module('MainApp')
-	.controller('DialogController', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, $resource){
+	.controller('DialogController', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService){
 
 		/*******AddSource.html********/
 		$scope.showHints = false; //managin the error hints
-		$scope.deletable = true; //wheather to activate the delete button on the AddSource.html
 
+		//deletable if dialog gives the possibility
+		//to modify the existing source
+		//false if adding a new source (via fab button)
+		$scope.deletable = true;
+
+		//if adding the new source,
+		//initialase the source_conf
 		if (!$scope.source_conf){
 
 			$scope.source_conf = {
@@ -19,6 +25,30 @@ angular.module('MainApp')
 			$scope.deletable = false;
 		}
 
+		//save the initial value of source_conf
+		//to detect if it was modified
+		var old_source_conf = null;
+		if ($scope.deletable){
+			
+			old_source_conf = JSON.parse(JSON.stringify($scope.source_conf));
+		}
+
+		$scope.getToolbarTitle = function(){
+
+			if ($scope.deletable)
+				return 'Modifying a source';
+			else
+				return 'Adding a new source';
+		}
+
+		$scope.getButtonLabel = function(){
+
+			if ($scope.deletable)
+				return 'Modify';
+			else
+				return 'Save';
+		}
+
 		$scope.connect = function() {
 			
 			$scope.showHints = true;
@@ -26,40 +56,95 @@ angular.module('MainApp')
 			console.log('DialogController:');
 			console.log($scope.source_conf);
 
-			//if all the inputs are specified
+			//if we are modifying the existing source
+			if ($scope.deletable){
 
-			if (!$scope.deletable && $scope.source_conf.name && $scope.source_conf.type && 
-				$scope.source_conf.server && $scope.source_conf.db){
+				console.log('deletable!!');
 
-				SourcesService.post($scope.source_conf, 
-					function(result){
+				//if input was not changed
+				//just activate the source
+				console.log($scope.source_conf);
+				console.log(old_source_conf);
 
-						console.log('SourcesService');
-						console.log('here');
-						console.log($scope.source_conf);
-						$rootScope.loadSources();
-						$mdDialog.hide();
+				//if the source was modified
+				if (JSON.stringify($scope.source_conf) !== JSON.stringify(old_source_conf)){
 
-					},
-					function(err){
+					//if all the inputs are specified
+					if ($scope.source_conf.name && $scope.source_conf.type && 
+					$scope.source_conf.server && $scope.source_conf.db){
 
-						$mdDialog.hide();
+						SourcesService.modify($scope.source_conf, 
+							function(result){
 
-						$mdToast.show(
-							$mdToast.simple()
-								.textContent(err.data)
-								.action('OK')
-								.position('bottom')
-								.hideDelay(4000)
-						);
+								// console.log('here');
+								$rootScope.loadSources();
+								$mdDialog.hide();
+
+							},
+							function(err){
+
+								$mdDialog.hide();
+
+								$mdToast.show(
+									$mdToast.simple()
+										.textContent(err.data)
+										.action('OK')
+										.position('bottom')
+										.hideDelay(4000)
+								);
+							}
+						);						
 					}
-				);
+				}
+				//the source was not modified
+				//close the dialog and activate
+				//the source
+				else{
+
+					$scope.source_conf.wanted = true;
+					$rootScope.loadStores();
+					$mdDialog.hide();
+				}
 			}
+			//if we are adding a new source
 			else{
-				console.log('here1');
-				$scope.source_conf.wanted = true;
-				$rootScope.loadStores();
-				$mdDialog.hide();
+
+				console.log('not deletable!!');
+
+				//if all the inputs are specified
+				if ($scope.source_conf.name && $scope.source_conf.type && 
+					$scope.source_conf.server && $scope.source_conf.db){
+
+					SourcesService.post($scope.source_conf, 
+						function(result){
+
+							console.log('SourcesService');
+							console.log('here');
+							console.log($scope.source_conf);
+							$rootScope.loadSources();
+							$mdDialog.hide();
+
+						},
+						function(err){
+
+							$mdDialog.hide();
+
+							$mdToast.show(
+								$mdToast.simple()
+									.textContent(err.data)
+									.action('OK')
+									.position('bottom')
+									.hideDelay(4000)
+							);
+						}
+					);
+				}
+				//not all fields are specified
+				//show the error hints
+				else{
+					console.log('here1');
+					$scope.showHints = true;
+				}
 			}
 		};
 

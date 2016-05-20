@@ -1,1 +1,1 @@
-[{"name":"colorado","type":"mongo","server":"localhost","port":27017,"db":"river_flows","wanted":false},{"name":"eastport","type":"mongo","server":"localhost","port":27017,"db":"precipitation","wanted":false},{"name":"donors","type":"mongo","server":"localhost","port":27017,"db":"donorschoose","wanted":false}]
+[{"name":"colorado","type":"mongo","server":"localhost","port":null,"db":"river_flows","wanted":false,"isNew":false},{"name":"eastport","type":"mongo","server":"localhost","port":27017,"db":"precipitation","wanted":false}]

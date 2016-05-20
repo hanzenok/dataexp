@@ -16,10 +16,11 @@ MongoConnector.getStores = function(source_config, callback){
 	//connection to mongo
 	var url = 'mongodb://' + source_config.server + ':' + source_config.port + '/' + source_config.db;
 	var connection = mongoose.createConnection(url);
+
 	connection.once('open', function(){
 
 		//get the liste of all the collections(stores) of the database
-		connection.db.listCollections(true).toArray(function(err, items){
+		connection.db.listCollections().toArray(function(err, items){
 
 			if (err) {
 				callback(new Error('Cannot list the stores'));
