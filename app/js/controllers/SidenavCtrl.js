@@ -1,12 +1,22 @@
 angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
-		$scope.mouseTest = function(){
-			console.log('mouse!!');
+		/***************Progress Bar****************/
+		$rootScope.activatePB = '';
+		$rootScope.showPB = function(activate){
+
+			if(activate)
+				$rootScope.activatePB = 'indeterminate';
+			else{
+				$rootScope.activatePB = '';
+			}
 		}
 
 		/***************Sources List****************/
 		$rootScope.loadSources = function(){
+
+			//show the progress bar
+			$rootScope.showPB(true);
 
 			SourcesService.query(
 				function(sources_conf){
@@ -14,8 +24,11 @@ angular.module('MainApp')
 					console.log('sources_conf:');
 					console.log(sources_conf);
 					$scope.sources_conf = sources_conf;
+					$rootScope.showPB(false);
 				},
 				function(err){
+
+					$rootScope.showPB(false);
 					$mdToast.show(
 
 						$mdToast.simple()
@@ -44,6 +57,9 @@ angular.module('MainApp')
 
 			if (wanted_sources.length){
 
+				//launch the progress bar
+				$rootScope.showPB(true);
+
 				//get the fields of wanted stores
 				StoresService.post(wanted_sources, 
 					function(stores_conf){
@@ -51,9 +67,11 @@ angular.module('MainApp')
 						console.log('from server:');
 						console.log(stores_conf);
 						$scope.stores_conf = stores_conf;
+						$rootScope.showPB(false);
 					},
 					function(err){
 
+						$rootScope.showPB(false);
 						$mdToast.show(
 							$mdToast.simple()
 								.textContent(err.data)
@@ -105,28 +123,6 @@ angular.module('MainApp')
 			});
 		};
 
-		/****************Stores List*****************/
-		/*StoresService.getRes().query(
-			function(stores_conf){
-
-				console.log('stores_conf:');
-				console.log(stores_conf);
-				$scope.stores_conf = stores_conf;
-		},
-			function(err){
-
-				$mdToast.show(
-					$mdToast.simple()
-						.textContent(err.data)
-						.action('OK')
-						.position('bottom')
-						.hideDelay(4000)
-				);
-
-				$scope.stores_conf = [];
-			}
-		);*/
-
 		/****************Fields List********************/
 		$scope.fields_conf = []; 
 		$scope.loadFields = function() {
@@ -143,6 +139,9 @@ angular.module('MainApp')
 
 			//show the fields list
 			if (wanted_stores.length){
+
+				//launch the progress bar
+				$rootScope.showPB(true);
 
 				//get the fields of wanted stores
 				FieldsService.post(wanted_stores, function(fields_conf){
@@ -161,12 +160,14 @@ angular.module('MainApp')
 					console.log('fields_conf:');
 					console.log(fields_conf);
 					$scope.fields_conf = fields_conf;
+					$rootScope.showPB(false);
 
 				});
 
 			}
 			else{
 				$scope.fields_conf = [];
+				$rootScope.showPB(false);
 			}
 		};
 
