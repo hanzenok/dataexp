@@ -158,8 +158,8 @@
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- Toolbar -->
-			<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
-				<md-button class="menu" aria-label="Menu button">
+			<md-toolbar ng-controller="ToolbarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
+				<md-button class="menu" aria-label="Menu button" ng-click="toggle()">
 					<md-icon md-svg-src="images/menu.svg"></md-icon>
 				</md-button>
 				<h1>Title</h1>
@@ -167,7 +167,7 @@
 
 		<!-- Side Bar -->
 		<div layout="row" flex>
-			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" layout="column">
+			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left">
 
 				<!-- Fab Button -->
 				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
@@ -222,11 +222,11 @@
 					<md-subheader class="md-no-sticky subheader">Fields ({{fields_conf.length}})</md-subheader>
 
 					<md-content flex="33" class="list_container">
-						<div layout-align="center" style="margin: 10px;">
+						<div layout-align="center">
 							<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
 									{{field_config.short}}
 							    	<md-tooltip md-visible="false" md-direction="top">
-							    		{{field_config.field}}
+							    		{{field_config.field}} ({{field_config.store.name}})
 							    	</md-tooltip>
 							</span>
 						</div>
@@ -394,6 +394,7 @@
 		<script src="js/services/StoresService.js"></script>
 		<script src="js/services/FieldsService.js"></script>
 		<script src="js/services/DatasetService.js"></script>
+		<script src="js/controllers/ToolbarCtrl.js"></script>
 		<script src="js/controllers/FabController.js"></script>
 		<script src="js/controllers/SidenavCtrl.js"></script>
 		<script src="js/controllers/DialogController.js"></script>
