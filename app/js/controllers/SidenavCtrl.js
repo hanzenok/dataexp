@@ -2,22 +2,26 @@ angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
 		$rootScope.stores_conf = [];
-		$rootScope.addStore = function(stores){
+		$rootScope.fields_conf = [];
+		$rootScope.addStores = function(stores_conf){
 
-			stores.forEach(function(store, index){
+			stores_conf.forEach(function(store_conf, index){
 
-				$rootScope.stores_conf.push(store);
+				$rootScope.stores_conf.push(store_conf);
 			});
 		}
 
-		$rootScope.removeStore = function(source){
+		$rootScope.removeStores = function(source_conf){
 
-			//get the indexes
+			//get the indexes and clear the fields
 			var indexes = [];
-			$rootScope.stores_conf.forEach(function(store, index){
+			$rootScope.stores_conf.forEach(function(store_conf, index){
 
-				if(store.source.name === source.name)
+				if (store_conf.source.name === source_conf.name){
+					
+					$rootScope.removeFields(store_conf);
 					indexes.push(index);
+				}
 			});
 
 			//remove sources
@@ -25,6 +29,31 @@ angular.module('MainApp')
 
 				$rootScope.stores_conf.splice(index - i, 1);
 			});
+		}
+
+		$rootScope.addFields = function(fields_conf){
+
+			fields_conf.forEach(function(field_conf, index){
+
+				$rootScope.fields_conf.push(field_conf);
+			});
+		}
+
+		$rootScope.removeFields = function(store_conf){
+
+			//get the indexes
+			var indexes = [];
+			$rootScope.fields_conf.forEach(function(field_conf, index){
+
+				if (field_conf.store === store_conf.store)
+					indexes.push(index);
+			});
+
+			//remove sources
+			indexes.forEach(function(index, i){
+
+				$rootScope.fields_conf.splice(index - i, 1);
+			});	
 		}
 
 		/***************Progress Bar****************/
@@ -68,19 +97,20 @@ angular.module('MainApp')
 		}
 		$rootScope.loadSources();
 
-		$rootScope.loadStores = function(source){
+		$rootScope.loadStores = function(source_conf){
 
-			if (source.wanted){
+			if (source_conf.wanted){
 
 				//show the progress bar
 				$rootScope.showPB(true);
 
 				//load a store
-				StoresService.post([source], 
+				//input is an array of sources
+				StoresService.post([source_conf], 
 					function(stores_conf){
 
 						//add to the stores list
-						$rootScope.addStore(stores_conf);
+						$rootScope.addStores(stores_conf);
 						$rootScope.showPB(false);
 
 					},
@@ -98,7 +128,7 @@ angular.module('MainApp')
 				);
 			}else{
 
-				$rootScope.removeStore(source);
+				$rootScope.removeStores(source_conf);
 			}
 		}
 
@@ -138,50 +168,81 @@ angular.module('MainApp')
 		};
 
 		/****************Fields List********************/
-		$scope.loadFields = function() {
+		$scope.loadFields = function(store_conf) {
 
-			//determine the choosen stores
-			var wanted_stores = [];
-			$scope.stores_conf.forEach(function(store, index, array){
-
-				if (store.wanted){
-
-					wanted_stores.push(store);
-				}
-			});
-
-			//show the fields list
-			if (wanted_stores.length){
+			if (store_conf.wanted){
 
 				//launch the progress bar
 				$rootScope.showPB(true);
 
-				//get the fields of wanted stores
-				FieldsService.post(wanted_stores, function(fields_conf){
+				//load the stores fields
+				FieldsService.post([store_conf], 
+					function(fields_conf){
 
-					//process each field
-					fields_conf.forEach(function(field_conf, index){
+						//process each field
+						fields_conf.forEach(function(field_conf, index){
 
-						//dataset is not loaded yet
-						field_conf.status = 'ready';
+							//dataset is not loaded yet
+							field_conf.status = 'ready';
 
-						//check the field name
-						field_conf.short = (field_conf.field.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
+							//check the field name
+							field_conf.short = (field_conf.field.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
+						});
+
+						//add the fields to the list
+						$rootScope.addFields(fields_conf);
+						$rootScope.showPB(false);
+
 					});
-
-					//save
-					//consle.log('fields_conf:');
-					//consle.log(fields_conf);
-					$scope.fields_conf = fields_conf;
-					$rootScope.showPB(false);
-
-				});
 
 			}
 			else{
-				$scope.fields_conf = [];
-				$rootScope.showPB(false);
+
+				$rootScope.removeFields(store_conf);
 			}
+
+			//determine the choosen stores
+			// var wanted_stores = [];
+			// $scope.stores_conf.forEach(function(store, index, array){
+
+			// 	if (store.wanted){
+
+			// 		wanted_stores.push(store);
+			// 	}
+			// });
+
+			// //show the fields list
+			// if (wanted_stores.length){
+
+			// 	//launch the progress bar
+			// 	$rootScope.showPB(true);
+
+			// 	//get the fields of wanted stores
+			// 	FieldsService.post(wanted_stores, function(fields_conf){
+
+			// 		//process each field
+			// 		fields_conf.forEach(function(field_conf, index){
+
+			// 			//dataset is not loaded yet
+			// 			field_conf.status = 'ready';
+
+			// 			//check the field name
+			// 			field_conf.short = (field_conf.field.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
+			// 		});
+
+			// 		//save
+			// 		//consle.log('fields_conf:');
+			// 		//consle.log(fields_conf);
+			// 		$scope.fields_conf = fields_conf;
+			// 		$rootScope.showPB(false);
+
+			// 	});
+
+			// }
+			// else{
+			// 	$scope.fields_conf = [];
+			// 	$rootScope.showPB(false);
+			// }
 		};
 
 	})

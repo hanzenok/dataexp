@@ -104,7 +104,7 @@ angular.module('MainApp')
 				else{
 
 					$scope.source_conf.wanted = true;
-					$rootScope.loadStores();
+					//$rootScope.loadStores();
 					$mdDialog.hide();
 				}
 			}
@@ -158,7 +158,7 @@ angular.module('MainApp')
 				function(){
 					
 					$rootScope.loadSources();
-					$rootScope.loadStores();
+					//$rootScope.loadStores();
 					$mdDialog.hide();
 				},
 				function(err){

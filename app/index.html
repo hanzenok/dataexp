@@ -197,7 +197,7 @@
 						<!-- <md-divider></md-divider> -->
 						<md-list>
 							<md-list-item ng-repeat="store_config in stores_conf" style="background-color: rgba(240, 240, 240, 0.8); margin-bottom: 4px;">
-								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields()"></md-checkbox>
+								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields(store_config)"></md-checkbox>
 								<span>{{store_config.store}} ({{store_config.source.type}})</span>
 								<md-divider></md-divider>
 							</md-list-item>
