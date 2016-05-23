@@ -1,28 +1,29 @@
 angular.module('MainApp')
 	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
-		$rootScope.testStores = [];
+		$rootScope.stores_conf = [];
 		$rootScope.addStore = function(stores){
 
 			stores.forEach(function(store, index){
 
-				$rootScope.testStores.push(store);
+				$rootScope.stores_conf.push(store);
 			});
 		}
 
 		$rootScope.removeStore = function(source){
 
+			//get the indexes
 			var indexes = [];
-			$rootScope.testStores.forEach(function(store, index){
+			$rootScope.stores_conf.forEach(function(store, index){
 
 				if(store.source.name === source.name)
 					indexes.push(index);
 			});
 
-
+			//remove sources
 			indexes.forEach(function(index, i){
 
-				$rootScope.testStores.splice(index - i, 1);
+				$rootScope.stores_conf.splice(index - i, 1);
 			});
 		}
 
@@ -71,45 +72,17 @@ angular.module('MainApp')
 
 			if (source.wanted){
 
+				//show the progress bar
+				$rootScope.showPB(true);
+
+				//load a store
 				StoresService.post([source], 
 					function(stores_conf){
 
+						//add to the stores list
 						$rootScope.addStore(stores_conf);
-
-						console.log($rootScope.testStores);
-					});
-			}else{
-
-				$rootScope.removeStore(source);
-				console.log($rootScope.testStores);
-			}
-
-			//filter the choosen sources
-			var wanted_sources = [];
-			$scope.sources_conf.forEach(function(source_conf, index){
-
-				if(source_conf.wanted)
-					wanted_sources.push(source_conf);
-			});
-
-			//consle.log('wanted_sources:');
-			//consle.log(wanted_sources);
-
-			//go through the sources
-			//and load their stores
-			if (wanted_sources.length){
-
-				//launch the progress bar
-				$rootScope.showPB(true);
-
-				//get the stores
-				StoresService.post(wanted_sources, 
-					function(stores_conf){
-
-						//consle.log('from server:');
-						//consle.log(stores_conf);
-						$scope.stores_conf = stores_conf;
 						$rootScope.showPB(false);
+
 					},
 					function(err){
 
@@ -123,10 +96,9 @@ angular.module('MainApp')
 						);
 					}
 				);
+			}else{
 
-			}
-			else{
-				$scope.stores_conf = [];
+				$rootScope.removeStore(source);
 			}
 		}
 
