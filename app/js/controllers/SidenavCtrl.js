@@ -130,6 +130,36 @@ angular.module('MainApp')
 
 				$rootScope.removeStores(source_conf);
 			}
+
+// +                       //filter the choosen sources
+// +                       var wanted_sources = [];
+// +                       $scope.sources_conf.forEach(function(source_conf, index){
+// +
+// +                               if(source_conf.wanted)
+// +                                       wanted_sources.push(source_conf);
+// +                       });
+// +
+// +                       //consle.log('wanted_sources:');
+// +                       //consle.log(wanted_sources);
+// +
+// +                       //go through the sources
+// +                       //and load their stores
+// +                       if (wanted_sources.length){
+// +
+// +                               //launch the progress bar
+// +                               $rootScope.showPB(true);
+// +
+// +                               //get the stores
+// +                               StoresService.post(wanted_sources, 
+// +                                       function(stores_conf){
+// +
+// +                                               //consle.log('from server:');
+// +                                               //consle.log(stores_conf);
+// +                                               $scope.stores_conf = stores_conf;
+// +                                               $rootScope.showPB(false);
+// +                                        },
+// +                                        function(err){
+
 		}
 
 		$scope.getSourceType = function(source_conf){
