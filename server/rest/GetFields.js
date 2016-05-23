@@ -17,7 +17,7 @@ var getFields = function(req, res){
 
 			promises[i] = new Promise(function(resolve, reject){
 
-				ConnectorsEnum[stores_conf[i].source.type].getFields(stores_conf[i], function(error, fields){
+				ConnectorsEnum[stores_conf[i].source.type].getFieldNames(stores_conf[i], function(error, fields){
 
 					if (fields) resolve(fields);
 					if (error) reject(error);

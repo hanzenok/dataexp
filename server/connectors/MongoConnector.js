@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var MongoConnector = {};
 
-MongoConnector.getStores = function(source_config, callback){
+MongoConnector.getStoreNames = function(source_config, callback){
 
 	//check the source config
 	if (!isValidSourceConfig(source_config)){
@@ -65,7 +65,7 @@ MongoConnector.getStores = function(source_config, callback){
 }
 
 //get all the fields of a store
-MongoConnector.getFields = function(store_config, callback){
+MongoConnector.getFieldNames = function(store_config, callback){
 
 	//check the store config
 	if (!isValidStoreConfig.call(this, store_config)){

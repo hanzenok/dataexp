@@ -22,7 +22,7 @@ var getStores = function(req, res){
 
 			promises[i] = new Promise(function(resolve, reject){
 
-				ConnectorsEnum[sources_conf[i].type].getStores(sources_conf[i], function(error, stores){
+				ConnectorsEnum[sources_conf[i].type].getStoreNames(sources_conf[i], function(error, stores){
 
 					if (stores) resolve(stores);
 					if (error) reject(error);
