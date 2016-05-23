@@ -206,7 +206,7 @@
 								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields(store_config)"></md-checkbox>
 								<div layout="column">
 									<span style="font-size: 1.2em;">{{store_config.store}}</span>
-									<span style="color:green; font-size: 0.7em;">{{store_config.source.name}}</span>
+									<span style="color: green; font-size: 0.7em;">{{store_config.source.name}}</span>
 								</div>
 								<md-divider></md-divider>
 							</md-list-item>
@@ -218,15 +218,13 @@
 					<md-subheader class="md-no-sticky subheader">Fields ({{fields_conf.length}})</md-subheader>
 
 					<md-content flex="33" class="list_container">
-						<div>
-							<div layout-align="center">
-								<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
-										{{field_config.short}}
-								    	<md-tooltip md-visible="false" md-direction="top">
-								    		{{field_config.field}}
-								    	</md-tooltip>
-								</span>
-							</div>
+						<div layout-align="center" style="margin: 10px;">
+							<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
+									{{field_config.short}}
+							    	<md-tooltip md-visible="false" md-direction="top">
+							    		{{field_config.field}}
+							    	</md-tooltip>
+							</span>
 						</div>
 					</md-content>
 				</div>
@@ -285,7 +283,7 @@
 
 						<!-- <div> -->
 						<!-- md-content is problematic -->
-						<md-content flex>
+						<!-- <md-content flex> -->
 							<md-list layout="row" flex>
 
 								<!-- Pie Chart -->
@@ -360,7 +358,7 @@
 
 							</md-list>
 
-						</md-content>
+						<!-- </md-content> -->
 						<!-- </div> -->
 
 						<md-divider></md-divider>

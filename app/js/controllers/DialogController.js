@@ -61,13 +61,6 @@ angular.module('MainApp')
 			//if we are modifying the existing source
 			if ($scope.deletable){
 
-				console.log('deletable!!');
-
-				//if input was not changed
-				//just activate the source
-				console.log($scope.source_conf);
-				console.log(old_source_conf);
-
 				//if the source was modified
 				if (JSON.stringify($scope.source_conf) !== JSON.stringify(old_source_conf)){
 
@@ -75,11 +68,16 @@ angular.module('MainApp')
 					if ($scope.source_conf.name && $scope.source_conf.type && 
 					$scope.source_conf.server && $scope.source_conf.db){
 
+						var wanted = $scope.source_conf.wanted;
 						SourcesService.modify($scope.source_conf, 
 							function(result){
 
-								// console.log('here');
-								$rootScope.loadSources();
+								$scope.source_conf.wanted = true;
+
+								if (!wanted){
+									$rootScope.loadStores($scope.source_conf);
+								}
+
 								$mdDialog.hide();
 
 							},
@@ -103,8 +101,14 @@ angular.module('MainApp')
 				//the source
 				else{
 
-					$scope.source_conf.wanted = true;
-					//$rootScope.loadStores();
+					//if the source is not already activated
+					if (!$scope.source_conf.wanted){
+
+						$scope.source_conf.wanted = true;
+						$rootScope.loadStores($scope.source_conf);
+					}
+
+					//hide dialog
 					$mdDialog.hide();
 				}
 			}
