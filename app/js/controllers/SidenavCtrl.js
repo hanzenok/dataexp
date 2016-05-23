@@ -45,7 +45,7 @@ angular.module('MainApp')
 			var indexes = [];
 			$rootScope.fields_conf.forEach(function(field_conf, index){
 
-				if (field_conf.store === store_conf.store)
+				if (field_conf.store.name === store_conf.store.name)
 					indexes.push(index);
 			});
 
@@ -110,6 +110,7 @@ angular.module('MainApp')
 					function(stores_conf){
 
 						//add to the stores list
+						console.log(stores_conf);
 						$rootScope.addStores(stores_conf);
 						$rootScope.showPB(false);
 

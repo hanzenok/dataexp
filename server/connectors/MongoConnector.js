@@ -36,7 +36,8 @@ MongoConnector.getStoreNames = function(source_config, callback){
 
 					if (item.name.indexOf('system.') === -1){
 
-						tmp.store = item.name;
+						tmp.store = {};
+						tmp.store.name = item.name;
 						tmp.source = source_config;
 						stores.push(tmp);
 
@@ -64,6 +65,34 @@ MongoConnector.getStoreNames = function(source_config, callback){
 
 }
 
+MongoConnector.getStoreSize = function(store_config, callback){
+
+	if (!isValidStoreConfig.call(this, store_config)){
+
+		if (callback) 
+			callback(new Error('Invalid store config'));
+
+		return;
+	}
+
+	//connection to mongo
+	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
+	var url = 'mongodb://' + user_and_pass + store_config.source.server + ':' + store_config.source.port + '/' + store_config.source.db;
+	var connection = mongoose.createConnection(url);
+	var model = connection.model('', {}, store_config.store.name);
+
+	//counting
+	model.count({}, function(err, count){
+
+		if (err) callback(new Error('Cannot get the store size'));
+		if (count) {
+
+			store_config.store.size = count;
+			callback(null, store_config);
+		}
+	});
+}
+
 //get all the fields of a store
 MongoConnector.getFieldNames = function(store_config, callback){
 
@@ -80,7 +109,7 @@ MongoConnector.getFieldNames = function(store_config, callback){
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
 	var url = 'mongodb://' + user_and_pass + store_config.source.server + ':' + store_config.source.port + '/' + store_config.source.db;
 	var connection = mongoose.createConnection(url);
-	var model = connection.model('', {}, store_config.store);
+	var model = connection.model('', {}, store_config.store.name);
 	var doc, fields;
 
 	//find the first document
@@ -129,7 +158,7 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	var user_and_pass = (dataset_config.source.user && dataset_config.source.passw) ? dataset_config.source.user + ':' + dataset_config.source.passw + '@' : '';
 	var url = 'mongodb://' + user_and_pass +  dataset_config.source.server + ':' + dataset_config.source.port + '/' + dataset_config.source.db;
 	var connection = mongoose.createConnection(url);
-	var model = connection.model('', {}, dataset_config.store);
+	var model = connection.model('', {}, dataset_config.store.name);
 	
 	//document fields to load
 	var fields = {};
@@ -169,6 +198,9 @@ function isValidStoreConfig(store_config){
 		return false;
 
 	if (!store_config.store)
+		return false;
+
+	if (!store_config.store.name)
 		return false;
 
 	return true;

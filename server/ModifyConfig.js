@@ -47,7 +47,7 @@ function ModifyConfig(config){
 
 		for (var j=0; j<n; j++){
 
-			if (fields_config[i].store === new_config[j].store &&
+			if (fields_config[i].store.name === new_config[j].store.name &&
 				fields_config[i].source.server === new_config[j].source.server &&
 				fields_config[i].source.db === new_config[j].source.db ){
 

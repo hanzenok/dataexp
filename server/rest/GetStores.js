@@ -15,12 +15,12 @@ var getStores = function(req, res){
 	if (sources_conf.length){
 
 		var n = sources_conf.length;
-		var promises = new Array(n);
+		var store_promises = new Array(n);
 
 		//load the stoars of each source
 		for(i=0; i<n; i++){
 
-			promises[i] = new Promise(function(resolve, reject){
+			store_promises[i] = new Promise(function(resolve, reject){
 
 				ConnectorsEnum[sources_conf[i].type].getStoreNames(sources_conf[i], function(error, stores){
 
@@ -32,7 +32,8 @@ var getStores = function(req, res){
 		}
 
 		//wait for all the stores
-		Promise.all(promises)
+		//and pack them into the array
+		Promise.all(store_promises)
 		.then(function(stores_per_source){
 
 			//recompact the stores
@@ -46,8 +47,30 @@ var getStores = function(req, res){
 				});
 			});
 
-			//send the response
-			res.json(stores);
+			//get the sizes of each store
+			var size_promises = new Array(stores.length);
+			stores.forEach(function(store_conf, index){
+
+				size_promises[index] = new Promise(function(resolve, reject){
+
+					ConnectorsEnum[store_conf.source.type].getStoreSize(store_conf, function(err, size){
+
+						if (size) resolve(size);
+						if (err) reject(err);
+					});
+				});
+
+			});
+
+			Promise.all(size_promises)
+			.then(function(stores_with_sizes){
+
+				res.json(stores_with_sizes);
+			})
+			.catch(function(error){
+
+				res.status(500).send(error.message);
+			});
 		})
 		.catch(function(error){
 			

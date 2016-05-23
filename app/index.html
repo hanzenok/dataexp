@@ -205,7 +205,11 @@
 							<md-list-item ng-repeat="store_config in stores_conf" class="list_item">
 								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields(store_config)"></md-checkbox>
 								<div layout="column">
-									<span style="font-size: 1.2em;">{{store_config.store}}</span>
+									<div layout="row">
+										<span style="font-size: 1.2em;">{{store_config.store.name}}</span>
+										<span style="font-size: 0.7em;"> ({{store_config.store.size}})</span>
+									</div>
+
 									<span style="color: green; font-size: 0.7em;">{{store_config.source.name}}</span>
 								</div>
 								<md-divider></md-divider>
