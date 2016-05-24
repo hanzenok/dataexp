@@ -14,6 +14,9 @@ angular.module('MainApp')
 		$scope.from_date = null;
 		$scope.to_date = null;
 
+		//dates switcher
+		$scope.enableDates = false;
+
 		$rootScope.getConfig = function(){
 
 			//config json
@@ -64,6 +67,7 @@ angular.module('MainApp')
 				$scope.homogen = 'no';
 
 			//setting the dates
+			$scope.enableDates = true;
 			$scope.from_date = new Date(config.from);
 			$scope.to_date = new Date(config.to);
 
@@ -72,9 +76,9 @@ angular.module('MainApp')
 
 		}
 
-		$rootScope.$watch('testWatch', function(){
+		// $rootScope.$watch('testWatch', function(){
 
-			console.log('testWatch changed!');
-		});
+		// 	console.log('testWatch changed!');
+		// });
 
 	})

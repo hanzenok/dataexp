@@ -40,10 +40,10 @@ angular.module('MainApp')
 		};
 
 		//load one merged dataset
-		$rootScope.testWatch = 1;
+		//$rootScope.testWatch = 1;
 		$scope.load = function(){
 
-			$rootScope.testWatch++;
+			//$rootScope.testWatch++;
 			console.log($rootScope.getConfig());
 
 			var config = {};

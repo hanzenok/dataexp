@@ -432,10 +432,14 @@
 						</div>
 					</md-content>
 
-					<md-subheader class="md-no-sticky md-primary">Dates</md-subheader>
+					<div layout="row">
+						<md-subheader class="md-no-sticky md-primary" style="margin:8px 0;">Dates</md-subheader>
+						<md-switch ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
+					</div>
+
 					<div layout="column" layout-align="start start">
-						<md-datepicker ng-model="from_date" md-placeholder="From"></md-datepicker>
-						<md-datepicker ng-model="to_date" md-placeholder="To"></md-datepicker>
+						<md-datepicker ng-disabled="!enableDates" ng-model="from_date" md-placeholder="From"></md-datepicker>
+						<md-datepicker ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
 				</div>

@@ -61,6 +61,9 @@ var getDataset = function(req, res){
 			tsp = new tsproc(datasets, tsproc_config, callback);
 			tsp.process(date_borders, callback);
 
+			console.log('is homogen:');
+			console.log(tsp.isHomogeneous());
+
 		})
 		.catch(function(error){
 
