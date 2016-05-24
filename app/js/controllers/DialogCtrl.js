@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('DialogController', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService){
+	.controller('DialogCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService){
 
 		/*******AddSource.html********/
 		$scope.showHints = false; //managin the error hints

@@ -172,12 +172,12 @@
 			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left">
 
 				<!-- Fab Button -->
-				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
+				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
 					<md-icon md-svg-src="images/add.svg"></md-icon>
 				</md-button>
 
 				<!-- Sources, Stores, Fields List -->
-				<div ng-controller="SidenavCtrl" layout="column" flex layout-align="start">
+				<div ng-controller="LeftNavCtrl" layout="column" flex layout-align="start">
 					<md-subheader class="md-no-sticky md-primary subheader">Sources ({{sources_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container"> <!-- md-content is scrollable -->
 						<!-- <md-divider></md-divider> -->
@@ -403,9 +403,9 @@
 		<script src="js/services/FieldsService.js"></script>
 		<script src="js/services/DatasetService.js"></script>
 		<script src="js/controllers/ToolbarCtrl.js"></script>
-		<script src="js/controllers/FabController.js"></script>
-		<script src="js/controllers/SidenavCtrl.js"></script>
-		<script src="js/controllers/DialogController.js"></script>
+		<script src="js/controllers/FabCtrl.js"></script>
+		<script src="js/controllers/LeftNavCtrl.js"></script>
+		<script src="js/controllers/DialogCtrl.js"></script>
 		<script src="js/controllers/PieChartCtrl.js"></script>
 		<script src="js/controllers/RemoveChartCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>

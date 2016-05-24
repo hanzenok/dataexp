@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('SidenavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
+	.controller('LeftNavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
 		$rootScope.stores_conf = [];
 		$rootScope.fields_conf = [];
