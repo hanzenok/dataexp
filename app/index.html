@@ -180,7 +180,6 @@
 				<div ng-controller="LeftNavCtrl" layout="column" flex layout-align="start">
 					<md-subheader class="md-no-sticky md-primary subheader">Sources ({{sources_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container"> <!-- md-content is scrollable -->
-						<!-- <md-divider></md-divider> -->
 						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
 								<md-checkbox ng-model="source_config.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
@@ -382,6 +381,65 @@
 
 			<!-- Right Side Bar -->
 			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-right md-whiteframe-z2" layout="column" md-component-id="right">
+				<div layout="column" flex layout-align="start" ng-controller="RightNavCtrl">
+
+					<!-- Stats -->
+					<md-content layout="column">
+						<span> Homogeneous: - </span>
+						<span> Size: - </span>
+						<span> Per day (mean): - </span>
+					</md-content>
+
+					<!-- Transformations -->
+					<md-subheader class="md-no-sticky md-primary">Transformations</md-subheader>
+					<md-content layout="column">
+						<md-radio-group>
+							<md-radio-button value="intersection">Intersection</md-radio-button>
+							
+							<div layout="row" layout-align="start center">
+								<md-radio-button value="interpolation" style="margin-bottom: 0px;">Interpolation</md-radio-button>
+
+								<md-input-container>
+									<md-select ng-model="interp_type">
+										<md-option value="linear">Linear</md-option>
+										<md-option value="cubic">Cubic</md-option>
+										<md-option value="lanczos">Lanczos</md-option>
+										<md-option value="nearest">Nearest Neighbor</md-option>
+									</md-select>
+								</md-input-container>
+							</div>
+						</md-radio-group>
+					</md-content>
+
+					<md-subheader class="md-no-sticky md-primary">Reduction</md-subheader>
+					<md-content layout="column">
+						<div layout="row">
+							<md-input-container>
+								<label>Type</label>
+								<md-select ng-model="reduc_type">
+									<md-option value="skip">Skip</md-option>
+									<md-option value="sum">Sum</md-option>
+									<md-option value="avg">Average</md-option>
+									<md-option value="max">Max</md-option>
+									<md-option value="min">Min</md-option>
+								</md-select>
+							</md-input-container>
+
+							<md-input-container>
+								<label>Size</label>
+								<input type="number" min="1" ng-pattern="/^\d*$/">
+							</md-input-container>
+						</div>
+					</md-content>
+
+					<md-subheader class="md-no-sticky md-primary">Dates</md-subheader>
+					<div layout="column" layout-align="start start">
+						<md-datepicker ng-model="from_date" md-placeholder="From"></md-datepicker>
+						<md-datepicker ng-model="to_date" md-placeholder="To"></md-datepicker>
+					</div>
+
+				</div>
+
 			</md-sidenav>
 
 
@@ -405,6 +463,7 @@
 		<script src="js/controllers/ToolbarCtrl.js"></script>
 		<script src="js/controllers/FabCtrl.js"></script>
 		<script src="js/controllers/LeftNavCtrl.js"></script>
+		<script src="js/controllers/RightNavCtrl.js"></script>
 		<script src="js/controllers/DialogCtrl.js"></script>
 		<script src="js/controllers/PieChartCtrl.js"></script>
 		<script src="js/controllers/RemoveChartCtrl.js"></script>
