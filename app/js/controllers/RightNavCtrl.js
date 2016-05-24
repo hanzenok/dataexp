@@ -3,7 +3,7 @@ angular.module('MainApp')
 
 		//stats
 		$scope.homogen = ''
-		$scope.size = 0;
+		$scope.size = '?';
 		$scope.per_day = 0;
 
 		//options

@@ -5,7 +5,7 @@ var moment = require('moment');
 var mongo_connector = require('../connectors/MongoConnector');
 var ConnectorsEnum = {'mongo': mongo_connector};
 
-var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
+var date_borders = [moment.utc('1926-05', 'YYYY-MM').toISOString(), moment.utc('1930', 'YYYY').toISOString()];
 
 var getDataset = function(req, res){
 	
@@ -63,6 +63,10 @@ var getDataset = function(req, res){
 
 			console.log('is homogen:');
 			console.log(tsp.isHomogeneous());
+			console.log('size:');
+			console.log(tsp.getTSSize());
+			console.log('avg per day:');
+			console.log(tsp.getAvgPerDay());
 
 		})
 		.catch(function(error){
