@@ -393,11 +393,11 @@
 					<!-- Transformations -->
 					<md-subheader class="md-no-sticky md-primary">Transformations</md-subheader>
 					<md-content layout="column">
-						<md-radio-group>
-							<md-radio-button value="intersection">Intersection</md-radio-button>
+						<md-radio-group ng-model="transform_type">
+							<md-radio-button value="inters">Intersection</md-radio-button>
 							
 							<div layout="row" layout-align="start center">
-								<md-radio-button value="interpolation" style="margin-bottom: 0px;">Interpolation</md-radio-button>
+								<md-radio-button value="interp" style="margin-bottom: 0px;">Interpolation</md-radio-button>
 
 								<md-input-container>
 									<md-select ng-model="interp_type">
@@ -427,7 +427,7 @@
 
 							<md-input-container>
 								<label>Size</label>
-								<input type="number" min="1" ng-pattern="/^\d*$/">
+								<input type="number" ng-model="reduc_size" min="1" ng-pattern="/^\d*$/">
 							</md-input-container>
 						</div>
 					</md-content>

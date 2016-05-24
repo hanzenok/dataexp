@@ -40,40 +40,57 @@ angular.module('MainApp')
 		};
 
 		//load one merged dataset
+		$rootScope.testWatch = 1;
 		$scope.load = function(){
 
-			//compose all the fields that needs to be downloaded into one
-			var all_fields_conf = [$rootScope.droppedTSFields, $rootScope.droppedFields];
-			console.log(all_fields_conf);
+			$rootScope.testWatch++;
+			$rootScope.getConfigs();
 
-			//send them to the server
-			DatasetService.post(all_fields_conf, 
-				function(data){
+			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){
 
-					//mark all the fields as loaded
-					all_fields_conf.forEach(function(fields_per_source, index){
-						
-						fields_per_source.forEach(function(field_conf, index){
-							field_conf.status = 'loaded';
+				//compose all the fields that needs to be downloaded into one
+				var all_fields_conf = [$rootScope.droppedTSFields, $rootScope.droppedFields];
+				console.log(all_fields_conf);
+
+				//send them to the server
+				DatasetService.post(all_fields_conf, 
+					function(data){
+
+						//mark all the fields as loaded
+						all_fields_conf.forEach(function(fields_per_source, index){
+							
+							fields_per_source.forEach(function(field_conf, index){
+								field_conf.status = 'loaded';
+							});
 						});
+
+						//save data
+						$rootScope.dataset = data;
+						console.log('dataset:');
+						console.log(data);
+
+					},
+					function(err){
+
+						$mdToast.show(
+							$mdToast.simple()
+								.textContent(err.data)
+								.action('OK')
+								.position('bottom')
+								.hideDelay(4000)
+						);
 					});
+			}
+			else{
 
-					//save data
-					$rootScope.dataset = data;
-					console.log('dataset:');
-					console.log(data);
-
-				},
-				function(err){
-
-					$mdToast.show(
-						$mdToast.simple()
-							.textContent(err.data)
-							.action('OK')
-							.position('bottom')
-							.hideDelay(4000)
-					);
-				});
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent('No fields are specified')
+						.action('OK')
+						.position('bottom')
+						.hideDelay(4000)
+				);
+			}
 
 		};
 	});
