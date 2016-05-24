@@ -165,9 +165,11 @@
 				<h1>Title</h1>
 			</md-toolbar>
 
-		<!-- Side Bar -->
+		
 		<div layout="row" flex>
-			<md-sidenav id='sidenav' md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left">
+
+			<!-- Left Side Bar -->
+			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left">
 
 				<!-- Fab Button -->
 				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabController">
@@ -287,7 +289,7 @@
 
 						<!-- <div> -->
 						<!-- md-content is problematic -->
-						<!-- <md-content flex> -->
+						<md-content flex>
 							<md-list layout="row" flex>
 
 								<!-- Pie Chart -->
@@ -362,7 +364,7 @@
 
 							</md-list>
 
-						<!-- </md-content> -->
+						</md-content>
 						<!-- </div> -->
 
 						<md-divider></md-divider>
@@ -377,6 +379,12 @@
 				</footer>
 
 			</md-content>
+
+			<!-- Right Side Bar -->
+			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-right md-whiteframe-z2" layout="column" md-component-id="right">
+			</md-sidenav>
+
+
 		</div>
 
 		<!-- bower:js -->
