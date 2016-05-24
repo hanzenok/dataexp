@@ -1,14 +1,20 @@
 angular.module('MainApp')
 	.controller('RightNavCtrl', function($scope, $rootScope){
 
+		//stats
+		$scope.homogen = ''
+		$scope.size = 0;
+		$scope.per_day = 0;
+
+		//options
 		$scope.transform_type = 'interp';
 		$scope.interp_type = 'linear';
 		$scope.reduc_type = 'skip';
 		$scope.reduc_size = 1;
-		$scope.from_date = new Date();
-		$scope.to_date = new Date();
+		$scope.from_date = null;
+		$scope.to_date = null;
 
-		$rootScope.getConfigs = function(){
+		$rootScope.getConfig = function(){
 
 			//config json
 			var config = {};
@@ -28,10 +34,39 @@ angular.module('MainApp')
 			config.date_borders = {};
 			config.date_borders.from = {};
 			config.date_borders.to = {};
-			config.date_borders.from.date = $scope.from_date.toString();
-			config.date_borders.from.format = "ISO";
-			config.date_borders.to.date = $scope.to_date.toString();
-			config.date_borders.to.format = "ISO";
+
+			if ($scope.from_date && $scope.to_date){
+
+				config.date_borders.from.date = $scope.from_date.toString();
+				config.date_borders.from.format = "ISO";
+				config.date_borders.to.date = $scope.to_date.toString();
+				config.date_borders.to.format = "ISO";
+			}
+			else{
+
+				config.date_borders.from.date = '';
+				config.date_borders.to.date = '';
+			}
+
+			return config;
+
+		}
+
+		$rootScope.setConfig = function(config){
+
+			//setting the stats
+			$scope.size = config.size;
+			$scope.per_day = config.per_day;
+
+			if (config.homogen)
+				$scope.homogen = 'yes';
+			else
+				$scope.homogen = 'no';
+
+			//setting the dates
+			$scope.from_date = new Date(config.from);
+			$scope.to_date = new Date(config.to);
+
 
 			console.log(config);
 

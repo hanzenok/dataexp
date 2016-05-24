@@ -385,9 +385,9 @@
 
 					<!-- Stats -->
 					<md-content layout="column">
-						<span> Homogeneous: - </span>
-						<span> Size: - </span>
-						<span> Per day (mean): - </span>
+						<span> Homogeneous: {{homogen}} </span>
+						<span> Size: {{size}} </span>
+						<span> Per day (mean): {{per_day}} </span>
 					</md-content>
 
 					<!-- Transformations -->
@@ -400,7 +400,7 @@
 								<md-radio-button value="interp" style="margin-bottom: 0px;">Interpolation</md-radio-button>
 
 								<md-input-container>
-									<md-select ng-model="interp_type">
+									<md-select ng-model="interp_type" aria-label="Interpolation Type">
 										<md-option value="linear">Linear</md-option>
 										<md-option value="cubic">Cubic</md-option>
 										<md-option value="lanczos">Lanczos</md-option>

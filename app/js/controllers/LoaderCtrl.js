@@ -44,7 +44,15 @@ angular.module('MainApp')
 		$scope.load = function(){
 
 			$rootScope.testWatch++;
-			$rootScope.getConfigs();
+			console.log($rootScope.getConfig());
+
+			var config = {};
+			config.homogen = true;
+			config.size = 15;
+			config.per_day = 2.4;
+			config.from = new Date('1993/01/28').toString();
+			config.to = new Date('2004/02/14').toString();
+			$rootScope.setConfig(config);
 
 			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){
 
