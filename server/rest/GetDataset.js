@@ -5,7 +5,7 @@ var moment = require('moment');
 var mongo_connector = require('../connectors/MongoConnector');
 var ConnectorsEnum = {'mongo': mongo_connector};
 
-var date_borders = [moment.utc('1926-05', 'YYYY-MM').toISOString(), moment.utc('1930', 'YYYY').toISOString()];
+var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
 
 var getDataset = function(req, res){
 	
@@ -58,15 +58,23 @@ var getDataset = function(req, res){
 				tsproc_config.timeseries.push(config);
 			});
 
+			//instantiate the timeseries processor
 			tsp = new tsproc(datasets, tsproc_config, callback);
+			
+			//generate a stats json
+			//check the homgenity before the processing
+			//(after the processing timeseries becomes homogeneous)
+			var stats = {};
+			stats.homogen = tsp.isHomogeneous(); //check the 
+
+			//process the timseries
 			tsp.process(date_borders, callback);
 
-			console.log('is homogen:');
-			console.log(tsp.isHomogeneous());
-			console.log('size:');
-			console.log(tsp.getTSSize());
-			console.log('avg per day:');
-			console.log(tsp.getAvgPerDay());
+			//get the other stats
+			stats.size = tsp.getTSSize();
+			stats.per_day = tsp.getAvgPerDay();
+
+			console.log(stats);
 
 		})
 		.catch(function(error){
