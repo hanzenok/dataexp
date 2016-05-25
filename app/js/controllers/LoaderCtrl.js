@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, DatasetService){
+	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService){
 
 		//containers
 		$rootScope.droppedFields = [];//fields that are dropped to the loader
@@ -46,14 +46,6 @@ angular.module('MainApp')
 			//$rootScope.testWatch++;
 			console.log($rootScope.getConfig());
 
-			var config = {};
-			config.homogen = true;
-			config.size = 15;
-			config.per_day = 2.4;
-			config.from = new Date('1993/01/28').toString();
-			config.to = new Date('2004/02/14').toString();
-			$rootScope.setConfig(config);
-
 			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){
 
 				//compose all the fields that needs to be downloaded into one
@@ -61,7 +53,7 @@ angular.module('MainApp')
 				console.log(all_fields_conf);
 
 				//send them to the server
-				DatasetService.post(all_fields_conf, 
+				TimeseriesService.post(all_fields_conf, 
 					function(data){
 
 						//mark all the fields as loaded
@@ -76,6 +68,15 @@ angular.module('MainApp')
 						$rootScope.dataset = data;
 						console.log('dataset:');
 						console.log(data);
+
+						TimeseriesService.stats(function(stats){
+
+							var config = stats[0];
+							config.from = new Date('1993/01/28').toString();
+							config.to = new Date('2004/02/14').toString();
+							
+							$rootScope.setConfig(config);
+						});
 
 					},
 					function(err){
