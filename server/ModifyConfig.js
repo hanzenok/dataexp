@@ -15,18 +15,18 @@ var underscore = require('underscore');
 // 		"to":{"date": "Wed Jan 29 1993 00:00:00 GMT+0100 (CET)"}
 // 	}
 // },
-// [ { field: 'year',
+// [ { field: {name: 'year', format: 'YYYY'},
 //       store: 'colorado_river',
 //       source: [Object],
 //       format: 'YYYY' },
-//     { field: 'month',
+//     { field: {name: 'month', format: 'YYYY-MM'},
 //       store: 'eastport_river',
 //       source: [Object],
 //       format: 'YYYY-MM-DD' } ],
-//   [ { field: 'flows_colorado',
+//   [ { field: {name: 'flows_colorado'},
 //       store: 'colorado_river',
 //       source: [Object] },
-//     { field: 'precip', 
+//     { field: {name: 'precip'}, 
 //       store: 'eastport_river', 
 //       source: [Object] } ] 
 // ]
@@ -39,12 +39,11 @@ function ModifyConfig(config){
 
 		//add timstamp field to config
 		new_config[i].timestamp = {};
-		new_config[i].timestamp.field = new_config[i].field;
-		new_config[i].timestamp.format = new_config[i].format;
+		new_config[i].timestamp.field = new_config[i].field.name;
+		new_config[i].timestamp.format = new_config[i].field.format;
 
 		//delete because copied
 		delete new_config[i].field;
-		delete new_config[i].format;
 
 		//description of normal fields
 		new_config[i].fields = [];
@@ -60,9 +59,9 @@ function ModifyConfig(config){
 
 			if (fields_config[i].store.name === new_config[j].store.name &&
 				fields_config[i].source.server === new_config[j].source.server &&
-				fields_config[i].source.db === new_config[j].source.db ){
+				fields_config[i].source.db === new_config[j].source.db){
 
-				new_config[j].fields.push({'field': fields_config[j].field});
+				new_config[j].fields.push({'field': fields_config[j].field.name});
 				fields_count ++;
 			}
 		}
@@ -72,7 +71,6 @@ function ModifyConfig(config){
 	//with a timestamp field:
 	if (fields_count !== m){
 
-		console.log('eRRor');
 		return null;
 	}
 

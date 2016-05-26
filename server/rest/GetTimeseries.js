@@ -32,6 +32,7 @@ TS.getTimeseries = function(req, res){
 		//determine the timestamp fields
 		var new_fields_config = modifyConfig(fields_config);
 
+
 		//options config
 		var options = fields_config[0];
 

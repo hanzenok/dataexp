@@ -98,7 +98,7 @@ angular.module('MainApp')
 			if (!data.format){
 
 				//real target field
-				$scope.target_field = data.field;
+				$scope.target_field = data.field.name;
 			}
 		}
 

@@ -229,10 +229,10 @@ angular.module('MainApp')
 						fields_conf.forEach(function(field_conf, index){
 
 							//dataset is not loaded yet
-							field_conf.status = 'ready';
+							field_conf.field.status = 'ready';
 
 							//check the field name
-							field_conf.short = (field_conf.field.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
+							field_conf.field.short = (field_conf.field.name.length > 6) ? field_conf.field.name.slice(0,6) + '..' : field_conf.field.name;
 						});
 
 						//add the fields to the list

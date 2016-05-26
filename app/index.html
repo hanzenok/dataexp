@@ -225,9 +225,9 @@
 					<md-content flex="33" class="list_container">
 						<div layout-align="center">
 							<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
-									{{field_config.short}}
+									{{field_config.field.short}}
 								<md-tooltip md-visible="false" md-direction="top">
-									{{field_config.field}} ({{field_config.store.name}})
+									{{field_config.field.name}} ({{field_config.store.name}})
 								</md-tooltip>
 							</span>
 						</div>
@@ -257,11 +257,11 @@
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
-								<div ng-repeat="field_config in $root.droppedFields" ng-drag="true" ng-drag-data="field_config" class="{{field_config.status}} md-whiteframe-4dp">
-									{{field_config.short}}
+								<div ng-repeat="field_config in $root.droppedFields" ng-drag="true" ng-drag-data="field_config" class="{{field_config.field.status}} md-whiteframe-4dp">
+									{{field_config.field.short}}
 
 									<md-tooltip md-visible="false" md-direction="top">
-										{{field_config.field}} ({{field_config.store.name}})
+										{{field_config.field.name}} ({{field_config.store.name}})
 									</md-tooltip>
 								</div>
 							</div>
@@ -269,11 +269,11 @@
 							<div id="loader_timestamp" ng-drop="true" ng-drop-success="onTSDropComplete($data)">
 								<span class="drop_info">Timestamp Fields</span>
 
-								<div ng-repeat="field_config in $root.droppedTSFields" ng-drag="true" ng-drag-data="field_config" class="{{field_config.status}} md-whiteframe-4dp">
-									{{field_config.short}}
+								<div ng-repeat="field_config in $root.droppedTSFields" ng-drag="true" ng-drag-data="field_config" class="{{field_config.field.status}} md-whiteframe-4dp">
+									{{field_config.field.short}}
 
 									<md-tooltip md-visible="false" md-direction="top">
-										{{field_config.field}} ({{field_config.store.name}})
+										{{field_config.field.name}} ({{field_config.store.name}})
 									</md-tooltip>
 								</div>
 							</div>
@@ -297,7 +297,7 @@
 										<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded">
-												{{field_config.short}}
+												{{field_config.field.short}}
 											</div>
 										</div>
 

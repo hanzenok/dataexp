@@ -28,9 +28,9 @@ angular.module('MainApp')
 					parent: angular.element(document.body),
 					clickOutsideToClose: false
 				})
-				.then(function(answer){
+				.then(function(format){
 
-					data.format = answer;
+					data.field.format = format;
 					console.log('data:');
 					console.log(data);
 				});
@@ -68,12 +68,12 @@ angular.module('MainApp')
 						
 						//time stamp fields
 						all_fields_conf[1].forEach(function(tsfield_conf, index){
-							tsfield_conf.status = 'loaded';
+							tsfield_conf.field.status = 'loaded';
 						});
 
 						//other fields
 						all_fields_conf[2].forEach(function(field_conf, index){
-							field_conf.status = 'loaded';
+							field_conf.field.status = 'loaded';
 						});
 						// });
 

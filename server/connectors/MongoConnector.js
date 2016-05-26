@@ -133,8 +133,12 @@ MongoConnector.getFieldNames = function(store_config, callback){
 
 				if (key !== '_id'){
 
+					//field
 					tmp = {};
-					tmp.field = key;
+					tmp.field = {};
+					tmp.field.name = key;
+
+					//copy store config
 					tmp.store = store_config.store;
 					tmp.source = store_config.source;
 
@@ -169,7 +173,7 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	//document fields to load
 	var fields = {};
 	fields['_id'] = 0; //do not include id field
-	fields[dataset_config.timestamp.field] = 1; //include one field
+	fields[dataset_config.timestamp.field] = 1; //include timestamp field
 	dataset_config.fields.forEach(function(config, index){
 
 		fields[config.field] = 1;
