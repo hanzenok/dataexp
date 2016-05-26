@@ -41,9 +41,7 @@ angular.module('MainApp')
 			if ($scope.from_date && $scope.to_date){
 
 				config.date_borders.from.date = $scope.from_date.toString();
-				config.date_borders.from.format = "ISO";
 				config.date_borders.to.date = $scope.to_date.toString();
-				config.date_borders.to.format = "ISO";
 			}
 			else{
 

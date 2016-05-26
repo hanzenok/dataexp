@@ -12,4 +12,22 @@
 	]
 }
 
-//change timestamp.field to timestamp.name
+//new config
+{
+	"transform":{"type":"interp", "interp_type":"linear"},
+	"reduction":{"type":"skip", "size": 1},
+	"date_borders":
+		{
+			"from":{"date": "Thu Jan 28 1993 00:00:00 GMT+0100 (CET)"},
+			"to":{"date": "Wed Jan 29 1993 00:00:00 GMT+0100 (CET)"}
+		},
+	"timeseries":[
+		{
+			"fields":[
+				{"field":"a","from":"Dimming value (%)"},
+				{"field":"b","from":"Instantaneous power (W)"}
+			],
+			"timestamp":{"field":"time","from":"Status created","format":"ISO"}
+		}
+	]
+}

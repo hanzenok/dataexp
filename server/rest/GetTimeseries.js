@@ -22,12 +22,20 @@ TS.getTimeseries = function(req, res){
 	//get the requested dataset
 	var fields_config = req.body;
 
+	//fields_config is an array of size 3
+	//0 - config file
+	//1 - timestamp fields
+	//2 - other fields
 	if(fields_config.length){
 
-		//fuse configs into one
+		//fuse field config and timestamp field config into one config
 		//determine the timestamp fields
-		var new_config = modifyConfig(fields_config);
-		if(!new_config){
+		var new_fields_config = modifyConfig(fields_config);
+
+		//options config
+		var options = fields_config[0];
+
+		if(!new_fields_config){
 
 			res.status(500).send('Some field(s) are missing the timestamp');
 			return;
@@ -35,13 +43,13 @@ TS.getTimeseries = function(req, res){
 
 		//load all the data
 		//from the specified sources
-		var n = new_config.length;
+		var n = new_fields_config.length;
 		var promises = new Array(n);
 		for (var i=0; i<n; i++){
 
 			promises[i] = new Promise(function(resolve, reject){
 
-				ConnectorsEnum[new_config[i].source.type].getDataset(new_config[i], function(error, dataset){
+				ConnectorsEnum[new_fields_config[i].source.type].getDataset(new_fields_config[i], function(error, dataset){
 
 					if (dataset) resolve(dataset);
 					if (error) reject(error);
@@ -60,10 +68,16 @@ TS.getTimeseries = function(req, res){
 				if (data) res.json(data);
 			}
 
-			//parse new config for ts proc
+			//parse a config for tsproc
+			//options
 			var tsproc_config = {};
+			tsproc_config.transform = options.transform;
+			tsproc_config.reduction = options.reduction;
+			tsproc_config.date_borders = options.date_borders;
+
+			//fields
 			tsproc_config.timeseries = [];
-			new_config.forEach(function(config, index, array){
+			new_fields_config.forEach(function(config, index, array){
 
 				tsproc_config.timeseries.push(config);
 			});

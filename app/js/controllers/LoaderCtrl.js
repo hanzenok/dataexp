@@ -48,21 +48,34 @@ angular.module('MainApp')
 
 			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){
 
-				//compose all the fields that needs to be downloaded into one
-				var all_fields_conf = [$rootScope.droppedTSFields, $rootScope.droppedFields];
+				//compose all the config and all the fields that needs to be downloaded into one
+				var all_fields_conf = [
+										$rootScope.getConfig(),
+										$rootScope.droppedTSFields, 
+										$rootScope.droppedFields
+									];
 				console.log(all_fields_conf);
 
 				//send them to the server
 				TimeseriesService.post(all_fields_conf, 
 					function(data){
 
+						console.log('data:');
+						console.log(data);
+
 						//mark all the fields as loaded
-						all_fields_conf.forEach(function(fields_per_source, index){
-							
-							fields_per_source.forEach(function(field_conf, index){
-								field_conf.status = 'loaded';
-							});
+						// all_fields_conf.forEach(function(fields_per_source, index){
+						
+						//time stamp fields
+						all_fields_conf[1].forEach(function(tsfield_conf, index){
+							tsfield_conf.status = 'loaded';
 						});
+
+						//other fields
+						all_fields_conf[2].forEach(function(field_conf, index){
+							field_conf.status = 'loaded';
+						});
+						// });
 
 						//save data
 						$rootScope.dataset = data;

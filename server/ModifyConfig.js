@@ -1,10 +1,21 @@
 var underscore = require('underscore');
 
 //returns a promise
-//config is an array of two elements
-//first - config of timestamp fields
-//second - other fields
-// [ [ { field: 'year',
+//config is an array of three elements
+//first - config file
+//second - config of timestamp fields
+//third - other fields
+// [ 
+// {
+// "transform":{"type":"interp", "interp_type":"linear"},
+// "reduction":{"type":"skip", "size": 1},
+// "date_borders":
+// 	{
+// 		"from":{"date": "Thu Jan 28 1993 00:00:00 GMT+0100 (CET)"},
+// 		"to":{"date": "Wed Jan 29 1993 00:00:00 GMT+0100 (CET)"}
+// 	}
+// },
+// [ { field: 'year',
 //       store: 'colorado_river',
 //       source: [Object],
 //       format: 'YYYY' },
@@ -22,7 +33,7 @@ var underscore = require('underscore');
 function ModifyConfig(config){
 
 	//first get all the timestamps
-	var new_config = config[0];
+	var new_config = config[1];
 	var n = new_config.length;
 	for (var i=0; i<n; i++){
 
@@ -40,7 +51,7 @@ function ModifyConfig(config){
 	}
 
 	//regroupe the other fields
-	var fields_config = config[1];
+	var fields_config = config[2];
 	var m = fields_config.length;
 	var fields_count = 0;
 	for (var i=0; i<m; i++){
