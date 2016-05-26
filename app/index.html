@@ -384,37 +384,55 @@
 				<div layout="column" flex layout-align="start" ng-controller="RightNavCtrl">
 
 					<!-- Stats -->
-					<md-content layout="column">
-						<span> Homogeneous: {{homogen}} </span>
-						<span> Size: {{size}} </span>
-						<span> Per day (mean): {{per_day}} </span>
+					<md-content layout="column"  class="list_container" style="padding:5px;">
+						<div layout="row" style="margin:5px;">
+							<span>Homogeneous:&nbsp;</span>
+							<span><strong>{{homogen}}</strong></span>
+						</div>
+						<md-divider></md-divider>
+
+						<div layout="row" style="margin:5px;">
+							<span>Size:&nbsp;</span>
+							<span><strong>{{size}}</strong></span>
+						</div>
+						<md-divider></md-divider>
+
+						<div layout="row" style="margin:5px;">
+							<span>Per day (mean):&nbsp;</span>
+							<span><strong>{{per_day}}</strong></span>
+						</div>
+						
 					</md-content>
 
 					<!-- Transformations -->
-					<md-subheader class="md-no-sticky md-primary">Transformations</md-subheader>
-					<md-content layout="column">
-						<md-radio-group ng-model="transform_type">
+					<md-divider></md-divider>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-primary subheader">Transformations</md-subheader>
+					<md-content layout="column" class="list_container">
+						<md-radio-group ng-model="transform_type" style="margin:5px;">
 							<md-radio-button value="inters">Intersection</md-radio-button>
 							
-							<div layout="row" layout-align="start center">
-								<md-radio-button value="interp" style="margin-bottom: 0px;">Interpolation</md-radio-button>
+							<div layout="row" layout-align="start center" style="height: 30px;">
+								<md-radio-button value="interp">Interpolation:</md-radio-button>
 
-								<md-input-container>
-									<md-select ng-model="interp_type" aria-label="Interpolation Type">
-										<md-option value="linear">Linear</md-option>
-										<md-option value="cubic">Cubic</md-option>
-										<md-option value="lanczos">Lanczos</md-option>
-										<md-option value="nearest">Nearest Neighbor</md-option>
+								<md-input-container style="margin:0px; margin-left:10px; margin-bottom: 20px;">
+									<md-select ng-disabled="transform_type=='inters'" ng-model="interp_type" aria-label="Interpolation Type">
+										<md-option value="linear"><span style="font-size:0.8em;">Linear</span></md-option>
+										<md-option value="cubic"><span style="font-size:0.8em;">Cubic</span></md-option>
+										<md-option value="lanczos"><span style="font-size:0.8em;">Lanczos</span></md-option>
+										<md-option value="nearest"><span style="font-size:0.8em;">Nearest Neighbor</span></md-option>
 									</md-select>
 								</md-input-container>
 							</div>
 						</md-radio-group>
 					</md-content>
 
-					<md-subheader class="md-no-sticky md-primary">Reduction</md-subheader>
-					<md-content layout="column">
+					<md-divider></md-divider>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-primary subheader">Reduction</md-subheader>
+					<md-content layout="column" class="list_container">
 						<div layout="row">
-							<md-input-container>
+							<md-input-container flex style="margin-bottom: 0px;">
 								<label>Type</label>
 								<md-select ng-model="reduc_type">
 									<md-option value="skip">Skip</md-option>
@@ -425,21 +443,23 @@
 								</md-select>
 							</md-input-container>
 
-							<md-input-container>
+							<md-input-container flex style="margin-bottom: 0px;">
 								<label>Size</label>
 								<input type="number" ng-model="reduc_size" min="1" ng-pattern="/^\d*$/">
 							</md-input-container>
 						</div>
 					</md-content>
 
-					<div layout="row">
-						<md-subheader class="md-no-sticky md-primary" style="margin:8px 0;">Dates</md-subheader>
+					<md-divider></md-divider>
+					<md-divider></md-divider>
+					<div layout="row" class="subheader">
+						<md-subheader class="md-no-sticky md-primary subheader" style="margin:8px 0;">Dates</md-subheader>
 						<md-switch ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
 					</div>
 
-					<div layout="column" layout-align="start start">
-						<md-datepicker ng-disabled="!enableDates" ng-model="from_date" md-placeholder="From"></md-datepicker>
-						<md-datepicker ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
+					<div layout="column" layout-align="start center" class="list_container">
+						<md-datepicker style="margin-right: 0px;" ng-disabled="!enableDates" ng-model="from_date" md-placeholder="From"></md-datepicker>
+						<md-datepicker style="margin-right: 0px;" ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
 				</div>

@@ -2,9 +2,9 @@ angular.module('MainApp')
 	.controller('RightNavCtrl', function($scope, $rootScope){
 
 		//stats
-		$scope.homogen = ''
+		$scope.homogen = '?'
 		$scope.size = '?';
-		$scope.per_day = 0;
+		$scope.per_day = '?';
 
 		//options
 		$scope.transform_type = 'interp';
@@ -59,7 +59,7 @@ angular.module('MainApp')
 
 			//setting the stats
 			$scope.size = config.size;
-			$scope.per_day = config.per_day;
+			$scope.per_day = config.per_day.toFixed(5);
 
 			if (config.homogen)
 				$scope.homogen = 'yes';
