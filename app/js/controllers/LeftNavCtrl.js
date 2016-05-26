@@ -109,6 +109,18 @@ angular.module('MainApp')
 				StoresService.post([source_conf], 
 					function(stores_conf){
 
+						//add a short store name
+						var store_name;
+						stores_conf.forEach(function(store_conf, index){
+
+							store_name = store_conf.store.name;
+							store_conf.store.short = (store_name.length > 15) ? store_name.slice(0,15) + '..' : store_name;
+						});
+						//var name = sto
+						//stores_conf.store.short = (store_conf.store.name.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
+
+
+
 						//add to the stores list
 						console.log(stores_conf);
 						$rootScope.addStores(stores_conf);

@@ -69,6 +69,7 @@ angular.module('MainApp')
 						console.log('dataset:');
 						console.log(data);
 
+						//load the stats
 						TimeseriesService.stats(function(stats){
 
 							var config = stats[0];
