@@ -30,26 +30,10 @@ var getFields = function(req, res){
 		//add sources and stores 
 		//information
 		Promise.all(promises)
-		.then(function(fieldnames){
-
-			var fields = [];
-			var m,n = fieldnames.length;
-			for (var i=0; i<n; i++){
-
-				m = fieldnames[i].length;
-				for(var j=0; j<m; j++){
-
-					//add stores and sources to the fields
-					fieldnames[i][j].store = stores_conf[i].store;
-					fieldnames[i][j].source = stores_conf[i].source;
-
-					//push to the new array
-					fields.push(fieldnames[i][j]);
-				}
-			}
+		.then(function(fields){
 
 			//send the response
-			res.json(fields);
+			res.json(fields[0]);
 			
 		})
 		.catch(function(error){

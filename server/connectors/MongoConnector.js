@@ -111,6 +111,7 @@ MongoConnector.getFieldNames = function(store_config, callback){
 	var connection = mongoose.createConnection(url);
 	var model = connection.model('', {}, store_config.store.name);
 	var doc, fields;
+	var tmp;
 
 	//find the first document
 	//we suppose that it's fields are the same for all
@@ -132,7 +133,12 @@ MongoConnector.getFieldNames = function(store_config, callback){
 
 				if (key !== '_id'){
 
-					fields.push({'field': key});
+					tmp = {};
+					tmp.field = key;
+					tmp.store = store_config.store;
+					tmp.source = store_config.source;
+
+					fields.push(tmp);
 				}
 			}
 

@@ -222,6 +222,9 @@ angular.module('MainApp')
 				FieldsService.post([store_conf], 
 					function(fields_conf){
 
+						console.log('fields_conf:');
+						console.log(fields_conf);
+
 						//process each field
 						fields_conf.forEach(function(field_conf, index){
 
