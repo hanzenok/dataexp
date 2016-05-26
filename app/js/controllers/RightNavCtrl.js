@@ -39,7 +39,7 @@ angular.module('MainApp')
 			config.date_borders.from = {};
 			config.date_borders.to = {};
 
-			if ($scope.from_date && $scope.to_date){
+			if ($scope.enableDates && $scope.from_date && $scope.to_date){
 
 				console.log('from:');
 				console.log($scope.from_date.getDate() + ', ' + $scope.from_date.getMonth() + ', ' + $scope.from_date.getFullYear());
@@ -79,9 +79,9 @@ angular.module('MainApp')
 				$scope.homogen = 'no';
 
 			//setting the dates
-			$scope.enableDates = true;
-			// $scope.from_date = new Date(config.from);
-			// $scope.to_date = new Date(config.to);
+			// $scope.enableDates = true;
+			$scope.from_date = new Date(config.from);
+			$scope.to_date = new Date(config.to);
 
 
 			console.log('setConfig():');

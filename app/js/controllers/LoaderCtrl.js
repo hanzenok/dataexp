@@ -86,8 +86,8 @@ angular.module('MainApp')
 						TimeseriesService.stats(function(stats){
 
 							var config = stats[0];
-							// config.from = '';//new Date('1993/01/28').toString();
-							// config.to = '';//new Date('2004/02/14').toString();
+							console.log('stats:');
+							console.log(config);
 							
 							$rootScope.setConfig(config);
 						});

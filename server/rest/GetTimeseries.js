@@ -6,13 +6,13 @@ var modifyConfig = require('./../ModifyConfig');
 var mongo_connector = require('../connectors/MongoConnector');
 var ConnectorsEnum = {'mongo': mongo_connector};
 
-// var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
-
 //stats config
 var stats = {};
 stats.homogen = '?';
 stats.size = '?';
 stats.per_day = '?';
+stats.from = '';
+stats.to = '';
 
 var TS = {};
 
@@ -94,6 +94,9 @@ TS.getTimeseries = function(req, res){
 			tsp.process(callback);
 
 			//get the other stats
+			var borders = tsp.getDateBorders();
+			stats.from = borders[0];
+			stats.to = borders[1];
 			stats.size = tsp.getTSSize();
 			stats.per_day = tsp.getAvgPerDay();
 		})
