@@ -1,12 +1,12 @@
 var tsproc = require('tsproc');
 var modifyConfig = require('./../ModifyConfig');
-var moment = require('moment');
+//var moment = require('moment');
 
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
 var ConnectorsEnum = {'mongo': mongo_connector};
 
-var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
+// var date_borders = [moment.utc('1925', 'YYYY').toISOString(), moment.utc('1935', 'YYYY').toISOString()];
 
 //stats config
 var stats = {};
@@ -91,7 +91,7 @@ TS.getTimeseries = function(req, res){
 			stats.homogen = tsp.isHomogeneous(); //check the 
 
 			//process the timseries
-			tsp.process(date_borders, callback);
+			tsp.process(callback);
 
 			//get the other stats
 			stats.size = tsp.getTSSize();

@@ -32,6 +32,7 @@ angular.module('MainApp')
 			config.reduction = {};
 			config.reduction.type = $scope.reduc_type;
 			config.reduction.size = $scope.reduc_size;
+			config.reduction.target_field = $scope.target_field;
 
 			//date borders
 			config.date_borders = {};
@@ -40,14 +41,27 @@ angular.module('MainApp')
 
 			if ($scope.from_date && $scope.to_date){
 
-				config.date_borders.from.date = $scope.from_date.toString();
-				config.date_borders.to.date = $scope.to_date.toString();
+				console.log('from:');
+				console.log($scope.from_date.getDate() + ', ' + $scope.from_date.getMonth() + ', ' + $scope.from_date.getFullYear());
+				console.log(new Date($scope.from_date.getFullYear(), $scope.from_date.getMonth() + 1, $scope.from_date.getDate()));
+				console.log(new Date($scope.from_date).toString());
+
+				console.log('to:');
+				console.log($scope.to_date.getDate() + ', ' + $scope.to_date.getMonth() + ', ' + $scope.to_date.getFullYear());
+				console.log($scope.to_date);
+				console.log(new Date($scope.to_date).toString());
+
+				config.date_borders.from.date = new Date($scope.from_date).toString();
+				config.date_borders.to.date = new Date($scope.to_date).toString();
 			}
 			else{
 
 				config.date_borders.from.date = '';
 				config.date_borders.to.date = '';
 			}
+
+			console.log('getConfig():');
+			console.log(config);
 
 			return config;
 
@@ -66,12 +80,26 @@ angular.module('MainApp')
 
 			//setting the dates
 			$scope.enableDates = true;
-			$scope.from_date = new Date(config.from);
-			$scope.to_date = new Date(config.to);
+			// $scope.from_date = new Date(config.from);
+			// $scope.to_date = new Date(config.to);
 
 
+			console.log('setConfig():');
 			console.log(config);
 
+		}
+
+		//target field for the reduction
+		$scope.target_field = '';
+		$scope.short = '';
+		$scope.onDroppedField = function(data){
+
+			//if it is not a timestamp field
+			if (!data.format){
+
+				//real target field
+				$scope.target_field = data.field;
+			}
 		}
 
 		// $rootScope.$watch('testWatch', function(){
