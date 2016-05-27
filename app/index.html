@@ -33,13 +33,13 @@
 					<md-content flex="33" class="list_container"> <!-- md-content is scrollable -->
 						<md-list>
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
-								<md-checkbox ng-model="source_config.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
+								<md-checkbox ng-model="source_config.source.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
 								<div layout="column">
-									<span style="font-size: 1.2em;">{{source_config.name}}</span>
+									<span style="font-size: 1.2em;">{{source_config.source.name}}</span>
 									<div layout="row">
 										<span style="color:green; font-size: 0.7em;">{{getSourceType(source_config)}}</span>
 										<span style="font-size: 0.7em;">-</span>
-										<span style="color:blue; font-size: 0.7em;"> {{source_config.server}}</span>
+										<span style="color:blue; font-size: 0.7em;"> {{source_config.source.server}}</span>
 									</div>
 								</div>
 								<md-icon class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>

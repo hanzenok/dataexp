@@ -11,10 +11,10 @@ var getStores = function(req, res){
 
 	//get the requested sources
 	var sources_conf = req.body;
+	var n = sources_conf.length;
 
-	if (sources_conf.length){
+	if (n){
 
-		var n = sources_conf.length;
 		var store_promises = new Array(n);
 
 		//load the stoars of each source
@@ -22,7 +22,7 @@ var getStores = function(req, res){
 
 			store_promises[i] = new Promise(function(resolve, reject){
 
-				ConnectorsEnum[sources_conf[i].type].getStoreNames(sources_conf[i], function(error, stores){
+				ConnectorsEnum[sources_conf[i].source.type].getStoreNames(sources_conf[i], function(error, stores){
 
 					if (stores) resolve(stores);
 					if (error) reject(error);
@@ -37,7 +37,6 @@ var getStores = function(req, res){
 		.then(function(stores_per_source){
 
 			//recompact the stores
-			//leave only wanted stores
 			var stores = [];
 			stores_per_source.forEach(function(source, index){
 

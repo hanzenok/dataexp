@@ -76,8 +76,8 @@ angular.module('MainApp')
 			SourcesService.query(
 				function(sources_conf){
 
-					//consle.log('sources_conf:');
-					//consle.log(sources_conf);
+					console.log('sources_conf:');
+					console.log(sources_conf);
 					$scope.sources_conf = sources_conf;
 					$rootScope.showPB(false);
 				},
@@ -99,7 +99,7 @@ angular.module('MainApp')
 
 		$rootScope.loadStores = function(source_conf){
 
-			if (source_conf.wanted){
+			if (source_conf.source.wanted){
 
 				//show the progress bar
 				$rootScope.showPB(true);
@@ -122,6 +122,7 @@ angular.module('MainApp')
 
 
 						//add to the stores list
+						console.log('stores_conf:');
 						console.log(stores_conf);
 						$rootScope.addStores(stores_conf);
 						$rootScope.showPB(false);
@@ -183,7 +184,7 @@ angular.module('MainApp')
 				sql: 	'SQL'
 			};
 
-			return types[source_conf.type];
+			return types[source_conf.source.type];
 		}
 
 		//dialog to modify the source

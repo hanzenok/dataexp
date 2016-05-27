@@ -17,7 +17,7 @@
 			<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Name</label>
-					<input name="name" required ng-model="source_conf.name" ng-readonly="deletable">
+					<input name="name" required ng-model="source_conf.source.name" ng-readonly="deletable">
 					<div ng-messages="dialogForm.name.$error" ng-if="showHints">
 						<div ng-message="required">Name is required</div>
 					</div>
@@ -25,7 +25,7 @@
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Type</label>
-					<md-select name="type" ng-model="source_conf.type">
+					<md-select name="type" ng-model="source_conf.source.type">
 						<md-option value="mongo">Mongo</md-option>
 						<md-option value="sql">MySQL</md-option>
 					</md-select>
@@ -33,18 +33,18 @@
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>User</label>
-					<input name="user" ng-model="source_conf.user">
+					<input name="user" ng-model="source_conf.source.user">
 				</md-input-container>
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Password</label>
-					<input name="passw" type="password" ng-model="source_conf.passw">
+					<input name="passw" type="password" ng-model="source_conf.source.passw">
 				</md-input-container>
 			</div>
 
 			<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Server</label>
-					<input name="server" required ng-model="source_conf.server">
+					<input name="server" required ng-model="source_conf.source.server">
 					<div ng-messages="dialogForm.server.$error" ng-if="showHints">
 						<div ng-message="required">Server addres is required</div>
 					</div>
@@ -52,7 +52,7 @@
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Port</label>
-					<input name="port" type="number" min="0" max="65535" ng-model="source_conf.port" ng-pattern="/^\d*$/">
+					<input name="port" type="number" min="0" max="65535" ng-model="source_conf.source.port" ng-pattern="/^\d*$/">
 					<div ng-messages="dialogForm.port.$error" ng-if="showHints">
 						<div ng-message="pattern">Port format is incorrect</div>
 						<div ng-message="max">Port format is incorrect</div>
@@ -62,7 +62,7 @@
 
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Database</label>
-					<input name="db" required ng-model="source_conf.db">
+					<input name="db" required ng-model="source_conf.source.db">
 					<div ng-messages="dialogForm.db.$error" ng-if="showHints">
 						<div ng-message="required">Database name is required</div>
 					</div>

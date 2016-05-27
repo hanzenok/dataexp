@@ -14,8 +14,8 @@ MongoConnector.getStoreNames = function(source_config, callback){
 	}
 	
 	//connection to mongo
-	var user_and_pass = (source_config.user && source_config.passw) ? source_config.user + ':' + source_config.passw + '@' : '';
-	var url = 'mongodb://' + user_and_pass + source_config.server + ':' + source_config.port + '/' + source_config.db;
+	var user_and_pass = (source_config.source.user && source_config.source.passw) ? source_config.source.user + ':' + source_config.source.passw + '@' : '';
+	var url = 'mongodb://' + user_and_pass + source_config.source.server + ':' + source_config.source.port + '/' + source_config.source.db;
 	var connection = mongoose.createConnection(url);
 
 	connection.once('open', function(){
@@ -38,7 +38,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
 
 						tmp.store = {};
 						tmp.store.name = item.name;
-						tmp.source = source_config;
+						tmp.source = source_config.source;
 						stores.push(tmp);
 
 						tmp = {};
@@ -60,7 +60,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
 	connection.on('error', function(error){
 
 		if (callback)
-			callback(new Error('Cannot connect to the mongo database ' + source_config.db + ' from ' + source_config.server + ' server'));
+			callback(new Error('Cannot connect to the mongo database ' + source_config.source.db + ' from ' + source_config.source.server + ' server'));
 	});
 
 }
@@ -199,7 +199,10 @@ function isValidSourceConfig(source_config){
 	if (!source_config || typeof source_config !== 'object') 
 		return false;
 
-	if (!source_config.type || !source_config.server || !source_config.db)
+	if (!source_config.source)
+		return false;
+
+	if (!source_config.source.type || !source_config.source.server || !source_config.source.db)
 		return false;
 
 	return true;
@@ -207,7 +210,7 @@ function isValidSourceConfig(source_config){
 
 function isValidStoreConfig(store_config){
 
-	if (!isValidSourceConfig(store_config.source))
+	if (!isValidSourceConfig(store_config))
 		return false;
 
 	if (!store_config.store)

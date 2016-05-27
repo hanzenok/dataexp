@@ -27,7 +27,7 @@ var deleteSource = function(req, res){
 				var index = -1;
 				for (var i=0; i<n; i++){
 
-					if (sources_conf[i].name === source_name){
+					if (sources_conf[i].source.name === source_name){
 
 						index = i;
 						break;

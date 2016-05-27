@@ -23,15 +23,15 @@ var putSource = function(req, res){
 				var sources_conf = JSON.parse(data);
 
 				//if client demands to add a new source
-				if (source_conf.isNew){
+				if (source_conf.source.isNew){
 
 					//if config already exists
-					if (underscore.where(sources_conf, {name: source_conf.name}).length){
+					// if (underscore.where(sources_conf, {name: source_conf.source.name}).length){
 
-						res.status(500).send('Specified source name alredy exists');
-						return;
-					}
-					else{
+					// 	res.status(500).send('Specified source name alredy exists');
+					// 	return;
+					// }
+					// else{
 
 						//assemble the new config file
 						var new_config = sources_conf.concat(source_conf);
@@ -47,7 +47,7 @@ var putSource = function(req, res){
 							}
 
 						});
-					}
+					//}
 				}
 				//if client demands to modify an existing source
 				else{
@@ -58,7 +58,7 @@ var putSource = function(req, res){
 					var index = -1;
 					for (var i=0; i<n; i++){
 
-						if (sources_conf[i].name === source_conf.name){
+						if (sources_conf[i].source.name === source_conf.source.name){
 
 							index = i;
 							break;

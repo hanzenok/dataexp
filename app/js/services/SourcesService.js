@@ -24,7 +24,7 @@ angular.module('MainApp')
 		this.post = function(source_conf, success_cb, error_cb){
 
 			//adding a new source
-			source_conf.isNew = true;
+			source_conf.source.isNew = true;
 
 			res.post(source_conf, success_cb, error_cb);
 
@@ -38,8 +38,8 @@ angular.module('MainApp')
 		this.modify = function(source_conf, success_cb, error_cb){
 
 			//modifying an existing source
-			source_conf.isNew = false;
-			source_conf.wanted = false;
+			source_conf.source.isNew = false;
+			source_conf.source.wanted = false;
 
 			res.post(source_conf, success_cb, error_cb);
 		}

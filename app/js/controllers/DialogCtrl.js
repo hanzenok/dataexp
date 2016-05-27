@@ -14,14 +14,17 @@ angular.module('MainApp')
 		if (!$scope.source_conf){
 
 			$scope.source_conf = {
-				name: '',
-				type: 'mongo',
-				user: '',
-				passw: '',
-				server: 'localhost',
-				port: null,
-				db:'',
-				wanted: false
+
+				source:{
+					name: '',
+					type: 'mongo',
+					user: '',
+					passw: '',
+					server: 'localhost',
+					port: null,
+					db:'',
+					wanted: false
+				}
 			};
 
 			$scope.deletable = false;
@@ -65,14 +68,14 @@ angular.module('MainApp')
 				if (JSON.stringify($scope.source_conf) !== JSON.stringify(old_source_conf)){
 
 					//if all the inputs are specified
-					if ($scope.source_conf.name && $scope.source_conf.type && 
-					$scope.source_conf.server && $scope.source_conf.db){
+					if ($scope.source_conf.source.name && $scope.source_conf.source.type && 
+					$scope.source_conf.source.server && $scope.source_conf.source.db){
 
-						var wanted = $scope.source_conf.wanted;
+						var wanted = $scope.source_conf.source.wanted;
 						SourcesService.modify($scope.source_conf, 
 							function(result){
 
-								$scope.source_conf.wanted = true;
+								$scope.source_conf.source.wanted = true;
 
 								if (!wanted){
 									$rootScope.loadStores($scope.source_conf);
@@ -102,9 +105,9 @@ angular.module('MainApp')
 				else{
 
 					//if the source is not already activated
-					if (!$scope.source_conf.wanted){
+					if (!$scope.source_conf.source.wanted){
 
-						$scope.source_conf.wanted = true;
+						$scope.source_conf.source.wanted = true;
 						$rootScope.loadStores($scope.source_conf);
 					}
 
@@ -118,8 +121,8 @@ angular.module('MainApp')
 				console.log('not deletable!!');
 
 				//if all the inputs are specified
-				if ($scope.source_conf.name && $scope.source_conf.type && 
-					$scope.source_conf.server && $scope.source_conf.db){
+				if ($scope.source_conf.source.name && $scope.source_conf.source.type && 
+					$scope.source_conf.source.server && $scope.source_conf.source.db){
 
 					SourcesService.post($scope.source_conf, 
 						function(result){
@@ -158,7 +161,7 @@ angular.module('MainApp')
 
 			console.log('delete!!');
 			console.log($scope.source_conf);
-			SourcesService.delete($scope.source_conf.name, 
+			SourcesService.delete($scope.source_conf.source.name, 
 				function(){
 					
 					$rootScope.loadSources();
