@@ -20,7 +20,7 @@
 		<div layout="row" flex>
 
 			<!-- Left Side Bar -->
-			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left">
+			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column">
 
 				<!-- Fab Button -->
 				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
@@ -30,8 +30,8 @@
 				<!-- Sources, Stores, Fields List -->
 				<div ng-controller="LeftNavCtrl" layout="column" flex layout-align="start">
 					<md-subheader class="md-no-sticky md-primary subheader">Sources ({{sources_conf.length}})</md-subheader>
-					<md-content flex="33" class="list_container"> <!-- md-content is scrollable -->
-						<md-list>
+					<md-content flex="33" class="list_container" style="min-height: 0;"> <!-- md-content is scrollable -->
+						<md-list style="height: 0;">
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
 								<md-checkbox ng-model="source_config.source.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
 								<div layout="column">
@@ -51,9 +51,9 @@
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-warn subheader">Stores ({{stores_conf.length}})</md-subheader>
-					<md-content flex="33" class="list_container">
+					<md-content flex="33" class="list_container" style="min-height: 0;">
 						<!-- <md-divider></md-divider> -->
-						<md-list>
+						<md-list style="height: 0;">
 							<md-list-item ng-repeat="store_config in stores_conf" class="list_item">
 								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields(store_config)"></md-checkbox>
 								<div layout="column">
@@ -73,7 +73,7 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky subheader">Fields ({{fields_conf.length}})</md-subheader>
 
-					<md-content flex="33" class="list_container">
+					<md-content flex="33" class="list_container" style="height: 0;">
 						<div layout-align="center">
 							<span class="drag-object md-whiteframe-4dp" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
 									{{field_config.field.short}}
