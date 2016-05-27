@@ -7,7 +7,7 @@ angular.module('MainApp')
 			console.log(data);
 
 			//if it is a field
-			if (data.store && data.source){
+			if (data.field && data.store && data.source){
 
 				//timestamp field
 				if (data.field.format){
@@ -35,9 +35,10 @@ angular.module('MainApp')
 					$rootScope.dataset = undefined;
 				}
 
-				//mark all other fields as ready (=not loaded)
-				$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status='ready';});
-				$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status='ready';});
+				//mark all fields as ready (=not loaded)
+				data.field.status = 'ready';
+				$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
+				$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
 			}
 			//chart
 			else{

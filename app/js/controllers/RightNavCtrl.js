@@ -75,11 +75,11 @@ angular.module('MainApp')
 		$rootScope.setConfig = function(config){
 
 			//size
-			$scope.size = config.size;
+			$scope.size = (config.size) ? config.size : '?';
 			$scope.size_status = ($scope.size > 2500) ? 'overflow' : 'normal';
 
 			//instances per day
-			$scope.per_day = config.per_day.toFixed(5);
+			$scope.per_day = (config.per_day) ? config.per_day.toFixed(5) : '?';
 
 			//homogenity
 			if (config.homogen)

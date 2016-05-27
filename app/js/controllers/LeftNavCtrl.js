@@ -17,7 +17,7 @@ angular.module('MainApp')
 			var indexes = [];
 			$rootScope.stores_conf.forEach(function(store_conf, index){
 
-				if (store_conf.source.name === source_conf.name){
+				if (store_conf.source.name === source_conf.source.name){
 					
 					$rootScope.removeFields(store_conf);
 					indexes.push(index);
