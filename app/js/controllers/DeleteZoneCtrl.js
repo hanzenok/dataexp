@@ -29,16 +29,18 @@ angular.module('MainApp')
 					}
 				}
 
-				//if the loaded field deleted, delete all dataset
-				if($rootScope.dataset){
+				//clear the dataset
+				if ($rootScope.dataset.length && data.field.status === 'loaded'){
+
+					//delete the dataset
 					delete $rootScope.dataset;
 					$rootScope.dataset = undefined;
+				
+					//mark all fields as ready (=not loaded)
+					data.field.status = 'ready';
+					$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
+					$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
 				}
-
-				//mark all fields as ready (=not loaded)
-				data.field.status = 'ready';
-				$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
-				$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
 			}
 			//chart
 			else{
