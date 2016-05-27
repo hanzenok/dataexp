@@ -160,3 +160,14 @@
 
         color: red;
     }
+
+    /*Chrome bug fix with flex
+    https://github.com/angular/material/issues/2954*/
+    .chrome_bugfix1{
+
+        height: 0;
+    }
+
+    .chrome_bugfix2{
+        min-height: 0;
+    }
