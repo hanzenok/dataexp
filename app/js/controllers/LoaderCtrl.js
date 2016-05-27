@@ -108,6 +108,8 @@ angular.module('MainApp')
 					},
 					function(err){
 
+						$rootScope.showPB(false);
+
 						$mdToast.show(
 							$mdToast.simple()
 								.textContent(err.data)

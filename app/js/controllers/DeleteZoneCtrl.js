@@ -30,7 +30,7 @@ angular.module('MainApp')
 				}
 
 				//clear the dataset
-				if ($rootScope.dataset.length && data.field.status === 'loaded'){
+				if ($rootScope.dataset !== undefined && data.field.status === 'loaded'){
 
 					//delete the dataset
 					delete $rootScope.dataset;

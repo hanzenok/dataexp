@@ -71,15 +71,15 @@ angular.module('MainApp')
 					if ($scope.source_conf.source.name && $scope.source_conf.source.type && 
 					$scope.source_conf.source.server && $scope.source_conf.source.db){
 
-						var wanted = $scope.source_conf.source.wanted;
+						//modify the source in the backend
+						//var wanted = $scope.source_conf.source.wanted;
 						SourcesService.modify($scope.source_conf, 
 							function(result){
 
-								$scope.source_conf.source.wanted = true;
-
-								if (!wanted){
-									$rootScope.loadStores($scope.source_conf);
-								}
+								//reload sources, clear all
+								$rootScope.loadSources();
+								$rootScope.clearStores();
+								$rootScope.clearFields();
 
 								$mdDialog.hide();
 
@@ -100,18 +100,9 @@ angular.module('MainApp')
 					}
 				}
 				//the source was not modified
-				//close the dialog and activate
-				//the source
+				//close the dialog
 				else{
 
-					//if the source is not already activated
-					if (!$scope.source_conf.source.wanted){
-
-						$scope.source_conf.source.wanted = true;
-						$rootScope.loadStores($scope.source_conf);
-					}
-
-					//hide dialog
 					$mdDialog.hide();
 				}
 			}
@@ -127,10 +118,11 @@ angular.module('MainApp')
 					SourcesService.post($scope.source_conf, 
 						function(result){
 
-							console.log('SourcesService');
-							console.log('here');
-							console.log($scope.source_conf);
+							//reload sources, clear all
 							$rootScope.loadSources();
+							$rootScope.clearStores();
+							$rootScope.clearFields();
+
 							$mdDialog.hide();
 
 						},
@@ -163,9 +155,12 @@ angular.module('MainApp')
 			console.log($scope.source_conf);
 			SourcesService.delete($scope.source_conf.source.name, 
 				function(){
-					
+
+					//reload sources, clear all
 					$rootScope.loadSources();
-					//$rootScope.loadStores();
+					$rootScope.clearStores();
+					$rootScope.clearFields();
+
 					$mdDialog.hide();
 				},
 				function(err){

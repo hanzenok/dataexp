@@ -31,6 +31,11 @@ angular.module('MainApp')
 			});
 		}
 
+		$rootScope.clearStores = function(){
+
+			$rootScope.stores_conf = [];
+		}
+
 		$rootScope.addFields = function(fields_conf){
 
 			fields_conf.forEach(function(field_conf, index){
@@ -54,6 +59,11 @@ angular.module('MainApp')
 
 				$rootScope.fields_conf.splice(index - i, 1);
 			});	
+		}
+
+		$rootScope.clearFields = function(){
+
+			$rootScope.fields_conf = [];
 		}
 
 		/***************Progress Bar****************/
