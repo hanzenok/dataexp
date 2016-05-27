@@ -43,10 +43,10 @@ angular.module('MainApp')
 		//$rootScope.testWatch = 1;
 		$scope.load = function(){
 
-			//$rootScope.testWatch++;
-			console.log($rootScope.getConfig());
-
 			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){
+
+				//show the progressbar
+				$rootScope.showPB(true);
 
 				//compose all the config and all the fields that needs to be downloaded into one
 				var all_fields_conf = [
@@ -81,6 +81,10 @@ angular.module('MainApp')
 						$rootScope.dataset = data;
 						console.log('dataset:');
 						console.log(data);
+
+						//loading timeseries finished
+						//show the progressbar
+						$rootScope.showPB(false);
 
 						//load the stats
 						TimeseriesService.stats(function(stats){

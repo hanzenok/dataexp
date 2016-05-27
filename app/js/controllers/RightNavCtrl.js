@@ -17,6 +17,10 @@ angular.module('MainApp')
 		//dates switcher
 		$scope.enableDates = false;
 
+		//monitoring the loaded timeseries size
+		$scope.size_status = 'normal';
+
+		//returns the current config
 		$rootScope.getConfig = function(){
 
 			//config json
@@ -67,25 +71,30 @@ angular.module('MainApp')
 
 		}
 
+		//shows the stats
 		$rootScope.setConfig = function(config){
 
-			//setting the stats
+			//size
 			$scope.size = config.size;
+			$scope.size_status = ($scope.size > 2500) ? 'overflow' : 'normal';
+
+			//instances per day
 			$scope.per_day = config.per_day.toFixed(5);
 
+			//homogenity
 			if (config.homogen)
 				$scope.homogen = 'yes';
 			else
 				$scope.homogen = 'no';
 
 			//setting the dates
-			// $scope.enableDates = true;
 			$scope.from_date = new Date(config.from);
 			$scope.to_date = new Date(config.to);
 
 
 			console.log('setConfig():');
 			console.log(config);
+
 
 		}
 
@@ -102,9 +111,17 @@ angular.module('MainApp')
 			}
 		}
 
-		// $rootScope.$watch('testWatch', function(){
+		//size color
 
-		// 	console.log('testWatch changed!');
-		// });
+		// console.log($scope.size + ': ' + typeof $scope.size);
+
+		// if ($scope.size > 2000){
+
+		// 	console.log('supper');
+		// }
+		// else{
+
+		// 	console.log('infer');
+		// }
 
 	})

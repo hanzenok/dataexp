@@ -10,7 +10,7 @@ angular.module('MainApp')
 			if (data.store && data.source){
 
 				//timestamp field
-				if (data.format){
+				if (data.field.format){
 
 					//delete timestamp field
 					var index = $rootScope.droppedTSFields.indexOf(data);
@@ -29,14 +29,15 @@ angular.module('MainApp')
 					}
 				}
 
-				//if one loaded field deleted, delete all dataset
+				//if the loaded field deleted, delete all dataset
 				if($rootScope.dataset){
 					delete $rootScope.dataset;
 					$rootScope.dataset = undefined;
 				}
 
-				$rootScope.droppedTSFields.forEach(function(field, index){field.status='ready';});
-				$rootScope.droppedFields.forEach(function(field, index){field.status='ready';});
+				//mark all other fields as ready (=not loaded)
+				$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status='ready';});
+				$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status='ready';});
 			}
 			//chart
 			else{
