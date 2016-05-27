@@ -22,11 +22,20 @@ angular.module('MainApp')
 			var index = $rootScope.droppedTSFields.indexOf(data);
 			if (index == -1){
 
+				//used to pass data to the 
+				//DialogController
+				var shareFieldCtrl = function ($scope, data) {
+
+					$scope.data = data;
+				}
+
 				//ask the format of the timestamp field
 				$mdDialog.show({
 					templateUrl: '../../templates/SaveFormat.html',
 					parent: angular.element(document.body),
-					clickOutsideToClose: false
+					clickOutsideToClose: false,
+					controller: shareFieldCtrl,
+					locals: {data: data}
 				})
 				.then(function(format){
 

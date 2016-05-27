@@ -185,6 +185,7 @@ angular.module('MainApp')
 		$scope.saveFormat = function(){
 			
 			$mdDialog.hide($scope.format);
+			console.log($scope.data);
 		};
 
 		/***********Both***********/

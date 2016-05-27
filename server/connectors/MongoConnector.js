@@ -94,7 +94,7 @@ MongoConnector.getStoreSize = function(store_config, callback){
 }
 
 //get all the fields of a store
-MongoConnector.getFieldNames = function(store_config, callback){
+MongoConnector.getFields = function(store_config, callback){
 
 	//check the store config
 	if (!isValidStoreConfig.call(this, store_config)){
@@ -137,6 +137,9 @@ MongoConnector.getFieldNames = function(store_config, callback){
 					tmp = {};
 					tmp.field = {};
 					tmp.field.name = key;
+
+					//value
+					tmp.field.value = doc[key];
 
 					//copy store config
 					tmp.store = store_config.store;
