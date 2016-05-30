@@ -34,9 +34,6 @@ var ModifyConfig = {};
 // ]
 ModifyConfig.regroupFields = function(configs){
 
-	console.log('ModifyConfig start: ');
-	console.log(configs);
-
 	var timestamps = configs[1];
 	var fields = configs[2];
 	var n = timestamps.length;	
@@ -85,51 +82,6 @@ ModifyConfig.regroupFields = function(configs){
 
 		return null;
 	}
-
-	// //first get all the timestamps
-	// var new_config = config[1];
-	// var n = new_config.length;
-	// for (var i=0; i<n; i++){
-
-	// 	//add timstamp field to config
-	// 	new_config[i].timestamp = {};
-	// 	new_config[i].timestamp.field = new_config[i].field.name;
-	// 	new_config[i].timestamp.format = new_config[i].field.format;
-
-	// 	//delete because copied
-	// 	delete new_config[i].field;
-
-	// 	//description of normal fields
-	// 	new_config[i].fields = [];
-	// }
-
-	// //regroupe the other fields
-	// var fields_config = config[2];
-	// var m = fields_config.length;
-	// var fields_count = 0;
-	// for (var i=0; i<m; i++){
-
-	// 	for (var j=0; j<n; j++){
-
-	// 		if (fields_config[i].store.name === new_config[j].store.name &&
-	// 			fields_config[i].source.server === new_config[j].source.server &&
-	// 			fields_config[i].source.db === new_config[j].source.db){
-
-	// 			new_config[j].fields.push({'field': fields_config[j].field.name});
-	// 			fields_count ++;
-	// 		}
-	// 	}
-	// }
-
-	// //check if all fields were assciated
-	// //with a timestamp field:
-	// if (fields_count !== m){
-
-	// 	return null;
-	// }
-
-	console.log('ModifyConfig end:');
-	console.log(new_configs);
 
 	return new_configs;
 }

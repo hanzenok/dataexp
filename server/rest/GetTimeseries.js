@@ -1,5 +1,4 @@
 var tsproc = require('tsproc');
-var ModifyConfig = require('./../ModifyConfig');
 //var moment = require('moment');
 
 //connectors
@@ -28,9 +27,8 @@ TS.getTimeseries = function(req, res){
 	//2 - other fields
 	if(fields_config.length){
 
-		//fuse field config and timestamp field config into one config
-		//determine the timestamp fields
-		var new_fields_config = ModifyConfig.regroupFields(fields_config);
+		//regroup the field from the same source
+		var new_fields_config = regroupFields.call(this, fields_config);
 
 
 		//options config
@@ -99,26 +97,24 @@ TS.getTimeseries = function(req, res){
 				tsproc_config.timeseries.push(tmp);
 			});
 
-			console.log('tsproc_config');
-			console.log(JSON.stringify(tsproc_config));
-
-			// //instantiate the timeseries processor
-			// var tsp = new tsproc(datasets, tsproc_config, callback);
+			//instantiate the timeseries processor
+			var tsp = new tsproc(datasets, tsproc_config, callback);
 			
-			// //generate a stats json
-			// //check the homgenity before the processing
-			// //(after the processing timeseries becomes homogeneous)
-			// stats.homogen = tsp.isHomogeneous(); //check the 
+			//generate a stats json
+			//check the homgenity before the processing
+			//(after the processing timeseries becomes homogeneous)
+			tsp.cut();
+			stats.homogen = tsp.isHomogeneous(); //check the 
 
-			// //process the timseries
-			// tsp.process(callback);
+			//process the timseries
+			tsp.process(callback);
 
-			// //get the other stats
-			// var borders = tsp.getDateBorders();
-			// stats.from = borders[0];
-			// stats.to = borders[1];
-			// stats.size = tsp.getTSSize();
-			// stats.per_day = tsp.getAvgPerDay();
+			//get the other stats
+			var borders = tsp.getDateBorders();
+			stats.from = borders[0];
+			stats.to = borders[1];
+			stats.size = tsp.getTSSize();
+			stats.per_day = tsp.getAvgPerDay();
 		})
 		.catch(function(error){
 
@@ -132,6 +128,60 @@ TS.getTimeseries = function(req, res){
 TS.getStats = function(req, res){
 	
 	res.json([stats]);
+}
+
+function regroupFields(configs){
+
+	var timestamps = configs[1];
+	var fields = configs[2];
+	var n = timestamps.length;	
+	var m = fields.length;
+
+	var new_configs = new Array(n);
+	var tmp;
+
+	//prepare the timestamp fields
+	timestamps.forEach(function(timestamp_config, index){
+
+		tmp = {};
+		tmp.fields = [];
+
+		//copy the timestamp
+		tmp.fields.push(timestamp_config.field);
+
+		//and other info
+		tmp.store = timestamp_config.store;
+		tmp.source = timestamp_config.source;
+
+		//add to the new config
+		new_configs[index] = tmp;
+	});
+
+
+	//regroup the other fields
+	var count_fields = 0;
+	for (var i=0; i<n; i++){
+
+		for (var j=0; j<m; j++){
+
+			if (new_configs[i].source.name === fields[j].source.name &&
+				new_configs[i].store.name === fields[j].store.name){
+
+				new_configs[i].fields.push(fields[j].field);
+				count_fields++;
+			}
+		}
+	}
+
+	//check if all fields were assciated
+	//with a timestamp field:
+	console.log(count_fields);
+	if (count_fields != m){
+
+		return null;
+	}
+
+	return new_configs;
 }
 
 module.exports = TS;

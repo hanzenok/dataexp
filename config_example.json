@@ -31,3 +31,15 @@
 		}
 	]
 }
+
+//same new config
+
+{ transform: { type: 'interp', interp_type: 'linear' },
+  reduction: { type: 'skip', size: 1, target_field: '' },
+  date_borders: { from: { date: '' }, to: { date: '' } },
+  timeseries: 
+   [ { store: [Object],
+       source: [Object],
+       timestamp: [Object],
+       fields: [Object] } ] }
+
