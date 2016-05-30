@@ -168,13 +168,18 @@ MongoConnector.getFields = function(store_config, callback){
 			connection.close();
 
 			//send the repsonse
-			if (callback){
+			if (fields.length){
 
 				console.log('fields out of getFields():');
 				console.log(fields);
 
 				callback(null, fields);
 			}
+			else {
+
+				callback(new Error('Cannot list the fields'));
+			}
+
 		}
 	});
 }
@@ -215,11 +220,18 @@ MongoConnector.getDataset = function(dataset_config, callback){
 			}
 			else {
 
-				console.log('dataset out for getDataset():');
-				console.log(dataset);
+				if (dataset.length){
 
-				//send the response
-				callback(null, dataset);
+					console.log('dataset out for getDataset():');
+					console.log(dataset);
+
+					//send the response
+					callback(null, dataset);
+				}
+				else{
+
+					callback(new Error('Cannot load the dataset'));
+				}
 			}
 	});
 }

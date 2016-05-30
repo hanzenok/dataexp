@@ -206,13 +206,17 @@ MysqlConnector.getFields = function(store_config, callback){
 						fields.push(tmp);
 					}
 
-					//send the response
-					if (callback){
+					//send the repsonse
+					if (fields.length){
 
 						console.log('fields out of getFields():');
 						console.log(fields);
 
 						callback(null, fields);
+					}
+					else {
+
+						callback(new Error('Cannot list the fields'));
 					}
 				}
 
@@ -278,17 +282,24 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 				else{
 
 					//delete the mysql fields
-					n = rows.length;
-					var dataset = new Array(n);
-					for (var i=0; i<n; i++){
-						dataset[i] = JSON.parse(JSON.stringify(rows[i]));
-					}
-
-					console.log('dataset out for getDataset():');
-					console.log(dataset);
+					var dataset = [];
+					rows.forEach(function(row, index){
+						dataset.push(JSON.parse(JSON.stringify(rows[index])));
+					});
 
 					//send the response
-					callback(null, dataset);
+					if (dataset.length){
+
+						console.log('dataset out for getDataset():');
+						console.log(dataset);
+
+						//send the response
+						callback(null, dataset);
+					}
+					else{
+
+						callback(new Error('Cannot load the dataset'));
+					}
 				}
 			});
 
