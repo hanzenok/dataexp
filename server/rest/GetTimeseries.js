@@ -1,5 +1,5 @@
 var tsproc = require('tsproc');
-var modifyConfig = require('./../ModifyConfig');
+var ModifyConfig = require('./../ModifyConfig');
 //var moment = require('moment');
 
 //connectors
@@ -30,7 +30,7 @@ TS.getTimeseries = function(req, res){
 
 		//fuse field config and timestamp field config into one config
 		//determine the timestamp fields
-		var new_fields_config = modifyConfig(fields_config);
+		var new_fields_config = ModifyConfig.regroupFields(fields_config);
 
 
 		//options config
@@ -72,34 +72,53 @@ TS.getTimeseries = function(req, res){
 			//parse a config for tsproc
 			//options
 			var tsproc_config = {};
+			var tmp;
 			tsproc_config.transform = options.transform;
 			tsproc_config.reduction = options.reduction;
 			tsproc_config.date_borders = options.date_borders;
 
-			//fields
+			// //fields
 			tsproc_config.timeseries = [];
 			new_fields_config.forEach(function(config, index, array){
 
-				tsproc_config.timeseries.push(config);
+				tmp = {};
+				tmp.fields = [];
+				config.fields.forEach(function(field, ind){
+
+					if (field.format){
+
+						tmp.timestamp = field;
+					}
+					else{
+
+						tmp.fields.push(field);
+					}
+
+				});
+
+				tsproc_config.timeseries.push(tmp);
 			});
 
-			//instantiate the timeseries processor
-			var tsp = new tsproc(datasets, tsproc_config, callback);
+			console.log('tsproc_config');
+			console.log(JSON.stringify(tsproc_config));
+
+			// //instantiate the timeseries processor
+			// var tsp = new tsproc(datasets, tsproc_config, callback);
 			
-			//generate a stats json
-			//check the homgenity before the processing
-			//(after the processing timeseries becomes homogeneous)
-			stats.homogen = tsp.isHomogeneous(); //check the 
+			// //generate a stats json
+			// //check the homgenity before the processing
+			// //(after the processing timeseries becomes homogeneous)
+			// stats.homogen = tsp.isHomogeneous(); //check the 
 
-			//process the timseries
-			tsp.process(callback);
+			// //process the timseries
+			// tsp.process(callback);
 
-			//get the other stats
-			var borders = tsp.getDateBorders();
-			stats.from = borders[0];
-			stats.to = borders[1];
-			stats.size = tsp.getTSSize();
-			stats.per_day = tsp.getAvgPerDay();
+			// //get the other stats
+			// var borders = tsp.getDateBorders();
+			// stats.from = borders[0];
+			// stats.to = borders[1];
+			// stats.size = tsp.getTSSize();
+			// stats.per_day = tsp.getAvgPerDay();
 		})
 		.catch(function(error){
 

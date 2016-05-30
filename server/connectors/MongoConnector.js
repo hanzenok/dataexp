@@ -4,6 +4,9 @@ var MongoConnector = {};
 
 MongoConnector.getStoreNames = function(source_config, callback){
 
+	console.log('source_config in for getStoreNames():');
+	console.log(source_config);
+
 	//check the source config
 	if (!isValidSourceConfig(source_config)){
 
@@ -48,6 +51,9 @@ MongoConnector.getStoreNames = function(source_config, callback){
 				//call the callback
 				if (stores.length){
 
+					console.log('stores out of getStoreNames():');
+					console.log(stores);
+
 					callback(null, stores);
 				}
 				else{
@@ -75,6 +81,9 @@ MongoConnector.getStoreSize = function(store_config, callback){
 		return;
 	}
 
+	console.log('store_config in for getStoreSize():');
+	console.log(store_config);
+
 	//connection to mongo
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
 	var url = 'mongodb://' + user_and_pass + store_config.source.server + ':' + store_config.source.port + '/' + store_config.source.db;
@@ -88,6 +97,10 @@ MongoConnector.getStoreSize = function(store_config, callback){
 		if (count) {
 
 			store_config.store.size = count;
+
+			console.log('store_config out of getStoreSize():');
+			console.log(store_config);
+
 			callback(null, store_config);
 		}
 	});
@@ -104,6 +117,9 @@ MongoConnector.getFields = function(store_config, callback){
 
 		return;
 	}
+
+	console.log('store_config in for getFields():');
+	console.log(store_config);
 
 	//connection to mongo
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
@@ -150,8 +166,14 @@ MongoConnector.getFields = function(store_config, callback){
 			}
 
 			connection.close();
-			if(callback)
+
+			if (callback){
+
+				console.log('fields out of getFields():');
+				console.log(fields);
+
 				callback(null, fields);
+			}
 		}
 	});
 }
@@ -167,6 +189,9 @@ MongoConnector.getDataset = function(dataset_config, callback){
 		return;
 	}
 
+	console.log('dataset_config in for getDataset():');
+	console.log(dataset_config);
+
 	//connection to mongo
 	var user_and_pass = (dataset_config.source.user && dataset_config.source.passw) ? dataset_config.source.user + ':' + dataset_config.source.passw + '@' : '';
 	var url = 'mongodb://' + user_and_pass +  dataset_config.source.server + ':' + dataset_config.source.port + '/' + dataset_config.source.db;
@@ -176,20 +201,24 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	//document fields to load
 	var fields = {};
 	fields['_id'] = 0; //do not include id field
-	fields[dataset_config.timestamp.field] = 1; //include timestamp field
-	dataset_config.fields.forEach(function(config, index){
+	dataset_config.fields.forEach(function(field, index){
 
-		fields[config.field] = 1;
+		fields[field.name] = 1;
 	});
 
 	//launch query
 	model.aggregate([{$project: fields}],
-		function(err, result){
+		function(err, dataset){
 			if (err) {
 				callback(err);
 			}
 			else {
-				callback(null, result);
+
+				console.log('dataset out for getDataset():');
+				console.log(dataset);
+
+				//send the response
+				callback(null, dataset);
 			}
 	});
 }
@@ -227,7 +256,7 @@ function isValidDatasetConfig(dataset_config){
 	if (!isValidStoreConfig(dataset_config))
 		return false;
 
-	if (!dataset_config.fields || !dataset_config.timestamp)
+	if (!dataset_config.fields)
 		return false;
 
 	return true;
