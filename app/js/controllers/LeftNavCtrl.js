@@ -191,7 +191,7 @@ angular.module('MainApp')
 			var types = {
 
 				mongo: 'MongoDB',
-				sql: 	'SQL'
+				mysql: 	'MySQL'
 			};
 
 			return types[source_conf.source.type];

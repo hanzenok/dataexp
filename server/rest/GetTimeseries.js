@@ -3,7 +3,12 @@ var tsproc = require('tsproc');
 
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
-var ConnectorsEnum = {'mongo': mongo_connector};
+var mysql_connector = require('../connectors/MysqlConnector');
+var ConnectorsEnum = {
+	
+					'mongo': mongo_connector,
+					'mysql': mysql_connector
+					};
 
 //stats config
 var stats = {};

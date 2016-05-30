@@ -1,7 +1,12 @@
 var mongoose = require('mongoose');
 
 var mongo_connector = require('../connectors/MongoConnector');
-var ConnectorsEnum = {'mongo': mongo_connector};
+var mysql_connector = require('../connectors/MysqlConnector');
+var ConnectorsEnum = {
+	
+					'mongo': mongo_connector,
+					'mysql': mysql_connector
+					};
 
 var getFields = function(req, res){
 	

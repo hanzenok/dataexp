@@ -145,7 +145,7 @@ MongoConnector.getFields = function(store_config, callback){
 
 			//parse the fields
 			fields = [];
-			for(var key in doc){
+			for (var key in doc){
 
 				if (key !== '_id'){
 
@@ -167,6 +167,7 @@ MongoConnector.getFields = function(store_config, callback){
 
 			connection.close();
 
+			//send the repsonse
 			if (callback){
 
 				console.log('fields out of getFields():');
