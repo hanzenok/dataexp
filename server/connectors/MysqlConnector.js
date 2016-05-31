@@ -4,8 +4,8 @@ var MysqlConnector = {};
 
 MysqlConnector.getStoreNames = function(source_config, callback){
 
-	console.log('source_config in for getStoreNames():');
-	console.log(source_config);
+	//console.log('source_config in for getStoreNames():');
+	//console.log(source_config);
 
 	//check the source config
 	if (!isValidSourceConfig(source_config)){
@@ -66,8 +66,8 @@ MysqlConnector.getStoreNames = function(source_config, callback){
 					//call the callback
 					if (stores.length){
 
-						console.log('stores out of getStoreNames():');
-						console.log(stores);
+						//console.log('stores out of getStoreNames():');
+						//console.log(stores);
 
 						callback(null, stores);
 					}
@@ -93,8 +93,8 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 		return;
 	}
 
-	console.log('store_config in for getStoreSize():');
-	console.log(store_config);
+	//console.log('store_config in for getStoreSize():');
+	//console.log(store_config);
 
 
 	//creating the connection
@@ -129,8 +129,8 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 					//set the size
 					store_config.store.size = rows[0].count;
 
-					console.log('store_config out of getStoreSize():');
-					console.log(store_config);
+					//console.log('store_config out of getStoreSize():');
+					//console.log(store_config);
 
 					callback(null, store_config);
 				}
@@ -154,8 +154,8 @@ MysqlConnector.getFields = function(store_config, callback){
 		return;
 	}
 
-	console.log('store_config in for getFields():');
-	console.log(store_config);
+	//console.log('store_config in for getFields():');
+	//console.log(store_config);
 
 	//creating the connection
 	var connection = mysql.createConnection({
@@ -209,8 +209,8 @@ MysqlConnector.getFields = function(store_config, callback){
 					//send the repsonse
 					if (fields.length){
 
-						console.log('fields out of getFields():');
-						console.log(fields);
+						//console.log('fields out of getFields():');
+						//console.log(fields);
 
 						callback(null, fields);
 					}
@@ -240,8 +240,8 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 		return;
 	}
 
-	console.log('dataset_config in for getDataset():');
-	console.log(dataset_config);
+	//console.log('dataset_config in for getDataset():');
+	//console.log(dataset_config);
 
 	//creating the connection
 	var connection = mysql.createConnection({
@@ -290,8 +290,8 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 					//send the response
 					if (dataset.length){
 
-						console.log('dataset out for getDataset():');
-						console.log(dataset);
+						//console.log('dataset out for getDataset():');
+						//console.log(dataset);
 
 						//send the response
 						callback(null, dataset);

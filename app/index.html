@@ -220,8 +220,10 @@
 						<md-divider></md-divider>
 
 						<!-- Delete zone -->
-						<div class="delete_chart" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)" layout="column">
-							<md-icon md-svg-src="../images/delete2.svg" aria-label="Delete source" class="drop_info" style="height: 60px;"></md-icon>
+						<div layout="column" class="loader">
+							<div flex class="delete_chart" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
+<!-- 								<md-icon md-svg-src="../images/delete2.svg" aria-label="Delete source" class="drop_info" style="height: 60px;"></md-icon> -->
+							</div>
 						</div>
 
 						<div ng-drag-clone=""></div> 

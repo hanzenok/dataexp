@@ -4,8 +4,8 @@ var MongoConnector = {};
 
 MongoConnector.getStoreNames = function(source_config, callback){
 
-	console.log('source_config in for getStoreNames():');
-	console.log(source_config);
+	//console.log('source_config in for getStoreNames():');
+	//console.log(source_config);
 
 	//check the source config
 	if (!isValidSourceConfig(source_config)){
@@ -51,8 +51,8 @@ MongoConnector.getStoreNames = function(source_config, callback){
 				//call the callback
 				if (stores.length){
 
-					console.log('stores out of getStoreNames():');
-					console.log(stores);
+					//console.log('stores out of getStoreNames():');
+					//console.log(stores);
 
 					callback(null, stores);
 				}
@@ -81,8 +81,8 @@ MongoConnector.getStoreSize = function(store_config, callback){
 		return;
 	}
 
-	console.log('store_config in for getStoreSize():');
-	console.log(store_config);
+	//console.log('store_config in for getStoreSize():');
+	//console.log(store_config);
 
 	//connection to mongo
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
@@ -98,8 +98,8 @@ MongoConnector.getStoreSize = function(store_config, callback){
 
 			store_config.store.size = count;
 
-			console.log('store_config out of getStoreSize():');
-			console.log(store_config);
+			//console.log('store_config out of getStoreSize():');
+			//console.log(store_config);
 
 			callback(null, store_config);
 		}
@@ -118,8 +118,8 @@ MongoConnector.getFields = function(store_config, callback){
 		return;
 	}
 
-	console.log('store_config in for getFields():');
-	console.log(store_config);
+	//console.log('store_config in for getFields():');
+	//console.log(store_config);
 
 	//connection to mongo
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
@@ -170,8 +170,8 @@ MongoConnector.getFields = function(store_config, callback){
 			//send the repsonse
 			if (fields.length){
 
-				console.log('fields out of getFields():');
-				console.log(fields);
+				//console.log('fields out of getFields():');
+				//console.log(fields);
 
 				callback(null, fields);
 			}
@@ -195,8 +195,8 @@ MongoConnector.getDataset = function(dataset_config, callback){
 		return;
 	}
 
-	console.log('dataset_config in for getDataset():');
-	console.log(dataset_config);
+	//console.log('dataset_config in for getDataset():');
+	//console.log(dataset_config);
 
 	//connection to mongo
 	var user_and_pass = (dataset_config.source.user && dataset_config.source.passw) ? dataset_config.source.user + ':' + dataset_config.source.passw + '@' : '';
@@ -222,8 +222,8 @@ MongoConnector.getDataset = function(dataset_config, callback){
 
 				if (dataset.length){
 
-					console.log('dataset out for getDataset():');
-					console.log(dataset);
+					//console.log('dataset out for getDataset():');
+					//console.log(dataset);
 
 					//send the response
 					callback(null, dataset);

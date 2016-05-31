@@ -87,6 +87,11 @@
     .delete_chart{
     	background: rgba(255,0,0, 0.2);
     	height: auto;
+        border-radius: 20px;
+        margin:5px;
+        background-image: url(../images/delete.png);
+        background-repeat: no-repeat;
+        background-position:center center;"
     }
 
     .platform{

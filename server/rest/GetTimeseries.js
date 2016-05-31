@@ -108,7 +108,8 @@ TS.getTimeseries = function(req, res){
 			//generate a stats json
 			//check the homgenity before the processing
 			//(after the processing timeseries becomes homogeneous)
-			tsp.cut();
+			//precutting to assure that the homogen value is accurate
+			tsp.cut([tsproc_config.date_borders.from.date, tsproc_config.date_borders.to.date]);
 			stats.homogen = tsp.isHomogeneous(); //check the 
 
 			//process the timseries
@@ -180,7 +181,6 @@ function regroupFields(configs){
 
 	//check if all fields were assciated
 	//with a timestamp field:
-	console.log(count_fields);
 	if (count_fields != m){
 
 		return null;
