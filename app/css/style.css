@@ -187,3 +187,8 @@
         bottom:0;
         margin: auto;
     }
+
+    img.loader_buttons{
+
+        cursor:move;
+    }

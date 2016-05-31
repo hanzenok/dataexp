@@ -23,7 +23,7 @@
 			<md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
 
 				<!-- Fab Button -->
-				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
+				<md-button class="md-fab md-fab-top-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
 					<md-icon md-svg-src="images/add.svg"></md-icon>
 				</md-button>
 
@@ -129,9 +129,9 @@
 								</div>
 							</div>
 
-							<div layout="row">
-								<md-icon class="md-secondary" ng-click="load()" md-svg-src="images/download.svg" aria-label="Download"></md-icon>
-								<!-- <md-progress-circular md-mode="indeterminate" class="md-accent"></md-progress-circular> -->
+							<div layout="row" layout-align="center center">
+								<img class="loader_buttons" src="images/download.svg" ng-click="load()"/>
+								<img class="loader_buttons" src="images/save.svg" ng-disabled="true"/>
 							</div>
 						</div>
 
