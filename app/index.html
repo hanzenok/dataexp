@@ -144,7 +144,7 @@
 
 								<!-- Pie Chart -->
 								<md-list-item layout="column">
-									<div class="platform" ng-controller="PieChartCtrl" layout="column">
+									<div class="platform" ng-controller="PieChartCtrl" layout="column" style="background-image: url(../images/pie_chart.png); background-repeat: no-repeat; background-position:50% 25%;">
 										<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded">
@@ -158,7 +158,7 @@
 
 								<!-- Graph -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" style="background-image: url(../images/graph_chart.png); background-repeat: no-repeat; background-position:50% 25%;">
 										<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
 
 	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
@@ -172,7 +172,7 @@
 
 								<!-- Scatter Plot -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" style="background-image: url(../images/scatter_chart.png); background-repeat: no-repeat; background-position:50% 25%;">
 										<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
 
 	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
@@ -186,7 +186,7 @@
 
 								<!-- Row Chart -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" style="background-image: url(../images/row_chart.png); background-repeat: no-repeat; background-position:50% 25%;">
 										<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
 
 	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
@@ -200,7 +200,7 @@
 
 								<!-- Bar Chart -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" style="background-image: url(../images/bar_chart.png); background-repeat: no-repeat; background-position:50% 25%;">
 										<div class="chart md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
 
 	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
