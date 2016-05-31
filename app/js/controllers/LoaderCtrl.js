@@ -19,7 +19,24 @@ angular.module('MainApp')
 		//a primary field dropped
 		$scope.onTSDropComplete = function(data){
 
-			var index = $rootScope.droppedTSFields.indexOf(data);
+			//copy the object
+			var clone = JSON.parse(JSON.stringify(data));
+
+			//check the index
+			var index = -1;
+			var n = $rootScope.droppedTSFields.length;
+			for (var i=0; i<n; i++){
+
+				if (clone.field.name === $rootScope.droppedTSFields[i].field.name && 
+					clone.store.name === $rootScope.droppedTSFields[i].store.name &&
+					clone.source.name === $rootScope.droppedTSFields[i].source.name){
+
+					index = i;
+					break
+				}
+			}
+			
+			//if not exists
 			if (index == -1){
 
 				//used to pass data to the 
@@ -35,21 +52,21 @@ angular.module('MainApp')
 					parent: angular.element(document.body),
 					clickOutsideToClose: false,
 					controller: shareFieldCtrl,
-					locals: {data: data}
+					locals: {data: clone}
 				})
 				.then(function(format){
 
-					data.field.format = format;
-					console.log('data:');
-					console.log(data);
+					//set the format
+					clone.field.format = format;
 				});
+			
+			//add asynchroniously
+			$rootScope.droppedTSFields.push(clone);
 
-				$rootScope.droppedTSFields.push(data);
 			}	
 		};
 
 		//load one merged dataset
-		//$rootScope.testWatch = 1;
 		$scope.load = function(){
 
 			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){

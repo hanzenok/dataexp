@@ -14,8 +14,6 @@ var config_file = './server/config/sources.json';
 //of sources specified in the sources config file
 var getStores = function(req, res){
 
-	console.log('AAA');
-
 	//get the requested sources
 	var sources_conf = req.body;
 	var n = sources_conf.length;

@@ -18,6 +18,7 @@ angular.module('MainApp')
 
 						$rootScope.droppedTSFields.splice(index, 1);
 					}
+					console.log($rootScope.droppedTSFields);
 
 				}
 				else{
