@@ -89,9 +89,9 @@
     	height: auto;
         border-radius: 20px;
         margin:5px;
-        background-image: url(../images/delete.png);
+/*        background-image: url(../images/delete.png);
         background-repeat: no-repeat;
-        background-position:center center;"
+        background-position:center center;"*/
     }
 
     .platform{
@@ -174,5 +174,16 @@
     }
 
     .chrome_bugfix2{
+
         min-height: 0;
+    }
+
+    .chart_img{
+
+        position: absolute;
+        right:0;
+        left:0;
+        top:0;
+        bottom:0;
+        margin: auto;
     }
