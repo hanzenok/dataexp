@@ -100,7 +100,6 @@ angular.module('MainApp')
 
 		//target field for the reduction
 		$scope.target_field = '';
-		$scope.short = '';
 		$scope.onDroppedField = function(data){
 
 			//if it is not a timestamp field
@@ -111,17 +110,11 @@ angular.module('MainApp')
 			}
 		}
 
-		//size color
 
-		// console.log($scope.size + ': ' + typeof $scope.size);
+		$rootScope.showPanels = true;
+		$rootScope.tooglePanels = function(){
 
-		// if ($scope.size > 2000){
-
-		// 	console.log('supper');
-		// }
-		// else{
-
-		// 	console.log('infer');
-		// }
+			$rootScope.showPanels = !$rootScope.showPanels;
+		}
 
 	})

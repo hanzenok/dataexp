@@ -136,6 +136,8 @@ TS.getStats = function(req, res){
 	res.json([stats]);
 }
 
+//used to regroup fields of the same 
+//store into one config
 function regroupFields(configs){
 
 	var timestamps = configs[1];
@@ -177,6 +179,14 @@ function regroupFields(configs){
 				count_fields++;
 			}
 		}
+	}
+
+	//check if all timestamps have their
+	//field associated
+	for (var i=0; i<n; i++){
+
+		if (new_configs[i].fields.length <= 1)
+			return null;
 	}
 
 	//check if all fields were assciated

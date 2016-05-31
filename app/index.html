@@ -10,7 +10,7 @@
 
 		<!-- Toolbar -->
 			<md-toolbar ng-controller="ToolbarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
-				<md-button class="menu" aria-label="Menu button" ng-click="toggle()">
+				<md-button class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
 					<md-icon md-svg-src="images/menu.svg"></md-icon>
 				</md-button>
 				<h1>Title</h1>
@@ -20,7 +20,7 @@
 		<div layout="row" flex>
 
 			<!-- Left Side Bar -->
-			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-left md-whiteframe-z2" layout="column">
+			<md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
 
 				<!-- Fab Button -->
 				<md-button class="md-fab md-fab-bottom-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
@@ -233,7 +233,7 @@
 			</md-content>
 
 			<!-- Right Side Bar -->
-			<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-sidenav-right md-whiteframe-z2" layout="column" md-component-id="right">
+			<md-sidenav md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
 				<div layout="column" flex layout-align="start" ng-controller="RightNavCtrl">
 
 					<!-- Stats -->
