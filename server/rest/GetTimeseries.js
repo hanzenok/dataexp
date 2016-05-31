@@ -65,6 +65,9 @@ TS.getTimeseries = function(req, res){
 		Promise.all(promises)
 		.then(function(datasets){
 
+			console.log('datasets');
+			console.log(datasets);
+
 			//callback
 			var callback = function(err, data){
 
@@ -101,6 +104,8 @@ TS.getTimeseries = function(req, res){
 
 				tsproc_config.timeseries.push(tmp);
 			});
+
+			console.log(JSON.stringify(tsproc_config));
 
 			//instantiate the timeseries processor
 			var tsp = new tsproc(datasets, tsproc_config, callback);
