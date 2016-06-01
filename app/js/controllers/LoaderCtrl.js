@@ -66,6 +66,35 @@ angular.module('MainApp')
 			}	
 		};
 
+		//save the generated config
+		$scope.save = function(){
+
+			TimeseriesService.config(function(ts_config){
+
+				var config = ts_config[0];
+
+				//delete unnecessary frontend fields:
+				config.timeseries.forEach(function(ts, index){
+
+					//delete timestamp fields
+					delete ts.timestamp.short;
+					delete ts.timestamp.status;
+					delete ts.timestamp.value;
+
+					//delete other fields
+					ts.fields.forEach(function(field, index){
+
+						delete field.short;
+						delete field.status;
+						delete field.value;
+					});
+				});
+
+				console.log('ts_config:');
+				console.log(config);
+			});
+		}
+
 		//load one merged dataset
 		$scope.load = function(){
 

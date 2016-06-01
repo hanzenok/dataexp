@@ -3,6 +3,7 @@ var getStores = require('./rest/GetStores');
 var getFields = require('./rest/GetFields');
 var getTimeseries = require('./rest/GetTimeseries').getTimeseries;
 var getStats = require('./rest/GetTimeseries').getStats;
+var getConfig = require('./rest/GetTimeseries').getConfig;
 var putSource = require('./rest/PutSource');
 var deleteSource = require('./rest/DeleteSource');
 
@@ -22,6 +23,7 @@ module.exports = function(app){
 	app.post('/api/fields', getFields);
 	app.post('/api/timeseries', getTimeseries);
 	app.get('/api/stats', getStats);
+	app.get('/api/config', getConfig);
 	// app.delete('/api/sources/:source_name', function(req, res){
 
 	// 	console.log(req.params.source_name);

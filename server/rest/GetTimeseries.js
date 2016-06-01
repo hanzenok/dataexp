@@ -18,6 +18,9 @@ stats.per_day = '?';
 stats.from = '';
 stats.to = '';
 
+//ts config
+var config = {};
+
 var TS = {};
 
 //returns the data
@@ -102,6 +105,10 @@ TS.getTimeseries = function(req, res){
 				tsproc_config.timeseries.push(tmp);
 			});
 
+			//save the config before using tsproc
+			//cause tsproc will modify it
+			config = JSON.parse(JSON.stringify(tsproc_config));
+
 			//instantiate the timeseries processor
 			var tsp = new tsproc(datasets, tsproc_config, callback);
 			
@@ -134,6 +141,11 @@ TS.getTimeseries = function(req, res){
 TS.getStats = function(req, res){
 	
 	res.json([stats]);
+}
+
+TS.getConfig = function(req, res){
+
+	res.json([config]);
 }
 
 //used to regroup fields of the same 
