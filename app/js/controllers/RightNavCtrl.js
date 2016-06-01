@@ -21,7 +21,7 @@ angular.module('MainApp')
 		$scope.size_status = 'normal';
 
 		//returns the current config
-		$rootScope.getConfig = function(){
+		$rootScope.getOptions = function(){
 
 			//config json
 			var config = {};
@@ -72,7 +72,7 @@ angular.module('MainApp')
 		}
 
 		//shows the stats
-		$rootScope.setConfig = function(config){
+		$rootScope.setStats = function(config){
 
 			//size
 			$scope.size = (config.size) ? config.size : '?';

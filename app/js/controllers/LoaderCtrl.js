@@ -66,35 +66,6 @@ angular.module('MainApp')
 			}	
 		};
 
-		//save the generated config
-		$scope.save = function(){
-
-			TimeseriesService.config(function(ts_config){
-
-				var config = ts_config[0];
-
-				//delete unnecessary frontend fields:
-				config.timeseries.forEach(function(ts, index){
-
-					//delete timestamp fields
-					delete ts.timestamp.short;
-					delete ts.timestamp.status;
-					delete ts.timestamp.value;
-
-					//delete other fields
-					ts.fields.forEach(function(field, index){
-
-						delete field.short;
-						delete field.status;
-						delete field.value;
-					});
-				});
-
-				console.log('ts_config:');
-				console.log(config);
-			});
-		}
-
 		//load one merged dataset
 		$scope.load = function(){
 
@@ -105,7 +76,7 @@ angular.module('MainApp')
 
 				//compose all the config and all the fields that needs to be downloaded into one
 				var all_fields_conf = [
-										$rootScope.getConfig(),
+										$rootScope.getOptions(),
 										$rootScope.droppedTSFields, 
 										$rootScope.droppedFields
 									];
@@ -144,11 +115,38 @@ angular.module('MainApp')
 						//load the stats
 						TimeseriesService.stats(function(stats){
 
-							var config = stats[0];
+							var stat = stats[0];
 							console.log('stats:');
-							console.log(config);
+							console.log(stat);
 							
-							$rootScope.setConfig(config);
+							$rootScope.setStats(stat);
+						});
+
+						//load the config
+						TimeseriesService.config(function(ts_config){
+
+							//delete unnecessary frontend fields:
+							ts_config[0].timeseries.forEach(function(ts, index){
+
+								//delete timestamp fields
+								delete ts.timestamp.short;
+								delete ts.timestamp.status;
+								delete ts.timestamp.value;
+
+								//delete other fields
+								ts.fields.forEach(function(field, index){
+
+									delete field.short;
+									delete field.status;
+									delete field.value;
+								});
+							});
+
+							//let the config to be downloadable
+							config = JSON.stringify(ts_config[0], null, 4);
+							var blob = new Blob([config], {type : 'text/plain'});
+							$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
+
 						});
 
 					},
