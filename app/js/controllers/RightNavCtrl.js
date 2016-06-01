@@ -117,4 +117,7 @@ angular.module('MainApp')
 			$rootScope.showPanels = !$rootScope.showPanels;
 		}
 
+		//needed to show an empty table
+		$scope.dummyList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
 	})

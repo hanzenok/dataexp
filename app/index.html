@@ -334,6 +334,40 @@
 						<md-datepicker style="margin-right: 0px;" ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
+					<md-divider></md-divider>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-primary subheader">Dataset</md-subheader>
+					<md-content flex layout="column" class="list_container chrome_bugfix1">
+						
+						<!-- Dataset table -->
+						<table ng-hide="$root.dataset === undefined">
+							<!-- <thead flex> -->
+								<tr>
+									<th>time</th>
+									<th ng-repeat="field_conf in $root.droppedFields">{{field_conf.field.name}}</th>
+								</tr>
+							<!-- </thead> -->
+
+							<!-- <tbody flex> -->
+								<tr ng-repeat="doc in $root.dataset" class="tr{{($index+1)%2}}">
+									<td>{{doc.time}}</td>
+									<td ng-repeat="field_conf in $root.droppedFields">{{doc[field_conf.field.name]}}</td>
+								</tr>
+							<!-- </tbody> -->
+						</table>
+
+						<!-- Dummy table -->
+						<table ng-hide="$root.dataset !== undefined">
+							<tr ng-repeat="n in dummyList" class="tr{{$index%2}}">
+								<td class="dummy"> </td>
+								<td class="dummy"> </td>
+								<td class="dummy"> </td>
+								<td class="dummy"> </td>							
+							</tr>
+						</table>
+
+					</md-content>
+
 				</div>
 
 			</md-sidenav>

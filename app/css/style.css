@@ -192,3 +192,34 @@
 
         cursor:pointer;
     }
+
+    table, th, td{
+		border-width: 1px;
+		border-bottom-style: solid;
+		border-bottom-color: rgb(175, 175, 175);
+		text-align: center;
+		font-size: 0.85em;
+		color: rgb(90, 90, 90);
+		border-collapse: collapse;
+		padding: 5px;
+    }
+
+    td.dummy{
+
+    	width: 150px;
+    	height: 20px;
+    }
+
+    tr.tr1{
+    	background-color: rgb(250, 250, 250);
+    }
+
+/*	table tbody, table thead
+	{
+	    display: block;
+	}
+	table tbody 
+	{
+		overflow: auto;
+		min-height: 150px;
+	}*/
