@@ -337,34 +337,87 @@
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader">Dataset</md-subheader>
-					<md-content flex layout="column" class="list_container chrome_bugfix1">
-						
-						<!-- Dataset table -->
-						<table ng-hide="$root.dataset === undefined">
-							<!-- <thead flex> -->
+					<md-content flex layout="column" layout-align="start start" class="list_container chrome_bugfix1" style="padding:0px;">
+					
+							<!-- Dataset table -->
+							<div ng-hide="$root.dataset === undefined" layout="row">
+								<div layout="column">
+									<md-subheader style="padding:0px;">time</md-subheader>
+									<md-list>
+										<md-list-item class="tab_cell" ng-repeat="doc in $root.dataset">
+											<span class="tab_span">{{doc.time}}</span>
+										</md-list-item>
+									</md-list>
+								</div>
+
+								<div layout="column" ng-repeat="field_conf in $root.droppedFields">
+									<md-subheader style="padding:0px;">{{field_conf.field.name}}</md-subheader>
+									<md-list>
+										<md-list-item class="tab_cell" ng-repeat="doc in $root.dataset">
+											<span class="tab_span">{{doc[field_conf.field.name]}}</span>
+										</md-list-item>
+									</md-list>
+								</div>
+								<md-list></md-list>
+							</div>
+
+
+<!-- 							<table ng-hide="$root.dataset === undefined">
 								<tr>
 									<th>time</th>
 									<th ng-repeat="field_conf in $root.droppedFields">{{field_conf.field.name}}</th>
 								</tr>
-							<!-- </thead> -->
 
-							<!-- <tbody flex> -->
 								<tr ng-repeat="doc in $root.dataset" class="tr{{($index+1)%2}}">
-									<td>{{doc.time}}</td>
-									<td ng-repeat="field_conf in $root.droppedFields">{{doc[field_conf.field.name]}}</td>
+									<td style="width:200px;">{{doc.time}}</td>
+									<td style="width:200px;" ng-repeat="field_conf in $root.droppedFields">{{doc[field_conf.field.name]}}</td>
 								</tr>
-							<!-- </tbody> -->
-						</table>
+							</table>  -->
 
-						<!-- Dummy table -->
-						<table ng-hide="$root.dataset !== undefined">
-							<tr ng-repeat="n in dummyList" class="tr{{$index%2}}">
-								<td class="dummy"> </td>
-								<td class="dummy"> </td>
-								<td class="dummy"> </td>
-								<td class="dummy"> </td>							
-							</tr>
-						</table>
+							<!-- Dummy table -->
+<!-- 							<table ng-hide="$root.dataset !== undefined">
+
+								<tr>
+									<td style="position:absolute;">1</td>
+									<td>2</td>
+									<td>3</td>
+									<td>4</td>
+								</tr>
+
+								<tr ng-repeat="n in [1,2,3,4,5,6,7,8,9,10,11,12,13]" class="tr{{$index%2}}">
+									<td class="dummy"> </td>
+									<td class="dummy"> </td>
+									<td class="dummy"> </td>
+									<td class="dummy"> </td>							
+								</tr>
+							</table> -->
+
+							<div ng-hide="$root.dataset !== undefined" layout="row">
+								<div layout="column">
+									<md-subheader>1</md-subheader>
+									<md-list>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+									</md-list>
+								</div>
+
+								<div layout="column">
+									<md-subheader>2</md-subheader>
+									<md-list>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+										<md-list-item class="tab_cell"><span class="tab_span">AA</span></md-list-item>
+									</md-list>
+								</div>
+								<md-list></md-list>
+							</div>
 
 					</md-content>
 

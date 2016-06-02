@@ -193,10 +193,30 @@
         cursor:pointer;
     }
 
+    .md-subheader{
+
+    	padding:0px;
+    }
+
+    .tab_cell{
+
+    	border-collapse: collapse;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgb(225, 225, 225);
+    }
+
+    .tab_span {
+
+		text-align: center;
+		font-size: 0.8em;
+		color: rgb(40, 40, 40);
+    }
+
     table, th, td{
 		border-width: 1px;
-		border-bottom-style: solid;
-		border-bottom-color: rgb(175, 175, 175);
+		border-style: solid;
+		border-color: rgb(175, 175, 175);
 		text-align: center;
 		font-size: 0.85em;
 		color: rgb(90, 90, 90);
@@ -218,8 +238,16 @@
 	{
 	    display: block;
 	}
+	
+	table {
+
+		width: 300px;	
+		height: 200px;
+	}
+
 	table tbody 
 	{
 		overflow: auto;
-		min-height: 150px;
+		width: 300px;	
+		height: 200px;
 	}*/
