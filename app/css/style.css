@@ -78,7 +78,8 @@
         height: auto;
 
     }
-    .chart{
+    
+    .chart_movable{
 
     	background: rgba(0,255,0, 0.1);
     	border-radius: 20px;

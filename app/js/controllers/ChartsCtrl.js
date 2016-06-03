@@ -1,8 +1,6 @@
 angular.module('MainApp')
-	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast) {
+	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, ChartsService) {
 
-
-		/*********On dropping chart*******/
 		$scope.onDropChart = function(data){
 
 			var filtered_fields = [];
@@ -20,24 +18,28 @@ angular.module('MainApp')
 			}
 
 			//check quantity of fields
-			if (filtered_fields.length !== 2) {
+			// if (filtered_fields.length !== 2) {
 
-				$mdToast.show(
-					$mdToast.simple()
-						.textContent('For PieChart 2 fields should be specified')
-						.action('OK')
-						.position('bottom')
-						.hideDelay(4000)
-				);
+			// 	$mdToast.show(
+			// 		$mdToast.simple()
+			// 			.textContent('For PieChart 2 fields should be specified')
+			// 			.action('OK')
+			// 			.position('bottom')
+			// 			.hideDelay(4000)
+			// 	);
 
-				return;				
-			}
+			// 	return;				
+			// }
 
 			console.log('Chart: ' + data.chart);
 			console.log('Fields:');
 			console.log(filtered_fields);
 			console.log('Dataset:');
 			console.log($rootScope.dataset);
+
+			console.log('state: ' + ChartsService.load($rootScope.dataset));
+			ChartsService.traceOne(data.chart, '#test', filtered_fields[0].field.name);
+			dc.renderAll();
 
 		}
 
