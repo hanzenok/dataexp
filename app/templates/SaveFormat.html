@@ -11,11 +11,14 @@
 	</md-toolbar>
 
 	<!-- Content -->
+
 	<div layout="column" class="list_container" layout-align="center center">
 		<div layout="row" flex="33">
 			<md-input-container class="md-icon-float md-block md-title">
 				<label>Format</label>
-				<input type="text" ng-model="format">
+				<form ng-submit="saveFormat()">
+					<input type="text" ng-model="format">
+				</form>
 			</md-input-container>
 			<div>
 				<md-button class="md-raised" ng-click="saveFormat()">OK</md-button>
