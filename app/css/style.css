@@ -162,7 +162,7 @@
         font-size: 0.9em;
     }
 
-    i.stats_i.overflow{
+    .overflow{
 
         color: red;
     }

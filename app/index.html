@@ -60,7 +60,12 @@
 								<div layout="column">
 									<div layout="row">
 										<span style="font-size: 1.2em;">{{store_config.store.short}}</span>
-										<span style="font-size: 0.7em;"> ({{store_config.store.size}})</span>
+										<span style="font-size: 0.7em;" ng-if="store_config.store.size <= 2500">({{store_config.store.size}})</span>
+										<div ng-if="store_config.store.size >= 2500" layout="row">
+											<span style="font-size: 0.7em;">(</span>
+											<span style="font-size: 0.7em;" class="overflow">{{store_config.store.size}}</span>
+											<span style="font-size: 0.7em;">)</span>
+										</div>
 									</div>
 
 									<span style="color: green; font-size: 0.7em;">{{store_config.source.name}}</span>
