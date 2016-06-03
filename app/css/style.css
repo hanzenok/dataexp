@@ -227,7 +227,7 @@
     .sub {
 
     	text-align: center;
-        /*white-space: nowrap;*/
+        white-space: nowrap;
     	color: rgb(150, 150, 150);
     	background-color: rgb(240, 240, 240);
     	font-weight: bold;

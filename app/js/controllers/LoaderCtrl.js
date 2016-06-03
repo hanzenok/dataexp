@@ -6,6 +6,7 @@ angular.module('MainApp')
 		$rootScope.droppedTSFields = []; //timestamp fields that are dropped to the loader
 		$rootScope.chartFields = []; //loaded fields that are dropped to any chart
 		$rootScope.dataset = [];
+		$rootScope.loaded = false;
 
 		//a field dropped
 		$scope.onDropComplete = function(data){

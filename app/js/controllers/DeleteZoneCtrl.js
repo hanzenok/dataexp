@@ -31,7 +31,7 @@ angular.module('MainApp')
 				}
 
 				//clear the dataset
-				if ($rootScope.dataset !== undefined && data.field.status === 'loaded'){
+				if ($rootScope.dataset !== undefined && data.field.status === 'loaded' && $rootScope.loaded){
 
 					//delete the dataset
 					delete $rootScope.dataset;
@@ -42,6 +42,9 @@ angular.module('MainApp')
 					data.field.status = 'ready';
 					$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
 					$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
+
+					//mark the dataset as not loaded
+					$rootScope.loaded = false;
 				}
 			}
 			//chart

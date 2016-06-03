@@ -97,7 +97,7 @@
 				<div class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
 					
 
-					<a href='javascript:dc.filterAll();dc.redrawAll();'><font color="#33CC99">Reset All</font></a>
+					<a href='javascript:dc.filterAll();dc.redrawAll();'>Reset All</a>
 
 					<!-- Charts -->
 					<div class="chart" id="test">
@@ -348,12 +348,15 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">Dataset</md-subheader>
+					<div layout="row" class="subheader">
+						<md-subheader class="md-no-sticky md-primary subheader" style="margin:8px 0;">Dataset</md-subheader>
+						<md-switch ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
+					</div>
 					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1" style="padding:0px;">
 					
 						<!-- Dataset table -->
 						<!-- <div ng-hide="$root.dataset.length === 0" layout="row"> -->
-						<div ng-if="$root.loaded" layout="row">
+						<div ng-if="$root.loaded && showDataset" layout="row">
 
 							<!-- Timestamp field -->
 							<div layout="column">
