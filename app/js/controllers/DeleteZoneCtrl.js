@@ -35,7 +35,8 @@ angular.module('MainApp')
 
 					//delete the dataset
 					delete $rootScope.dataset;
-					$rootScope.dataset = undefined;
+					$rootScope.dataset = [];
+
 				
 					//mark all fields as ready (=not loaded)
 					data.field.status = 'ready';

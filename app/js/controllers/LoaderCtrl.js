@@ -1,10 +1,11 @@
 angular.module('MainApp')
-	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService){
+	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService, ChartsService){
 
 		//containers
 		$rootScope.droppedFields = [];//fields that are dropped to the loader
 		$rootScope.droppedTSFields = []; //timestamp fields that are dropped to the loader
 		$rootScope.chartFields = []; //loaded fields that are dropped to any chart
+		$rootScope.dataset = [];
 
 		//a field dropped
 		$scope.onDropComplete = function(data){
@@ -146,6 +147,13 @@ angular.module('MainApp')
 							config = JSON.stringify(ts_config[0], null, 4);
 							var blob = new Blob([config], {type : 'text/plain'});
 							$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
+
+							$rootScope.loaded = true;
+							console.log('loaded');
+
+							//initialise the charts
+							ChartsService.load($rootScope.dataset);
+							dc.renderAll();
 
 						});
 

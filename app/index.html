@@ -96,10 +96,15 @@
 				<!-- Charts Container -->
 				<div class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
 					
+
+					<a href='javascript:dc.filterAll();dc.redrawAll();'><font color="#33CC99">Reset All</font></a>
+
 					<!-- Charts -->
 					<div class="chart" id="test">
 						
 					</div>
+
+					<div ng-drag-clone=""></div>
 
 				</div>
 
@@ -347,20 +352,21 @@
 					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1" style="padding:0px;">
 					
 						<!-- Dataset table -->
-						<!-- <div ng-hide="$root.droppedFields.length === 0" layout="row"> -->
+						<!-- <div ng-hide="$root.dataset.length === 0" layout="row"> -->
+						<div ng-if="$root.loaded" layout="row">
 
 							<!-- Timestamp field -->
-	<!-- 						<div layout="column">
+							<div layout="column">
 								<md-subheader class="sub">time</md-subheader>
 								<md-list>
 									<md-list-item layout-align="center center" class="tab_cell_time" ng-repeat="doc in $root.dataset">
 										<span class="tab_span">{{doc.time}}</span>
 									</md-list-item>
 								</md-list>
-							</div> -->
+							</div>
 
 							<!-- Other fields -->
-<!-- 							<div layout="column" ng-repeat="field_conf in $root.droppedFields">
+							<div layout="column" ng-repeat="field_conf in $root.droppedFields">
 								<md-subheader class="sub">{{field_conf.field.name}}</md-subheader>
 								<md-list>
 									<md-list-item layout-align="center center" class="tab_cell" ng-repeat="doc in $root.dataset">
@@ -369,7 +375,7 @@
 								</md-list>
 							</div>
 							<md-list></md-list>
-						</div> -->
+						</div>
 
 					</md-content>
 

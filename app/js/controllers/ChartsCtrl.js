@@ -37,7 +37,7 @@ angular.module('MainApp')
 			console.log('Dataset:');
 			console.log($rootScope.dataset);
 
-			console.log('state: ' + ChartsService.load($rootScope.dataset));
+			// console.log('state: ' + ChartsService.load($rootScope.dataset));
 			ChartsService.traceOne(data.chart, '#test', filtered_fields[0].field.name);
 			dc.renderAll();
 
