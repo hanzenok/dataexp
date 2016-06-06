@@ -115,7 +115,12 @@
 				</div>
 
 				<!-- Reset Chart Filters -->
-				<a href='javascript:dc.filterAll();dc.redrawAll();' style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:15px;">Reset</a>
+				<div layout="row">
+					<span style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:15px;">(</span>
+					<span id="counter" style="color:gray; font-family: 'Courier New'; font-size: 0.9em;"></span>
+					<span style="color:gray; font-family: 'Courier New'; font-size: 0.9em;">)</span>
+					<a href='javascript:dc.filterAll();dc.redrawAll();' style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:5px">Reset</a>
+				</div>
 
 				<!-- Footer -->
 				<hr>

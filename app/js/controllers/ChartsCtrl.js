@@ -67,6 +67,9 @@ angular.module('MainApp')
 					var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
 					dc_chart.render();
 
+					//also render the counter
+					ChartsService.counter('#counter').render();
+
 
 				}, 100);
 			}
@@ -88,6 +91,9 @@ angular.module('MainApp')
 				console.log(chart);
 				chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
 			});
+
+			//also render the counter
+			ChartsService.counter('#counter').render();
 
 			//rendering
 			dc.renderAll();

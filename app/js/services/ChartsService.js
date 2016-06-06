@@ -101,6 +101,17 @@ angular.module('MainApp')
 
 		}
 
+		this.counter = function(container){
+
+			var chart = dc.numberDisplay(container);
+
+			chart.group(ndx.groupAll())
+			.formatNumber(d3.format('n'))
+			.valueAccessor(function(d){return d;});
+
+			return chart;
+		}
+
 		this.traceOne = function(chart_type, container, key1, key2, ts_key){
 
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
