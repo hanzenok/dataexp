@@ -37,7 +37,6 @@ angular.module('MainApp')
 					delete $rootScope.dataset;
 					$rootScope.dataset = [];
 
-				
 					//mark all fields as ready (=not loaded)
 					data.field.status = 'ready';
 					$rootScope.droppedTSFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
@@ -47,9 +46,18 @@ angular.module('MainApp')
 					$rootScope.loaded = false;
 				}
 			}
-			//chart
+			//charts
 			else{
 				
+				if (data.id !== undefined){
+
+					var index = $rootScope.droppedCharts.indexOf(data);
+					if (index > -1){
+
+						$rootScope.droppedCharts.splice(index, 1);
+					}
+				}
+
 				//delete the fields
 				$rootScope.chartFields = [];
 			}

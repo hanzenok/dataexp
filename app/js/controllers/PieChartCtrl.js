@@ -7,7 +7,7 @@ angular.module('MainApp')
 		$scope.onDropComplete = function(data){
 
 
-			if(data.field.status === 'loaded' && !data.field.format){
+			if(data.field && data.field.status === 'loaded' && !data.field.format){
 
 				var index = $rootScope.chartFields.indexOf(data);
 				if (index == -1){

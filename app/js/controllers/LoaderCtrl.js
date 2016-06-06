@@ -11,60 +11,68 @@ angular.module('MainApp')
 		//a field dropped
 		$scope.onDropComplete = function(data){
 
-			var index = $rootScope.droppedFields.indexOf(data);
-			if (index == -1){
+			//if dropped object is a field
+			if (data.field){
 
-				$rootScope.droppedFields.push(data);
+				var index = $rootScope.droppedFields.indexOf(data);
+				if (index == -1){
+
+					$rootScope.droppedFields.push(data);
+				}
 			}		
 		};
 
 		//a primary field dropped
 		$scope.onTSDropComplete = function(data){
 
-			//copy the object
-			var clone = JSON.parse(JSON.stringify(data));
+			//if dropped object is a field
+			if (data.field){
 
-			//check the index
-			var index = -1;
-			var n = $rootScope.droppedTSFields.length;
-			for (var i=0; i<n; i++){
+				//copy the object
+				var clone = JSON.parse(JSON.stringify(data));
 
-				if (clone.field.name === $rootScope.droppedTSFields[i].field.name && 
-					clone.store.name === $rootScope.droppedTSFields[i].store.name &&
-					clone.source.name === $rootScope.droppedTSFields[i].source.name){
+				//check the index
+				var index = -1;
+				var n = $rootScope.droppedTSFields.length;
+				for (var i=0; i<n; i++){
 
-					index = i;
-					break
+					if (clone.field.name === $rootScope.droppedTSFields[i].field.name && 
+						clone.store.name === $rootScope.droppedTSFields[i].store.name &&
+						clone.source.name === $rootScope.droppedTSFields[i].source.name){
+
+						index = i;
+						break
+					}
 				}
-			}
-			
-			//if not exists
-			if (index == -1){
+				
+				//if not exists
+				if (index == -1){
 
-				//used to pass data to the 
-				//DialogController
-				var shareFieldCtrl = function ($scope, data) {
+					//used to pass data to the 
+					//DialogController
+					var shareFieldCtrl = function ($scope, data) {
 
-					$scope.data = data;
+						$scope.data = data;
+					}
+
+					//ask the format of the timestamp field
+					$mdDialog.show({
+						templateUrl: '../../templates/SaveFormat.html',
+						parent: angular.element(document.body),
+						clickOutsideToClose: false,
+						controller: shareFieldCtrl,
+						locals: {data: clone}
+					})
+					.then(function(format){
+
+						//set the format
+						clone.field.format = format;
+					});
+				
+					//add asynchroniously
+					$rootScope.droppedTSFields.push(clone);
+
 				}
-
-				//ask the format of the timestamp field
-				$mdDialog.show({
-					templateUrl: '../../templates/SaveFormat.html',
-					parent: angular.element(document.body),
-					clickOutsideToClose: false,
-					controller: shareFieldCtrl,
-					locals: {data: clone}
-				})
-				.then(function(format){
-
-					//set the format
-					clone.field.format = format;
-				});
-			
-			//add asynchroniously
-			$rootScope.droppedTSFields.push(clone);
-
 			}	
 		};
 

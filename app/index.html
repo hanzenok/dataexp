@@ -99,14 +99,14 @@
 				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
 
 				<!-- Charts Container -->
-				<div class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
+				<div flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
 					
 					<a href='javascript:dc.filterAll();dc.redrawAll();'>Reset All</a>
 
 					<!-- Charts -->
 					<md-button class="md-raised" ng-click="reload()">reload</md-button>
 					{{droppedCharts.length}}
-					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true">
+					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true" ng-drag-data="chart">
 					</div>
 
 
