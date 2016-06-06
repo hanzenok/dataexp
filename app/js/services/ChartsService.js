@@ -9,11 +9,6 @@ angular.module('MainApp')
 
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
-			
-			if (!key2){
-				console.log("undefined");
-			}
-			else{console.log('good');}
 
 			//grouping
 			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
@@ -44,9 +39,45 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		var row_chart = function(container, key1, key2){
+
+			//dimension
+			var dim = ndx.dimension(function(d){return d[key1];});
+			
+			//grouping
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+
+			//chart
+			var chart = dc.rowChart(container);
+			
+			//default values
+			chart.width(400).height(200)
+			.elasticX(true)
+			.dimension(dim).group(group)
+			.xAxis().tickFormat(d3.format('s'));
+
+			//on hover text and axis labels
+			if (!key2){
+				chart.title(function(d){
+					return "(" + d.key + ")" 
+					+ "\n" + d.value;
+				});
+			}
+			else{
+				chart.title(function(d){
+					return "(" + d.key + ")"
+					+ "\n" + key2
+					+ ": " + d.value; 
+				});
+			}
+
+			return chart;
+		}
+
 		var ChartsEnum = {
 
-			'Pie' : pie_chart
+			'Pie': pie_chart,
+			'Row': row_chart
 		};
 
 		//load the dataset

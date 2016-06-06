@@ -62,11 +62,25 @@ angular.module('MainApp')
 						$rootScope.droppedCharts.splice(index, 1);
 					}
 				}
-				//charts
+				//droppable charts
 				else{
 
-					//delete the fields
-					$rootScope.chartFields = [];
+					console.log('delete chart:');
+					console.log(data);
+
+					//get the indexes of fields
+					var indexes = [];
+					$rootScope.chartFields.forEach(function(field_conf, index){
+
+						if (field_conf.chart === data.chart)
+							indexes.push(index);
+					});
+
+					//remove fields
+					indexes.forEach(function(index, i){
+
+						$rootScope.chartFields.splice(index, 1);
+					});
 				}
 
 			}

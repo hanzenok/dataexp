@@ -12,7 +12,7 @@ angular.module('MainApp')
 		$scope.onDropChart = function(data){
 
 			//if dropped object not a DC.js chart
-			if (data.chart && $rootScope.chartFields.length){
+			if (data && data.chart && $rootScope.chartFields.length){
 
 				console.log('onDropChart:');
 				console.log(data);
@@ -33,8 +33,8 @@ angular.module('MainApp')
 
 				//checks
 				var error_message = '';
-				if (data.chart === EnumCharts.pie && filtered_fields.length > 2)
-					error_message = 'PieChart should have 1 or 2 fields';
+				if ((data.chart === EnumCharts.pie || data.chart === EnumCharts.row) && filtered_fields.length > 2)
+					error_message = data.chart + 'Chart should have 1 or 2 fields';
 
 				if (error_message){
 

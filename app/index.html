@@ -161,17 +161,17 @@
 
 						<!-- <div> -->
 						<!-- md-content is problematic -->
-						<md-content flex>
+						<md-content flex ng-controller="DropableChartsCtrl">
 							<md-list layout="row" flex>
 
 								<!-- Pie Chart -->
 								<md-list-item layout="column">
-									<div class="platform" ng-controller="PieChartCtrl" layout="column">
+									<div class="platform" layout="column">
 										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
+										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
 
-											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field">
+											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Pie'">
 												{{field_config.field.short}}
 											</div>
 										</div>
@@ -217,11 +217,11 @@
 									<div class="platform"  layout="column">
 										<img src="images/row_chart.png" class="chart_img" alt="Row Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Row')" ng-drag="true" ng-drag-data="{chart:'Row'}"> 
 
-	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
-												{{field.name}}
-											</div> -->
+											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Row'">
+												{{field_config.field.short}}
+											</div>
 										</div>
 
 										<span class="title">Row Chart</span>
@@ -421,7 +421,7 @@
 		<script src="js/controllers/LeftNavCtrl.js"></script>
 		<script src="js/controllers/RightNavCtrl.js"></script>
 		<script src="js/controllers/DialogCtrl.js"></script>
-		<script src="js/controllers/PieChartCtrl.js"></script>
+		<script src="js/controllers/DropableChartsCtrl.js"></script>
 		<script src="js/controllers/DeleteZoneCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>
 		<script src="js/controllers/LoaderCtrl.js"></script>
