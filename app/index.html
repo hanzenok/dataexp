@@ -169,7 +169,7 @@
 									<div class="platform" ng-controller="PieChartCtrl" layout="column">
 										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'PieChart'}"> 
+										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field">
 												{{field_config.field.short}}

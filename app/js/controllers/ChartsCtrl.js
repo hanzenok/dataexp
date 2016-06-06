@@ -1,12 +1,21 @@
 angular.module('MainApp')
 	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, ChartsService) {
 
-		$rootScope.droppedCharts = [];
+		var EnumCharts = {
+							pie: 'Pie',
+							graph: 'Graph',
+							scatter: 'Scatter',
+							row: 'Row'
+						};
 
+		$rootScope.droppedCharts = [];
 		$scope.onDropChart = function(data){
 
 			//if dropped object not a DC.js chart
-			if (typeof data.id === 'undefined'){
+			if (data.chart && $rootScope.chartFields.length){
+
+				console.log('onDropChart:');
+				console.log(data);
 
 				var filtered_fields = [];
 
@@ -22,13 +31,31 @@ angular.module('MainApp')
 					}
 				}
 
+				//checks
+				var error_message = '';
+				if (data.chart === EnumCharts.pie && filtered_fields.length > 2)
+					error_message = 'PieChart should have 1 or 2 fields';
+
+				if (error_message){
+
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent(error_message)
+							.action('OK')
+							.position('bottom')
+							.hideDelay(4000)
+					);
+
+					return;
+				}	
+
 				//create chart object
 				var chart = {};
 				chart.id = 'chart_' + Math.floor(Math.random()*2000); //random
 				chart.type = data.chart;
 				chart.key1 = filtered_fields[0].field.name;
 				chart.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
-				chart.ts_key = (data.chart === 'Graph' || data.chart === 'Scatter') ? 'time' : null;
+				chart.ts_key = (data.chart === EnumCharts.graph || data.chart === EnumCharts.scatter) ? 'time' : null;
 
 				//add to the charts list
 				$rootScope.droppedCharts.push(chart);

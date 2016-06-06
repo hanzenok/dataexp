@@ -1,8 +1,7 @@
 angular.module('MainApp')
 	.controller('PieChartCtrl', function ($scope, $rootScope) {
 
-		var CHART_TYPE = 'PieChart';
-		$scope.pie_input = 'ISO'; //a placeholder for the input
+		var CHART_TYPE = 'Pie';
 
 		$scope.onDropComplete = function(data){
 

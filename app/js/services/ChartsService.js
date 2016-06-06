@@ -46,7 +46,7 @@ angular.module('MainApp')
 
 		var ChartsEnum = {
 
-			'PieChart' : pie_chart
+			'Pie' : pie_chart
 		};
 
 		//load the dataset
