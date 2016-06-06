@@ -154,8 +154,6 @@ angular.module('MainApp')
 
 							//initialise the charts
 							ChartsService.load($rootScope.dataset);
-							dc.renderAll();
-
 						});
 
 					},
