@@ -23,8 +23,8 @@
 			<!-- Left Side Bar -->
 			<md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
 
-				<!-- Fab Button -->
-				<md-button class="md-fab md-fab-top-right md-mini" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
+				<!-- Fab Button to add a new source-->
+				<md-button class="md-fab md-fab-top-right md-mini md-primary" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
 					<md-icon md-svg-src="images/add.svg"></md-icon>
 				</md-button>
 
@@ -99,20 +99,23 @@
 				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
 
 				<!-- Charts Container -->
-				<div flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
+				<div flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 					
-					<a href='javascript:dc.filterAll();dc.redrawAll();'>Reset All</a>
+					<!-- Fab Button to reload the DC charts-->
+					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()">
+						<md-icon md-svg-src="images/refresh.svg"></md-icon>
+					</md-button>
 
-					<!-- Charts -->
-					<md-button class="md-raised" ng-click="reload()">reload</md-button>
-					{{droppedCharts.length}}
-					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true" ng-drag-data="chart">
+					<!-- Charts-->
+					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true" ng-drag-data="chart" style="display: inline-block; margin:10px;">
 					</div>
-
 
 					<div ng-drag-clone=""></div>
 
 				</div>
+
+				<!-- Reset Chart Filters -->
+				<a href='javascript:dc.filterAll();dc.redrawAll();' style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:15px;">Reset</a>
 
 				<!-- Footer -->
 				<hr>

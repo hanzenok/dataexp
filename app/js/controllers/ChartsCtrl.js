@@ -6,7 +6,6 @@ angular.module('MainApp')
 		$scope.onDropChart = function(data){
 
 			//if dropped object not a DC.js chart
-
 			if (typeof data.id === 'undefined'){
 
 				var filtered_fields = [];
@@ -35,10 +34,13 @@ angular.module('MainApp')
 				$rootScope.droppedCharts.push(chart);
 
 				//wait for the DOM elements
-				//to be added
+				//to be added then trace
 				setTimeout(function() {
 
-					$scope.reload();
+					var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+					dc_chart.render();
+
+
 				}, 100);
 			}
 
@@ -57,7 +59,7 @@ angular.module('MainApp')
 
 				console.log('chart:');
 				console.log(chart);
-				ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+				chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
 			});
 
 			//rendering

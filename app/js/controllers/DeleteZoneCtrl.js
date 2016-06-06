@@ -46,7 +46,7 @@ angular.module('MainApp')
 					$rootScope.loaded = false;
 				}
 			}
-			//charts
+			//DC charts
 			else{
 				
 				if (data.id !== undefined){
@@ -57,9 +57,13 @@ angular.module('MainApp')
 						$rootScope.droppedCharts.splice(index, 1);
 					}
 				}
+				//charts
+				else{
 
-				//delete the fields
-				$rootScope.chartFields = [];
+					//delete the fields
+					$rootScope.chartFields = [];
+				}
+
 			}
 
 			
