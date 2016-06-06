@@ -10,8 +10,13 @@ angular.module('MainApp')
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
 			
+			if (!key2){
+				console.log("undefined");
+			}
+			else{console.log('good');}
+
 			//grouping
-			var group = (typeof key2 === 'undefined') ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
 
 			//chart
 			var chart = dc.pieChart(container);
@@ -22,7 +27,7 @@ angular.module('MainApp')
 			.innerRadius(20).radius(100);
 
 			//on hover text
-			if (key2 === undefined){
+			if (!key2){
 				chart.title(function(d){
 					return "(" + d.key + ")" 
 					+ "\n" + d.value;
@@ -65,9 +70,9 @@ angular.module('MainApp')
 
 		}
 
-		this.traceOne = function(chart_type, container, key1, key2, key3){
+		this.traceOne = function(chart_type, container, key1, key2, ts_key){
 
-			return ChartsEnum[chart_type].call(this, container, key1, key2, key3);
+			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
 		}
 
 	});

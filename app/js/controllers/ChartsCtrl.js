@@ -1,8 +1,11 @@
 angular.module('MainApp')
 	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, ChartsService) {
 
-		var filtered_fields = [];
+		$scope.droppedCharts = [];
+
 		$scope.onDropChart = function(data){
+
+			var filtered_fields = [];
 
 			//filtering all the dropped fields
 			//by chart type
@@ -16,36 +19,45 @@ angular.module('MainApp')
 				}
 			}
 
-			//check quantity of fields
-			// if (filtered_fields.length !== 2) {
+			//create chart object
+			var chart = {};
+			chart.id = 'chart_' + Math.floor(Math.random()*2000); //random
+			chart.type = data.chart;
+			chart.key1 = filtered_fields[0].field.name;
+			chart.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
+			chart.ts_key = (data.chart === 'Graph' || data.chart === 'Scatter') ? 'time' : null;
 
-			// 	$mdToast.show(
-			// 		$mdToast.simple()
-			// 			.textContent('For PieChart 2 fields should be specified')
-			// 			.action('OK')
-			// 			.position('bottom')
-			// 			.hideDelay(4000)
-			// 	);
+			//add to the charts list
+			$scope.droppedCharts.push(chart);
 
-			// 	return;				
-			// }
+			//wait for the DOM elements
+			//to be added
+			setTimeout(function() {
 
-			console.log('Chart: ' + data.chart);
-			console.log('Fields:');
-			console.log(filtered_fields);
-			console.log('Dataset:');
-			console.log($rootScope.dataset);
+				$scope.reload();
+			}, 100);
 
-			// console.log('state: ' + ChartsService.load($rootScope.dataset));
-			ChartsService.traceOne(data.chart, '#test0', filtered_fields[0].field.name);
-			dc.renderAll();
+
 		}
 
 		$scope.reload = function(){
 
+			console.log('reload!!! ' + $scope.droppedCharts.length);
+
+			//load the data
 			ChartsService.load($rootScope.dataset);
-			ChartsService.traceOne('PieChart', '#test0', filtered_fields[0].field.name);
+
+			//draw all the charts
+			$scope.droppedCharts.forEach(function(chart, index){
+
+				console.log('chart:');
+				console.log(chart);
+				ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+			});
+
+			//rendering
 			dc.renderAll();
+			dc.redrawAll();
 		}
 
 	});

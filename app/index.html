@@ -101,19 +101,14 @@
 				<!-- Charts Container -->
 				<div class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" flex layout="row">
 					
-
 					<a href='javascript:dc.filterAll();dc.redrawAll();'>Reset All</a>
 
 					<!-- Charts -->
 					<md-button class="md-raised" ng-click="reload()">reload</md-button>
-					<div class="chart" id="test0" ng-drag="true">
+					{{droppedCharts.length}}
+					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true">
 					</div>
 
-					<div class="chart" id="test1">
-					</div>
-
-					<div class="chart" id="test2">
-					</div>
 
 					<div ng-drag-clone=""></div>
 
