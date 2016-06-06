@@ -1,6 +1,8 @@
 angular.module('MainApp')
 	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, ChartsService) {
 
+		var count = 0;
+
 		$scope.onDropChart = function(data){
 
 			var filtered_fields = [];
@@ -38,8 +40,9 @@ angular.module('MainApp')
 			console.log($rootScope.dataset);
 
 			// console.log('state: ' + ChartsService.load($rootScope.dataset));
-			ChartsService.traceOne(data.chart, '#test', filtered_fields[0].field.name);
+			ChartsService.traceOne(data.chart, '#test' + count, filtered_fields[0].field.name);
 			dc.renderAll();
+			count++;
 
 		}
 

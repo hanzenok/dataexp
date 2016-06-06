@@ -8,10 +8,11 @@
         -ms-user-select: none;
         user-select: none;
     }
-    .drag-object, [ng-drag-clone], [ng-drop] [ng-drag]{
+    .drag-object, [ng-drag-clone]{
+
         width: 70px;
         height: 30px;
-        background: rgba(1, 87, 155, 0.8);/*#01579b;*/
+        background: rgba(1, 87, 155, 0.8);
         border:solid 2px rgb(1, 87, 100);
         color: rgba(250, 250, 250, 0.8);
         text-align: center;
@@ -23,6 +24,25 @@
         margin:10px;
         cursor: move;
 		position: relative;
+        overflow: hidden;
+    }
+
+    .drag_field {
+
+        width: 70px;
+        height: 30px;
+        background: rgba(1, 87, 155, 0.8);
+        border:solid 2px rgb(1, 87, 100);
+        color: rgba(250, 250, 250, 0.8);
+        text-align: center;
+        font-weight: bold;
+        line-height:30px;
+        font-size: 75%;
+        border-radius: 10px;
+        display: inline-block;
+        margin:10px;
+        cursor: move;
+        position: relative;
         overflow: hidden;
     }
 
