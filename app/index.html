@@ -107,8 +107,8 @@
 						<md-tooltip md-visible="false" md-direction="top">Reload</md-tooltip>
 					</md-button>
 
-					<!-- Charts-->
-					<div class="droppable_chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}">
+					<!-- DC Charts-->
+					<div class="droppable_chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true" ng-drag-data="chart">
 						<h5>{{chart.key1}}</h5>
 					</div>
 
