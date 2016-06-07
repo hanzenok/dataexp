@@ -10,12 +10,12 @@
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- Toolbar -->
-			<md-toolbar class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
-				<md-button class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
-					<md-icon md-svg-src="images/menu.svg"></md-icon>
-				</md-button>
-				<h1>Title</h1>
-			</md-toolbar>
+		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
+			<md-button class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
+				<md-icon md-svg-src="images/menu.svg"></md-icon>
+			</md-button>
+			<h1>Title</h1>
+		</md-toolbar>
 
 		
 		<div layout="row" flex>
@@ -94,16 +94,16 @@
 			</md-sidenav>
 
 			<!-- Main Container -->
-			<md-content flex layout="column">
+			<div flex layout="column">
 
 				<!-- Progress Bar -->
 				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
 
 				<!-- Hide button -->
-				<md-button ng-controller="HideBtnCtrl" class="md-raised" ng-click="test()" style="position: fixed; bottom:0; width:100px; right:500px; z-index: 20;">Yep</md-button>
+				<md-button ng-controller="HideBtnCtrl" class="md-raised" ng-click="toogle()" style="position: fixed; bottom:0; width:100px; right:500px; z-index: 20;">Yep</md-button>
 
 				<!-- Charts Container -->
-				<div flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
+				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()">
@@ -118,7 +118,7 @@
 
 					<div ng-drag-clone=""></div>
 
-				</div>
+				</md-content>
 
 				<!-- Reset Chart Filters -->
 				<div layout="row">
@@ -276,7 +276,7 @@
 					</div>
 				</footer>
 
-			</md-content>
+			</div>
 
 			<!-- Right Side Bar -->
 			<md-sidenav md-is-locked-open="true" class="md-sidenav-right md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
@@ -437,6 +437,7 @@
 		<script src="js/controllers/DeleteZoneCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>
 		<script src="js/controllers/LoaderCtrl.js"></script>
+		<script src="js/controllers/ToolBarCtrl.js"></script>
 		<script src="js/controllers/HideBtnCtrl.js"></script>
 
 	</body>
