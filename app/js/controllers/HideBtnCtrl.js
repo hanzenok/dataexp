@@ -7,9 +7,12 @@ angular.module('MainApp')
 
 		//toogle the footer
 		$rootScope.hideFooter = !$rootScope.hideFooter;
-
-		//toogle the image
-		$scope.image = ($rootScope.hideFooter) ? 'images/up.svg' : 'images/down.svg';
 	}
+
+	//toogle the image
+	$rootScope.$watch('hideFooter', function(){
+
+		$scope.image = ($rootScope.hideFooter) ? 'images/up.svg' : 'images/down.svg';
+	});
 	
 });
