@@ -99,9 +99,6 @@
 				<!-- Progress Bar -->
 				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
 
-				<!-- Hide button -->
-				<md-button ng-controller="HideBtnCtrl" class="md-raised" ng-click="toogle()" style="position: fixed; bottom:0; width:100px; right:500px; z-index: 20;">Yep</md-button>
-
 				<!-- Charts Container -->
 				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 
@@ -126,10 +123,14 @@
 					<span id="counter" style="color:gray; font-family: 'Courier New'; font-size: 0.9em;"></span>
 					<span style="color:gray; font-family: 'Courier New'; font-size: 0.9em;">)</span>
 					<a href='javascript:dc.filterAll();dc.redrawAll();' style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:5px">Reset</a>
+
+					<div flex></div>
+
+					<!-- Hide Button -->
+					<img ng-controller="HideBtnCtrl" src="{{image}}" ng-click="toogle()"/ style="margin-right: 5px; margin-bottom: -5px; background: rgba(240, 240, 240, 0.8); cursor:pointer; border-radius: 5px;">
 				</div>
 
 				<!-- Footer -->
-				<hr>
 				<footer flex="none" ng-hide="$root.hideFooter">
 					<div class="md-whiteframe-4dp" layout="row" flex>
 
@@ -160,6 +161,7 @@
 								</div>
 							</div>
 
+							<!-- Buttons -->
 							<div layout="row" layout-align="center start">
 								<img class="loader_buttons" src="images/download.svg" ng-click="load()"/>
 								<a download="config.json" ng-href="{{url}}">
@@ -267,7 +269,6 @@
 						<div layout="column" class="loader">
 							<div flex class="delete_chart" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
 								<img src="images/delete.png" class="chart_img" alt="Delete Zone"/>
-<!-- 								<md-icon md-svg-src="../images/delete2.svg" aria-label="Delete source" class="drop_info" style="height: 60px;"></md-icon> -->
 							</div>
 						</div>
 
