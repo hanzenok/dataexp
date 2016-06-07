@@ -257,41 +257,114 @@
     	border-color: rgb(225, 225, 225);
     }
 
-/*    table, th, td{
-		border-width: 1px;
-		border-style: solid;
-		border-color: rgb(175, 175, 175);
-		text-align: center;
-		font-size: 0.85em;
-		color: rgb(90, 90, 90);
-		border-collapse: collapse;
-		padding: 5px;
+    .font_1p2{
+
+        font-size: 1.2em;
     }
 
-    td.dummy{
+    .font_0p8 {
 
-    	width: 150px;
-    	height: 20px;
+        font-size: 0.8em;
     }
 
-    tr.tr1{
-    	background-color: rgb(250, 250, 250);
-    }*/
+    .font_0p7{
 
-/*	table tbody, table thead
-	{
-	    display: block;
-	}
-	
-	table {
+        font-size: 0.7em;
+    }
 
-		width: 300px;	
-		height: 200px;
-	}
+    .green_font{
 
-	table tbody 
-	{
-		overflow: auto;
-		width: 300px;	
-		height: 200px;
-	}*/
+        color: green;
+    }
+
+    #source_server {
+
+        width:100px;
+        color:blue;
+        overflow: hidden;
+    }
+
+    .droppable_chart{
+
+        display: inline-block;
+        margin:10px;
+    }
+
+    .reset_charts{
+
+        color:gray;
+        font-family: 'Courier New';
+        font-size: 0.9em;
+    }
+
+    #href{
+        
+        margin-left: 5px; 
+    }
+
+    #paranth{
+
+        margin-left: 15px;
+    }
+
+    #hide_button {
+
+        margin-right: 5px;
+        margin-bottom: -5px;
+        background: rgb(243, 243, 243);
+        cursor:pointer;
+        border-radius: 5px;
+        outline:none;
+    }
+
+    .padding_0{
+
+        padding: 0px;
+    }
+
+    .padding_5 {
+
+        padding: 5px;
+    }
+
+    .margin_5{
+
+        margin: 5px;
+    }
+
+    .marginb_0{
+
+        margin-bottom: 0px;
+    }
+
+    .height_30{
+
+        height: 30px;
+    }
+
+    .md_input{
+
+        margin:0px;
+        margin-left:10px;
+        margin-bottom: 20px;
+    }
+
+    .subh_margin{
+
+        margin:8px 0;
+    }
+
+    .height_auto{
+
+        height: auto;
+    }
+
+    .md_datepicker{
+
+        padding:0;
+        margin: 2px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-color: rgb(235, 235, 235);
+    }
+

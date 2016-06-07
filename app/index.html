@@ -37,11 +37,11 @@
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
 								<md-checkbox ng-model="source_config.source.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
 								<div layout="column">
-									<span style="font-size: 1.2em;">{{source_config.source.name}}</span>
+									<span class="font_1p2">{{source_config.source.name}}</span>
 									<div layout="row">
-										<span style="color:green; font-size: 0.7em;">{{getSourceType(source_config)}}</span>
-										<span style="font-size: 0.7em;">-</span>
-										<span style="width:100px; color:blue; font-size: 0.7em; overflow: hidden;"> {{source_config.source.server}}</span>
+										<span class="font_0p7 green_font">{{getSourceType(source_config)}}</span>
+										<span class="font_0p7">-</span>
+										<span class="font_0p7" id="source_server"> {{source_config.source.server}}</span>
 									</div>
 								</div>
 								<md-icon class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
@@ -54,22 +54,21 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader">Stores ({{stores_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container chrome_bugfix2">
-						<!-- <md-divider></md-divider> -->
 						<md-list class="chrome_bugfix1">
 							<md-list-item ng-repeat="store_config in stores_conf" class="list_item">
 								<md-checkbox aria-label="Store checkbox" ng-model="store_config.wanted" ng-change="loadFields(store_config)"></md-checkbox>
 								<div layout="column">
 									<div layout="row">
-										<span style="font-size: 1.2em;">{{store_config.store.short}}</span>
-										<span style="font-size: 0.7em;" ng-if="store_config.store.size <= 2500">({{store_config.store.size}})</span>
+										<span class="font_1p2">{{store_config.store.short}}</span>
+										<span class="font_0p7" ng-if="store_config.store.size <= 2500">({{store_config.store.size}})</span>
 										<div ng-if="store_config.store.size >= 2500" layout="row">
-											<span style="font-size: 0.7em;">(</span>
-											<span style="font-size: 0.7em;" class="overflow">{{store_config.store.size}}</span>
-											<span style="font-size: 0.7em;">)</span>
+											<span class="font_0p7">(</span>
+											<span class="font_0p7 overflow">{{store_config.store.size}}</span>
+											<span class="font_0p7">)</span>
 										</div>
 									</div>
 
-									<span style="color: green; font-size: 0.7em;">{{store_config.source.name}}</span>
+									<span class="font_0p7 green_font">{{store_config.source.name}}</span>
 								</div>
 								<md-divider></md-divider>
 							</md-list-item>
@@ -109,7 +108,7 @@
 					</md-button>
 
 					<!-- Charts-->
-					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" style="display: inline-block; margin:10px;">
+					<div class="droppable_chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}">
 						<h5>{{chart.key1}}</h5>
 					</div>
 
@@ -119,15 +118,15 @@
 
 				<!-- Reset Chart Filters -->
 				<div layout="row">
-					<span style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:15px;">(</span>
-					<span id="counter" style="color:gray; font-family: 'Courier New'; font-size: 0.9em;"></span>
-					<span style="color:gray; font-family: 'Courier New'; font-size: 0.9em;">)</span>
-					<a href='javascript:dc.filterAll();dc.redrawAll();' style="color:gray; font-family: 'Courier New'; font-size: 0.9em; margin-left:5px">Reset</a>
+					<span id="paranth" class="reset_charts">(</span>
+					<span class="reset_charts" id="counter"></span> <!-- will be filled by DC.js-->
+					<span class="reset_charts">)</span>
+					<a id="href" class="reset_charts" href='javascript:dc.filterAll();dc.redrawAll();'>Reset</a>
 
 					<div flex></div>
 
 					<!-- Hide Button -->
-					<img ng-controller="HideBtnCtrl" class="md-whiteframe-2dp" src="{{image}}" ng-click="toogle()" style="margin-right: 5px; margin-bottom: -5px; background: rgb(243, 243, 243); cursor:pointer; border-radius: 5px; outline:none;"/>
+					<img id="hide_button" ng-controller="HideBtnCtrl" class="md-whiteframe-1dp" src="{{image}}" ng-click="toogle()"/>
 				</div>
 
 				<!-- Footer -->
@@ -284,7 +283,7 @@
 				<div layout="column" flex layout-align="start" ng-controller="RightNavCtrl">
 
 					<!-- Stats -->
-					<md-content layout="column"  class="list_container" style="padding:5px;">
+					<md-content layout="column"  class="list_container padding_5">
 						<div layout="row" class="stats_div">
 							<span class="stats_span">Homogeneous:&nbsp;</span>
 							<i class="stats_i">{{homogen}}</i>
@@ -309,18 +308,18 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader">Transformations</md-subheader>
 					<md-content layout="column" class="list_container">
-						<md-radio-group ng-model="transform_type" style="margin:5px;">
+						<md-radio-group ng-model="transform_type" class="margin_5">
 							<md-radio-button value="inters">Intersection</md-radio-button>
 							
-							<div layout="row" layout-align="start center" style="height: 30px;">
+							<div layout="row" layout-align="start center" class="height_30">
 								<md-radio-button value="interp">Interpolation:</md-radio-button>
 
-								<md-input-container style="margin:0px; margin-left:10px; margin-bottom: 20px;">
+								<md-input-container class="md_input">
 									<md-select ng-disabled="transform_type=='inters'" ng-model="interp_type" aria-label="Interpolation Type">
-										<md-option value="linear"><span style="font-size:0.8em;">Linear</span></md-option>
-										<md-option value="cubic"><span style="font-size:0.8em;">Cubic</span></md-option>
-										<md-option value="lanczos"><span style="font-size:0.8em;">Lanczos</span></md-option>
-										<md-option value="nearest"><span style="font-size:0.8em;">Nearest Neighbor</span></md-option>
+										<md-option value="linear"><span class="font_0p8">Linear</span></md-option>
+										<md-option value="cubic"><span class="font_0p8">Cubic</span></md-option>
+										<md-option value="lanczos"><span class="font_0p8">Lanczos</span></md-option>
+										<md-option value="nearest"><span class="font_0p8">Nearest Neighbor</span></md-option>
 									</md-select>
 								</md-input-container>
 							</div>
@@ -332,7 +331,7 @@
 					<md-subheader class="md-no-sticky md-primary subheader">Reduction</md-subheader>
 					<md-content layout="column" class="list_container">
 						<div layout="row">
-							<md-input-container flex style="margin-bottom: 0px;">
+							<md-input-container class="marginb_0" flex>
 								<label>Type</label>
 								<md-select ng-model="reduc_type">
 									<md-option value="skip">Skip</md-option>
@@ -343,12 +342,12 @@
 								</md-select>
 							</md-input-container>
 
-							<md-input-container flex style="margin-bottom: 0px;">
+							<md-input-container class="marginb_0" flex>
 								<label>Size</label>
 								<input type="number" ng-model="reduc_size" min="1" ng-pattern="/^\d*$/">
 							</md-input-container>
 
-							<md-input-container flex style="margin-bottom: 0px; height: auto;" ng-drop="true" ng-drop-success="onDroppedField($data)">
+							<md-input-container class="marginb_0 height_auto" flex ng-drop="true" ng-drop-success="onDroppedField($data)">
 								<label>Field</label>
 								<input ng-model="target_field">
 							</md-input-container>
@@ -359,22 +358,23 @@
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<div layout="row" class="subheader">
-						<md-subheader flex="30" class="md-no-sticky md-primary subheader" style="margin:8px 0;">Dates</md-subheader>
+						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dates</md-subheader>
 						<md-switch ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
 					</div>
 
 					<div layout="column" layout-align="center center" class="list_container">
-						<md-datepicker style="padding:0; margin: 2px; border-bottom-style: solid; border-bottom-width: 1px; border-color: rgb(235, 235, 235);" ng-disabled="!enableDates" ng-model="from_date" md-placeholder="From"></md-datepicker>
-						<md-datepicker style="padding:0; margin: 2px; border-bottom-style: solid; border-bottom-width: 1px; border-color: rgb(235, 235, 235);" ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
+						<md-datepicker class="md_datepicker" ng-disabled="!enableDates" ng-model="from_date" md-placeholder="From"></md-datepicker>
+						<md-datepicker class="md_datepicker" ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<div layout="row" class="subheader">
-						<md-subheader flex="30" class="md-no-sticky md-primary subheader" style="margin:8px 0;">Dataset</md-subheader>
+						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dataset</md-subheader>
 						<md-switch ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
 					</div>
-					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1" style="padding:0px;">
+
+					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1 padding_0">
 					
 						<!-- Dataset table -->
 						<!-- <div ng-hide="$root.dataset.length === 0" layout="row"> -->
