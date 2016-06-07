@@ -190,4 +190,11 @@ angular.module('MainApp')
 			}
 
 		};
+
+		//delte fields from the loader
+		$scope.clear = function(){
+
+			$rootScope.droppedFields = [];
+			$rootScope.droppedTSFields = [];
+		}
 	});

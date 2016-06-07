@@ -116,9 +116,54 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		var graph = function(container, key1, key2, ts_key){
+	
+			//parse time format
+			dataset.forEach(function(doc){
+				
+				doc[ts_key] = new Date(doc[ts_key]);
+
+			});
+
+			//dimension
+			var dim = ndx.dimension(function(d){return d[ts_key]});
+			
+			//grouping
+			var group = (!key1) ? dim.group() : dim.group().reduceSum(function(d) {return d[key1];});	
+			
+			//min,max
+			var min_val={}, max_val={};
+			min_val = dim.bottom(1)[0][ts_key];
+			max_val = dim.top(1)[0][ts_key];
+			
+			//chart
+			var chart = dc.lineChart(container);
+
+			//default values
+			chart.width(800).height(200)
+			.dimension(dim).group(group)
+			.x(d3.time.scale().domain([min_val, max_val]))
+			.renderArea(true).elasticY(true)
+			.elasticX(true)
+			.renderHorizontalGridLines(true)
+	    	.renderVerticalGridLines(true)
+			.margins({top: 30, right: 30, bottom: 50, left: 50});
+			
+			if(!key1){
+				chart.yAxisLabel('#');		
+			}
+			else{
+				chart.yAxisLabel(key1);
+			}
+
+			return chart;
+		}
+
+		//enum with all the renderers
 		var ChartsEnum = {
 
 			'Pie': pie_chart,
+			'Graph': graph,
 			'Row': row_chart,
 			'Bar': bar_chart
 		};

@@ -10,7 +10,7 @@ angular.module('MainApp')
 			if (data.field && data.store && data.source){
 
 				//timestamp field
-				if (data.field.format){
+				if (data.field.format !== undefined){
 
 					//delete timestamp field
 					var index = $rootScope.droppedTSFields.indexOf(data);

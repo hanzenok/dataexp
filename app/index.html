@@ -99,6 +99,9 @@
 				<!-- Progress Bar -->
 				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
 
+				<!-- Hide button -->
+				
+
 				<!-- Charts Container -->
 				<div flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 					
@@ -109,7 +112,7 @@
 					</md-button>
 
 					<!-- Charts-->
-					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" ng-drag="true" ng-drag-data="chart" style="display: inline-block; margin:10px;">
+					<div class="chart" ng-repeat="chart in droppedCharts" id="{{chart.id}}" style="display: inline-block; margin:10px;">
 						<h5>{{chart.key1}}</h5>
 					</div>
 
@@ -157,11 +160,12 @@
 								</div>
 							</div>
 
-							<div layout="row" layout-align="center center">
+							<div layout="row" layout-align="center start">
 								<img class="loader_buttons" src="images/download.svg" ng-click="load()"/>
 								<a download="config.json" ng-href="{{url}}">
 									<img class="loader_buttons" src="images/save.svg"/>
 								</a>
+								<img class="loader_buttons" src="images/cancel.svg" ng-click="clear()"/>
 							</div>
 						</div>
 
@@ -193,11 +197,11 @@
 									<div class="platform"  layout="column">
 										<img src="images/graph_chart.png" class="chart_img" alt="Graph Chart"/>
 										
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Graph')" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
 
-	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
-												{{field.name}}
-											</div> -->
+											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Graph'">
+												{{field_config.field.short}}
+											</div>
 										</div>
 
 										<span class="title">Graph</span>

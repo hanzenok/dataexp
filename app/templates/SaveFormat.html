@@ -16,14 +16,7 @@
 		<div layout="row" flex="33" layout-align="center center" style="margin:10px;">
 			<md-input-container ng-hide="isCustom" style="margin:6px 8px;">
 				<label>Format</label>
-				<!-- <form ng-submit="saveFormat()"> -->
-<!-- 					<input list="bieres" type="text" ng-model="format">
-					<datalist id="bieres">
-						<option value="Meteor">
-						<option value="Pils">
-						<option value="Kronenbourg">
-						<option value="Grimbergen">
-					</datalist> -->
+
 					<md-select ng-model="format" aria-label="Format" style="width:250px;">
 						<md-option value="ISO"><span>ISO</span></md-option>
 						<md-option value="YYYY"><span>YYYY</span></md-option>
@@ -31,8 +24,6 @@
 						<md-option value="YYYY-MM-DD HH:mm:ss"><span>YYYY-MM-DD HH:mm:ss</span></md-option>
 						<md-option value="" ng-click="isCustom=true"><span>Custom</span></md-option>
 					</md-select>
-
-				<!-- </form> -->
 			</md-input-container>
 
 			<md-input-container  ng-hide="!isCustom" style="margin:6px 8px;">

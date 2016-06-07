@@ -34,7 +34,7 @@ angular.module('MainApp')
 
 				//checks
 				var error_message = '';
-				if ((data.chart === EnumCharts.pie || data.chart === EnumCharts.row) && filtered_fields.length > 2)
+				if ((data.chart === EnumCharts.pie || data.chart === EnumCharts.row || data.chart === EnumCharts.bar) && filtered_fields.length > 2)
 					error_message = data.chart + 'Chart should have 1 or 2 fields';
 
 				if (error_message){
@@ -56,7 +56,7 @@ angular.module('MainApp')
 				chart.type = data.chart;
 				chart.key1 = filtered_fields[0].field.name;
 				chart.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
-				chart.ts_key = (data.chart === EnumCharts.graph || data.chart === EnumCharts.scatter) ? 'time' : null;
+				chart.ts_key = (data.chart === EnumCharts.graph) ? 'time' : null;
 
 				//add to the charts list
 				$rootScope.droppedCharts.push(chart);
