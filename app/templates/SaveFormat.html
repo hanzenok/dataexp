@@ -1,9 +1,6 @@
 <md-dialog aria-label="Save Format" ng-controller="DialogCtrl" ng-cloak layout="column">
 
 	<!-- Toolbar -->
-<!-- 	<div class="md-whiteframe-4dp" flex="10" style="background-color:rgb(63, 81, 181);">
-		<h5>Title</h1>
-	</div> -->
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h5>Setting the timestamp format</h5>
@@ -32,9 +29,8 @@
 					<input type="text" ng-model="format" md-autofocus style="width:250px;">
 				</form>
 			</md-input-container>
-			<!-- <div> -->
-				<md-button class="md-raised" ng-click="saveFormat()">OK</md-button>
-			<!-- </div> -->
+
+			<md-button class="md-raised" ng-click="saveFormat()">OK</md-button>
 		</div>
 
 		<span style="margin-top: 15px; font-size: 1.2em; color:gray;">

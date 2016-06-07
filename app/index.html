@@ -100,11 +100,11 @@
 				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
 
 				<!-- Hide button -->
-				
+				<md-button ng-controller="HideBtnCtrl" class="md-raised" ng-click="test()" style="position: fixed; bottom:0; width:100px; right:500px; z-index: 20;">Yep</md-button>
 
 				<!-- Charts Container -->
 				<div flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
-					
+
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()">
 						<md-icon md-svg-src="images/refresh.svg"></md-icon>
@@ -130,7 +130,7 @@
 
 				<!-- Footer -->
 				<hr>
-				<footer flex="none">
+				<footer flex="none" ng-hide="$root.hideFooter">
 					<div class="md-whiteframe-4dp" layout="row" flex>
 
 						<!-- Loader -->
@@ -165,7 +165,7 @@
 								<a download="config.json" ng-href="{{url}}">
 									<img class="loader_buttons" src="images/save.svg"/>
 								</a>
-								<img class="loader_buttons" src="images/cancel.svg" ng-click="clear()"/>
+								<img class="loader_buttons" src="images/clear.svg" ng-click="clear()"/>
 							</div>
 						</div>
 
@@ -437,6 +437,7 @@
 		<script src="js/controllers/DeleteZoneCtrl.js"></script>
 		<script src="js/controllers/ChartsCtrl.js"></script>
 		<script src="js/controllers/LoaderCtrl.js"></script>
+		<script src="js/controllers/HideBtnCtrl.js"></script>
 
 	</body>
 
