@@ -26,6 +26,7 @@
 				<!-- Fab Button to add a new source-->
 				<md-button class="md-fab md-fab-top-right md-mini md-primary" aria-label="Add button" ng-click="showDialog($event)" ng-controller="FabCtrl">
 					<md-icon md-svg-src="images/add.svg"></md-icon>
+					<md-tooltip md-visible="false" md-direction="top">Add a new source</md-tooltip>
 				</md-button>
 
 				<!-- Sources, Stores, Fields List -->
@@ -104,6 +105,7 @@
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()">
 						<md-icon md-svg-src="images/refresh.svg"></md-icon>
+						<md-tooltip md-visible="false" md-direction="top">Reload</md-tooltip>
 					</md-button>
 
 					<!-- Charts-->

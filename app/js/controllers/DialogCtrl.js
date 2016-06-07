@@ -190,4 +190,9 @@ angular.module('MainApp')
 		$scope.cancel = function() {
 			$mdDialog.cancel();
 		};
+
+		$scope.custom = function(){
+
+			console.log('Custom');
+		};
 	});
