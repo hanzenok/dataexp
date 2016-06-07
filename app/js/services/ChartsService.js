@@ -74,10 +74,53 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		var bar_chart = function(container, key1, key2){
+	
+			//dimension
+			var dim = ndx.dimension(function(d){return d[key1];});
+			
+			//grouping
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+
+			//chart
+			var chart = dc.barChart(container);
+			
+			//default values
+			chart.width(600).height(200)
+			.dimension(dim).group(group)
+			.renderHorizontalGridLines(true)
+			.renderVerticalGridLines(true)
+			.elasticY(true).xAxisLabel(key1)
+			.x(d3.scale.ordinal().domain(dim))
+			.xUnits(dc.units.ordinal)
+			.yAxis().tickFormat(d3.format('s'));
+			chart.margins({top: 0, right: 0, bottom: 50, left: 50});
+
+			//on hover text and axis labels
+			if (!key2){
+				chart.title(function(d){
+					return "(" + d.key + ")" 
+					+ "\n" + d.value;
+				})
+				.yAxisLabel('#');
+			}
+			else{
+				chart.title(function(d){
+					return "(" + d.key + ")"
+					+ "\n" + key2
+					+ ": " + d.value; 
+				})
+				.yAxisLabel(key2);
+			}
+
+			return chart;
+		}
+
 		var ChartsEnum = {
 
 			'Pie': pie_chart,
-			'Row': row_chart
+			'Row': row_chart,
+			'Bar': bar_chart
 		};
 
 		//load the dataset

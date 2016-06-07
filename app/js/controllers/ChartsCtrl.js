@@ -5,7 +5,8 @@ angular.module('MainApp')
 							pie: 'Pie',
 							graph: 'Graph',
 							scatter: 'Scatter',
-							row: 'Row'
+							row: 'Row',
+							bar: 'Bar'
 						};
 
 		$rootScope.droppedCharts = [];
