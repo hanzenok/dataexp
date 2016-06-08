@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('DropableChartsCtrl', function ($scope, $rootScope) {
+	.controller('DropableChartsCtrl', function ($scope, $rootScope, $mdToast) {
 
 		$scope.onDropComplete = function(data, type){
 			console.log('Pie:');
@@ -7,7 +7,21 @@ angular.module('MainApp')
 			console.log('type:');
 			console.log(type);
 
-			if(data.field && data.field.status === 'loaded' && !data.field.format){
+			if (!data.field || data.field.status !== 'loaded'){
+
+				$mdToast.show(
+
+					$mdToast.simple()
+						.textContent('Fields should be loaded first')
+						.action('OK')
+						.position('bottom')
+						.hideDelay(4000)
+				);
+
+				return;
+			}
+
+			if (!data.field.format){
 
 				//clone the object and set the type
 				var clone = JSON.parse(JSON.stringify(data));

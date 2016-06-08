@@ -109,7 +109,7 @@
 					</md-button>
 
 					<!-- DC Charts-->
-					<div class="droppable_chart" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
+					<div class="dc_chart" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
 							<span ng-drag="true" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 								<img src="images/hand.svg" height="12" width="12"/>
 								{{chart.key1}}
@@ -166,11 +166,12 @@
 
 							<!-- Buttons -->
 							<div layout="row" layout-align="center start">
-								<img class="loader_buttons" src="images/download.svg" ng-click="load()"/>
+
+								<img class="loader_buttons md-secondary" src="images/download.svg" ng-click="load()"/>
 								<a download="config.json" ng-href="{{url}}">
 									<img class="loader_buttons" src="images/save.svg"/>
 								</a>
-								<img class="loader_buttons" src="images/clear.svg" ng-click="clear()"/>
+								<img  class="loader_buttons" src="images/clear.svg" ng-click="clear()"/>
 							</div>
 						</div>
 
@@ -410,7 +411,7 @@
 									</md-list-item>
 								</md-list>
 							</div>
-							<md-list></md-list>
+							
 						</div>
 
 					</md-content>

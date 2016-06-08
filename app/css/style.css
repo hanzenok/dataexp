@@ -319,7 +319,7 @@
         overflow: hidden;
     }
 
-    .droppable_chart{
+    .dc_chart{
 
         display: inline-block;
         margin:10px;
@@ -345,10 +345,10 @@
     #hide_button {
 
         margin-right: 5px;
-        margin-bottom: -5px;
         background: rgb(243, 243, 243);
         cursor:pointer;
-        border-radius: 5px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
         outline:none;
     }
 
