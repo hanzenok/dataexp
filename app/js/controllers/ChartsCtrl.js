@@ -91,13 +91,14 @@ angular.module('MainApp')
 				console.log('chart:');
 				console.log(chart);
 				chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+				chart.render();
 			});
 
 			//also render the counter
 			ChartsService.counter('#counter').render();
-
+			console.log('done');
 			//rendering
-			dc.renderAll();
+			// dc.renderAll();
 			dc.redrawAll();
 		}
 

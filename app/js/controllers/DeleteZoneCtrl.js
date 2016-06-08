@@ -30,17 +30,12 @@ angular.module('MainApp')
 					}
 				}
 
-				//clear the dataset and charts
+				//clear the dataset
 				if ($rootScope.dataset !== undefined && data.field.status === 'loaded' && $rootScope.loaded){
 
 					//delete the dataset
 					delete $rootScope.dataset;
 					$rootScope.dataset = [];
-
-					//delete charts
-					delete $rootScope.droppedCharts;
-					$rootScope.droppedCharts = [];
-					$rootScope.chartFields = [];
 
 					//mark all fields as ready (=not loaded)
 					data.field.status = 'ready';

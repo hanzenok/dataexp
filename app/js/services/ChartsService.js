@@ -127,11 +127,14 @@ angular.module('MainApp')
 				doc.day = day_parser(doc[ts_key].getFullYear() + '-' + (doc[ts_key].getMonth()+1) + '-' +  doc[ts_key].getDate());
 			});
 
-			//dimension
+			//dimensions
 			var dim = ndx.dimension(function(d){return d[ts_key]});
+			var dim_days = ndx.dimension(function(d){return d.day;});
 			
 			//grouping
-			var group1 = dim.group().reduceSum(function(d) {return d[key1];});	
+			var group_days = dim_days.group();
+			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
+			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
 			
 			//min,max
 			var min_val={}, max_val={};
@@ -142,32 +145,49 @@ angular.module('MainApp')
 			var composite_chart = dc.compositeChart(container);
 			var line_chart1 = dc.lineChart(composite_chart);
 			var line_chart2 = dc.lineChart(composite_chart);
-			var bar_chart = dc.barChart('#bar-chart');
+			var bar_chart = dc.barChart(container + '_bar');
 
 			//line_chart1
 			line_chart1.dimension(dim)
 			.group(group1, key1).colors('red')
 			.x(d3.time.scale().domain([min_val, max_val]));
 
-			//default values
+			//line_chart2
+			if (group2){
+
+				line_chart2.dimension(dim)
+				.group(group2, key2).colors('blue')
+				.x(d3.time.scale().domain([min_val, max_val]))
+				.useRightYAxis(true);
+			}
+
+			//composite chart
 			composite_chart.width(800).height(200)
 			.dimension(dim).group(group1)
-			.compose([line_chart1])
-			.rangeChart(bar_chart)
+			.rangeChart(bar_chart).shareTitle(false)
 			.x(d3.time.scale().domain([min_val, max_val]))
 			.elasticY(true).elasticX(false)
 			.brushOn(false).yAxisLabel(key1)
 			.renderHorizontalGridLines(true)
 	    	.renderVerticalGridLines(true)
-			.margins({top: 20, right: 20, bottom: 20, left: 30});
+			.margins({top: 20, right: 40, bottom: 20, left: 40});
+			
+			//composing
+			if (group2){
+
+				composite_chart.compose([line_chart1, line_chart2])
+				.rightYAxisLabel(key2);
+			}
+			else{
+				composite_chart.compose([line_chart1]);
+			}
 
 			//scroll bar_chart
-			var dim_days = ndx.dimension(function(d){return d.day;});
-			var group_days = dim_days.group();
-
-			bar_chart.width(800).height(50)
+			bar_chart.width(800).height(75)
 			.dimension(dim_days).group(group_days)
-			.x(d3.time.scale().domain([min_val, max_val]));
+			.x(d3.time.scale().domain([min_val, max_val]))
+			.margins({top: 20, right: 40, bottom: 20, left: 40});
+			bar_chart.yAxis().ticks(0);
 			bar_chart.xUnits(d3.time.hours);
 			bar_chart.render();
 
