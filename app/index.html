@@ -108,11 +108,13 @@
 					</md-button>
 
 					<!-- DC Charts-->
-					<div class="droppable_chart" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center" id="{{chart.id}}">
-							<h5 ng-drag="true" ng-drag-data="chart" class="drag-object" style="margin:5px;">
-								<img src="images/hand.svg"/>
+					<div class="droppable_chart" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
+							<span ng-drag="true" ng-drag-data="chart" class="drag-object" style="margin:5px;">
+								<img src="images/hand.svg" height="12" width="12"/>
 								{{chart.key1}}
-							</h5>
+							</span>
+
+							<div id="{{chart.id}}"></div>
 					</div>
 
 				</md-content>
@@ -276,7 +278,10 @@
 						<div ng-drag-clone="">
 							<div ng-if="clonedData.field" class="md-whiteframe-4dp drag_field {{clonedData.field.status}}">{{clonedData.field.short}}</div>	
 							<div ng-if="clonedData.chart" style="width:200px; height: 150px;" class="chart_movable md-whiteframe-4dp"></div>
-							<h5 ng-if="clonedData.key1">{{clonedData.key1}}</h5>
+							<span ng-if="clonedData.key1" style="margin:5px;">
+								<img src="images/hand.svg" height="12" width="12"/>
+								{{clonedData.key1}}
+							</span>
 						</div>
 					</div>
 				</footer>
