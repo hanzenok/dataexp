@@ -34,7 +34,7 @@ angular.module('MainApp')
 
 				//checks
 				var error_message = '';
-				if ((data.chart === EnumCharts.pie || data.chart === EnumCharts.row || data.chart === EnumCharts.bar) && filtered_fields.length > 2)
+				if (filtered_fields.length > 2)
 					error_message = data.chart + 'Chart should have 1 or 2 fields';
 
 				if (error_message){
