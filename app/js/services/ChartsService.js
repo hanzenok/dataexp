@@ -129,34 +129,37 @@ angular.module('MainApp')
 			var dim = ndx.dimension(function(d){return d[ts_key]});
 			
 			//grouping
-			var group = (!key1) ? dim.group() : dim.group().reduceSum(function(d) {return d[key1];});	
+			var group1 = dim.group().reduceSum(function(d) {return d[key1];});	
 			
 			//min,max
 			var min_val={}, max_val={};
 			min_val = dim.bottom(1)[0][ts_key];
 			max_val = dim.top(1)[0][ts_key];
 			
-			//chart
-			var chart = dc.lineChart(container);
+			//charts
+			var composite_chart = dc.compositeChart(container);
+			var line_chart1 = dc.lineChart(composite_chart);
+			var line_chart2 = dc.lineChart(composite_chart);
+
+			//line_chart1
+			line_chart1.dimension(dim)
+			.group(group1, key1).colors('red')
+			.x(d3.time.scale().domain([min_val, max_val]))
 
 			//default values
-			chart.width(800).height(200)
-			.dimension(dim).group(group)
+			composite_chart.width(800).height(200)
+			.dimension(dim).group(group1)
+			.compose([line_chart1])
 			.x(d3.time.scale().domain([min_val, max_val]))
-			.renderArea(true).elasticY(true)
-			.elasticX(true)
+			.elasticY(true)
+			.elasticX(true).yAxisLabel(key1)
 			.renderHorizontalGridLines(true)
 	    	.renderVerticalGridLines(true)
 			.margins({top: 20, right: 20, bottom: 20, left: 30});
-			
-			if(!key1){
-				chart.yAxisLabel('#');		
-			}
-			else{
-				chart.yAxisLabel(key1);
-			}
 
-			return chart;
+
+
+			return composite_chart;
 		}
 
 		//enum with all the renderers
