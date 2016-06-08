@@ -79,8 +79,9 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader">Fields ({{fields_conf.length}})</md-subheader>
 
-					<md-content flex="33" class="list_container chrome_bugfix1">
-						<div layout-align="center">
+					<!-- using a div and not md-content beacuse of a chrome bug -->
+					<div style="overflow: auto;" flex="33" class="list_container chrome_bugfix1">
+						<div layout-align="center" class="chrome_bugfix2">
 							<span class="drag-object md-whiteframe-4dp drag_field" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
 									{{field_config.field.short}}
 								<md-tooltip md-visible="false" md-direction="top">
@@ -88,7 +89,7 @@
 								</md-tooltip>
 							</span>
 						</div>
-					</md-content>
+					</div>
 				</div>
 			</md-sidenav>
 
@@ -182,7 +183,7 @@
 
 								<!-- Pie Chart -->
 								<md-list-item layout="column">
-									<div class="platform" layout="column">
+									<div class="platform" layout="column" layout-align="end end">
 										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
 
 										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
@@ -198,7 +199,7 @@
 
 								<!-- Graph -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/graph_chart.png" class="chart_img" alt="Graph Chart"/>
 										
 										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Graph')" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
@@ -214,7 +215,7 @@
 
 								<!-- Scatter Plot -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/scatter_chart.png" class="chart_img" alt="Scatter Chart"/>
 
 										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
@@ -230,7 +231,7 @@
 
 								<!-- Row Chart -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/row_chart.png" class="chart_img" alt="Row Chart"/>
 
 										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Row')" ng-drag="true" ng-drag-data="{chart:'Row'}"> 
@@ -246,7 +247,7 @@
 
 								<!-- Bar Chart -->
 								<md-list-item layout="column">
-									<div class="platform"  layout="column">
+									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/bar_chart.png" class="chart_img" alt="Bar Chart"/>
 
 										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Bar')" ng-drag="true" ng-drag-data="{chart:'Bar'}"> 

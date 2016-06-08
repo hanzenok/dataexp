@@ -85,6 +85,7 @@
     }
     [ng-drag].dragging{
 		opacity: 0;
+        position: absolute !important;
     }
     [ng-drop]{
         /*background: rgba(0,255,0, 0.5);*/
@@ -147,6 +148,8 @@
     }
 
     .platform{
+        width: 200px;
+        height: 165px;
 		background: rgba(220, 220, 220, 0.8);
 		border-radius: 20px;
     }
