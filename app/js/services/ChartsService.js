@@ -118,11 +118,13 @@ angular.module('MainApp')
 
 		var graph = function(container, key1, key2, ts_key){
 	
+			var day_parser = d3.time.format('%Y-%m-%d').parse;
+
 			//parse time format
 			dataset.forEach(function(doc){
 				
 				doc[ts_key] = new Date(doc[ts_key]);
-
+				doc.day = day_parser(doc[ts_key].getFullYear() + '-' + (doc[ts_key].getMonth()+1) + '-' +  doc[ts_key].getDate());
 			});
 
 			//dimension
@@ -140,23 +142,34 @@ angular.module('MainApp')
 			var composite_chart = dc.compositeChart(container);
 			var line_chart1 = dc.lineChart(composite_chart);
 			var line_chart2 = dc.lineChart(composite_chart);
+			var bar_chart = dc.barChart('#bar-chart');
 
 			//line_chart1
 			line_chart1.dimension(dim)
 			.group(group1, key1).colors('red')
-			.x(d3.time.scale().domain([min_val, max_val]))
+			.x(d3.time.scale().domain([min_val, max_val]));
 
 			//default values
 			composite_chart.width(800).height(200)
 			.dimension(dim).group(group1)
 			.compose([line_chart1])
+			.rangeChart(bar_chart)
 			.x(d3.time.scale().domain([min_val, max_val]))
-			.elasticY(true)
-			.elasticX(true).yAxisLabel(key1)
+			.elasticY(true).elasticX(false)
+			.brushOn(false).yAxisLabel(key1)
 			.renderHorizontalGridLines(true)
 	    	.renderVerticalGridLines(true)
 			.margins({top: 20, right: 20, bottom: 20, left: 30});
 
+			//scroll bar_chart
+			var dim_days = ndx.dimension(function(d){return d.day;});
+			var group_days = dim_days.group();
+
+			bar_chart.width(800).height(50)
+			.dimension(dim_days).group(group_days)
+			.x(d3.time.scale().domain([min_val, max_val]));
+			bar_chart.xUnits(d3.time.hours);
+			bar_chart.render();
 
 
 			return composite_chart;
