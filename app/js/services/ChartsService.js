@@ -195,6 +195,52 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		var correlation = function(container, key1, key2){
+	
+			//reduce functions	
+			var freduceAdd = function(p, v){		
+				++p.n;
+				p.sum_xy += (+v[key1]*+v[key2]);
+				p.sum_x += +v[key1];
+				p.sum_y += +v[key2];
+				p.sum_x2 += (+v[key1]*+v[key1]);
+				p.sum_y2 += (+v[key2]*+v[key2]);		
+					
+				return p;
+			};
+
+			var freduceRemove = function(p, v){
+				--p.n;
+				p.sum_xy -= (+v[key1]*+v[key2]);
+				p.sum_x -= +v[key1];
+				p.sum_y -= +v[key2];
+				p.sum_x2 -= (+v[key1]*+v[key1]);
+				p.sum_y2 -= (+v[key2]*+v[key2]);	
+				return p;
+			};
+
+			var freduceInitial = function(){
+				return {n: 0, sum_xy: 0, sum_x: 0, sum_y:0, sum_x2:0, sum_y2:0};
+			}
+
+			//dimension
+			var dim = ndx.groupAll().reduce(freduceAdd, freduceRemove, freduceInitial);
+
+			//chart
+			var chart = dc.numberDisplay(container);
+
+			//default values
+			chart.formatNumber(d3.format(".4g"))
+			.group(dim)
+			.valueAccessor(function(p){	
+				if(p.n == 0) return 0;
+
+				return (p.n*p.sum_xy - p.sum_x*p.sum_y) / (Math.sqrt( (p.n*p.sum_x2 - p.sum_x*p.sum_x) * (p.n*p.sum_y2 - p.sum_y*p.sum_y) ));
+			});
+
+			return chart;
+		}
+
 		var scatter = function(container, key1, key2){
 
 			//dimensions
@@ -210,9 +256,12 @@ angular.module('MainApp')
 			chart.width(600).height(300)
 			.dimension(dim).group(group)
 			.x(d3.scale.linear().domain([]))
-			.elasticX(true).elasticY(true)
+			.elasticX(true).elasticY(true).brushOn(true)
 			.margins({top: 10, right: 30, bottom: 30, left: 50})
 			.xAxisLabel(key1).yAxisLabel(key2);
+
+			//render the correlation value
+			correlation('#correl', key1, key2).render();
 
 			return chart;
 		}
