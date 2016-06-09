@@ -57,7 +57,8 @@ angular.module('MainApp')
 				chart.key1 = filtered_fields[0].field.name;
 				chart.ts_key = (data.chart === $scope.EnumCharts.graph) ? 'time' : null;
 
-				//other keys
+				//chart.keys could be null, equal to one field,
+				//or an array of fields
 				var n = filtered_fields.length;
 				if (n === 1)
 					chart.keys = null;
@@ -66,7 +67,6 @@ angular.module('MainApp')
 					if (n === 2){
 
 						chart.keys = filtered_fields[1].field.name;
-
 					}
 					else{
 

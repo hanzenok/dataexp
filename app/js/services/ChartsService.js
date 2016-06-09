@@ -116,11 +116,16 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var graph = function(container, key1, key2, ts_key){
+		var graph = function(container, key1, keys, ts_key){
 	
-			var day_parser = d3.time.format('%Y-%m-%d').parse;
+
+			if (keys && typeof keys !== 'Array'){
+
+				keys = [keys];
+			}
 
 			//parse time format
+			var day_parser = d3.time.format('%Y-%m-%d').parse;
 			dataset.forEach(function(doc){
 				
 				doc[ts_key] = new Date(doc[ts_key]);
@@ -130,11 +135,22 @@ angular.module('MainApp')
 			//dimensions
 			var dim = ndx.dimension(function(d){return d[ts_key]});
 			var dim_days = ndx.dimension(function(d){return d.day;});
+			console.log('here0');
 			
 			//grouping
 			var group_days = dim_days.group();
 			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
-			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
+			var i,n,groups = null;
+			console.log(keys);
+			if (keys){
+				
+				n = keys.length;console.log('here: ' + n);
+				groups = new Array(n);
+				for (i=0; i<n; i++){
+
+					groups[i] = dim.group().reduceSum(function(d){return d[keys[i]];});
+				}
+			}
 			
 			//min,max
 			var min_val={}, max_val={};
@@ -144,27 +160,32 @@ angular.module('MainApp')
 			//charts
 			var composite_chart = dc.compositeChart(container);
 			var line_chart1 = dc.lineChart(composite_chart);
-			var line_chart2 = dc.lineChart(composite_chart);
-			var line_chart3 = dc.lineChart(composite_chart);
 			var bar_chart = dc.barChart(container + '_bar');
+			var line_charts = null;
+			if (groups){
+				console.log('here2');
+				line_charts = new Array(n);
+				for (i=0; i<n; i++){
+
+					line_charts[i] = dc.lineChart(composite_chart);
+				}
+			}
 
 			//line_chart1
 			line_chart1.dimension(dim)
 			.group(group1, key1).colors('red')
 			.x(d3.time.scale().domain([min_val, max_val]));
 
-			//line_chart2
-			if (group2){
+			//line_charts
+			if (line_charts){
+				console.log('here3');
+				for (i=0; i<n; i++){
 
-				line_chart2.dimension(dim)
-				.group(group2, key2).colors('blue')
-				.x(d3.time.scale().domain([min_val, max_val]));
-				//.useRightYAxis(true);
+					line_charts[i].dimension(dim)
+					.group(groups[i], keys[i])
+					.x(d3.time.scale().domain([min_val, max_val]));
+				}
 			}
-
-			line_chart3.dimension(dim)
-			.group(group1, 'test').colors('green')
-			.x(d3.time.scale().domain([min_val, max_val]));
 
 			//composite chart
 			composite_chart.width(800).height(200)
@@ -179,13 +200,17 @@ angular.module('MainApp')
 			.legend(dc.legend().x(60).y(10).itemWidth(200).gap(5).horizontal(true));
 			
 			//composing
-			if (group2){
+			if (line_charts){
+console.log('here4');
+				var charts = [line_chart1];
+				for (i=0; i<n; i++){
 
-				composite_chart.compose([line_chart1, line_chart2, line_chart3])
-				//.rightYAxisLabel(key2);
+					charts.push(line_charts[i]);
+				}
+				composite_chart.compose(charts)
 			}
-			else{
-				composite_chart.compose([line_chart1, line_chart3]);
+			else{console.log('here5');
+				composite_chart.compose([line_chart1]);
 			}
 
 			//scroll bar_chart
@@ -196,7 +221,6 @@ angular.module('MainApp')
 			bar_chart.yAxis().ticks(0);
 			bar_chart.xUnits(d3.time.hours);
 			bar_chart.render();
-
 
 			return composite_chart;
 		}
