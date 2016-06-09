@@ -85,7 +85,7 @@ angular.module('MainApp')
 			}
 
 			//composite chart
-			composite_chart.width(800).height(200)
+			composite_chart.width(800).height(240)
 			.dimension(dim).group(group1)
 			.rangeChart(bar_chart).shareTitle(false)
 			.x(d3.time.scale().domain([min_val, max_val]))
@@ -173,7 +173,7 @@ angular.module('MainApp')
 			.x(d3.scale.ordinal().domain(dim))
 			.xUnits(dc.units.ordinal)
 			.yAxis().tickFormat(d3.format('s'));
-			chart.margins({top: 0, right: 0, bottom: 50, left: 50});
+			chart.margins({top: 20, right: 0, bottom: 50, left: 50});
 
 			//on hover text and axis labels
 			if (!key2){
@@ -257,7 +257,7 @@ angular.module('MainApp')
 			.dimension(dim).group(group)
 			.x(d3.scale.linear().domain([]))
 			.elasticX(true).elasticY(true).brushOn(true)
-			.margins({top: 10, right: 30, bottom: 30, left: 50})
+			.margins({top: 20, right: 30, bottom: 30, left: 50})
 			.xAxisLabel(key1).yAxisLabel(key2);
 
 			//render the correlation value
