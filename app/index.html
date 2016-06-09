@@ -116,7 +116,7 @@
 							</span>
 
 							<div id="{{chart.id}}"></div>
-							<div id="{{chart.id + '_bar'}}"></div>
+							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
 					</div>
 
 				</md-content>
@@ -220,11 +220,11 @@
 									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/scatter_chart.png" class="chart_img" alt="Scatter Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data)" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Scatter')" ng-drag="true" ng-drag-data="{chart:'Scatter'}"> 
 
-	<!-- 										<div ng-repeat="field in $root.chartFields" ng-drag="false" ng-drag-data="field" class="loaded">
-												{{field.name}}
-											</div> -->
+											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Scatter'">
+												{{field_config.field.short}}
+											</div>
 										</div>
 
 										<span class="title">Scatter Plot</span>

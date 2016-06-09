@@ -39,83 +39,6 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var row_chart = function(container, key1, key2){
-
-			//dimension
-			var dim = ndx.dimension(function(d){return d[key1];});
-			
-			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
-
-			//chart
-			var chart = dc.rowChart(container);
-			
-			//default values
-			chart.width(400).height(200)
-			.elasticX(true)
-			.dimension(dim).group(group)
-			.xAxis().tickFormat(d3.format('s'));
-
-			//on hover text and axis labels
-			if (!key2){
-				chart.title(function(d){
-					return "(" + d.key + ")" 
-					+ "\n" + d.value;
-				});
-			}
-			else{
-				chart.title(function(d){
-					return "(" + d.key + ")"
-					+ "\n" + key2
-					+ ": " + d.value; 
-				});
-			}
-
-			return chart;
-		}
-
-		var bar_chart = function(container, key1, key2){
-	
-			//dimension
-			var dim = ndx.dimension(function(d){return d[key1];});
-			
-			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
-
-			//chart
-			var chart = dc.barChart(container);
-			
-			//default values
-			chart.width(600).height(200)
-			.dimension(dim).group(group)
-			.renderHorizontalGridLines(true)
-			.renderVerticalGridLines(true)
-			.elasticY(true).xAxisLabel(key1)
-			.x(d3.scale.ordinal().domain(dim))
-			.xUnits(dc.units.ordinal)
-			.yAxis().tickFormat(d3.format('s'));
-			chart.margins({top: 0, right: 0, bottom: 50, left: 50});
-
-			//on hover text and axis labels
-			if (!key2){
-				chart.title(function(d){
-					return "(" + d.key + ")" 
-					+ "\n" + d.value;
-				})
-				.yAxisLabel('#');
-			}
-			else{
-				chart.title(function(d){
-					return "(" + d.key + ")"
-					+ "\n" + key2
-					+ ": " + d.value; 
-				})
-				.yAxisLabel(key2);
-			}
-
-			return chart;
-		}
-
 		var graph = function(container, key1, key2, ts_key){
 	
 			var day_parser = d3.time.format('%Y-%m-%d').parse;
@@ -195,11 +118,111 @@ angular.module('MainApp')
 			return composite_chart;
 		}
 
+		var row_chart = function(container, key1, key2){
+
+			//dimension
+			var dim = ndx.dimension(function(d){return d[key1];});
+			
+			//grouping
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+
+			//chart
+			var chart = dc.rowChart(container);
+			
+			//default values
+			chart.width(400).height(200)
+			.elasticX(true)
+			.dimension(dim).group(group)
+			.xAxis().tickFormat(d3.format('s'));
+
+			//on hover text and axis labels
+			if (!key2){
+				chart.title(function(d){
+					return "(" + d.key + ")" 
+					+ "\n" + d.value;
+				});
+			}
+			else{
+				chart.title(function(d){
+					return "(" + d.key + ")"
+					+ "\n" + key2
+					+ ": " + d.value; 
+				});
+			}
+
+			return chart;
+		}
+
+		var bar_chart = function(container, key1, key2){
+	
+			//dimension
+			var dim = ndx.dimension(function(d){return d[key1];});
+			
+			//grouping
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+
+			//chart
+			var chart = dc.barChart(container);
+			
+			//default values
+			chart.width(600).height(200)
+			.dimension(dim).group(group)
+			.renderHorizontalGridLines(true)
+			.renderVerticalGridLines(true)
+			.elasticY(true).xAxisLabel(key1)
+			.x(d3.scale.ordinal().domain(dim))
+			.xUnits(dc.units.ordinal)
+			.yAxis().tickFormat(d3.format('s'));
+			chart.margins({top: 0, right: 0, bottom: 50, left: 50});
+
+			//on hover text and axis labels
+			if (!key2){
+				chart.title(function(d){
+					return "(" + d.key + ")" 
+					+ "\n" + d.value;
+				})
+				.yAxisLabel('#');
+			}
+			else{
+				chart.title(function(d){
+					return "(" + d.key + ")"
+					+ "\n" + key2
+					+ ": " + d.value; 
+				})
+				.yAxisLabel(key2);
+			}
+
+			return chart;
+		}
+
+		var scatter = function(container, key1, key2){
+
+			//dimensions
+			var dim = ndx.dimension(function(d){return [+d[key1], +d[key2]];});
+
+			//grouping
+			var group = dim.group();
+
+			//chart
+			var chart = dc.scatterPlot(container);
+
+			//default values
+			chart.width(600).height(300)
+			.dimension(dim).group(group)
+			.x(d3.scale.linear().domain([]))
+			.elasticX(true).elasticY(true)
+			.margins({top: 10, right: 30, bottom: 30, left: 50})
+			.xAxisLabel(key1).yAxisLabel(key2);
+
+			return chart;
+		}
+
 		//enum with all the renderers
 		var ChartsEnum = {
 
 			'Pie': pie_chart,
 			'Graph': graph,
+			'Scatter': scatter,
 			'Row': row_chart,
 			'Bar': bar_chart
 		};

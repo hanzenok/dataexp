@@ -37,6 +37,9 @@ angular.module('MainApp')
 				if (filtered_fields.length > 2)
 					error_message = data.chart + 'Chart should have 1 or 2 fields';
 
+				if (data.chart === EnumCharts.scatter && filtered_fields.length !== 2)
+					error_message = data.chart + 'Plot should have 2 fields';
+
 				if (error_message){
 
 					$mdToast.show(
