@@ -57,25 +57,36 @@ angular.module('MainApp')
 						$rootScope.droppedCharts.splice(index, 1);
 					}
 				}
-				//droppable charts
+				//movable charts
 				else{
 
 					console.log('delete chart:');
 					console.log(data);
 
-					//get the indexes of fields
-					var indexes = [];
-					$rootScope.chartFields.forEach(function(field_conf, index){
+					for (var i=0; i<$rootScope.chartFields.length; i++){
 
-						if (field_conf.chart === data.chart)
-							indexes.push(index);
-					});
+						if ($rootScope.chartFields[i].chart === data.chart){
 
-					//remove fields
-					indexes.forEach(function(index, i){
+							$rootScope.chartFields.splice(i, 1);
+							i--;
+						}
+					}
 
-						$rootScope.chartFields.splice(index, 1);
-					});
+					// //get the indexes of fields
+					// var indexes = [];
+
+					// $rootScope.chartFields.forEach(function(field_conf, index){
+
+					// 	if (field_conf.chart === data.chart)
+					// 		indexes.push(index);
+					// });
+
+					// console.log(indexes);
+					// //remove fields
+					// indexes.forEach(function(index, i){
+
+					// 	$rootScope.chartFields.splice(index, 1);
+					// });
 				}
 
 			}

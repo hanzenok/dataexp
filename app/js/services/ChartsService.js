@@ -261,7 +261,7 @@ angular.module('MainApp')
 			.xAxisLabel(key1).yAxisLabel(key2);
 
 			//render the correlation value
-			correlation('#correl', key1, key2).render();
+			correlation(container  + '_correl', key1, key2).render();
 
 			return chart;
 		}

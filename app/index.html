@@ -117,7 +117,7 @@
 
 							<div id="{{chart.id}}"></div>
 							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
-							<div id="correl"></div>
+							<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
 					</div>
 
 				</md-content>
