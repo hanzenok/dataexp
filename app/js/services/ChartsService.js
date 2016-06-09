@@ -140,15 +140,18 @@ angular.module('MainApp')
 			var group_days = dim_days.group();
 			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
 			var i,n,groups = null;
+			var local_keys;
 			console.log(keys);
 			if (keys){
 				
 				n = keys.length;console.log('here: ' + n);
 				groups = new Array(n);
+				local_keys = new Array(n);
 				for (i=0; i<n; i++){
 
-					var local_key = keys[i];
-					groups[i] = dim.group().reduceSum(function(d){console.log(local_key); return d[local_key];});
+					local_keys[i] = keys[i];
+					//console.log('local_key: ' + local_key);
+					groups[i] = dim.group().reduceSum(function(d){console.log(local_keys[i]); return d[local_keys[i]];});
 				}
 			}
 			
