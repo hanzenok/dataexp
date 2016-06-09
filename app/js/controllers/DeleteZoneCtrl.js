@@ -71,26 +71,7 @@ angular.module('MainApp')
 							i--;
 						}
 					}
-
-					// //get the indexes of fields
-					// var indexes = [];
-
-					// $rootScope.chartFields.forEach(function(field_conf, index){
-
-					// 	if (field_conf.chart === data.chart)
-					// 		indexes.push(index);
-					// });
-
-					// console.log(indexes);
-					// //remove fields
-					// indexes.forEach(function(index, i){
-
-					// 	$rootScope.chartFields.splice(index, 1);
-					// });
 				}
-
 			}
-
-			
 		}
 	});
