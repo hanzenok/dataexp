@@ -109,7 +109,7 @@
 					</md-button>
 
 					<!-- DC Charts-->
-					<div class="dc_chart" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
+					<div style="background-color: rgb(245, 245, 245); border-radius: 2px;" class="dc_chart" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
 							<span ng-drag="true" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 								<img src="images/hand.svg" height="12" width="12"/>
 								{{chart.key1}}
@@ -141,7 +141,7 @@
 
 						<!-- Loader -->
 						<div ng-controller="LoaderCtrl" class="loader" layout="column">
-							
+
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
