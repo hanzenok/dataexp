@@ -1,7 +1,7 @@
 angular.module('MainApp')
 	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, ChartsService) {
 
-		var EnumCharts = {
+		$scope.EnumCharts = {
 							pie: 'Pie',
 							graph: 'Graph',
 							scatter: 'Scatter',
@@ -52,11 +52,32 @@ angular.module('MainApp')
 
 				//create chart object
 				var chart = {};
-				chart.id = 'chart_' + Math.floor(Math.random()*2000); //random
+				chart.id = 'chart_' + Math.floor(Math.random()*2000); //random chart id
 				chart.type = data.chart;
 				chart.key1 = filtered_fields[0].field.name;
-				chart.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
-				chart.ts_key = (data.chart === EnumCharts.graph) ? 'time' : null;
+				chart.ts_key = (data.chart === $scope.EnumCharts.graph) ? 'time' : null;
+
+				//other keys
+				var n = filtered_fields.length;
+				if (n === 1)
+					chart.keys = null;
+				else{
+
+					if (n === 2){
+
+						chart.keys = filtered_fields[1].field.name;
+
+					}
+					else{
+
+						chart.keys = new Array(n-1);
+						for (var i=1; i<n; i++){
+
+							chart.keys[i-1] = filtered_fields[i].field.name;
+						}
+					}
+				}
+				
 
 				//add to the charts list
 				$rootScope.droppedCharts.push(chart);
@@ -65,12 +86,11 @@ angular.module('MainApp')
 				//to be added then trace
 				setTimeout(function() {
 
-					var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+					var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.keys, chart.ts_key);
 					dc_chart.render();
 
 					//also render the counter
 					ChartsService.counter('#counter').render();
-
 
 				}, 100);
 			}

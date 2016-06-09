@@ -145,6 +145,7 @@ angular.module('MainApp')
 			var composite_chart = dc.compositeChart(container);
 			var line_chart1 = dc.lineChart(composite_chart);
 			var line_chart2 = dc.lineChart(composite_chart);
+			var line_chart3 = dc.lineChart(composite_chart);
 			var bar_chart = dc.barChart(container + '_bar');
 
 			//line_chart1
@@ -157,9 +158,13 @@ angular.module('MainApp')
 
 				line_chart2.dimension(dim)
 				.group(group2, key2).colors('blue')
-				.x(d3.time.scale().domain([min_val, max_val]))
-				.useRightYAxis(true);
+				.x(d3.time.scale().domain([min_val, max_val]));
+				//.useRightYAxis(true);
 			}
+
+			line_chart3.dimension(dim)
+			.group(group1, 'test').colors('green')
+			.x(d3.time.scale().domain([min_val, max_val]));
 
 			//composite chart
 			composite_chart.width(800).height(200)
@@ -170,16 +175,17 @@ angular.module('MainApp')
 			.brushOn(false).yAxisLabel(key1)
 			.renderHorizontalGridLines(true)
 	    	.renderVerticalGridLines(true)
-			.margins({top: 20, right: 40, bottom: 20, left: 40});
+			.margins({top: 20, right: 40, bottom: 20, left: 40})
+			.legend(dc.legend().x(60).y(10).itemWidth(200).gap(5).horizontal(true));
 			
 			//composing
 			if (group2){
 
-				composite_chart.compose([line_chart1, line_chart2])
-				.rightYAxisLabel(key2);
+				composite_chart.compose([line_chart1, line_chart2, line_chart3])
+				//.rightYAxisLabel(key2);
 			}
 			else{
-				composite_chart.compose([line_chart1]);
+				composite_chart.compose([line_chart1, line_chart3]);
 			}
 
 			//scroll bar_chart
@@ -236,9 +242,9 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		this.traceOne = function(chart_type, container, key1, key2, ts_key){
+		this.traceOne = function(chart_type, container, key1, keys, ts_key){
 
-			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
+			return ChartsEnum[chart_type].call(this, container, key1, keys, ts_key);
 		}
 
 	});

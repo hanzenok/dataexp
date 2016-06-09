@@ -116,7 +116,7 @@
 							</span>
 
 							<div id="{{chart.id}}"></div>
-							<div id="{{chart.id + '_bar'}}"></div>
+							<div ng-if="chart.type===EnumCharts.graph" id="{{chart.id + '_bar'}}"></div>
 					</div>
 
 				</md-content>
