@@ -173,6 +173,7 @@
     	margin:5px;
         width: 200px;
         height: 100px;
+        overflow: auto; 
     }
 
     #loader_timestamp{
@@ -182,6 +183,7 @@
     	margin:5px;
         width: 200px;
         height: 50px;
+        overflow: auto;
     }
 
     [ng-drag].loaded{
