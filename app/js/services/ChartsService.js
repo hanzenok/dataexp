@@ -118,8 +118,7 @@ angular.module('MainApp')
 
 		var graph = function(container, key1, keys, ts_key){
 	
-
-			if (keys && typeof keys !== 'Array'){
+			if (keys && typeof keys === 'string'){
 
 				keys = [keys];
 			}
@@ -148,7 +147,8 @@ angular.module('MainApp')
 				groups = new Array(n);
 				for (i=0; i<n; i++){
 
-					groups[i] = dim.group().reduceSum(function(d){return d[keys[i]];});
+					var local_key = keys[i];
+					groups[i] = dim.group().reduceSum(function(d){console.log(local_key); return d[local_key];});
 				}
 			}
 			
@@ -163,7 +163,7 @@ angular.module('MainApp')
 			var bar_chart = dc.barChart(container + '_bar');
 			var line_charts = null;
 			if (groups){
-				console.log('here2');
+				console.log('here2: ' + n);
 				line_charts = new Array(n);
 				for (i=0; i<n; i++){
 
@@ -178,7 +178,7 @@ angular.module('MainApp')
 
 			//line_charts
 			if (line_charts){
-				console.log('here3');
+				console.log('here3: ' + n);
 				for (i=0; i<n; i++){
 
 					line_charts[i].dimension(dim)
