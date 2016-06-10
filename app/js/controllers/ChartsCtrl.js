@@ -83,10 +83,12 @@ angular.module('MainApp')
 
 		$scope.reload = function(){
 
-			console.log('reload!!! ' + $rootScope.droppedCharts.length);
+			$rootScope.showPB(true);
+			console.log('reload!!!');
 
 			//load the data
 			ChartsService.load($rootScope.dataset);
+			console.log('load done');
 
 			//draw all the charts
 			$rootScope.droppedCharts.forEach(function(chart, index){
@@ -100,9 +102,11 @@ angular.module('MainApp')
 			//also render the counter
 			ChartsService.counter('#counter').render();
 			console.log('done');
+			$rootScope.showPB(false);
 			//rendering
 			// dc.renderAll();
-			dc.redrawAll();
+
+			//dc.redrawAll();
 		}
 
 	});
