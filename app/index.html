@@ -15,10 +15,10 @@
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
 			<h1>Title</h1>
+			<md-switch ng-model="$root.disable">Disable</md-switch>
 		</md-toolbar>
 
-		
-		<div layout="row" flex>
+		<div layout="row" flex ng-disabled="$root.disable">
 
 			<!-- Left Side Bar -->
 			<md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
@@ -35,7 +35,7 @@
 					<md-content flex="33" class="list_container chrome_bugfix2"> <!-- md-content is scrollable -->
 						<md-list class="chrome_bugfix1">
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
-								<md-checkbox ng-model="source_config.source.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
+								<md-checkbox ng-disabled="$root.disable" ng-model="source_config.source.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
 								<div layout="column">
 									<span class="font_1p2">{{source_config.source.name}}</span>
 									<div layout="row">
@@ -44,7 +44,7 @@
 										<span class="font_0p7" id="source_server"> {{source_config.source.server}}</span>
 									</div>
 								</div>
-								<md-icon class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
+								<md-icon ng-disabled="$root.disable" class="md-secondary" ng-click="modifySource($event, source_config)" md-svg-src="images/settings.svg" aria-label="Settings"></md-icon>
 								<md-divider></md-divider>
 							</md-list-item>
 						</md-list>
