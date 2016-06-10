@@ -68,11 +68,11 @@ angular.module('MainApp')
 				//to be added then trace
 				setTimeout(function() {
 
-					var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
-					dc_chart.render();
+					/*var dc_chart = */ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+					//dc_chart.render();
 
 					//also render the counter
-					ChartsService.counter('#counter').render();
+					//ChartsService.counter('#counter').render();
 
 
 				}, 100);
