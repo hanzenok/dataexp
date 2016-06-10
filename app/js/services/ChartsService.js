@@ -17,9 +17,9 @@ angular.module('MainApp')
 			var chart = dc.pieChart(container);
 
 			//default values
-			chart.width(200).height(200)
+			chart.width(319).height(319)
 			.dimension(dim).group(group)
-			.innerRadius(20).radius(100);
+			.innerRadius(20).radius(159);
 
 			//on hover text
 			if (!key2){
@@ -93,7 +93,7 @@ angular.module('MainApp')
 			.brushOn(false).yAxisLabel(key1)
 			.renderHorizontalGridLines(true)
 	    	.renderVerticalGridLines(true)
-			.margins({top: 20, right: 40, bottom: 20, left: 40});
+			.margins({top: 20, right: 50, bottom: 20, left: 50});
 			
 			//composing
 			if (group2){
@@ -109,7 +109,7 @@ angular.module('MainApp')
 			bar_chart.width(800).height(75)
 			.dimension(dim_days).group(group_days)
 			.x(d3.time.scale().domain([min_val, max_val]))
-			.margins({top: 20, right: 40, bottom: 20, left: 40});
+			.margins({top: 20, right: 50, bottom: 20, left: 50});
 			bar_chart.yAxis().ticks(0);
 			bar_chart.xUnits(d3.time.hours);
 			bar_chart.render();
@@ -130,9 +130,10 @@ angular.module('MainApp')
 			var chart = dc.rowChart(container);
 			
 			//default values
-			chart.width(400).height(200)
+			chart.width(600).height(319)
 			.elasticX(true)
 			.dimension(dim).group(group)
+			.margins({top: 20, right: 20, bottom: 20, left: 20})
 			.xAxis().tickFormat(d3.format('s'));
 
 			//on hover text and axis labels
@@ -165,7 +166,7 @@ angular.module('MainApp')
 			var chart = dc.barChart(container);
 			
 			//default values
-			chart.width(600).height(200)
+			chart.width(600).height(319)
 			.dimension(dim).group(group)
 			.renderHorizontalGridLines(true)
 			.renderVerticalGridLines(true)
@@ -173,7 +174,7 @@ angular.module('MainApp')
 			.x(d3.scale.ordinal().domain(dim))
 			.xUnits(dc.units.ordinal)
 			.yAxis().tickFormat(d3.format('s'));
-			chart.margins({top: 20, right: 0, bottom: 50, left: 50});
+			chart.margins({top: 20, right: 20, bottom: 50, left: 50});
 
 			//on hover text and axis labels
 			if (!key2){
@@ -256,6 +257,8 @@ angular.module('MainApp')
 			chart.width(600).height(300)
 			.dimension(dim).group(group)
 			.x(d3.scale.linear().domain([]))
+			.renderHorizontalGridLines(true)
+			.renderVerticalGridLines(true)
 			.elasticX(true).elasticY(true).brushOn(true)
 			.margins({top: 20, right: 30, bottom: 30, left: 50})
 			.xAxisLabel(key1).yAxisLabel(key2);
