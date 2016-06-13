@@ -132,7 +132,7 @@
 					<div flex></div>
 
 					<!-- Hide Button -->
-					<img id="hide_button" ng-controller="HideBtnCtrl" class="md-whiteframe-1dp" src="{{image}}" ng-click="toogle()"/>
+					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toogle()"/>
 				</div>
 
 				<!-- Footer -->
@@ -169,11 +169,11 @@
 							<!-- Buttons -->
 							<div layout="row" layout-align="center start">
 
-								<img class="loader_buttons md-secondary" src="images/download.svg" ng-click="load()"/>
+								<img class="loader_buttons cursor_pointer md-secondary" src="images/download.svg" ng-click="load()"/>
 								<a download="config.json" ng-href="{{url}}">
-									<img class="loader_buttons" src="images/save.svg"/>
+									<img class="loader_buttons cursor_pointer" src="images/save.svg"/>
 								</a>
-								<img  class="loader_buttons" src="images/clear.svg" ng-click="clear()"/>
+								<img  class="loader_buttons cursor_pointer" src="images/clear.svg" ng-click="clear()"/>
 							</div>
 						</div>
 
@@ -189,7 +189,7 @@
 									<div class="platform" layout="column" layout-align="end end">
 										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Pie'">
 												{{field_config.field.short}}
@@ -273,9 +273,11 @@
 
 						<!-- Delete zone -->
 						<div layout="column" class="loader">
-							<div flex class="delete_chart" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
-								<img src="images/delete.png" class="chart_img" alt="Delete Zone"/>
-							</div>
+							<!-- <a href="http://localhost:8080/lck"> -->
+								<div md-ink-ripple="#FF0000" ng-click="clearAll()" flex class="delete_chart cursor_pointer" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
+									<img src="images/delete.png" class="chart_img" alt="Delete Zone"/>
+								</div>
+							<!-- </a> -->
 						</div>
 
 						<!-- Draggable objects -->

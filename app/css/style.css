@@ -135,13 +135,13 @@
 
     	background: rgba(0,255,0, 0.1);
     	border-radius: 20px;
-    	cursor: move;
     }
     .delete_chart{
     	background: rgba(255,0,0, 0.2);
     	height: auto;
         border-radius: 20px;
         margin:5px;
+        outline:none;
 /*        background-image: url(../images/delete.png);
         background-repeat: no-repeat;
         background-position:center center;"*/
@@ -250,7 +250,6 @@
     img.loader_buttons{
 
         outline:none;
-        cursor:pointer;
     }
 
 	.tab_cell{
@@ -350,10 +349,19 @@
 
         margin-right: 5px;
         background: rgb(243, 243, 243);
-        cursor:pointer;
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;
         outline:none;
+    }
+
+    .cursor_pointer {
+
+        cursor: pointer;
+    }
+
+    .cursor_move {
+
+        cursor: move;
     }
 
     .padding_0{

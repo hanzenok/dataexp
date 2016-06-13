@@ -74,4 +74,17 @@ angular.module('MainApp')
 				}
 			}
 		}
+
+
+		//delete all the dropped items:
+		//DC charts, movable charts, timestamp fields
+		//and normal fields
+		$scope.clearAll = function(){
+
+			$rootScope.droppedCharts = []; //DC charts
+			$rootScope.chartFields = []; //movable charts
+			$rootScope.droppedTSFields = []; //timestamp fields
+			$rootScope.droppedFields = []; //fields
+
+		}
 	});
