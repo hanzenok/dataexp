@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, ChartsService) {
+	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, $mdColorPalette, ChartsService) {
 
 		var EnumCharts = {
 							pie: 'Pie',

@@ -10,4 +10,17 @@ angular.module('MainApp')
 			//and also footer
 			$rootScope.hideFooter = !$rootScope.showPanels;
 		}
+
+		$rootScope.activatePB = '';
+		$rootScope.showPB = function(activate){
+
+			//activate/desactivate inputs
+			$rootScope.disabled = activate;
+
+			if (activate)
+				$rootScope.activatePB = 'indeterminate';
+			else{
+				$rootScope.activatePB = '';
+			}
+		}
 });

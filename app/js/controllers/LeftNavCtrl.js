@@ -66,17 +66,6 @@ angular.module('MainApp')
 			$rootScope.fields_conf = [];
 		}
 
-		/***************Progress Bar****************/
-		$rootScope.activatePB = '';
-		$rootScope.showPB = function(activate){
-
-			if (activate)
-				$rootScope.activatePB = 'indeterminate';
-			else{
-				$rootScope.activatePB = '';
-			}
-		}
-
 		/***************Sources List****************/
 		$rootScope.loadSources = function(){
 

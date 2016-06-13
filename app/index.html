@@ -16,6 +16,7 @@
 			</md-button>
 			<h1>Title</h1>
 			<md-switch ng-model="$root.disabled"></md-switch>
+			<md-progress-circular md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-circular>
 		</md-toolbar>
 
 		<div layout="row" flex ng-disabled="$root.disabled">
@@ -82,7 +83,7 @@
 					<!-- using a div and not md-content beacuse of a chrome bug -->
 					<div style="overflow: auto;" flex="33" class="list_container chrome_bugfix1">
 						<div layout-align="center" class="chrome_bugfix2">
-							<span class="drag-object md-whiteframe-4dp drag_field" ng-repeat="field_config in fields_conf" ng-drag="true" ng-drag-data="field_config">
+							<span class="drag-object md-whiteframe-4dp drag_field" ng-repeat="field_config in fields_conf" ng-drag="!$root.disabled" ng-drag-data="field_config">
 									{{field_config.field.short}}
 								<md-tooltip md-visible="false" md-direction="top">
 									{{field_config.field.name}} ({{field_config.store.name}})
@@ -96,11 +97,10 @@
 			<!-- Main Container -->
 			<div flex layout="column">
 
-				<!-- Progress Bar -->
-				<md-progress-linear md-mode="{{$root.activatePB}}" class="md-warn"></md-progress-linear>
-
 				<!-- Charts Container -->
 				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
+
+					<span md-colors="{'color':'warn-700'}">WWW</span>
 
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()" ng-disabled="$root.disabled">
@@ -110,7 +110,7 @@
 
 					<!-- DC Charts-->
 					<div style="background-color: rgb(250, 250, 250); border-radius: 2px; padding:10px; border-style:solid; border-width: 1px; border-color:rgb(230, 230, 230);" class="dc_chart md-whiteframe-1dp" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
-							<span ng-drag="true" ng-drag-data="chart" class="drag-object" style="margin:5px;">
+							<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 								<img src="images/hand.svg" height="12" width="12"/>
 								{{chart.key1}}
 							</span>
@@ -141,11 +141,10 @@
 
 						<!-- Loader -->
 						<div ng-controller="LoaderCtrl" class="loader" layout="column">
-
 							<div id="loader_normal" ng-drop="true" ng-drop-success="onDropComplete($data)">
 								<span class="drop_info">Fields</span>
 
-								<div ng-repeat="field_config in $root.droppedFields" ng-drag="true" ng-drag-data="field_config" class="drag-object {{field_config.field.status}} md-whiteframe-4dp drag_field">
+								<div ng-repeat="field_config in $root.droppedFields" ng-drag="!$root.disabled" ng-drag-data="field_config" class="drag-object {{field_config.field.status}} md-whiteframe-4dp drag_field">
 									{{field_config.field.short}}
 
 									<md-tooltip md-visible="false" md-direction="top">
@@ -157,7 +156,7 @@
 							<div id="loader_timestamp" ng-drop="true" ng-drop-success="onTSDropComplete($data)">
 								<span class="drop_info">Timestamp Fields</span>
 
-								<div ng-repeat="field_config in $root.droppedTSFields" ng-drag="true" ng-drag-data="field_config" class="drag-object {{field_config.field.status}} md-whiteframe-4dp drag_field">
+								<div ng-repeat="field_config in $root.droppedTSFields" ng-drag="!$root.disabled" ng-drag-data="field_config" class="drag-object {{field_config.field.status}} md-whiteframe-4dp drag_field">
 									{{field_config.field.short}}
 
 									<md-tooltip md-visible="false" md-direction="top">
@@ -189,7 +188,7 @@
 									<div class="platform" layout="column" layout-align="end end">
 										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
 
-										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="true" ng-drag-data="{chart:'Pie'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Pie'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Pie'">
 												{{field_config.field.short}}
@@ -205,7 +204,7 @@
 									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/graph_chart.png" class="chart_img" alt="Graph Chart"/>
 										
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Graph')" ng-drag="true" ng-drag-data="{chart:'Graph'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Graph')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Graph'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Graph'">
 												{{field_config.field.short}}
@@ -221,7 +220,7 @@
 									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/scatter_chart.png" class="chart_img" alt="Scatter Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Scatter')" ng-drag="true" ng-drag-data="{chart:'Scatter'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Scatter')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Scatter'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Scatter'">
 												{{field_config.field.short}}
@@ -237,7 +236,7 @@
 									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/row_chart.png" class="chart_img" alt="Row Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Row')" ng-drag="true" ng-drag-data="{chart:'Row'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Row')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Row'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Row'">
 												{{field_config.field.short}}
@@ -253,7 +252,7 @@
 									<div class="platform"  layout="column" layout-align="end end">
 										<img src="images/bar_chart.png" class="chart_img" alt="Bar Chart"/>
 
-										<div class="chart_movable md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Bar')" ng-drag="true" ng-drag-data="{chart:'Bar'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Bar')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Bar'}"> 
 
 											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Bar'">
 												{{field_config.field.short}}
@@ -325,10 +324,10 @@
 					<md-subheader class="md-no-sticky md-primary subheader">Transformations</md-subheader>
 					<md-content layout="column" class="list_container">
 						<md-radio-group ng-model="transform_type" class="margin_5">
-							<md-radio-button value="inters">Intersection</md-radio-button>
+							<md-radio-button ng-disabled="$root.disabled" value="inters">Intersection</md-radio-button>
 							
 							<div layout="row" layout-align="start center" class="height_30">
-								<md-radio-button value="interp">Interpolation:</md-radio-button>
+								<md-radio-button ng-disabled="$root.disabled" value="interp">Interpolation:</md-radio-button>
 
 								<md-input-container class="md_input">
 									<md-select ng-disabled="transform_type=='inters'" ng-model="interp_type" aria-label="Interpolation Type">
@@ -349,7 +348,7 @@
 						<div layout="row">
 							<md-input-container class="marginb_0" flex>
 								<label>Type</label>
-								<md-select ng-model="reduc_type">
+								<md-select ng-disabled="$root.disabled" ng-model="reduc_type">
 									<md-option value="skip">Skip</md-option>
 									<md-option value="sum">Sum</md-option>
 									<md-option value="avg">Average</md-option>
@@ -360,12 +359,12 @@
 
 							<md-input-container class="marginb_0" flex>
 								<label>Size</label>
-								<input type="number" ng-model="reduc_size" min="1" ng-pattern="/^\d*$/">
+								<input ng-disabled="$root.disabled" type="number" ng-model="reduc_size" min="1" ng-pattern="/^\d*$/">
 							</md-input-container>
 
 							<md-input-container class="marginb_0 height_auto" flex ng-drop="true" ng-drop-success="onDroppedField($data)">
 								<label>Field</label>
-								<input ng-model="target_field">
+								<input ng-disabled="$root.disabled" ng-model="target_field">
 							</md-input-container>
 
 						</div>
@@ -375,7 +374,7 @@
 					<md-divider></md-divider>
 					<div layout="row" class="subheader">
 						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dates</md-subheader>
-						<md-switch ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
+						<md-switch ng-disabled="$root.disabled" ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
 					</div>
 
 					<div layout="column" layout-align="center center" class="list_container">
@@ -387,7 +386,7 @@
 					<md-divider></md-divider>
 					<div layout="row" class="subheader">
 						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dataset</md-subheader>
-						<md-switch ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
+						<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
 					</div>
 
 					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1 padding_0">
