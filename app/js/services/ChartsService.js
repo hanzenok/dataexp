@@ -1,11 +1,11 @@
 angular.module('MainApp')
-	.service('ChartsService', function(Webworker, vkThread){
+	.service('ChartsService', function(vkThread){
 		
 		//data containers
 		var dataset;
 		var ndx;
 
-		var pie_chart = function(container, key1, key2, ts_key, ndx, dc){
+		var pie_chart = function(container, key1, key2, ts_key){
 
 			console.log(ndx);
 
@@ -38,8 +38,8 @@ angular.module('MainApp')
 				});
 			}
 
-			chart.render();
-			//return chart;
+			//chart.render();
+			return chart;
 		}
 
 		var graph = function(container, key1, key2, ts_key){
@@ -54,6 +54,9 @@ angular.module('MainApp')
 				doc[ts_key] = new Date(doc[ts_key]);
 				doc.day = day_parser(doc[ts_key].getFullYear() + '-' + (doc[ts_key].getMonth()+1) + '-' +  doc[ts_key].getDate());
 			});
+
+			var t2 = performance.now();
+			console.log("After the parsing " + (t2 - t0) + " ms");
 
 			//dimensions
 			var dim = ndx.dimension(function(d){return d[ts_key]});
@@ -119,27 +122,28 @@ angular.module('MainApp')
 			bar_chart.xUnits(d3.time.hours);
 			bar_chart.render();
 
-			console.log(composite_chart);
+			// console.log(composite_chart);
 
-			var vk = vkThread();
-			var func = function(chart){console.log(eval(chart));}
-			var param = {
-					fn:func,
-					args: [composite_chart]
-			};
-			vk.exec(param).then(function(data){
-				console.log('yep');
-			});
+			// var vk = vkThread();
+			// var func = function(chart){console.log(eval(chart));
+			// 	eval(chart).render();}
+			// var param = {
+			// 		fn:func,
+			// 		args: [composite_chart]
+			// };
+			// vk.exec(param).then(function(data){
+			// 	console.log('yep');
+			// });
 
-			var t1 = performance.now();
-			console.log("Before render " + (t1 - t0) + " ms");
+			// var t2 = performance.now();
+			// console.log("Before render " + (t2 - t0) + " ms");
 
-			//composite_chart.render();
+			// //composite_chart.render();
 
-			var t2 = performance.now();
-			console.log("After render " + (t2 - t0) + " ms");
+			// var t3 = performance.now();
+			// console.log("After render " + (t3 - t0) + " ms");
 
-			//return composite_chart;
+			return composite_chart;
 		}
 
 		var row_chart = function(container, key1, key2){
@@ -175,8 +179,8 @@ angular.module('MainApp')
 				});
 			}
 
-			chart.render();
-			//return chart;
+			//chart.render();
+			return chart;
 		}
 
 		var bar_chart = function(container, key1, key2, dc, ndx, dataset){
@@ -218,8 +222,8 @@ angular.module('MainApp')
 				.yAxisLabel(key2);
 			}
 
-			chart.render();
-			//return chart;
+			//chart.render();
+			return chart;
 		}
 
 		var correlation = function(container, key1, key2, dc, ndx, dataset){
@@ -329,18 +333,18 @@ angular.module('MainApp')
 
 		this.counter = function(container){
 
-			// var chart = dc.numberDisplay(container);
+			var chart = dc.numberDisplay(container);
 
-			// chart.group(ndx.groupAll())
-			// .formatNumber(d3.format('n'))
-			// .valueAccessor(function(d){return d;});
+			chart.group(ndx.groupAll())
+			.formatNumber(d3.format('n'))
+			.valueAccessor(function(d){return d;});
 
-			return null;//chart;
+			return chart;
 		}
 
 		this.traceOne = function(chart_type, container, key1, key2, ts_key){
 
-			ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
+			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
 
 			// var vk = vkThread();
 			// var param = {
