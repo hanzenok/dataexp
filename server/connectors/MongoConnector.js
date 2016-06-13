@@ -27,7 +27,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
 		connection.db.listCollections().toArray(function(err, items){
 
 			if (err) {
-				callback(new Error('Cannot list the stores'));
+				callback(new Error('Error connecting to the mongo server'));
 			}
 			else {
 				connection.close();
@@ -66,7 +66,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
 	connection.on('error', function(error){
 
 		if (callback)
-			callback(new Error('Cannot connect to the mongo database ' + source_config.source.db + ' from ' + source_config.source.server + ' server'));
+			callback(new Error('Error connecting to the mongo server'));
 	});
 
 }
@@ -136,7 +136,7 @@ MongoConnector.getFields = function(store_config, callback){
 
 		if (err){
 
-			callback(new Error('Cannot load the field'));
+			callback(new Error('Error connecting to the mongo server'));
 		}
 		else {
 

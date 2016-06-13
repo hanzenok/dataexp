@@ -121,7 +121,7 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 
 				if (err) {
 
-					callback(err);
+					callback(new Error('Cannot get the store size'));
 					return;
 				}
 				else{
