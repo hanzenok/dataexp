@@ -183,7 +183,7 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var bar_chart = function(container, key1, key2, dc, ndx, dataset){
+		var bar_chart = function(container, key1, key2){
 	
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];});
@@ -226,7 +226,7 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var correlation = function(container, key1, key2, dc, ndx, dataset){
+		var correlation = function(container, key1, key2){
 	
 			//reduce functions	
 			var freduceAdd = function(p, v){		
@@ -272,7 +272,7 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var scatter = function(container, key1, key2, dc, ndx, dataset){
+		var scatter = function(container, key1, key2){
 
 			//dimensions
 			var dim = ndx.dimension(function(d){return [+d[key1], +d[key2]];});

@@ -7,7 +7,7 @@ angular.module('MainApp')
 			console.log('type:');
 			console.log(type);
 
-			if(data.field && data.field.status === 'loaded' && !data.field.format){
+			if (data.field && data.field.status === 'loaded' && !data.field.format){
 
 				//clone the object and set the type
 				var clone = JSON.parse(JSON.stringify(data));

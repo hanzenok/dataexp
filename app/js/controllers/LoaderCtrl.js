@@ -14,10 +14,27 @@ angular.module('MainApp')
 			//if dropped object is a field
 			if (data.field){
 
-				var index = $rootScope.droppedFields.indexOf(data);
+				//copy the object
+				var clone = JSON.parse(JSON.stringify(data));
+
+				//check the index
+				var index = -1;
+				var n = $rootScope.droppedFields.length;
+				for (var i=0; i<n; i++){
+
+					if (clone.field.name === $rootScope.droppedFields[i].field.name && 
+						clone.store.name === $rootScope.droppedFields[i].store.name &&
+						clone.source.name === $rootScope.droppedFields[i].source.name){
+
+						index = i;
+						break
+					}
+				}
+
+				//if not exist
 				if (index == -1){
 
-					$rootScope.droppedFields.push(data);
+					$rootScope.droppedFields.push(clone);
 				}
 			}		
 		};
