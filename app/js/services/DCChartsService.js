@@ -320,7 +320,6 @@ angular.module('MainApp')
 			dataset = data;
 			ndx = crossfilter(dataset);
 			err_callback(null);
-
 		}
 
 		this.counter = function(container){

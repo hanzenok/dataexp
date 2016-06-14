@@ -53,11 +53,11 @@ angular.module('MainApp')
 				canvas_dataset.push(tmp);
 			});
 
-			console.log(canvas_dataset);
-			console.log(container);
-
 			var composite_chart = new CanvasJS.Chart(container,
 			    {
+			    backgroundColor: '#FAFAFA',
+			    width: 700,
+			    height: 350,
 			    data: [
 			    {        
 			        type: "line",
@@ -234,35 +234,19 @@ angular.module('MainApp')
 		};
 
 		//load the dataset
-		this.load = function(data){
+		this.load = function(data, err_callback){
 
 			//check if all the libraries
 			//are imported
-			if (typeof crossfilter !== 'undefined' && 
-				typeof d3 !== 'undefined' &&
-				typeof dc !== 'undefined' && data){
+			if (typeof CanvasJS === 'undefined'){
 
-				dataset = data;
-				ndx = crossfilter(dataset);
-
-				return true;
-			}
-			else{
-
-				return false;
+				err_callback(new Error('Canvas.js is missing'));
+				return;
 			}
 
-		}
-
-		this.counter = function(container){
-
-			var chart = dc.numberDisplay(container);
-
-			chart.group(ndx.groupAll())
-			.formatNumber(d3.format('n'))
-			.valueAccessor(function(d){return d;});
-
-			return chart;
+			//all good
+			dataset = data;
+			err_callback(null);
 		}
 
 		this.traceOne = function(chart_type, container, key1, key2, ts_key){

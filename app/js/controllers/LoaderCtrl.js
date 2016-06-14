@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService, DCChartsService){
+	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService, DCChartsService, CanvasChartsService){
 
 		//containers
 		$rootScope.droppedFields = [];//fields that are dropped to the loader
@@ -181,6 +181,7 @@ angular.module('MainApp')
 							console.log('loaded');
 
 							//initialise the charts
+							CanvasChartsService.load($rootScope.dataset, function(){});
 							DCChartsService.load($rootScope.dataset, function(err){
 
 								console.log('Error:');
