@@ -43,7 +43,34 @@ angular.module('MainApp')
 		}
 
 		var graph = function(container, key1, key2, ts_key){
-	
+			
+			//generate dataset
+			var canvas_dataset = [];
+			var tmp;
+			dataset.forEach(function(doc, index){
+
+				tmp = {};
+				tmp.x = new Date(doc[ts_key]);
+				tmp.y = doc[key1];
+
+				canvas_dataset.push(tmp);
+			});
+
+			console.log(canvas_dataset);
+			console.log(container);
+
+			var composite_chart = new CanvasJS.Chart(container,
+			    {
+			    data: [
+			    {        
+			        type: "line",
+			        dataPoints: canvas_dataset
+			    }
+			    ]
+			});
+
+
+			/*
 			//parse time format
 			dataset.forEach(function(doc){
 				
@@ -111,10 +138,9 @@ angular.module('MainApp')
 			.margins({top: 20, right: 50, bottom: 20, left: 50});
 			bar_chart.yAxis().ticks(0);
 			bar_chart.xUnits(d3.time.hours);
-			bar_chart.render();
+			bar_chart.render();*/
 
 			// console.log(composite_chart);
-
 			// var vk = vkThread();
 			// var func = function(chart){console.log(eval(chart));
 			// 	eval(chart).render();}
@@ -125,12 +151,9 @@ angular.module('MainApp')
 			// vk.exec(param).then(function(data){
 			// 	console.log('yep');
 			// });
-
 			// var t2 = performance.now();
 			// console.log("Before render " + (t2 - t0) + " ms");
-
 			// //composite_chart.render();
-
 			// var t3 = performance.now();
 			// console.log("After render " + (t3 - t0) + " ms");
 

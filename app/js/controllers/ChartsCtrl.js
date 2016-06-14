@@ -9,6 +9,33 @@ angular.module('MainApp')
 							bar: 'Bar'
 						};
 
+
+// var chart = new CanvasJS.Chart("chartContainer",
+//     {
+//     data: [
+//     {        
+//         type: "line",
+//         dataPoints: [//array
+//         { x: new Date(2012, 01, 1), y: 26},
+//         { x: new Date(2012, 01, 3), y: 38},
+//         { x: new Date(2012, 01, 5), y: 43},
+//         { x: new Date(2012, 01, 7), y: 29},
+//         { x: new Date(2012, 01, 11), y: 41},
+//         { x: new Date(2012, 01, 13), y: 54},
+//         { x: new Date(2012, 01, 20), y: 66},
+//         { x: new Date(2012, 01, 21), y: 60},
+//         { x: new Date(2012, 01, 25), y: 53},
+//         { x: new Date(2012, 01, 27), y: 60}
+
+//         ]
+//     }
+//     ]
+// });
+
+//     chart.render();
+
+
+
 		$rootScope.droppedCharts = [];
 		$scope.onDropChart = function(data){
 
@@ -74,7 +101,8 @@ angular.module('MainApp')
 				//to be added then trace
 				setTimeout(function() {
 
-					var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+					// var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
+					var dc_chart = ChartsService.traceOne(chart.type, chart.id, chart.key1, chart.key2, chart.ts_key);
 					dc_chart.render();
 
 					//also render the counter
