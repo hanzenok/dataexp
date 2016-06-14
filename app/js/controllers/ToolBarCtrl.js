@@ -1,6 +1,7 @@
 angular.module('MainApp')
 	.controller('ToolBarCtrl', function($scope, $rootScope){
 
+		//hiding panes
 		$rootScope.showPanels = true;
 		$rootScope.tooglePanels = function(){
 
@@ -11,6 +12,8 @@ angular.module('MainApp')
 			$rootScope.hideFooter = !$rootScope.showPanels;
 		}
 
+		//show/hide progress bar
+		//activate/desactivate interface
 		$rootScope.activatePB = '';
 		$rootScope.showPB = function(activate){
 

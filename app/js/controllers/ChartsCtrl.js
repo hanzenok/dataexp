@@ -18,6 +18,10 @@ angular.module('MainApp')
 				console.log('onDropChart:');
 				console.log(data);
 
+				//launch the progress bar
+				// $rootScope.showPB(true);
+				// $rootScope.disabled = true;
+
 				var filtered_fields = [];
 
 				//filtering all the dropped fields
@@ -50,6 +54,8 @@ angular.module('MainApp')
 							.hideDelay(4000)
 					);
 
+					// $rootScope.showPB(false);
+					// $rootScope.disabled = false;
 					return;
 				}	
 
@@ -74,8 +80,13 @@ angular.module('MainApp')
 					//also render the counter
 					ChartsService.counter('#counter').render();
 
+					//hide the progress bar
+					console.log('hereeeee');
+					// $rootScope.showPB(false);
+					console.log('and herreee');
+					// $rootScope.disabled = false;
 
-				}, 100);
+				}, 300);
 			}
 
 

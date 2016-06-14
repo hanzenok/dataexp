@@ -44,26 +44,17 @@ angular.module('MainApp')
 
 		var graph = function(container, key1, key2, ts_key){
 	
-			var t0 = performance.now();
-
-			var day_parser = d3.time.format('%Y-%m-%d').parse;
-
 			//parse time format
 			dataset.forEach(function(doc){
 				
 				doc[ts_key] = new Date(doc[ts_key]);
-				doc.day = day_parser(doc[ts_key].getFullYear() + '-' + (doc[ts_key].getMonth()+1) + '-' +  doc[ts_key].getDate());
 			});
-
-			var t2 = performance.now();
-			console.log("After the parsing " + (t2 - t0) + " ms");
 
 			//dimensions
 			var dim = ndx.dimension(function(d){return d[ts_key]});
-			var dim_days = ndx.dimension(function(d){return d.day;});
+			//var dim_days = ndx.dimension(function(d){return d.day;});
 			
 			//grouping
-			var group_days = dim_days.group();
 			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
 			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
 			
@@ -115,7 +106,7 @@ angular.module('MainApp')
 
 			//scroll bar_chart
 			bar_chart.width(800).height(75)
-			.dimension(dim_days).group(group_days)
+			.dimension(dim).group(group1)
 			.x(d3.time.scale().domain([min_val, max_val]))
 			.margins({top: 20, right: 50, bottom: 20, left: 50});
 			bar_chart.yAxis().ticks(0);

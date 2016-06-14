@@ -100,8 +100,6 @@
 				<!-- Charts Container -->
 				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 
-					<span md-colors="{'color':'warn-700'}">WWW</span>
-
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()" ng-disabled="$root.disabled">
 						<md-icon md-svg-src="images/refresh.svg"></md-icon>
@@ -181,9 +179,10 @@
 						<!-- <div> -->
 						<!-- md-content is problematic -->
 						<md-content flex ng-controller="MovableChartsCtrl">
-							<md-list layout="row" flex>
+							<md-list layout="row">
 
 								<!-- Pie Chart -->
+
 								<md-list-item layout="column">
 									<div class="platform" layout="column" layout-align="end end">
 										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
@@ -272,11 +271,9 @@
 
 						<!-- Delete zone -->
 						<div layout="column" class="loader">
-							<!-- <a href="http://localhost:8080/lck"> -->
 								<div md-ink-ripple="#FF0000" ng-click="clearAll()" flex class="delete_chart cursor_pointer" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
 									<img src="images/delete.png" class="chart_img" alt="Delete Zone"/>
 								</div>
-							<!-- </a> -->
 						</div>
 
 						<!-- Draggable objects -->
