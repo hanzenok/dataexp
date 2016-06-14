@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, $mdColorPalette, ChartsService) {
+	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, $mdColorPalette, DCChartsService) {
 
 		var EnumCharts = {
 							pie: 'Pie',
@@ -102,11 +102,11 @@ angular.module('MainApp')
 				setTimeout(function() {
 
 					// var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
-					var dc_chart = ChartsService.traceOne(chart.type, chart.id, chart.key1, chart.key2, chart.ts_key);
+					var dc_chart = DCChartsService.traceOne(chart.type, chart.id, chart.key1, chart.key2, chart.ts_key);
 					dc_chart.render();
 
 					//also render the counter
-					ChartsService.counter('#counter').render();
+					DCChartsService.counter('counter').render();
 
 					//hide the progress bar
 					console.log('hereeeee');
