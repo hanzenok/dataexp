@@ -7,8 +7,6 @@ angular.module('MainApp')
 
 		var pie_chart = function(container, key1, key2, ts_key){
 
-			console.log(ndx);
-
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
 
@@ -298,23 +296,30 @@ angular.module('MainApp')
 		};
 
 		//load the dataset
-		this.load = function(data){
+		this.load = function(data, err_callback){
 
 			//check if all the libraries
 			//are imported
-			if (typeof crossfilter !== 'undefined' && 
-				typeof d3 !== 'undefined' &&
-				typeof dc !== 'undefined' && data){
+			if (typeof crossfilter === 'undefined'){
 
-				dataset = data;
-				ndx = crossfilter(dataset);
-
-				return true;
+				err_callback(new Error('Crossfilter.js is missing'));
+				return;
 			}
-			else{
+			if (typeof d3 === 'undefined'){
 
-				return false;
+				err_callback(new Error('D3.js is missing'));
+				return;
 			}
+			if (typeof dc === 'undefined'){
+
+				err_callback(new Error('DC.js is missing'));
+				return;
+			}
+
+			//all good
+			dataset = data;
+			ndx = crossfilter(dataset);
+			err_callback(null);
 
 		}
 

@@ -1,13 +1,10 @@
 angular.module('MainApp')
-	.service('ChartsService', function(vkThread){
+	.service('CanvasChartsService', function(){
 		
 		//data containers
 		var dataset;
-		var ndx;
 
 		var pie_chart = function(container, key1, key2, ts_key){
-
-			console.log(ndx);
 
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
@@ -68,94 +65,6 @@ angular.module('MainApp')
 			    }
 			    ]
 			});
-
-
-			/*
-			//parse time format
-			dataset.forEach(function(doc){
-				
-				doc[ts_key] = new Date(doc[ts_key]);
-			});
-
-			//dimensions
-			var dim = ndx.dimension(function(d){return d[ts_key]});
-			//var dim_days = ndx.dimension(function(d){return d.day;});
-			
-			//grouping
-			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
-			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
-			
-			//min,max
-			var min_val={}, max_val={};
-			min_val = dim.bottom(1)[0][ts_key];
-			max_val = dim.top(1)[0][ts_key];
-			
-			//charts
-			var composite_chart = dc.compositeChart(container);
-			var line_chart1 = dc.lineChart(composite_chart);
-			var line_chart2 = dc.lineChart(composite_chart);
-			var bar_chart = dc.barChart(container + '_bar');
-
-			//line_chart1
-			line_chart1.dimension(dim)
-			.group(group1, key1).colors('red')
-			.x(d3.time.scale().domain([min_val, max_val]));
-
-			//line_chart2
-			if (group2){
-
-				line_chart2.dimension(dim)
-				.group(group2, key2).colors('blue')
-				.x(d3.time.scale().domain([min_val, max_val]))
-				.useRightYAxis(true);
-			}
-
-			//composite chart
-			composite_chart.width(800).height(240)
-			.dimension(dim).group(group1)
-			.rangeChart(bar_chart).shareTitle(false)
-			.x(d3.time.scale().domain([min_val, max_val]))
-			.elasticY(true).elasticX(false)
-			.brushOn(false).yAxisLabel(key1)
-			.renderHorizontalGridLines(true)
-	    	.renderVerticalGridLines(true)
-			.margins({top: 20, right: 50, bottom: 20, left: 50});
-			
-			//composing
-			if (group2){
-
-				composite_chart.compose([line_chart1, line_chart2])
-				.rightYAxisLabel(key2);
-			}
-			else{
-				composite_chart.compose([line_chart1]);
-			}
-
-			//scroll bar_chart
-			bar_chart.width(800).height(75)
-			.dimension(dim).group(group1)
-			.x(d3.time.scale().domain([min_val, max_val]))
-			.margins({top: 20, right: 50, bottom: 20, left: 50});
-			bar_chart.yAxis().ticks(0);
-			bar_chart.xUnits(d3.time.hours);
-			bar_chart.render();*/
-
-			// console.log(composite_chart);
-			// var vk = vkThread();
-			// var func = function(chart){console.log(eval(chart));
-			// 	eval(chart).render();}
-			// var param = {
-			// 		fn:func,
-			// 		args: [composite_chart]
-			// };
-			// vk.exec(param).then(function(data){
-			// 	console.log('yep');
-			// });
-			// var t2 = performance.now();
-			// console.log("Before render " + (t2 - t0) + " ms");
-			// //composite_chart.render();
-			// var t3 = performance.now();
-			// console.log("After render " + (t3 - t0) + " ms");
 
 			return composite_chart;
 		}
@@ -359,49 +268,6 @@ angular.module('MainApp')
 		this.traceOne = function(chart_type, container, key1, key2, ts_key){
 
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
-
-			// var vk = vkThread();
-			// var param = {
-			// 		fn:pie_chart,
-			// 		args: [container, key1, key2, ts_key, ndx, dc]
-			// };
-			// vk.exec(param).then(function(data){
-			// 	console.log('yep');
-			// });
-
-
-			// var vk = vkThread();
-			// function test(func, container, key1, key2, ts_key, dc, ndx, dataset){
-			// 	console.log('vkthread:');
-			// 	func.call(this, container, key1, key2, ts_key, dc, ndx, dataset);
-			// 	return 3;
-			// }
-			// var param = {
-			// 	fn: test,
-			// 	args: [ChartsEnum[chart_type], container, key1, key2, ts_key, dc, this._ndx, this._dataset]
-			// };
-			// vk.exec(param).then(function(data){
-			// 	console.log(data);
-			// });
-
-// '			var worker_func = function(file){
-// 				console.log('TypeOf DC.js: ');
-// 				console.log(file);
-// 			};
-// 			var worker = Webworker.create(worker_func);
-// 			var file = {a: dc};
-// 			worker.run(file);'
-
-
-			// var worker = Webworker.create(ChartsEnum[chart_type]);
-			// worker.run(chart_type, container, key1, key2, ts_key, _ndx, _dataset)
-			// 	.then(function(chart){
-			// 		chart.render();
-			// 	});
-
-			// var worker = Webworker.create(ChartsEnum[chart_type]);
-			// worker.run(container, key1, key2, ts_key, _ndx, _dataset);
-
 		}
 
 	});

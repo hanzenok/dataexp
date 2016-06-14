@@ -181,7 +181,21 @@ angular.module('MainApp')
 							console.log('loaded');
 
 							//initialise the charts
-							DCChartsService.load($rootScope.dataset);
+							DCChartsService.load($rootScope.dataset, function(err){
+
+								console.log('Error:');
+								console.log(err);
+
+								if (err){
+									$mdToast.show(
+										$mdToast.simple()
+											.textContent(err.message)
+											.action('OK')
+											.position('bottom')
+											.hideDelay(4000)
+									);
+								}
+							});
 						});
 
 					},

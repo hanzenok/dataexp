@@ -126,7 +126,18 @@ angular.module('MainApp')
 			console.log('reload!!!');
 
 			//load the data
-			ChartsService.load($rootScope.dataset);
+			DCChartsService.load($rootScope.dataset, function(err){
+
+				if (err){
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent(err.message)
+							.action('OK')
+							.position('bottom')
+							.hideDelay(4000)
+					);
+				}
+			});
 			console.log('load done');
 
 			//draw all the charts
