@@ -15,7 +15,7 @@ angular.module('MainApp')
 			if (data.field){
 
 				//copy the object
-				var clone = JSON.parse(JSON.stringify(data));
+				/*var clone = JSON.parse(JSON.stringify(data));
 
 				//check the index
 				var index = -1;
@@ -29,12 +29,15 @@ angular.module('MainApp')
 						index = i;
 						break
 					}
-				}
+				}*/
+
+				var index = $rootScope.droppedFields.indexOf(data);
+
 
 				//if not exist
 				if (index == -1){
 
-					$rootScope.droppedFields.push(clone);
+					$rootScope.droppedFields.push(data);
 				}
 			}		
 		};

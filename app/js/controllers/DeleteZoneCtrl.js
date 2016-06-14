@@ -81,10 +81,13 @@ angular.module('MainApp')
 		//and normal fields
 		$scope.clearAll = function(){
 
+			//dropped fields on the loader were not clonned
+			$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
+
+			//clear all the droppable objects
 			$rootScope.droppedCharts = []; //DC charts
 			$rootScope.chartFields = []; //movable charts
 			$rootScope.droppedTSFields = []; //timestamp fields
 			$rootScope.droppedFields = []; //fields
-
 		}
 	});

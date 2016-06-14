@@ -2,7 +2,7 @@ angular.module('MainApp')
 	.controller('MovableChartsCtrl', function ($scope, $rootScope) {
 
 		$scope.onDropComplete = function(data, type){
-			console.log('Pie:');
+			console.log('Object:');
 			console.log(data);
 			console.log('type:');
 			console.log(type);
