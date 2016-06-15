@@ -43,8 +43,10 @@
 				</md-input-container>
 			</div>
 
-			<div layout-gt-sm="row">
-				<input type="file" ng-hide="source_conf.source.type !== 'json'"></input>
+			<div layout-gt-sm="row" layout-align="center center">
+				<!-- <input type="file" ng-hide="source_conf.source.type !== 'json'" onchange="angular.element(this).scope().fileNameChanged(this)"></input> -->
+				<input class="ng-hide" id="input-file" type="file" onchange="angular.element(this).scope().fileNameChanged(this)"/>
+				<label for="input-file" class="md-button md-raised md-primary" ng-hide="source_conf.source.type !== 'json'">Choose File</label>
 
 				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json'">
 					<label>Server</label>

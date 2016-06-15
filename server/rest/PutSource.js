@@ -8,6 +8,7 @@ var putSource = function(req, res){
 	
 	//get the recieved source
 	var source_conf = req.body;
+	console.log(source_conf);
 
 	if (source_conf){
 

@@ -191,8 +191,27 @@ angular.module('MainApp')
 			$mdDialog.cancel();
 		};
 
-		$scope.custom = function(){
+		$scope.fileNameChanged = function(element){
 
-			console.log('Custom');
-		};
+			//get the file (only one)
+			var file = element.files[0];
+			console.log('a');
+			//file reader
+			var reader = new FileReader();
+			reader.onloadedend = function(e){
+
+				console.log('inside onloadedend');
+				var data = e.target.result;
+				console.log(data);
+			}
+			console.log('b');
+			//read the file
+			reader.readAsArrayBuffer(file);
+			console.log('c');
+		}
+
+		// $scope.custom = function(){
+
+		// 	console.log('Custom');
+		// };
 	});
