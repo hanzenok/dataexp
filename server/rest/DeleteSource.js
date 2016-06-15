@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 var config_file = './server/config/sources.json';
+var dataset_prefix = './server/datasets/';
 
 //adds a new source to the config file
 var deleteSource = function(req, res){
@@ -32,6 +33,12 @@ var deleteSource = function(req, res){
 						index = i;
 						break;
 					}
+				}
+
+				//if a file source (json,csv)
+				if (sources_conf[index].source.type === 'json'){
+
+					fs.unlink(dataset_prefix + source_name + '.json');
 				}
 
 				//removing

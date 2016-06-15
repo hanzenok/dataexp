@@ -1,7 +1,6 @@
 var fs = require('fs');
 
 var dataset_prefix = './server/datasets/';
-var dataset = null;
 
 var JsonConnector = {};
 
