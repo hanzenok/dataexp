@@ -180,7 +180,8 @@ angular.module('MainApp')
 			var types = {
 
 				mongo: 'MongoDB',
-				mysql: 	'MySQL'
+				mysql: 	'MySQL',
+				json: 'JSON'
 			};
 
 			return types[source_conf.source.type];
@@ -188,9 +189,6 @@ angular.module('MainApp')
 
 		//dialog to modify the source
 		$scope.modifySource = function(event, source_conf){
-
-			//consle.log('modifySource:');
-			//consle.log(source_conf);
 
 			//used to pass data to the 
 			//DialogController

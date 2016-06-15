@@ -24,7 +24,7 @@ angular.module('MainApp')
 		this.post = function(source_conf, success_cb, error_cb){
 
 			//adding a new source
-			source_conf.source.isNew = true;
+			if (!source_conf.data) source_conf.source.isNew = true;
 
 			res.post(source_conf, success_cb, error_cb);
 

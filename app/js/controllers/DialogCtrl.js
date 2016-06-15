@@ -191,23 +191,50 @@ angular.module('MainApp')
 			$mdDialog.cancel();
 		};
 
-		$scope.fileNameChanged = function(element){
+		$scope.readFile = function(element){
 
-			//get the file (only one)
-			var file = element.files[0];
-			console.log('a');
-			//file reader
-			var reader = new FileReader();
-			reader.onloadedend = function(e){
+			//if the file was specified
+			if ($scope.source_conf.source.name) {
 
-				console.log('inside onloadedend');
-				var data = e.target.result;
-				console.log(data);
+				//get the file (only one)
+				var file = element.files[0];
+
+				//check the type
+				if (file.type.split('/')[1] !== $scope.source_conf.source.type){
+
+					$mdDialog.hide();
+
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent('Incorrect file extension')
+							.action('OK')
+							.position('bottom')
+							.hideDelay(4000)
+					);
+
+					return;
+				}
+		
+				//file reader
+				var reader = new FileReader();
+				reader.onload = function(e){
+
+					var data = e.target.result;
+
+					//mark the 'server' and 'db' of the source
+					$scope.source_conf.source.db = $scope.source_conf.source.name + '.json';
+					$scope.source_conf.source.server = 'file';
+
+					//send the dataset to the server
+					var dataset = {};
+					dataset.name = $scope.source_conf.source.name;
+					dataset.data = JSON.parse(data); //only for json
+					SourcesService.post(dataset, function(res){}, function(err){});
+				}
+
+				//read the file
+				reader.readAsText(file);
 			}
-			console.log('b');
-			//read the file
-			reader.readAsArrayBuffer(file);
-			console.log('c');
 		}
 
 		// $scope.custom = function(){
