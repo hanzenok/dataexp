@@ -181,7 +181,8 @@ angular.module('MainApp')
 
 				mongo: 'MongoDB',
 				mysql: 	'MySQL',
-				json: 'JSON'
+				json: 'JSON',
+				csv: 'CSV'
 			};
 
 			return types[source_conf.source.type];

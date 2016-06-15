@@ -29,26 +29,30 @@
 						<md-option value="mongo">Mongo</md-option>
 						<md-option value="mysql">MySQL</md-option>
 						<md-option value="json">JSON</md-option>
+						<md-option value="csv">CSV</md-option>
 					</md-select>
 				</md-input-container>
 
-				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json'">
+				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>User</label>
 					<input name="user" ng-model="source_conf.source.user">
 				</md-input-container>
 
-				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json'">
+				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Password</label>
 					<input name="passw" type="password" ng-model="source_conf.source.passw">
 				</md-input-container>
 			</div>
 
-			<div layout-gt-sm="row" layout-align="center center">
+			<div layout-gt-sm="row" layout-align="center start">
 				<!-- <input type="file" ng-hide="source_conf.source.type !== 'json'" onchange="angular.element(this).scope().fileNameChanged(this)"></input> -->
 				<input class="ng-hide" id="input-file" type="file" onchange="angular.element(this).scope().readFile(this)"/>
-				<label for="input-file" class="md-button md-raised md-primary" ng-hide="source_conf.source.type !== 'json'">Choose File</label>
+				<label for="input-file" class="md-button md-raised md-primary" ng-hide="source_conf.source.type !== 'json' && source_conf.source.type !== 'csv'">Choose File</label>
+				<md-input-container class="md-block" style="margin:0;" ng-hide="source_conf.source.type !== 'json' && source_conf.source.type !== 'csv'">
+					<input type="text" ng-model="source_conf.source.db" ng-disabled="true">
+				</md-input-container>
 
-				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json'">
+				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Server</label>
 					<input name="server" required ng-model="source_conf.source.server">
 					<div ng-messages="dialogForm.server.$error" ng-if="showHints">
@@ -56,7 +60,7 @@
 					</div>
 				</md-input-container>
 
-				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json'">
+				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Port</label>
 					<input name="port" type="number" min="0" max="65535" ng-model="source_conf.source.port" ng-pattern="/^\d*$/">
 					<div ng-messages="dialogForm.port.$error" ng-if="showHints">
@@ -66,7 +70,7 @@
 					</div>
 				</md-input-container>
 
-				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json'">
+				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Database</label>
 					<input name="db" required ng-model="source_conf.source.db">
 					<div ng-messages="dialogForm.db.$error" ng-if="showHints">

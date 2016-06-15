@@ -222,13 +222,20 @@ angular.module('MainApp')
 					var data = e.target.result;
 
 					//mark the 'server' and 'db' of the source
-					$scope.source_conf.source.db = $scope.source_conf.source.name + '.json';
+					$scope.source_conf.source.db = file.name;
 					$scope.source_conf.source.server = 'file';
+
+					if ($scope.source_conf.source.type === 'csv'){
+						console.log('csv:');
+						console.log(data);
+						console.log('json:');
+						console.log(csv2json(data));
+					}
 
 					//send the dataset to the server
 					var dataset = {};
 					dataset.name = $scope.source_conf.source.name;
-					dataset.data = JSON.parse(data); //only for json
+					dataset.data = ($scope.source_conf.source.type === 'json') ? JSON.parse(data) : csv2json(data);
 					SourcesService.post(dataset, function(res){}, function(err){});
 				}
 
@@ -237,8 +244,30 @@ angular.module('MainApp')
 			}
 		}
 
-		// $scope.custom = function(){
+		//https://gist.github.com/iwek/7154578
+		function csv2json(csv){
 
-		// 	console.log('Custom');
-		// };
+			var lines=csv.split("\n");
+			var result = [];
+			var headers=lines[0].split(",");
+
+			var n = lines.length;
+			var m = headers.length;
+
+			for (var i=1; i<n; i++){
+
+				var obj = {};
+				var currentline=lines[i].split(",");
+
+				for (var j=0; j<m; j++){
+					obj[headers[j]] = currentline[j];
+				}
+
+				result.push(obj);
+
+			}
+
+			return result;
+		}
 	});
+

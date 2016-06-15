@@ -4,12 +4,13 @@ var tsproc = require('tsproc');
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
 var mysql_connector = require('../connectors/MysqlConnector');
-var json_connector = require('../connectors/JsonConnector');
+var file_connector = require('../connectors/FileConnector');
 var ConnectorsEnum = {
 	
 					'mongo': mongo_connector,
 					'mysql': mysql_connector,
-					'json': json_connector
+					'json': file_connector,
+					'csv': file_connector
 					};
 
 //stats config
