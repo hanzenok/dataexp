@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.service('DCChartsService', function(vkThread){
+	.service('DCChartsService', function(){
 		
 		//data containers
 		var dataset;
@@ -110,23 +110,6 @@ angular.module('MainApp')
 			bar_chart.yAxis().ticks(0);
 			bar_chart.xUnits(d3.time.hours);
 			bar_chart.render();
-
-			// console.log(composite_chart);
-			// var vk = vkThread();
-			// var func = function(chart){console.log(eval(chart));
-			// 	eval(chart).render();}
-			// var param = {
-			// 		fn:func,
-			// 		args: [composite_chart]
-			// };
-			// vk.exec(param).then(function(data){
-			// 	console.log('yep');
-			// });
-			// var t2 = performance.now();
-			// console.log("Before render " + (t2 - t0) + " ms");
-			// //composite_chart.render();
-			// var t3 = performance.now();
-			// console.log("After render " + (t3 - t0) + " ms");
 
 			return composite_chart;
 		}
@@ -336,49 +319,6 @@ angular.module('MainApp')
 		this.traceOne = function(chart_type, container, key1, key2, ts_key){
 
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
-
-			// var vk = vkThread();
-			// var param = {
-			// 		fn:pie_chart,
-			// 		args: [container, key1, key2, ts_key, ndx, dc]
-			// };
-			// vk.exec(param).then(function(data){
-			// 	console.log('yep');
-			// });
-
-
-			// var vk = vkThread();
-			// function test(func, container, key1, key2, ts_key, dc, ndx, dataset){
-			// 	console.log('vkthread:');
-			// 	func.call(this, container, key1, key2, ts_key, dc, ndx, dataset);
-			// 	return 3;
-			// }
-			// var param = {
-			// 	fn: test,
-			// 	args: [ChartsEnum[chart_type], container, key1, key2, ts_key, dc, this._ndx, this._dataset]
-			// };
-			// vk.exec(param).then(function(data){
-			// 	console.log(data);
-			// });
-
-// '			var worker_func = function(file){
-// 				console.log('TypeOf DC.js: ');
-// 				console.log(file);
-// 			};
-// 			var worker = Webworker.create(worker_func);
-// 			var file = {a: dc};
-// 			worker.run(file);'
-
-
-			// var worker = Webworker.create(ChartsEnum[chart_type]);
-			// worker.run(chart_type, container, key1, key2, ts_key, _ndx, _dataset)
-			// 	.then(function(chart){
-			// 		chart.render();
-			// 	});
-
-			// var worker = Webworker.create(ChartsEnum[chart_type]);
-			// worker.run(container, key1, key2, ts_key, _ndx, _dataset);
-
 		}
 
 	});

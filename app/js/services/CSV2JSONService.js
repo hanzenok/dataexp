@@ -1,8 +1,9 @@
 angular.module('MainApp')
 	.service('CSV2JSONService', function(){
 
-
+		//http://jsfiddle.net/sturtevant/AZFvQ/
 		function CSVToArray(strData, strDelimiter) {
+
 		    // Check to see if the delimiter is defined. If not,
 		    // then default to comma.
 		    strDelimiter = (strDelimiter || ",");
@@ -65,9 +66,6 @@ angular.module('MainApp')
 		            objArray[i - 1][key] = array[i][k]
 		        }
 		    }
-
-		    // var json = JSON.stringify(objArray);
-		    // var str = json.replace(/},/g, "},\r\n");
 
 		    return objArray;
 		}
