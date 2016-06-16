@@ -32,6 +32,8 @@ TS.getTimeseries = function(req, res){
 	//get the requested dataset
 	var fields_config = req.body;
 
+	console.log(JSON.stringify(fields_config, 4));
+
 	//fields_config is an array of size 3
 	//0 - config file
 	//1 - timestamp fields

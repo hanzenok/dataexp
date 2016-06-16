@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('DialogCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService){
+	.controller('DialogCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, CSV2JSONService){
 
 		/*******AddSource.html********/
 		$scope.showHints = false; //managin the error hints
@@ -229,14 +229,15 @@ angular.module('MainApp')
 						console.log('csv:');
 						console.log(data);
 						console.log('json:');
-						console.log(csv2json(data));
+						console.log(CSV2JSONService.csv2json(data));
 					}
 
 					//send the dataset to the server
 					var dataset = {};
 					dataset.name = $scope.source_conf.source.name;
-					dataset.data = ($scope.source_conf.source.type === 'json') ? JSON.parse(data) : csv2json(data);
+					dataset.data = ($scope.source_conf.source.type === 'json') ? JSON.parse(data) : CSV2JSONService.csv2json(data);
 					SourcesService.post(dataset, function(res){}, function(err){});
+					console.log(dataset);
 				}
 
 				//read the file
@@ -245,29 +246,29 @@ angular.module('MainApp')
 		}
 
 		//https://gist.github.com/iwek/7154578
-		function csv2json(csv){
+		// function csv2json(csv){
 
-			var lines=csv.split("\n");
-			var result = [];
-			var headers=lines[0].split(",");
+		// 	var lines=csv.split("\n");
+		// 	var result = [];
+		// 	var headers=lines[0].split(",");
 
-			var n = lines.length;
-			var m = headers.length;
+		// 	var n = lines.length;
+		// 	var m = headers.length;
 
-			for (var i=1; i<n; i++){
+		// 	for (var i=1; i<n; i++){
 
-				var obj = {};
-				var currentline=lines[i].split(",");
+		// 		var obj = {};
+		// 		var currentline=lines[i].split(",");
 
-				for (var j=0; j<m; j++){
-					obj[headers[j]] = currentline[j];
-				}
+		// 		for (var j=0; j<m; j++){
+		// 			obj[headers[j]] = currentline[j];
+		// 		}
 
-				result.push(obj);
+		// 		result.push(obj);
 
-			}
+		// 	}
 
-			return result;
-		}
+		// 	return result;
+		// }
 	});
 

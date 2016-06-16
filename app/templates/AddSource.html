@@ -47,7 +47,7 @@
 			<div layout-gt-sm="row" layout-align="center start">
 				<!-- <input type="file" ng-hide="source_conf.source.type !== 'json'" onchange="angular.element(this).scope().fileNameChanged(this)"></input> -->
 				<input class="ng-hide" id="input-file" type="file" onchange="angular.element(this).scope().readFile(this)"/>
-				<label for="input-file" class="md-button md-raised md-primary" ng-hide="source_conf.source.type !== 'json' && source_conf.source.type !== 'csv'">Choose File</label>
+				<label for="input-file" class="md-button md-raised md-primary" ng-disabled="!source_conf.source.name" ng-hide="source_conf.source.type !== 'json' && source_conf.source.type !== 'csv'">Choose File</label>
 				<md-input-container class="md-block" style="margin:0;" ng-hide="source_conf.source.type !== 'json' && source_conf.source.type !== 'csv'">
 					<input type="text" ng-model="source_conf.source.db" ng-disabled="true">
 				</md-input-container>
