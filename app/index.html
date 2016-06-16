@@ -11,7 +11,7 @@
 
 		<!-- Toolbar -->
 		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
-			<md-button class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
+			<md-button ng-disabled="$root.disabled" class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
 			<h1>Title</h1>
@@ -78,7 +78,12 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">Fields ({{fields_conf.length}})</md-subheader>
+					<md-subheader class="md-no-sticky md-primary subheader">
+						<div layout="row">
+							<span flex>Fields ({{fields_conf.length}})</span>
+							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : reset()">Reset</span>
+						</div>
+					</md-subheader>
 
 					<!-- using a div and not md-content beacuse of a chrome bug -->
 					<div style="overflow: auto;" flex="33" class="list_container chrome_bugfix1">
@@ -168,11 +173,11 @@
 							<!-- Buttons -->
 							<div layout="row" layout-align="center start">
 
-								<img class="loader_buttons cursor_pointer md-secondary" src="images/download.svg" ng-click="load()"/>
-								<a download="config.json" ng-href="{{url}}">
+								<img class="loader_buttons cursor_pointer md-secondary" src="images/download.svg" ng-click="($root.disabled) ? '' : load()"/>
+								<a download="config.json" ng-href="{{($root.disabled) ? '' : url}}">
 									<img class="loader_buttons cursor_pointer" src="images/save.svg"/>
 								</a>
-								<img  class="loader_buttons cursor_pointer" src="images/clear.svg" ng-click="clear()"/>
+								<img  class="loader_buttons cursor_pointer" src="images/clear.svg" ng-click="($root.disabled) ? '' : clear()"/>
 							</div>
 						</div>
 
@@ -272,15 +277,18 @@
 
 						<!-- Delete zone -->
 						<div layout="column" class="loader">
-								<div md-ink-ripple="#FF0000" ng-click="clearAll()" flex class="delete_chart cursor_pointer" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
+								<div md-ink-ripple="#FF0000" ng-click="($root.disabled)? '' : clearAll()" flex class="delete_chart cursor_pointer" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
 									<img src="images/delete.png" class="chart_img" alt="Delete Zone"/>
 								</div>
 						</div>
 
 						<!-- Draggable objects -->
 						<div ng-drag-clone="">
-							<div ng-if="clonedData.field" class="md-whiteframe-4dp drag_field {{clonedData.field.status}}">{{clonedData.field.short}}</div>	
+							<!-- field -->
+							<div ng-if="clonedData.field" class="md-whiteframe-4dp drag_field {{clonedData.field.status}}">{{clonedData.field.short}}</div>
+							<!-- movable chart -->
 							<div ng-if="clonedData.chart" style="width:200px; height: 150px;" class="chart_movable md-whiteframe-4dp"></div>
+							<!-- DC or Canvas chart -->
 							<span ng-if="clonedData.key1" style="margin:5px;">
 								<img src="images/hand.svg" height="12" width="12"/>
 								{{clonedData.key1}}
@@ -328,7 +336,7 @@
 								<md-radio-button ng-disabled="$root.disabled" value="interp">Interpolation:</md-radio-button>
 
 								<md-input-container class="md_input">
-									<md-select ng-disabled="transform_type=='inters'" ng-model="interp_type" aria-label="Interpolation Type">
+									<md-select ng-disabled="transform_type=='inters' || $root.disabled" ng-model="interp_type" aria-label="Interpolation Type">
 										<md-option value="linear"><span class="font_0p8">Linear</span></md-option>
 										<md-option value="cubic"><span class="font_0p8">Cubic</span></md-option>
 										<md-option value="lanczos"><span class="font_0p8">Lanczos</span></md-option>
@@ -376,8 +384,8 @@
 					</div>
 
 					<div layout="column" layout-align="center center" class="list_container">
-						<md-datepicker class="md_datepicker" ng-disabled="!enableDates" ng-model="from_date" md-placeholder="From"></md-datepicker>
-						<md-datepicker class="md_datepicker" ng-disabled="!enableDates" ng-model="to_date" md-placeholder="To"></md-datepicker>
+						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="from_date" md-placeholder="From"></md-datepicker>
+						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
 					<md-divider></md-divider>

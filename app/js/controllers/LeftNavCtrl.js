@@ -148,35 +148,6 @@ angular.module('MainApp')
 				$rootScope.removeStores(source_conf);
 			}
 
-// +                       //filter the choosen sources
-// +                       var wanted_sources = [];
-// +                       $scope.sources_conf.forEach(function(source_conf, index){
-// +
-// +                               if(source_conf.wanted)
-// +                                       wanted_sources.push(source_conf);
-// +                       });
-// +
-// +                       //consle.log('wanted_sources:');
-// +                       //consle.log(wanted_sources);
-// +
-// +                       //go through the sources
-// +                       //and load their stores
-// +                       if (wanted_sources.length){
-// +
-// +                               //launch the progress bar
-// +                               $rootScope.showPB(true);
-// +
-// +                               //get the stores
-// +                               StoresService.post(wanted_sources, 
-// +                                       function(stores_conf){
-// +
-// +                                               //consle.log('from server:');
-// +                                               //consle.log(stores_conf);
-// +                                               $scope.stores_conf = stores_conf;
-// +                                               $rootScope.showPB(false);
-// +                                        },
-// +                                        function(err){
-
 		}
 
 		$scope.getSourceType = function(source_conf){
@@ -250,48 +221,17 @@ angular.module('MainApp')
 				$rootScope.removeFields(store_conf);
 			}
 
-			//determine the choosen stores
-			// var wanted_stores = [];
-			// $scope.stores_conf.forEach(function(store, index, array){
-
-			// 	if (store.wanted){
-
-			// 		wanted_stores.push(store);
-			// 	}
-			// });
-
-			// //show the fields list
-			// if (wanted_stores.length){
-
-			// 	//launch the progress bar
-			// 	$rootScope.showPB(true);
-
-			// 	//get the fields of wanted stores
-			// 	FieldsService.post(wanted_stores, function(fields_conf){
-
-			// 		//process each field
-			// 		fields_conf.forEach(function(field_conf, index){
-
-			// 			//dataset is not loaded yet
-			// 			field_conf.status = 'ready';
-
-			// 			//check the field name
-			// 			field_conf.short = (field_conf.field.length > 6) ? field_conf.field.slice(0,6) + '..' : field_conf.field;
-			// 		});
-
-			// 		//save
-			// 		//consle.log('fields_conf:');
-			// 		//consle.log(fields_conf);
-			// 		$scope.fields_conf = fields_conf;
-			// 		$rootScope.showPB(false);
-
-			// 	});
-
-			// }
-			// else{
-			// 	$scope.fields_conf = [];
-			// 	$rootScope.showPB(false);
-			// }
 		};
+
+		$scope.reset = function(){
+
+			$scope.sources_conf.forEach(function(source_conf, index){
+
+				source_conf.source.wanted = false;
+			});
+
+			$rootScope.clearStores();
+			$rootScope.clearFields();
+		}
 
 	})

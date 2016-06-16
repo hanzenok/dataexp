@@ -333,6 +333,7 @@
         color:gray;
         font-family: 'Courier New';
         font-size: 0.9em;
+        outline:none;
     }
 
     #href{
