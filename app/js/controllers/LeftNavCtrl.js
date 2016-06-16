@@ -83,6 +83,8 @@ angular.module('MainApp')
 				function(err){
 
 					$rootScope.showPB(false);
+					if (!err.data) err.data = 'Server is unreachable';
+					
 					$mdToast.show(
 
 						$mdToast.simple()
@@ -130,6 +132,8 @@ angular.module('MainApp')
 					function(err){
 
 						$rootScope.showPB(false);
+						if (!err.data) err.data = 'Server is unreachable';
+
 						$mdToast.show(
 							$mdToast.simple()
 								.textContent(err.data)

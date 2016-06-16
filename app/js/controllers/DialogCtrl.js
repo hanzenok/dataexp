@@ -87,6 +87,7 @@ angular.module('MainApp')
 							function(err){
 
 								$mdDialog.hide();
+								if (!err.data) err.data = 'Server is unreachable';
 
 								$mdToast.show(
 									$mdToast.simple()
@@ -129,6 +130,8 @@ angular.module('MainApp')
 						function(err){
 
 							$mdDialog.hide();
+							if (!err.data) err.data = 'Server is unreachable';
+
 
 							$mdToast.show(
 								$mdToast.simple()
@@ -166,6 +169,8 @@ angular.module('MainApp')
 				function(err){
 
 					$mdDialog.hide();
+					if (!err.data) err.data = 'Server is unreachable';
+
 
 					$mdToast.show(
 						$mdToast.simple()
@@ -245,30 +250,5 @@ angular.module('MainApp')
 			}
 		}
 
-		//https://gist.github.com/iwek/7154578
-		// function csv2json(csv){
-
-		// 	var lines=csv.split("\n");
-		// 	var result = [];
-		// 	var headers=lines[0].split(",");
-
-		// 	var n = lines.length;
-		// 	var m = headers.length;
-
-		// 	for (var i=1; i<n; i++){
-
-		// 		var obj = {};
-		// 		var currentline=lines[i].split(",");
-
-		// 		for (var j=0; j<m; j++){
-		// 			obj[headers[j]] = currentline[j];
-		// 		}
-
-		// 		result.push(obj);
-
-		// 	}
-
-		// 	return result;
-		// }
 	});
 

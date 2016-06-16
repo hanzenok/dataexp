@@ -14,27 +14,10 @@ angular.module('MainApp')
 			//if dropped object is a field
 			if (data.field){
 
-				//copy the object
-				/*var clone = JSON.parse(JSON.stringify(data));
-
-				//check the index
-				var index = -1;
-				var n = $rootScope.droppedFields.length;
-				for (var i=0; i<n; i++){
-
-					if (clone.field.name === $rootScope.droppedFields[i].field.name && 
-						clone.store.name === $rootScope.droppedFields[i].store.name &&
-						clone.source.name === $rootScope.droppedFields[i].source.name){
-
-						index = i;
-						break
-					}
-				}*/
-
+				//find if exists
 				var index = $rootScope.droppedFields.indexOf(data);
 
-
-				//if not exist
+				//if not exists
 				if (index == -1){
 
 					$rootScope.droppedFields.push(data);
@@ -184,9 +167,6 @@ angular.module('MainApp')
 							CanvasChartsService.load($rootScope.dataset, function(){});
 							DCChartsService.load($rootScope.dataset, function(err){
 
-								console.log('Error:');
-								console.log(err);
-
 								if (err){
 									$mdToast.show(
 										$mdToast.simple()
@@ -203,7 +183,8 @@ angular.module('MainApp')
 					function(err){
 
 						$rootScope.showPB(false);
-
+						if (!err.data) err.data = 'Server is unreachable';
+						
 						$mdToast.show(
 							$mdToast.simple()
 								.textContent(err.data)
