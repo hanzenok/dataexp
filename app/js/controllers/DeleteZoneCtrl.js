@@ -81,6 +81,10 @@ angular.module('MainApp')
 		//and normal fields
 		$scope.clearAll = function(){
 
+			//delete dataset
+			delete $rootScope.dataset;
+			$rootScope.dataset = [];
+
 			//dropped fields on the loader were not clonned
 			$rootScope.droppedFields.forEach(function(field_conf, index){field_conf.field.status = 'ready';});
 

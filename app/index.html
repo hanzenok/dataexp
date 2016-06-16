@@ -120,7 +120,7 @@
 								{{chart.key1}}
 							</span>
 
-							<div id="{{chart.id}}" style=""></div>
+							<div id="{{chart.id}}"></div>
 							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
 							<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
 					</div>
@@ -399,7 +399,7 @@
 					
 						<!-- Dataset table -->
 						<!-- <div ng-hide="$root.dataset.length === 0" layout="row"> -->
-						<div ng-if="$root.loaded && showDataset" layout="row">
+						<div ng-if="$root.loaded && showDataset && $root.dataset.length" layout="row">
 
 							<!-- Timestamp field -->
 							<div layout="column">
