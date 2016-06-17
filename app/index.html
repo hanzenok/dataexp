@@ -378,10 +378,6 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-<!-- 					<div layout="row" class="subheader">
-						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dates</md-subheader>
-						<md-switch ng-disabled="$root.disabled" ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
-					</div> -->
 					<md-subheader class="md-no-sticky md-primary subheader">
 						<div layout="row" layout-align="start center">
 							<span flex="25">Dates</span>
@@ -396,29 +392,18 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-	<!-- 				<div layout="row" class="subheader" layout-align="start center">
-						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dataset</md-subheader>
-						<md-switch flex="50" ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
-						<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
-					</div> -->
-
 					<md-subheader class="md-no-sticky md-primary subheader">
-						<div layout="row" layout-align="start center">
+						<div layout="row" layout-align="start center" class="padding_0">
 							<span flex="25">Dataset</span>
 							<md-switch flex ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
 						</div>
 					</md-subheader>
-<!-- 					<div layout="row" class="subheader" layout-align="center center">
-						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dataset</md-subheader>
-						<md-switch flex ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
-						<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
-					</div> -->
+
 
 					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1 padding_0">
 					
 						<!-- Dataset table -->
-						<!-- <div ng-hide="$root.dataset.length === 0" layout="row"> -->
 						<div ng-if="$root.loaded && showDataset && $root.dataset.length" layout="row">
 
 							<!-- Timestamp field -->
