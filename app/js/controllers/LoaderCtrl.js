@@ -153,7 +153,7 @@ angular.module('MainApp')
 							});
 
 							//let the config to be downloadable
-							config = JSON.stringify(ts_config[0], null, 4);
+							var config = JSON.stringify(ts_config[0], null, 4);
 							var blob = new Blob([config], {type : 'text/plain'});
 							$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
 

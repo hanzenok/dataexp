@@ -81,7 +81,7 @@
 					<md-subheader class="md-no-sticky md-primary subheader">
 						<div layout="row">
 							<span flex>Fields ({{fields_conf.length}})</span>
-							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : reset()">Reset</span>
+							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : reset()">reset</span>
 						</div>
 					</md-subheader>
 
@@ -378,10 +378,16 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<div layout="row" class="subheader">
+<!-- 					<div layout="row" class="subheader">
 						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dates</md-subheader>
 						<md-switch ng-disabled="$root.disabled" ng-model="enableDates" class="md-mini" aria-label="Switch"></md-switch>
-					</div>
+					</div> -->
+					<md-subheader class="md-no-sticky md-primary subheader">
+						<div layout="row" layout-align="start center">
+							<span flex="25">Dates</span>
+							<md-switch ng-disabled="$root.disabled" ng-model="enableDates" class="md-mini margin_0" aria-label="Switch"></md-switch>
+						</div>
+					</md-subheader>
 
 					<div layout="column" layout-align="center center" class="list_container">
 						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="from_date" md-placeholder="From"></md-datepicker>
@@ -390,10 +396,24 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<div layout="row" class="subheader">
+	<!-- 				<div layout="row" class="subheader" layout-align="start center">
 						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dataset</md-subheader>
-						<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
-					</div>
+						<md-switch flex="50" ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
+						<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
+					</div> -->
+
+					<md-subheader class="md-no-sticky md-primary subheader">
+						<div layout="row" layout-align="start center">
+							<span flex="25">Dataset</span>
+							<md-switch flex ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
+						</div>
+					</md-subheader>
+<!-- 					<div layout="row" class="subheader" layout-align="center center">
+						<md-subheader flex="30" class="md-no-sticky md-primary subheader subh_margin">Dataset</md-subheader>
+						<md-switch flex ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini" aria-label="Switch"></md-switch>
+						<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
+					</div> -->
 
 					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1 padding_0">
 					
