@@ -1,5 +1,4 @@
 var tsproc = require('tsproc');
-//var moment = require('moment');
 
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
@@ -40,7 +39,6 @@ TS.getTimeseries = function(req, res){
 
 		//regroup the field from the same source
 		var new_fields_config = regroupFields.call(this, fields_config);
-
 
 		//options config
 		var options = fields_config[0];
@@ -126,7 +124,7 @@ TS.getTimeseries = function(req, res){
 			tsp.process(callback);
 
 			//get the other stats
-			var borders = tsp.getDateBorders();
+			var borders = tsp.getBorders();
 			stats.from = borders[0];
 			stats.to = borders[1];
 			stats.size = tsp.getTSSize();

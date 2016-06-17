@@ -102,9 +102,7 @@ angular.module('MainApp')
 						console.log('data:');
 						console.log(data);
 
-						//mark all the fields as loaded
-						// all_fields_conf.forEach(function(fields_per_source, index){
-						
+						//mark all the fields as loaded					
 						//time stamp fields
 						all_fields_conf[1].forEach(function(tsfield_conf, index){
 							tsfield_conf.field.status = 'loaded';
@@ -114,7 +112,6 @@ angular.module('MainApp')
 						all_fields_conf[2].forEach(function(field_conf, index){
 							field_conf.field.status = 'loaded';
 						});
-						// });
 
 						//save data
 						$rootScope.dataset = data;
