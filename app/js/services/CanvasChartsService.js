@@ -56,8 +56,8 @@ angular.module('MainApp')
 			var composite_chart = new CanvasJS.Chart(container,
 			    {
 			    backgroundColor: '#FAFAFA',
-			    width: 700,
-			    height: 350,
+			    width: 758,
+			    height: 323,
 			    data: [
 			    {        
 			        type: "line",
