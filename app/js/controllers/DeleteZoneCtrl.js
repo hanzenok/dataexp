@@ -44,6 +44,9 @@ angular.module('MainApp')
 
 					//mark the dataset as not loaded
 					$rootScope.loaded = false;
+
+					//clear stats&options
+					$rootScope.setStats(null);
 				}
 			}
 			//DC charts
@@ -93,5 +96,8 @@ angular.module('MainApp')
 			$rootScope.chartFields = []; //movable charts
 			$rootScope.droppedTSFields = []; //timestamp fields
 			$rootScope.droppedFields = []; //fields
+
+			//clear stats&options
+			$rootScope.setStats(null);
 		}
 	});

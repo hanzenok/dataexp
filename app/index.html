@@ -12,7 +12,7 @@
 		<!-- Toolbar -->
 		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button ng-disabled="$root.disabled" class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
-				<md-tooltip md-visible="false" md-direction="top">Toogle pane</md-tooltip>
+				<md-tooltip md-visible="false" md-direction="top">Toogle panels</md-tooltip>
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
 			<h1>Title</h1>
@@ -62,8 +62,8 @@
 								<div layout="column">
 									<div layout="row">
 										<span class="font_1p2">{{store_config.store.short}}</span>
-										<span class="font_0p7" ng-if="store_config.store.size <= 2500">({{store_config.store.size}})</span>
-										<div ng-if="store_config.store.size >= 2500" layout="row">
+										<span class="font_0p7" ng-if="store_config.store.size <= $root.max_size">({{store_config.store.size}})</span>
+										<div ng-if="store_config.store.size >= $root.max_size" layout="row">
 											<span class="font_0p7">(</span>
 											<span class="font_0p7 overflow">{{store_config.store.size}}</span>
 											<span class="font_0p7">)</span>
@@ -114,13 +114,13 @@
 
 					<md-switch ng-model="switched" style="margin:10px;"></md-switch>
 
-					<!-- DC Charts-->
-					<div style="background-color: rgb(250, 250, 250); border-radius: 2px; padding:10px; border-style:solid; border-width: 1px; border-color:rgb(230, 230, 230); height: 364px; width: 822px;" class="dc_chart md-whiteframe-1dp" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
+					<!-- DC.js&Canvas.js Charts-->
+					<div class="dc_chart md-whiteframe-1dp {{'chart_' + $root.size_status + '_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
 							<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 								<img src="images/hand.svg" height="12" width="12"/>
 								{{chart.key1}}
 							</span>
-
+							{{'chart_' + $root.size_status + '_' + chart.type}}
 							<div id="{{chart.id}}"></div>
 							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
 							<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
@@ -184,8 +184,7 @@
 
 						<md-divider></md-divider>
 
-						<!-- <div> -->
-						<!-- md-content is problematic -->
+						<!-- Movable Charts -->
 						<md-content flex ng-controller="MovableChartsCtrl">
 							<md-list layout="row">
 
@@ -314,7 +313,7 @@
 
 						<div layout="row" class="stats_div">
 							<span class="stats_span ">Size:&nbsp;</span>
-							<i class="stats_i {{size_status}}">{{size}}</i>
+							<i class="stats_i {{$root.size_status}}">{{size}}</i>
 						</div>
 						<md-divider></md-divider>
 

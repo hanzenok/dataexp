@@ -81,13 +81,6 @@ angular.module('MainApp')
 
 					//also render the counter
 					//DCChartsService.counter('counter').render();
-
-					//hide the progress bar
-					console.log('hereeeee');
-					// $rootScope.showPB(false);
-					console.log('and herreee');
-					// $rootScope.disabled = false;
-
 				}, 300);
 			}
 

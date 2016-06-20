@@ -52,7 +52,7 @@ angular.module('MainApp')
 				tmp = {};
 				
 				tmp.x = new Date(doc[ts_key]);
-				tmp.y = doc[key1];
+				tmp.y = parseFloat(doc[key1]);
 
 				canvas_dataset.push(tmp);
 			});
@@ -65,8 +65,7 @@ angular.module('MainApp')
 					tmp = {};
 
 					tmp.x = new Date(doc[ts_key]);
-	
-					tmp.y = doc[key2];
+					tmp.y = parseFloat(doc[key2]);
 
 					canvas_dataset2.push(tmp);
 				});

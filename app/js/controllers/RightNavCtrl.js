@@ -1,6 +1,11 @@
 angular.module('MainApp')
 	.controller('RightNavCtrl', function($scope, $rootScope){
 
+		//used to monitor with 
+		//oversized datasets
+		$rootScope.max_size = 3000;
+		$rootScope.size_status = 'normal';
+
 		//stats
 		$scope.homogen = '?'
 		$scope.size = '?';
@@ -11,14 +16,12 @@ angular.module('MainApp')
 		$scope.interp_type = 'linear';
 		$scope.reduc_type = 'skip';
 		$scope.reduc_size = 1;
+		$scope.target_field = '';
 		$scope.from_date = null;
 		$scope.to_date = null;
 
 		//dates switcher
 		$scope.enableDates = false;
-
-		//monitoring the loaded timeseries size
-		$scope.size_status = 'normal';
 
 		//returns the current config
 		$rootScope.getOptions = function(){
@@ -74,9 +77,28 @@ angular.module('MainApp')
 		//shows the stats
 		$rootScope.setStats = function(config){
 
+			if (!config){
+
+				$scope.size = '?';
+				$rootScope.size_status = 'normal';
+				$scope.per_day = '?';
+				$scope.homogen = '?'
+				$scope.size = '?';
+				$scope.per_day = '?';
+				$scope.transform_type = 'interp';
+				$scope.interp_type = 'linear';
+				$scope.reduc_type = 'skip';
+				$scope.reduc_size = 1;
+				$scope.target_field = '';
+				$scope.from_date = null;
+				$scope.to_date = null;
+
+				return;
+			}
+
 			//size
 			$scope.size = (config.size) ? config.size : '?';
-			$scope.size_status = ($scope.size > 2500) ? 'overflow' : 'normal';
+			$rootScope.size_status = ($scope.size > $rootScope.max_size) ? 'overflow' : 'normal';
 
 			//instances per day
 			$scope.per_day = (config.per_day) ? config.per_day.toFixed(5) : '?';
@@ -90,11 +112,6 @@ angular.module('MainApp')
 			//setting the dates
 			$scope.from_date = new Date(config.from);
 			$scope.to_date = new Date(config.to);
-
-
-			console.log('setConfig():');
-			console.log(config);
-
 
 		}
 
