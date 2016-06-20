@@ -43,41 +43,82 @@ angular.module('MainApp')
 			
 			//generate dataset
 			var canvas_dataset = [];
-			var tmp;
+			var canvas_dataset2 = [];
+			var tmp,tmp2;
+
+			//generate primary dataset
 			dataset.forEach(function(doc, index){
 
 				tmp = {};
+				
 				tmp.x = new Date(doc[ts_key]);
 				tmp.y = doc[key1];
 
 				canvas_dataset.push(tmp);
 			});
 
-			var composite_chart = new CanvasJS.Chart(container,
-			    {
-		    	zoomEnabled: true,
-			    theme: 'theme4',
-    			axisY:{
-    				title: key1,
-		        	gridColor: 'gray',
-        			gridThickness: 0.1
-        		},
-    			axisX:{
-		        	gridColor: 'gray',
-        			gridThickness: 0.1
-        		},
-			    backgroundColor: '#FAFAFA',
-			    width: 758,
-			    height: 323,
-			    data: [
-			    {        
-			        type: 'line',
-			        lineThickness: 1.5,
-			        lineColor: 'red',
-			        dataPoints: canvas_dataset
-			    }
-			    ]
+			//generate secondary dataset
+			if (key2){
+
+				dataset.forEach(function(doc, index){
+
+					tmp = {};
+
+					tmp.x = new Date(doc[ts_key]);
+	
+					tmp.y = doc[key2];
+
+					canvas_dataset2.push(tmp);
+				});
+			}
+
+			//generate data array
+			var data = [];
+			data.push({
+
+				type: 'line',
+				lineThickness: 1.5,
+				lineColor: 'red',
+				dataPoints: canvas_dataset
 			});
+
+			if (canvas_dataset2.length){
+
+				data.push({
+
+					type: 'line',
+					axisYType: 'secondary',
+					lineThickness: 1.5,
+					lineColor: 'blue',
+					dataPoints: canvas_dataset2
+				});
+			}
+
+			//chart config
+			var config = {
+				zoomEnabled: true,
+				theme: 'theme4',
+				axisY:{
+					title: key1,
+					gridColor: 'gray',
+					gridThickness: 0.1
+				},
+				axisX:{
+					gridColor: 'gray',
+					gridThickness: 0.1
+				},
+				backgroundColor: '#FAFAFA',
+				width: 800,
+				height: 323,
+				data: data
+			};
+			if (canvas_dataset2.length){
+
+				config.axisY2 = {title: key2};
+			}
+
+			//generate chart
+			var composite_chart = new CanvasJS.Chart(container, config);
 
 			return composite_chart;
 		}
