@@ -55,10 +55,10 @@ angular.module('MainApp')
 
 			var composite_chart = new CanvasJS.Chart(container,
 			    {
-			    theme: "theme4",
+		    	zoomEnabled: true,
+			    theme: 'theme4',
     			axisY:{
     				title: key1,
-    				interval: 2,
 		        	gridColor: 'gray',
         			gridThickness: 0.1
         		},
