@@ -55,12 +55,25 @@ angular.module('MainApp')
 
 			var composite_chart = new CanvasJS.Chart(container,
 			    {
+			    theme: "theme4",
+    			axisY:{
+    				title: key1,
+    				interval: 2,
+		        	gridColor: 'gray',
+        			gridThickness: 0.1
+        		},
+    			axisX:{
+		        	gridColor: 'gray',
+        			gridThickness: 0.1
+        		},
 			    backgroundColor: '#FAFAFA',
 			    width: 758,
 			    height: 323,
 			    data: [
 			    {        
-			        type: "line",
+			        type: 'line',
+			        lineThickness: 1.5,
+			        lineColor: 'red',
 			        dataPoints: canvas_dataset
 			    }
 			    ]
