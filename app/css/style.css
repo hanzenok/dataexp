@@ -341,6 +341,12 @@
         border-color:rgb(230, 230, 30);
     }
 
+    .chart_overflow_Pie{
+
+        width: 341px;
+        height: 364px;
+    }
+
     .reset_charts{
 
         color:gray;

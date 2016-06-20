@@ -4,47 +4,83 @@ angular.module('MainApp')
 		//data containers
 		var dataset;
 
+		//counts the occurences
+		//of documents with key + value
+		var counted = [];
+		var count_occur = function(array, key, value){
+
+			var counter = 0;
+
+			//check if already counted
+			// var pos = counted.map(function(e) {return e.key;}).indexOf(value);
+			// console.log('pos: ' + pos);
+			
+			//count
+			array.forEach(function(doc, index){
+
+				if (doc[key] === value)
+					counter++;
+			});
+
+			//add to counted
+			// counted.push({key: key, count: count});
+
+			console.log('key: ' + key + ', value: ' + value + ', counter: ' + counter);	
+			return counter;
+		}
+
 		var pie_chart = function(container, key1, key2, ts_key){
 
-			//dimension
-			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
+			var canvas_dataset = [];
+			var tmp;
 
-			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+			//generate dataset
+			dataset.forEach(function(doc, index){
 
-			//chart
-			var chart = dc.pieChart(container);
+				tmp = {};
+				
+				tmp.y = parseFloat(doc[key1]);
+				tmp.label = '' + count_occur.call(this, dataset, key1, doc[key1]);
 
-			//default values
-			chart.width(319).height(319)
-			.dimension(dim).group(group)
-			.innerRadius(20).radius(159);
+				canvas_dataset.push(tmp);
+			});
 
-			//on hover text
-			if (!key2){
-				chart.title(function(d){
-					return "(" + d.key + ")" 
-					+ "\n" + d.value;
-				});
-			}
-			else{
-				chart.title(function(d){
-					return "(" + d.key + ")"
-					+ "\n" + key2
-					+ ": " + d.value; 
-				});
-			}
+			console.log(canvas_dataset);
+			function onlyUnique(value, index, self) {return self.indexOf(value) === index;}
+			var canvas_dataset2 = canvas_dataset.filter(onlyUnique);
+			console.log(canvas_dataset2);
 
-			//chart.render();
+			//data array
+			var data = [];
+			data.push({
+
+				type:'pie',
+				radius: "100%",
+				indexLabelPlacement: 'inside',
+				dataPoints: canvas_dataset
+			});
+
+			//chart config
+			var config = {
+
+				theme:'theme4',
+				backgroundColor: '#FAFAFA',
+				width: 319,
+				height: 319,
+				data: data
+			};
+
+			//generate chart
+			var chart = new CanvasJS.Chart(container, config);
+
 			return chart;
 		}
 
 		var graph = function(container, key1, key2, ts_key){
 			
-			//generate dataset
 			var canvas_dataset = [];
 			var canvas_dataset2 = [];
-			var tmp,tmp2;
+			var tmp;
 
 			//generate primary dataset
 			dataset.forEach(function(doc, index){
@@ -95,6 +131,7 @@ angular.module('MainApp')
 
 			//chart config
 			var config = {
+
 				zoomEnabled: true,
 				theme: 'theme4',
 				axisY:{
