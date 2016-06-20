@@ -110,4 +110,9 @@ angular.module('MainApp')
 			}
 		}
 
+		$scope.save = function(){
+
+			console.log('save');
+		}
+
 	})

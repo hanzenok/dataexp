@@ -154,8 +154,13 @@ angular.module('MainApp')
 
 							//let the config to be downloadable
 							var config = JSON.stringify(ts_config[0], null, 4);
-							var blob = new Blob([config], {type : 'text/plain'});
+							var blob = new Blob([config], {type: 'text/json'});
 							$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
+
+							//let the dataset to be downloadable
+							var dataset = JSON.stringify($rootScope.dataset);
+							var blob2 = new Blob([dataset], {type: 'text/json'});
+							$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
 
 							$rootScope.loaded = true;
 							console.log('loaded');

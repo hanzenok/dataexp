@@ -395,8 +395,9 @@
 					<md-subheader class="md-no-sticky md-primary subheader">
 						<div layout="row" layout-align="start center" class="padding_0">
 							<span flex="25">Dataset</span>
-							<md-switch flex ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
-							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : ''">save</span>
+							<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<div flex></div>
+							<a class="reset_charts cursor_pointer" download="dataset.json" ng-href="{{(!$root.disabled && $root.dataset.length) ? $root.url : ''}}">save</a>
 						</div>
 					</md-subheader>
 
