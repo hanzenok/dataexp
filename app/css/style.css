@@ -334,19 +334,19 @@
         margin:5px;
     }
 
-    .chart_normal_Graph{
+    .chart_overflow_Graph{
 
         height: 364px;
         width: 822px;
     }
 
-    .chart_normal_Pie{
+    .chart_overflow_Pie{
 
-        width: 341px;
+        width: 357px;
         height: 364px;
     }
 
-    .chart_normal_Scatter{
+    .chart_overflow_Scatter{
 
         width: 622px;
         height: 364px;

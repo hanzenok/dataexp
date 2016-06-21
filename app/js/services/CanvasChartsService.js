@@ -4,29 +4,56 @@ angular.module('MainApp')
 		//data containers
 		var dataset;
 
-		//counts the occurences
-		//of documents with key + value
-		var counted = [];
-		var count_occur = function(array, key, value){
+		//calculate the occurences of specific key
+		//in the array of objects
+		//[{a:1}, {a:1}, {a:2}, {a:3}, {a:3}] ==> [ [1,2,3], [2,1,2] ]
+		var count_obj_occurs = function(array, key){
 
-			var counter = 0;
+			var counted = [];
+			var count = [];
 
-			//check if already counted
-			// var pos = counted.map(function(e) {return e.key;}).indexOf(value);
-			// console.log('pos: ' + pos);
-			
-			//count
-			array.forEach(function(doc, index){
+			var i=0, j=0, k=0, l;
+			var m,n = array.length;
+			var index;
 
-				if (doc[key] === value)
-					counter++;
-			});
+			while (k < n){
 
-			//add to counted
-			// counted.push({key: key, count: count});
+				//find if already conuted
+				var m = counted.length;
+				index = -1;
+				for (l=0; l<m; l++){
 
-			console.log('key: ' + key + ', value: ' + value + ', counter: ' + counter);	
-			return counter;
+					if (array[k][key] === counted[l]){
+
+						index = l;
+						break;
+					}
+				}
+
+				//if not yet counted
+				if (index < 0){
+
+					//mark as counted
+					counted.push(array[k][key]);
+
+					//count
+					count.push(0);
+					for (j=0; j<n; j++){
+
+						if (counted[i] === array[j][key]){
+
+							count[i]++;
+						}
+					}
+
+					i++;
+				}
+				else{
+					k++;
+				}
+			}
+
+			return [counted, count];
 		}
 
 		var pie_chart = function(container, key1, key2, ts_key){
@@ -34,28 +61,28 @@ angular.module('MainApp')
 			var canvas_dataset = [];
 			var tmp;
 
+			//count the occurences
+			var counts = count_obj_occurs.call(this, dataset, key1);
+
 			//generate dataset
-			dataset.forEach(function(doc, index){
+			var n = counts[0].length;
+			for (var i=0; i<n; i++){
 
 				tmp = {};
 				
-				tmp.y = parseFloat(doc[key1]);
-				tmp.label = '' + count_occur.call(this, dataset, key1, doc[key1]);
+				tmp.label = '' + counts[0][i];
+				tmp.y = parseFloat(counts[1][i]);
 
 				canvas_dataset.push(tmp);
-			});
-
-			console.log(canvas_dataset);
-			function onlyUnique(value, index, self) {return self.indexOf(value) === index;}
-			var canvas_dataset2 = canvas_dataset.filter(onlyUnique);
-			console.log(canvas_dataset2);
+			};
 
 			//data array
 			var data = [];
 			data.push({
 
 				type:'pie',
-				radius: "100%",
+				radius: '150%',
+				startAngle: 270,
 				indexLabelPlacement: 'inside',
 				dataPoints: canvas_dataset
 			});
