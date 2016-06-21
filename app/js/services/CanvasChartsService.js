@@ -188,38 +188,49 @@ angular.module('MainApp')
 
 		var row_chart = function(container, key1, key2){
 
-			//dimension
-			var dim = ndx.dimension(function(d){return d[key1];});
-			
-			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+			var canvas_dataset = [];
+			var tmp;
 
-			//chart
-			var chart = dc.rowChart(container);
-			
-			//default values
-			chart.width(600).height(319)
-			.elasticX(true)
-			.dimension(dim).group(group)
-			.margins({top: 20, right: 20, bottom: 20, left: 20})
-			.xAxis().tickFormat(d3.format('s'));
+			//count the occurences
+			var counts = count_obj_occurs.call(this, dataset, key1);
 
-			//on hover text and axis labels
-			if (!key2){
-				chart.title(function(d){
-					return "(" + d.key + ")" 
-					+ "\n" + d.value;
-				});
-			}
-			else{
-				chart.title(function(d){
-					return "(" + d.key + ")"
-					+ "\n" + key2
-					+ ": " + d.value; 
-				});
-			}
+			//generate dataset
+			var n = counts[0].length;
+			for (var i=0; i<n; i++){
 
-			//chart.render();
+				tmp = {};
+				
+				tmp.label = counts[0][i];
+				tmp.y = parseFloat(counts[1][i]);
+
+				canvas_dataset.push(tmp);
+			};
+
+			//data array
+			var data = [];
+			data.push({
+
+				type:'bar',
+				dataPoints: canvas_dataset
+			});
+
+			//chart config
+			var config = {
+
+				theme:'theme4',
+				backgroundColor: '#FAFAFA',
+				axisY: {
+					gridColor: 'gray',
+					gridThickness: 0.1
+				},
+				width: 590,
+				height: 319,
+				data: data
+			};
+
+			//generate chart
+			var chart = new CanvasJS.Chart(container, config);
+
 			return chart;
 		}
 
@@ -230,8 +241,6 @@ angular.module('MainApp')
 
 			//count the occurences
 			var counts = count_obj_occurs.call(this, dataset, key1);
-			console.log(counts[0]);
-			console.log(counts[1]);
 
 			//generate dataset
 			var n = counts[0].length;
@@ -259,10 +268,12 @@ angular.module('MainApp')
 				theme:'theme4',
 				backgroundColor: '#FAFAFA',
 				axisX: {
-					title: key1
+					title: key1,
 				},
 				axisY: {
-					title: '#'
+					title: '#',
+					gridColor: 'gray',
+					gridThickness: 0.1
 				},
 				width: 590,
 				height: 319,

@@ -346,13 +346,9 @@
         height: 364px;
     }
 
-    .chart_overflow_Scatter{
-
-        width: 622px;
-        height: 364px;
-    }
-
-    .chart_overflow_Bar{
+    .chart_overflow_Scatter,
+    .chart_overflow_Bar,
+    .chart_overflow_Row{
 
         width: 622px;
         height: 364px;
