@@ -279,7 +279,7 @@ angular.module('MainApp')
 					gridColor: 'gray',
 					gridThickness: 0.1
 				},
-				width: 600,
+				width: 580,
 				height: 319,
 				data: data
 			};

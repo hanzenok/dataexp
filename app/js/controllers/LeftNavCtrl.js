@@ -223,7 +223,7 @@ angular.module('MainApp')
 
 		};
 
-		$scope.reset = function(){
+		$scope.clear = function(){
 
 			$scope.sources_conf.forEach(function(source_conf, index){
 

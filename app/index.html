@@ -82,7 +82,10 @@
 					<md-subheader class="md-no-sticky md-primary subheader">
 						<div layout="row">
 							<span flex>Fields ({{fields_conf.length}})</span>
-							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : reset()">reset</span>
+							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : clear()">
+								clear
+								<md-tooltip md-visible="false" md-direction="top">Clear filters</md-tooltip>
+							</span>
 						</div>
 					</md-subheader>
 
@@ -115,7 +118,7 @@
 					<md-switch ng-model="switched" style="margin:10px;"></md-switch>
 
 					<!-- DC.js&Canvas.js Charts-->
-					<div class="dc_chart md-whiteframe-1dp {{'chart_' + $root.size_status + '_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center center">
+					<div class="dc_chart md-whiteframe-1dp {{'chart_' + $root.size_status + '_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start">
 							<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 								<img src="images/hand.svg" height="12" width="12"/>
 								{{chart.key1}}
@@ -133,7 +136,10 @@
 					<span id="paranth" class="reset_charts">(</span>
 					<span class="reset_charts" id="counter"></span> <!-- will be filled by DC.js-->
 					<span class="reset_charts">)</span>
-					<a id="href" class="reset_charts" href='javascript:dc.filterAll();dc.redrawAll();'>Reset</a>
+					<a id="href" class="reset_charts" href='javascript:dc.filterAll();dc.redrawAll();'>
+						Reset
+						<md-tooltip md-visible="false" md-direction="top">Reset filters</md-tooltip>
+					</a>
 
 					<div flex></div>
 
@@ -174,11 +180,18 @@
 							<!-- Buttons -->
 							<div layout="row" layout-align="center start">
 
-								<img class="loader_buttons cursor_pointer md-secondary" src="images/download.svg" ng-click="($root.disabled) ? '' : load()"/>
+								<div>
+									<img class="loader_buttons cursor_pointer md-secondary" src="images/download.svg" ng-click="($root.disabled) ? '' : load()">
+									<md-tooltip md-visible="false" md-direction="top">Load the dataset</md-tooltip>
+								</div>
 								<a download="config.json" ng-href="{{($root.disabled) ? '' : url}}">
 									<img class="loader_buttons cursor_pointer" src="images/save.svg"/>
+									<md-tooltip md-visible="false" md-direction="top">Save the config</md-tooltip>
 								</a>
-								<img  class="loader_buttons cursor_pointer" src="images/clear.svg" ng-click="($root.disabled) ? '' : clear()"/>
+								<div>
+									<img  class="loader_buttons cursor_pointer" src="images/clear.svg" ng-click="($root.disabled) ? '' : clear()">
+									<md-tooltip md-visible="false" md-direction="top">Clear the loader</md-tooltip>
+								</div>
 							</div>
 						</div>
 
@@ -397,7 +410,10 @@
 							<span flex="25">Dataset</span>
 							<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<div flex></div>
-							<a class="reset_charts cursor_pointer" download="dataset.json" ng-href="{{(!$root.disabled && $root.dataset.length) ? $root.url : ''}}">save</a>
+							<a class="reset_charts cursor_pointer" download="dataset.json" ng-href="{{(!$root.disabled && $root.dataset.length) ? $root.url : ''}}">
+								save
+								<md-tooltip md-visible="false" md-direction="top">Save the dataset</md-tooltip>
+							</a>
 						</div>
 					</md-subheader>
 
@@ -449,7 +465,6 @@
 		<script src="../bower_components/crossfilter/crossfilter.js"></script>
 		<script src="../bower_components/d3/d3.js"></script>
 		<script src="../bower_components/dcjs/dc.js"></script>
-		<script src="../bower_components/ng-vkThread/vkthread/vkthread.js"></script>
 		<!-- endbower -->
 
 		<script src="js/main.js"></script>

@@ -334,14 +334,13 @@
         margin:5px;
     }
 
-    .chart_overflow_Graph{
+    .chart_normal_Graph{
 
         height: 364px;
         width: 822px;
-        border-color:rgb(230, 230, 30);
     }
 
-    .chart_overflow_Pie{
+    .chart_normal_Pie{
 
         width: 341px;
         height: 364px;
@@ -447,7 +446,18 @@
     }
 
     /*hide canvas.js credit*/
-    .canvasjs-chart-credit {
+    .canvasjs-chart-credit{
+
         display: none;
     }
+
+/*    .canvasjs-chart-tooltip {
+
+        display: none !important;
+    }
+
+    .canvasjs-chart-canvas {
+
+        position: relative !important;
+    }*/
 
