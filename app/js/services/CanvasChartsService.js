@@ -81,7 +81,7 @@ angular.module('MainApp')
 			data.push({
 
 				type:'pie',
-				radius: '150%',
+				radius: '100%',
 				startAngle: 270,
 				indexLabelPlacement: 'inside',
 				dataPoints: canvas_dataset
@@ -225,44 +225,53 @@ angular.module('MainApp')
 
 		var bar_chart = function(container, key1, key2){
 	
-			//dimension
-			var dim = ndx.dimension(function(d){return d[key1];});
-			
-			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+			var canvas_dataset = [];
+			var tmp;
 
-			//chart
-			var chart = dc.barChart(container);
-			
-			//default values
-			chart.width(600).height(319)
-			.dimension(dim).group(group)
-			.renderHorizontalGridLines(true)
-			.renderVerticalGridLines(true)
-			.elasticY(true).xAxisLabel(key1)
-			.x(d3.scale.ordinal().domain(dim))
-			.xUnits(dc.units.ordinal)
-			.yAxis().tickFormat(d3.format('s'));
-			chart.margins({top: 20, right: 20, bottom: 50, left: 50});
+			//count the occurences
+			var counts = count_obj_occurs.call(this, dataset, key1);
+			console.log(counts[0]);
+			console.log(counts[1]);
 
-			//on hover text and axis labels
-			if (!key2){
-				chart.title(function(d){
-					return "(" + d.key + ")" 
-					+ "\n" + d.value;
-				})
-				.yAxisLabel('#');
-			}
-			else{
-				chart.title(function(d){
-					return "(" + d.key + ")"
-					+ "\n" + key2
-					+ ": " + d.value; 
-				})
-				.yAxisLabel(key2);
-			}
+			//generate dataset
+			var n = counts[0].length;
+			for (var i=0; i<n; i++){
 
-			//chart.render();
+				tmp = {};
+				
+				tmp.label = counts[0][i];
+				tmp.y = parseFloat(counts[1][i]);
+
+				canvas_dataset.push(tmp);
+			};
+
+			//data array
+			var data = [];
+			data.push({
+
+				type:'column',
+				dataPoints: canvas_dataset
+			});
+
+			//chart config
+			var config = {
+
+				theme:'theme4',
+				backgroundColor: '#FAFAFA',
+				axisX: {
+					title: key1
+				},
+				axisY: {
+					title: '#'
+				},
+				width: 590,
+				height: 319,
+				data: data
+			};
+
+			//generate chart
+			var chart = new CanvasJS.Chart(container, config);
+
 			return chart;
 		}
 
