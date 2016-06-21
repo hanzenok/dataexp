@@ -239,77 +239,54 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var correlation = function(container, key1, key2){
-	
-			//reduce functions	
-			var freduceAdd = function(p, v){		
-				++p.n;
-				p.sum_xy += (+v[key1]*+v[key2]);
-				p.sum_x += +v[key1];
-				p.sum_y += +v[key2];
-				p.sum_x2 += (+v[key1]*+v[key1]);
-				p.sum_y2 += (+v[key2]*+v[key2]);		
-					
-				return p;
-			};
-
-			var freduceRemove = function(p, v){
-				--p.n;
-				p.sum_xy -= (+v[key1]*+v[key2]);
-				p.sum_x -= +v[key1];
-				p.sum_y -= +v[key2];
-				p.sum_x2 -= (+v[key1]*+v[key1]);
-				p.sum_y2 -= (+v[key2]*+v[key2]);	
-				return p;
-			};
-
-			var freduceInitial = function(){
-				return {n: 0, sum_xy: 0, sum_x: 0, sum_y:0, sum_x2:0, sum_y2:0};
-			}
-
-			//dimension
-			var dim = ndx.groupAll().reduce(freduceAdd, freduceRemove, freduceInitial);
-
-			//chart
-			var chart = dc.numberDisplay(container);
-
-			//default values
-			chart.formatNumber(d3.format(".4g"))
-			.group(dim)
-			.valueAccessor(function(p){	
-				if(p.n == 0) return 0;
-
-				return (p.n*p.sum_xy - p.sum_x*p.sum_y) / (Math.sqrt( (p.n*p.sum_x2 - p.sum_x*p.sum_x) * (p.n*p.sum_y2 - p.sum_y*p.sum_y) ));
-			});
-
-			return chart;
-		}
-
 		var scatter = function(container, key1, key2){
 
-			//dimensions
-			var dim = ndx.dimension(function(d){return [+d[key1], +d[key2]];});
+			var canvas_dataset = [];
+			var tmp;
 
-			//grouping
-			var group = dim.group();
+			//generate dataset
+			dataset.forEach(function(doc, index){
 
-			//chart
-			var chart = dc.scatterPlot(container);
+				tmp = {};
+				
+				tmp.x = parseFloat(doc[key1]);
+				tmp.y = parseFloat(doc[key2]);
 
-			//default values
-			chart.width(600).height(300)
-			.dimension(dim).group(group)
-			.x(d3.scale.linear().domain([]))
-			.renderHorizontalGridLines(true)
-			.renderVerticalGridLines(true)
-			.elasticX(true).elasticY(true).brushOn(true)
-			.margins({top: 20, right: 30, bottom: 30, left: 50})
-			.xAxisLabel(key1).yAxisLabel(key2);
+				canvas_dataset.push(tmp);
+			});
 
-			//render the correlation value
-			correlation(container  + '_correl', key1, key2).render();
+			//data array
+			var data = [];
+			data.push({
 
-			//chart.render();
+				type: 'scatter',
+				dataPoints: canvas_dataset
+			});
+
+			//chart config
+			var config = {
+
+				theme:'theme4',
+				zoomEnabled: true,
+				backgroundColor: '#FAFAFA',
+				axisY:{
+					title: key1,
+					gridColor: 'gray',
+					gridThickness: 0.1
+				},
+				axisX:{
+					title: key2,
+					gridColor: 'gray',
+					gridThickness: 0.1
+				},
+				width: 600,
+				height: 319,
+				data: data
+			};
+
+			//generate chart
+			var chart = new CanvasJS.Chart(container, config);
+
 			return chart;
 		}
 
