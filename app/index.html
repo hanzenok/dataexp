@@ -33,7 +33,7 @@
 
 				<!-- Sources, Stores, Fields List -->
 				<div ng-controller="LeftNavCtrl" layout="column" flex layout-align="start">
-					<md-subheader class="md-no-sticky md-primary subheader">Sources ({{sources_conf.length}})</md-subheader>
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Sources ({{sources_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container chrome_bugfix2"> <!-- md-content is scrollable -->
 						<md-list class="chrome_bugfix1">
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
@@ -54,7 +54,7 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">Stores ({{stores_conf.length}})</md-subheader>
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Stores ({{stores_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container chrome_bugfix2">
 						<md-list class="chrome_bugfix1">
 							<md-list-item ng-repeat="store_config in stores_conf" class="list_item">
@@ -79,7 +79,7 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row">
 							<span flex>Fields ({{fields_conf.length}})</span>
 							<span class="reset_charts cursor_pointer" ng-click="($root.disabled)? '' : clear()">
@@ -340,7 +340,7 @@
 					<!-- Transformations -->
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">Transformations</md-subheader>
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Transformations</md-subheader>
 					<md-content layout="column" class="list_container">
 						<md-radio-group ng-model="transform_type" class="margin_5">
 							<md-radio-button ng-disabled="$root.disabled" value="inters">Intersection</md-radio-button>
@@ -362,7 +362,7 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">Reduction</md-subheader>
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Reduction</md-subheader>
 					<md-content layout="column" class="list_container">
 						<div layout="row">
 							<md-input-container class="marginb_0" flex>
@@ -391,7 +391,7 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center">
 							<span flex="25">Dates</span>
 							<md-switch ng-disabled="$root.disabled" ng-model="enableDates" class="md-mini margin_0" aria-label="Switch"></md-switch>
@@ -405,7 +405,7 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader">
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center" class="padding_0">
 							<span flex="25">Dataset</span>
 							<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
@@ -425,7 +425,7 @@
 
 							<!-- Timestamp field -->
 							<div layout="column">
-								<md-subheader class="sub">time</md-subheader>
+								<md-subheader class="sub" md-ink-ripple="#AAAAAA">time</md-subheader>
 								<md-list>
 									<md-list-item layout-align="center center" class="tab_cell_time" ng-repeat="doc in $root.dataset">
 										<span class="tab_span">{{doc.time}}</span>
