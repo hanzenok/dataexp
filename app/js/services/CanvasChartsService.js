@@ -368,4 +368,6 @@ angular.module('MainApp')
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
 		}
 
+		this.type = 'canvas';
+
 	});

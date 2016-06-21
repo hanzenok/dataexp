@@ -60,27 +60,24 @@ angular.module('MainApp')
 				}	
 
 				//create chart object
-				var chart = {};
-				chart.id = 'chart_' + Math.floor(Math.random()*2000); //random
-				chart.type = data.chart;
-				chart.key1 = filtered_fields[0].field.name;
-				chart.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
-				chart.ts_key = (data.chart === EnumCharts.graph) ? 'time' : null;
+				var chart_config = {};
+				chart_config.id = 'chart_' + Math.floor(Math.random()*2000); //random
+				chart_config.type = data.chart;
+				chart_config.key1 = filtered_fields[0].field.name;
+				chart_config.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
+				chart_config.ts_key = (data.chart === EnumCharts.graph) ? 'time' : null;
 
 				//add to the charts list
-				$rootScope.droppedCharts.push(chart);
+				$rootScope.droppedCharts.push(chart_config);
 
 				//wait for the DOM elements
 				//to be added then trace
 				setTimeout(function() {
 
-					// var dc_chart = ChartsService.traceOne(chart.type, '#' + chart.id, chart.key1, chart.key2, chart.ts_key);
-					var service = (!$scope.switched) ? DCChartsService : CanvasChartsService;
-					var dc_chart = service.traceOne(chart.type, chart.id, chart.key1, chart.key2, chart.ts_key);
-					dc_chart.render();
+					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+					var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
+					chart.render();
 
-					//also render the counter
-					//DCChartsService.counter('counter').render();
 				}, 300);
 			}
 
@@ -89,42 +86,51 @@ angular.module('MainApp')
 
 		$scope.reload = function(){
 
-			$rootScope.showPB(true);
-			console.log('reload!!!');
-
-			//load the data
-			DCChartsService.load($rootScope.dataset, function(err){
-
-				if (err){
-					$mdToast.show(
-						$mdToast.simple()
-							.textContent(err.message)
-							.action('OK')
-							.position('bottom')
-							.hideDelay(4000)
-					);
-				}
-			});
-			console.log('load done');
-
-			//draw all the charts
+			//copy the charts before cleaning (neded because the canvas was not clearing)
+			$rootScope.disabled = true;
+			var new_charts = [];
 			$rootScope.droppedCharts.forEach(function(chart, index){
 
-				console.log('chart:');
-				console.log(chart);
-				var service = (!$scope.switched) ? DCChartsService : CanvasChartsService;
-				var dc_chart = service.traceOne(chart.type, chart.id, chart.key1, chart.key2, chart.ts_key);
-				dc_chart.render();
+				new_charts.push(chart);
 			});
 
-			//also render the counter
-			// ChartsService.counter('#counter').render();
-			console.log('done');
-			$rootScope.showPB(false);
-			//rendering
-			// dc.renderAll();
+			$rootScope.droppedCharts = [];
+			setTimeout(function() {
 
-			//dc.redrawAll();
+				console.log('new_charts'); console.log(new_charts);
+				$rootScope.droppedCharts = new_charts;
+				console.log('droppedCharts'); console.log($rootScope.droppedCharts);
+
+				setTimeout(function(){
+
+					//load the data
+					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+					chart_service.load($rootScope.dataset, function(err){
+
+						if (err){
+							$mdToast.show(
+								$mdToast.simple()
+									.textContent(err.message)
+									.action('OK')
+									.position('bottom')
+									.hideDelay(4000)
+							);
+						}
+					});
+					console.log('load done');
+
+					//draw all the charts
+					$rootScope.droppedCharts.forEach(function(chart_config, index){
+
+						console.log('chart:');
+						console.log(chart_config);
+						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
+						chart.render();
+					});
+
+					//enable gragging
+					$rootScope.disabled = false;
+				}, 300);
+			}, 300);
 		}
-
 	});

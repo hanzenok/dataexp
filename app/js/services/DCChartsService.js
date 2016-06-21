@@ -318,7 +318,13 @@ angular.module('MainApp')
 
 		this.traceOne = function(chart_type, container, key1, key2, ts_key){
 
+			//render the counter
+			this.counter('counter').render();
+
+			//return chart
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
 		}
+
+		this.type = 'dc';
 
 	});

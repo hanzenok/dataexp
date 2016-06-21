@@ -334,21 +334,21 @@
         margin:5px;
     }
 
-    .chart_overflow_Graph{
+    .chart_Graph{
 
         height: 364px;
         width: 822px;
     }
 
-    .chart_overflow_Pie{
+    .chart_Pie{
 
         width: 357px;
         height: 364px;
     }
 
-    .chart_overflow_Scatter,
-    .chart_overflow_Bar,
-    .chart_overflow_Row{
+    .chart_Scatter,
+    .chart_Bar,
+    .chart_Row{
 
         width: 622px;
         height: 364px;

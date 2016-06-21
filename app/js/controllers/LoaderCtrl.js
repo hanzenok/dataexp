@@ -162,12 +162,13 @@ angular.module('MainApp')
 							var blob2 = new Blob([dataset], {type: 'text/json'});
 							$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
 
+							//mark as loaded
 							$rootScope.loaded = true;
 							console.log('loaded');
 
-							//initialise the charts
-							CanvasChartsService.load($rootScope.dataset, function(){});
-							DCChartsService.load($rootScope.dataset, function(err){
+							//load data into the charting library
+							var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+							chart_service.load($rootScope.dataset, function(err){
 
 								if (err){
 									$mdToast.show(
