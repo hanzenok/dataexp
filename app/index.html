@@ -124,7 +124,7 @@
 								{{chart.key1}}
 							</span>
 							{{'chart_' + chart.type}}
-							<div id="{{chart.id}}"></div>
+							<div id="{{chart.id}}" layout-align="center center"></div>
 							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
 							<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
 					</div>

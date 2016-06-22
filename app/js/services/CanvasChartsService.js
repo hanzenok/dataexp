@@ -92,8 +92,8 @@ angular.module('MainApp')
 
 				theme:'theme4',
 				backgroundColor: '#FAFAFA',
-				width: 319,
-				height: 319,
+				width: 335,
+				height: 323,
 				data: data
 			};
 

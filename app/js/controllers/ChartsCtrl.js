@@ -94,12 +94,12 @@ angular.module('MainApp')
 			});
 
 			$rootScope.droppedCharts = [];
+
 			setTimeout(function() {
 
 				console.log('new_charts'); console.log(new_charts);
 				$rootScope.droppedCharts = new_charts;
 				console.log('droppedCharts'); console.log($rootScope.droppedCharts);
-				$rootScope.disabled = true;
 
 				setTimeout(function(){
 
@@ -120,7 +120,6 @@ angular.module('MainApp')
 						}
 					});
 					console.log('load done');
-					$rootScope.disabled = false;
 
 					//draw all the charts
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
@@ -133,7 +132,6 @@ angular.module('MainApp')
 					});
 
 					console.log('All ended!!!!');
-					console.log($rootScope.disabled);
 
 				}, 2000);
 			}, 300);

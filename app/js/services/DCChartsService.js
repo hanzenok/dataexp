@@ -19,7 +19,7 @@ angular.module('MainApp')
 			//default values
 			chart.width(319).height(319)
 			.dimension(dim).group(group)
-			.radius(159);
+			.radius(145);
 
 			//on hover text
 			if (!key2){
