@@ -101,21 +101,6 @@ angular.module('MainApp')
 			//wait for the dom elements to be deleted
 			setTimeout(function() {
 
-				//reintroduce the charts
-				// $rootScope.droppedCharts = new_charts;
-
-				// console.log('id: #' + new_charts[0].id);
-				// angular.element('#' + new_charts[0].id).ready(function(){
-
-				// 	console.log('ready');
-				// });
-
-				//give the dom elements the time to
-				//to generate themsefls
-				// setTimeout(function(){
-
-					console.log('after the wait');
-
 					//load the data
 					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
 					chart_service.load($rootScope.dataset, function(err){
@@ -131,50 +116,33 @@ angular.module('MainApp')
 						}
 					});
 
+					//to inform the $scope.renderAll function
+					//that we are reloading
 					$scope.reload = true;
+
+					//reintroduce the chats list
 					$rootScope.droppedCharts = new_charts;
 					
-
-				// setTimeout(function(){
-				// 	console.log('load done');
-				// 	console.log('charts count:');
-				// 	console.log($scope.charts_count);
-
-				// 	//draw all the charts
-				// 	$rootScope.droppedCharts.forEach(function(chart_config, index){
-
-				// 		console.log('chart:');
-				// 		console.log(chart_config);
-				// 		console.log(chart_service);
-				// 		var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
-				// 		chart.render();
-				// 	});
-
-				// 	console.log('All ended!!!!');
-
-				// }, 3000);
 			}, 300);
 		}
 
 
-		$scope.doSmth = function(){
+		//launched when the list of charts in the DOM
+		//is finished generating
+		$scope.renderAll = function(){
 
-			console.log('Finished loading!!!');
-			console.log($scope.reload);
-
+			//check if we are reloading all the charts
+			//if not this function would be launched during 
+			//the chart dropps
 			if ($scope.reload){
 
-				console.log('here1');
+				//wait for the dom
 				setTimeout(function(){
 
-					console.log('here2');
-					console.log($rootScope.droppedCharts.length);
+					//render all charts
 					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
-
-						console.log('chart:');
-						console.log(chart_config);
-						console.log(chart_service);
+						
 						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 						chart.render();
 					});

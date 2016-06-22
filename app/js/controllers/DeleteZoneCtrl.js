@@ -49,9 +49,10 @@ angular.module('MainApp')
 					$rootScope.setStats(null);
 				}
 			}
-			//DC charts
+			//charts
 			else{
 				
+				//DC.js or Canvas.js charts
 				if (data.id !== undefined){
 
 					var index = $rootScope.droppedCharts.indexOf(data);
