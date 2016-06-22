@@ -47,6 +47,9 @@ angular.module('MainApp')
 
 					//clear stats&options
 					$rootScope.setStats(null);
+
+					//claer movable charts
+					$rootScope.chartFields = [];
 				}
 			}
 			//charts
