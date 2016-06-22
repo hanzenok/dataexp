@@ -87,7 +87,6 @@ angular.module('MainApp')
 		$scope.reload = function(){
 
 			//copy the charts before cleaning (neded because the canvas was not clearing)
-			$rootScope.disabled = true;
 			var new_charts = [];
 			$rootScope.droppedCharts.forEach(function(chart, index){
 
@@ -100,8 +99,11 @@ angular.module('MainApp')
 				console.log('new_charts'); console.log(new_charts);
 				$rootScope.droppedCharts = new_charts;
 				console.log('droppedCharts'); console.log($rootScope.droppedCharts);
+				$rootScope.disabled = true;
 
 				setTimeout(function(){
+
+					console.log('after the wait');
 
 					//load the data
 					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
@@ -118,19 +120,22 @@ angular.module('MainApp')
 						}
 					});
 					console.log('load done');
+					$rootScope.disabled = false;
 
 					//draw all the charts
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
 
 						console.log('chart:');
 						console.log(chart_config);
+						console.log(chart_service);
 						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 						chart.render();
 					});
 
-					//enable gragging
-					$rootScope.disabled = false;
-				}, 300);
+					console.log('All ended!!!!');
+					console.log($rootScope.disabled);
+
+				}, 2000);
 			}, 300);
 		}
 	});
