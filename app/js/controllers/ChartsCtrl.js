@@ -9,6 +9,7 @@ angular.module('MainApp')
 							bar: 'Bar'
 						};
 
+		$scope.reload = false;
 		$rootScope.droppedCharts = [];
 		$scope.onDropChart = function(data){
 
@@ -101,11 +102,17 @@ angular.module('MainApp')
 			setTimeout(function() {
 
 				//reintroduce the charts
-				$rootScope.droppedCharts = new_charts;
+				// $rootScope.droppedCharts = new_charts;
+
+				// console.log('id: #' + new_charts[0].id);
+				// angular.element('#' + new_charts[0].id).ready(function(){
+
+				// 	console.log('ready');
+				// });
 
 				//give the dom elements the time to
 				//to generate themsefls
-				setTimeout(function(){
+				// setTimeout(function(){
 
 					console.log('after the wait');
 
@@ -123,9 +130,46 @@ angular.module('MainApp')
 							);
 						}
 					});
-					console.log('load done');
 
-					//draw all the charts
+					$scope.reload = true;
+					$rootScope.droppedCharts = new_charts;
+					
+
+				// setTimeout(function(){
+				// 	console.log('load done');
+				// 	console.log('charts count:');
+				// 	console.log($scope.charts_count);
+
+				// 	//draw all the charts
+				// 	$rootScope.droppedCharts.forEach(function(chart_config, index){
+
+				// 		console.log('chart:');
+				// 		console.log(chart_config);
+				// 		console.log(chart_service);
+				// 		var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
+				// 		chart.render();
+				// 	});
+
+				// 	console.log('All ended!!!!');
+
+				// }, 3000);
+			}, 300);
+		}
+
+
+		$scope.doSmth = function(){
+
+			console.log('Finished loading!!!');
+			console.log($scope.reload);
+
+			if ($scope.reload){
+
+				console.log('here1');
+				setTimeout(function(){
+
+					console.log('here2');
+					console.log($rootScope.droppedCharts.length);
+					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
 
 						console.log('chart:');
@@ -135,9 +179,9 @@ angular.module('MainApp')
 						chart.render();
 					});
 
-					console.log('All ended!!!!');
-
-				}, 2500);
-			}, 300);
+					
+				}, 300);
+			}
 		}
+
 	});

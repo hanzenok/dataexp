@@ -115,17 +115,17 @@
 					</md-button>
 
 					<!-- DC.js&Canvas.js Charts-->
-					<div class="dc_chart md-whiteframe-1dp {{'chart_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start">
-							<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
-								<img src="images/hand.svg" height="12" width="12"/>
-								{{chart.key1}}
-							</span>
-							{{'chart_' + chart.type}}
-							<div id="{{chart.id}}"></div>
+					<div class="dc_chart md-whiteframe-1dp {{'chart_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start" ng-init="$last ? doSmth() : null">
+						<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
+							<img src="images/hand.svg" height="12" width="12"/>
+							{{chart.key1}}
+						</span>
+						{{'chart_' + chart.type}}
+						<div id="{{chart.id}}"></div>
 
-							<!-- Thoose two are only for DC.js graph and scatter -->
-							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
-							<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
+						<!-- Thoose two are only for DC.js graph and scatter -->
+						<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
+						<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
 					</div>
 
 				</md-content>
