@@ -16,12 +16,16 @@ angular.module('MainApp')
 			//if dropped object not a DC.js chart
 			if (data && data.chart && $rootScope.chartFields.length){
 
+				//to shot to the $scope.renderAll function
+				//that we are adding a new chart
+				//and not reloading all the charts
+				$scope.reload = false;
+
 				console.log('onDropChart:');
 				console.log(data);
 
 				//launch the progress bar
-				// $rootScope.showPB(true);
-				// $rootScope.disabled = true;
+				$rootScope.showPB(true);
 
 				var filtered_fields = [];
 
@@ -55,8 +59,6 @@ angular.module('MainApp')
 							.hideDelay(4000)
 					);
 
-					// $rootScope.showPB(false);
-					// $rootScope.disabled = false;
 					return;
 				}	
 
@@ -79,6 +81,11 @@ angular.module('MainApp')
 					var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 					chart.render();
 
+					//stop the progress bar
+					$rootScope.$apply(function(){
+						$rootScope.showPB(false);
+					});
+
 				}, 300);
 			}
 
@@ -89,13 +96,16 @@ angular.module('MainApp')
 
 			//copy the charts before cleaning
 			var new_charts = [];
+			console.log('first');
 			$rootScope.droppedCharts.forEach(function(chart, index){
 
 				new_charts.push(chart);
+				console.log('middle');
 			});
 
 			//drop the list of charts to clear
 			//up the dom elements
+			console.log('last');
 			$rootScope.droppedCharts = [];
 
 			//wait for the dom elements to be deleted
@@ -121,8 +131,10 @@ angular.module('MainApp')
 					$scope.reload = true;
 
 					//reintroduce the chats list
-					$rootScope.droppedCharts = new_charts;
-					
+					$rootScope.$apply(function () {
+						$rootScope.droppedCharts = new_charts;
+					});
+
 			}, 300);
 		}
 
@@ -132,9 +144,14 @@ angular.module('MainApp')
 		$scope.renderAll = function(){
 
 			//check if we are reloading all the charts
-			//if not this function would be launched during 
+			//if not this function would be launched during
 			//the chart dropps
 			if ($scope.reload){
+
+				console.log('Reload!!!');
+
+				//launch the progress bar
+				$rootScope.showPB(true);
 
 				//wait for the dom
 				setTimeout(function(){
@@ -142,12 +159,17 @@ angular.module('MainApp')
 					//render all charts
 					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
-						
+
 						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 						chart.render();
 					});
 
+					//stop the progress bar
+					$rootScope.$apply(function(){
+						$rootScope.showPB(false);
+					});
 					
+
 				}, 300);
 			}
 		}
