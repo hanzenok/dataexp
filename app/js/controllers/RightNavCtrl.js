@@ -4,7 +4,7 @@ angular.module('MainApp')
 		//used to monitor with 
 		//oversized datasets
 		$rootScope.max_size = 3000;
-		$rootScope.size_status = 'normal';
+		$rootScope.size_status = 'overflow';
 
 		//stats
 		$scope.homogen = '?'

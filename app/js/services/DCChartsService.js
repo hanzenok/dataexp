@@ -310,7 +310,7 @@ angular.module('MainApp')
 			var chart = dc.numberDisplay('#' + container);
 
 			chart.group(ndx.groupAll())
-			.formatNumber(d3.format('n'))
+			.formatNumber(d3.format('g'))
 			.valueAccessor(function(d){return d;});
 
 			return chart;

@@ -104,8 +104,7 @@
 			</md-sidenav>
 
 			<!-- Main Container -->
-			<div flex layout="column">
-
+			<div flex layout="column" style="opacity:{{($root.disabled) ? 0.7 : 1;}};">
 				<!-- Charts Container -->
 				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 
@@ -124,7 +123,9 @@
 								{{chart.key1}}
 							</span>
 							{{'chart_' + chart.type}}
-							<div id="{{chart.id}}" layout-align="center center"></div>
+							<div id="{{chart.id}}"></div>
+
+							<!-- Thoose two are only for DC.js graph and scatter -->
 							<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
 							<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
 					</div>
@@ -133,13 +134,15 @@
 
 				<!-- Reset Chart Filters -->
 				<div layout="row">
-					<span id="paranth" class="reset_charts">(</span>
-					<span class="reset_charts" id="counter"></span> <!-- will be filled by DC.js-->
-					<span class="reset_charts">)</span>
-					<a id="href" class="reset_charts" href='javascript:dc.filterAll();dc.redrawAll();'>
-						Reset
-						<md-tooltip md-visible="false" md-direction="top">Reset filters</md-tooltip>
-					</a>
+					<div ng-if="$root.size_status === 'normal'" layout="row" layout-align="start center">
+						<span id="paranth" class="reset_charts">(</span>
+						<span class="reset_charts" id="counter"></span>	<!-- will be filled by DC.js-->
+						<span class="reset_charts">)</span>
+						<a id="href" class="reset_charts" href='javascript:dc.filterAll();dc.redrawAll();'>
+							Reset
+							<md-tooltip md-visible="false" md-direction="top">Reset filters</md-tooltip>
+						</a>
+					</div>
 
 					<div flex></div>
 
