@@ -109,12 +109,10 @@
 				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 
 					<!-- Fab Button to reload the DC charts-->
-					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="reload()" ng-disabled="$root.disabled">
+					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="$root.reloadCharts()" ng-disabled="$root.disabled">
 						<md-icon md-svg-src="images/refresh.svg"></md-icon>
 						<md-tooltip md-visible="false" md-direction="top">Reload</md-tooltip>
 					</md-button>
-
-					<md-switch ng-model="switched" style="margin:10px;"></md-switch>
 
 					<!-- DC.js&Canvas.js Charts-->
 					<div class="dc_chart md-whiteframe-1dp {{'chart_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start">

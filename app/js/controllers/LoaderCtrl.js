@@ -180,6 +180,12 @@ angular.module('MainApp')
 									);
 								}
 							});
+
+							//if there are some charts, reload them
+							// if ($rootScope.droppedCharts.length){
+
+							// 	$rootScope.reloadCharts();
+							// }
 						});
 
 					},

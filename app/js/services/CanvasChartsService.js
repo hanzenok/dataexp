@@ -83,6 +83,12 @@ angular.module('MainApp')
 				type:'pie',
 				radius: '100%',
 				startAngle: 270,
+				indexLabelFontFamily: "Garamond",       
+				indexLabelFontSize: 15,
+				indexLabelFontWeight: "bold",
+				startAngle:0,
+				indexLabelFontColor: "MistyRose",       
+				indexLabelLineColor: "darkgrey",
 				indexLabelPlacement: 'inside',
 				dataPoints: canvas_dataset
 			});
@@ -219,7 +225,11 @@ angular.module('MainApp')
 
 				theme:'theme4',
 				backgroundColor: '#FAFAFA',
+				axisX: {
+					title: key1
+				},
 				axisY: {
+					title: '#',
 					gridColor: 'gray',
 					gridThickness: 0.1
 				},

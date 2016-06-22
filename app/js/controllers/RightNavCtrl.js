@@ -80,7 +80,7 @@ angular.module('MainApp')
 			if (!config){
 
 				$scope.size = '?';
-				$rootScope.size_status = 'normal';
+				$rootScope.size_status = 'overflow';
 				$scope.per_day = '?';
 				$scope.homogen = '?'
 				$scope.size = '?';

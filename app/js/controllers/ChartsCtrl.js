@@ -84,23 +84,27 @@ angular.module('MainApp')
 
 		}
 
-		$scope.reload = function(){
+		$rootScope.reloadCharts = function(){
 
-			//copy the charts before cleaning (neded because the canvas was not clearing)
+			//copy the charts before cleaning
 			var new_charts = [];
 			$rootScope.droppedCharts.forEach(function(chart, index){
 
 				new_charts.push(chart);
 			});
 
+			//drop the list of charts to clear
+			//up the dom elements
 			$rootScope.droppedCharts = [];
 
+			//wait for the dom elements to be deleted
 			setTimeout(function() {
 
-				console.log('new_charts'); console.log(new_charts);
+				//reintroduce the charts
 				$rootScope.droppedCharts = new_charts;
-				console.log('droppedCharts'); console.log($rootScope.droppedCharts);
 
+				//give the dom elements the time to
+				//to generate themsefls
 				setTimeout(function(){
 
 					console.log('after the wait');
