@@ -115,7 +115,10 @@
 					</md-button>
 
 					<!-- DC.js&Canvas.js Charts-->
-					<div class="dc_chart md-whiteframe-1dp {{'chart_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start" ng-init="$last ? renderAll() : null">
+					<div class="chart md-whiteframe-1dp {{'chart_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start" ng-init="$last ? renderAll() : null">
+
+						<span class="chart_title reset_charts"> Rendering ... </span>
+
 						<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 							<img src="images/hand.svg" height="12" width="12"/>
 							{{chart.key1}}
@@ -214,7 +217,7 @@
 											</div>
 										</div>
 
-										<span class="title">Pie Chart</span>
+										<span class="movable_chart_title">Pie Chart</span>
 									</div>
 								</md-list-item>
 
@@ -230,7 +233,7 @@
 											</div>
 										</div>
 
-										<span class="title">Graph</span>
+										<span class="movable_chart_title">Graph</span>
 									</div>
 								</md-list-item>
 
@@ -246,7 +249,7 @@
 											</div>
 										</div>
 
-										<span class="title">Scatter Plot</span>
+										<span class="movable_chart_title">Scatter Plot</span>
 									</div>
 								</md-list-item>
 
@@ -262,7 +265,7 @@
 											</div>
 										</div>
 
-										<span class="title">Row Chart</span>
+										<span class="movable_chart_title">Row Chart</span>
 									</div>
 								</md-list-item>
 
@@ -278,7 +281,7 @@
 											</div>
 										</div>
 
-										<span class="title">Bar Chart</span>
+										<span class="movable_chart_title">Bar Chart</span>
 									</div>
 								</md-list-item>
 
