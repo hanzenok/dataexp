@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/dc.css">
 		<link rel="icon" href="images/timeline.png">
+		<title>dataexp</title>
 	</head>
 
 	<body ng-app="MainApp" layout="column" ng-cloak>
@@ -342,7 +343,7 @@
 							<span flex></span>
 							<div>
 								<input type="checkbox" ng-disabled="$root.disabled" ng-model="$root.force_canvasjs">
-								<md-tooltip md-visible="false" md-direction="top">Force to render only static charts</md-tooltip>
+								<md-tooltip md-visible="false" md-direction="top">Do not consider size and render all by Canvas.js</md-tooltip>
 							</div>
 						</div>
 						<md-divider></md-divider>
