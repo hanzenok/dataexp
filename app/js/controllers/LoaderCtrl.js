@@ -217,9 +217,9 @@ angular.module('MainApp')
 		};
 
 		//delte fields from the loader
-		$scope.clear = function(){
+		// $scope.clear = function(){
 
-			$rootScope.droppedFields = [];
-			$rootScope.droppedTSFields = [];
-		}
+		// 	$rootScope.droppedFields = [];
+		// 	$rootScope.droppedTSFields = [];
+		// }
 	});
