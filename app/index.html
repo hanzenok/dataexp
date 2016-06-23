@@ -105,6 +105,7 @@
 
 			<!-- Main Container -->
 			<div flex layout="column">
+
 				<!-- Charts Container -->
 				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start" style="opacity:{{($root.disabled) ? 0.7 : 1;}};">
 
@@ -146,6 +147,8 @@
 					</div>
 
 					<div flex></div>
+					<!-- <md-checkbox class="md-mini"></md-checkbox> -->
+					<!-- <input type="checkbox"> -->
 
 					<!-- Hide Button -->
 					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toogle()"/>
@@ -336,6 +339,11 @@
 								<img ng-hide="$root.size_status === 'normal'" class="loader_buttons cursor_pointer" src="images/help.svg" height="16" width="16" ng-click="showAlert($event)"/>
 								<md-tooltip md-visible="false" md-direction="top">Click to show a tip</md-tooltip>
 							</div>
+							<span flex></span>
+							<div>
+								<input type="checkbox" ng-disabled="$root.disabled" ng-model="$root.force_canvasjs">
+								<md-tooltip md-visible="false" md-direction="top">Force to render only static charts</md-tooltip>
+							</div>
 						</div>
 						<md-divider></md-divider>
 
@@ -350,24 +358,22 @@
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Transformations</md-subheader>
-					<md-content layout="column" class="list_container">
+					<div layout="column" class="list_container">
 						<md-radio-group ng-model="transform_type" class="margin_5">
 							<md-radio-button ng-disabled="$root.disabled" value="inters">Intersection</md-radio-button>
 							
 							<div layout="row" layout-align="start center" class="height_30">
-								<md-radio-button ng-disabled="$root.disabled" value="interp">Interpolation:</md-radio-button>
-
-								<md-input-container class="md_input">
-									<md-select ng-disabled="transform_type=='inters' || $root.disabled" ng-model="interp_type" aria-label="Interpolation Type">
-										<md-option value="linear"><span class="font_0p8">Linear</span></md-option>
-										<md-option value="cubic"><span class="font_0p8">Cubic</span></md-option>
-										<md-option value="lanczos"><span class="font_0p8">Lanczos</span></md-option>
-										<md-option value="nearest"><span class="font_0p8">Nearest Neighbor</span></md-option>
-									</md-select>
-								</md-input-container>
+								<md-radio-button ng-disabled="$root.disabled" class="marginb_0" value="interp">Interpolation:</md-radio-button>
+								<span>&nbsp;</span>
+								<md-select ng-disabled="transform_type=='inters' || $root.disabled" ng-model="interp_type" aria-label="Interpolation Type">
+									<md-option value="linear"><span class="font_0p8">Linear</span></md-option>
+									<md-option value="cubic"><span class="font_0p8">Cubic</span></md-option>
+									<md-option value="lanczos"><span class="font_0p8">Lanczos</span></md-option>
+									<md-option value="nearest"><span class="font_0p8">Nearest Neighbor</span></md-option>
+								</md-select>
 							</div>
 						</md-radio-group>
-					</md-content>
+					</div>
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>

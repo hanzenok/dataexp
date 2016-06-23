@@ -167,7 +167,7 @@ angular.module('MainApp')
 							console.log('loaded');
 
 							//load data into the charting library
-							var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+							var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
 							chart_service.load($rootScope.dataset, function(err){
 
 								if (err){

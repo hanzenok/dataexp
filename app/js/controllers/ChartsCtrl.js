@@ -79,7 +79,7 @@ angular.module('MainApp')
 				//to be added then trace
 				setTimeout(function() {
 
-					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+					var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
 					var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 					chart.render();
 
@@ -114,7 +114,7 @@ angular.module('MainApp')
 			setTimeout(function() {
 
 					//load the data
-					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+					var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
 					chart_service.load($rootScope.dataset, function(err){
 
 						if (err){
@@ -160,7 +160,7 @@ angular.module('MainApp')
 				setTimeout(function(){
 
 					//render all charts
-					var chart_service = ($rootScope.size_status === 'overflow') ? CanvasChartsService : DCChartsService;
+					var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
 
 						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
