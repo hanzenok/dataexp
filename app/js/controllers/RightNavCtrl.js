@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('RightNavCtrl', function($scope, $rootScope){
+	.controller('RightNavCtrl', function($scope, $rootScope, $mdDialog){
 
 		//used to monitor with 
 		//oversized datasets
@@ -127,9 +127,17 @@ angular.module('MainApp')
 			}
 		}
 
-		$scope.save = function(){
 
-			console.log('save');
-		}
+		//
+		$scope.showAlert = function(ev){
+
+			$mdDialog.show({
+
+				templateUrl: '../../templates/Alert.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+			});
+		};
 
 	})

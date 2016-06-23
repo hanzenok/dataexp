@@ -463,13 +463,16 @@
         display: none;
     }
 
-/*    .canvasjs-chart-tooltip {
+    .alert_div{
 
-        display: none !important;
+        width: 400px;
+        margin: 0px 15px 0px 15px;
     }
 
-    .canvasjs-chart-canvas {
+    .alert_p{
 
-        position: relative !important;
-    }*/
+        text-indent: 10px;
+        font-size: 0.9em;
+        color: rgb(100, 100, 100);
+    }
 
