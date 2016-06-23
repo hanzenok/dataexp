@@ -12,19 +12,13 @@
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- Toolbar -->
-		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row" layout-align="center center">
+		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
 			<md-button ng-disabled="$root.disabled" class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
 				<md-tooltip md-visible="false" md-direction="top">Toogle panels</md-tooltip>
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
 	
 			<md-progress-circular md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-circular>
-
-			<div flex></div>
-
-			<a href="http://www.maya-technologies.com/en/" style="border-radius:5px; margin:5px; padding:5px; background-color: rgba(255, 255, 255, 0.8);">
-				<img class="cursor_pointer" src="images/maya_logo2.png" width="101" height="60">
-			</a>
 		</md-toolbar>
 
 		<div layout="row" flex ng-disabled="$root.disabled">
@@ -468,6 +462,20 @@
 						</div>
 
 					</md-content>
+
+					<div class="subheader" layout="row" layout-align="center center">
+
+						<a href="http://www.maya-technologies.com/en/" style="margin-left: 10px;">
+							<img class="cursor_pointer" src="images/maya_logo.png">
+						</a>
+						<div flex></div>
+						<span style="margin-right: 10px;" class="stats_span">2016</span>
+
+						<md-tooltip md-visible="false" md-direction="top">
+							<span>Author: Ganza Mykhailo</span>
+							<span>Contact: hanzenok@gmail.com</span>
+						</md-tooltip>
+					</div>
 
 				</div>
 
