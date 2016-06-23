@@ -39,7 +39,7 @@ FileConnector.getStoreSize = function(store_config, callback){
 	fs.readFile(dataset_prefix + store_config.source.name + '.json', function(err, data){
 
 		if (err){
-		
+			console.log('here: ' + dataset_prefix + store_config.source.name + '.json');
 			callback(new Error('Cannot read the dataset'));
 		}
 		else{

@@ -158,7 +158,7 @@ angular.module('MainApp')
 							$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
 
 							//let the dataset to be downloadable
-							var dataset = JSON.stringify($rootScope.dataset);
+							var dataset = JSON.stringify($rootScope.dataset, null, 4);
 							var blob2 = new Blob([dataset], {type: 'text/json'});
 							$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
 
