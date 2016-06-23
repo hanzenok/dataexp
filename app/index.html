@@ -15,8 +15,7 @@
 				<md-tooltip md-visible="false" md-direction="top">Toogle panels</md-tooltip>
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
-			<h1>Title</h1>
-			<md-switch ng-model="$root.disabled"></md-switch>
+			<!-- <md-switch ng-model="$root.disabled"></md-switch> -->
 			<md-progress-circular md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-circular>
 		</md-toolbar>
 
@@ -104,9 +103,9 @@
 			</md-sidenav>
 
 			<!-- Main Container -->
-			<div flex layout="column" style="opacity:{{($root.disabled) ? 0.7 : 1;}};">
+			<div flex layout="column">
 				<!-- Charts Container -->
-				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
+				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start" style="opacity:{{($root.disabled) ? 0.7 : 1;}};">
 
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="$root.reloadCharts()" ng-disabled="$root.disabled">
@@ -117,13 +116,13 @@
 					<!-- DC.js&Canvas.js Charts-->
 					<div class="chart md-whiteframe-1dp {{'chart_' + chart.type}}" ng-repeat="chart in droppedCharts" layout="column" layout-align="center start" ng-init="$last ? renderAll() : null">
 
-						<span class="chart_title reset_charts"> Rendering ... </span>
+						<span ng-hide="hideTitle" class="chart_title reset_charts">Rendering ...</span>
 
 						<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
 							<img src="images/hand.svg" height="12" width="12"/>
 							{{chart.key1}}
 						</span>
-						{{'chart_' + chart.type}}
+
 						<div id="{{chart.id}}"></div>
 
 						<!-- Thoose two are only for DC.js graph and scatter -->

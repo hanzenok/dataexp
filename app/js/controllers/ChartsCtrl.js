@@ -10,7 +10,9 @@ angular.module('MainApp')
 						};
 
 		$scope.reload = false;
+		$scope.hideTitle = false;
 		$rootScope.droppedCharts = [];
+
 		$scope.onDropChart = function(data){
 
 			//if dropped object not a DC.js chart
@@ -21,8 +23,8 @@ angular.module('MainApp')
 				//and not reloading all the charts
 				$scope.reload = false;
 
-				console.log('onDropChart:');
-				console.log(data);
+				//show title
+				$scope.hideTitle = false;
 
 				//launch the progress bar
 				$rootScope.showPB(true);
@@ -81,6 +83,9 @@ angular.module('MainApp')
 					var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 					chart.render();
 
+					//hide the title
+					$scope.hideTitle = true;
+
 					//stop the progress bar
 					$rootScope.$apply(function(){
 						$rootScope.showPB(false);
@@ -96,16 +101,13 @@ angular.module('MainApp')
 
 			//copy the charts before cleaning
 			var new_charts = [];
-			console.log('first');
 			$rootScope.droppedCharts.forEach(function(chart, index){
 
 				new_charts.push(chart);
-				console.log('middle');
 			});
 
 			//drop the list of charts to clear
 			//up the dom elements
-			console.log('last');
 			$rootScope.droppedCharts = [];
 
 			//wait for the dom elements to be deleted
@@ -148,7 +150,8 @@ angular.module('MainApp')
 			//the chart dropps
 			if ($scope.reload){
 
-				console.log('Reload!!!');
+				//shot title
+				$scope.hideTitle = false;
 
 				//launch the progress bar
 				$rootScope.showPB(true);
@@ -163,6 +166,9 @@ angular.module('MainApp')
 						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 						chart.render();
 					});
+
+					//hide the title
+					$scope.hideTitle = true;
 
 					//stop the progress bar
 					$rootScope.$apply(function(){
