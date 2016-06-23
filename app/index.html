@@ -12,13 +12,19 @@
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- Toolbar -->
-		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
+		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row" layout-align="center center">
 			<md-button ng-disabled="$root.disabled" class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
 				<md-tooltip md-visible="false" md-direction="top">Toogle panels</md-tooltip>
 				<md-icon md-svg-src="images/menu.svg"></md-icon>
 			</md-button>
-			<!-- <md-switch ng-model="$root.disabled"></md-switch> -->
+	
 			<md-progress-circular md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-circular>
+
+			<div flex></div>
+
+			<a href="http://www.maya-technologies.com/en/" style="border-radius:5px; margin:5px; padding:5px; background-color: rgba(255, 255, 255, 0.8);">
+				<img class="cursor_pointer" src="images/maya_logo2.png" width="101" height="60">
+			</a>
 		</md-toolbar>
 
 		<div layout="row" flex ng-disabled="$root.disabled">
@@ -122,7 +128,7 @@
 						<span ng-hide="hideTitle" class="chart_title reset_charts">Rendering ...</span>
 
 						<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
-							<img src="images/hand.svg" height="12" width="12"/>
+							<img src="images/hand.svg" height="12" width="12">
 							{{chart.key1}}
 						</span>
 
@@ -152,7 +158,7 @@
 					<!-- <input type="checkbox"> -->
 
 					<!-- Hide Button -->
-					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toogle()"/>
+					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toogle()">
 				</div>
 
 				<!-- Footer -->
@@ -193,7 +199,7 @@
 									<md-tooltip md-visible="false" md-direction="top">Load the dataset</md-tooltip>
 								</div>
 								<a download="config.json" ng-href="{{($root.disabled) ? '' : url}}">
-									<img class="loader_buttons cursor_pointer" src="images/save.svg"/>
+									<img class="loader_buttons cursor_pointer" src="images/save.svg">
 									<md-tooltip md-visible="false" md-direction="top">Save the config</md-tooltip>
 								</a>
 <!-- 								<div>
@@ -212,7 +218,7 @@
 								<!-- Pie Chart -->
 								<md-list-item layout="column">
 									<div class="platform" layout="column" layout-align="end end">
-										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart"/>
+										<img src="images/pie_chart.png" class="chart_img" alt="Pie Chart">
 
 										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Pie')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Pie'}"> 
 
@@ -228,7 +234,7 @@
 								<!-- Graph -->
 								<md-list-item layout="column">
 									<div class="platform"  layout="column" layout-align="end end">
-										<img src="images/graph_chart.png" class="chart_img" alt="Graph Chart"/>
+										<img src="images/graph_chart.png" class="chart_img" alt="Graph Chart">
 										
 										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Graph')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Graph'}"> 
 
@@ -244,7 +250,7 @@
 								<!-- Scatter Plot -->
 								<md-list-item layout="column">
 									<div class="platform"  layout="column" layout-align="end end">
-										<img src="images/scatter_chart.png" class="chart_img" alt="Scatter Chart"/>
+										<img src="images/scatter_chart.png" class="chart_img" alt="Scatter Chart">
 
 										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Scatter')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Scatter'}"> 
 
@@ -260,7 +266,7 @@
 								<!-- Row Chart -->
 								<md-list-item layout="column">
 									<div class="platform"  layout="column" layout-align="end end">
-										<img src="images/row_chart.png" class="chart_img" alt="Row Chart"/>
+										<img src="images/row_chart.png" class="chart_img" alt="Row Chart">
 
 										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Row')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Row'}"> 
 
@@ -276,7 +282,7 @@
 								<!-- Bar Chart -->
 								<md-list-item layout="column">
 									<div class="platform"  layout="column" layout-align="end end">
-										<img src="images/bar_chart.png" class="chart_img" alt="Bar Chart"/>
+										<img src="images/bar_chart.png" class="chart_img" alt="Bar Chart">
 
 										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Bar')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Bar'}"> 
 
@@ -299,7 +305,7 @@
 						<!-- Delete zone -->
 						<div layout="column" class="loader">
 								<div md-ink-ripple="#FF0000" ng-click="($root.disabled)? '' : clearAll()" flex class="delete_chart cursor_pointer" ng-controller="DeleteZoneCtrl" ng-drop="true" ng-drop-success="onDropRemove($data)">
-									<img src="images/delete.png" class="chart_img" alt="Delete Zone"/>
+									<img src="images/delete.png" class="chart_img" alt="Delete Zone">
 								</div>
 						</div>
 
@@ -311,7 +317,7 @@
 							<div ng-if="clonedData.chart" style="width:200px; height: 150px;" class="chart_movable md-whiteframe-4dp"></div>
 							<!-- DC or Canvas chart -->
 							<span ng-if="clonedData.key1" style="margin:5px;">
-								<img src="images/hand.svg" height="12" width="12"/>
+								<img src="images/hand.svg" height="12" width="12">
 								{{clonedData.key1}}
 							</span>
 						</div>
@@ -337,7 +343,7 @@
 							<i class="stats_i {{$root.size_status}}">{{size}}</i>
 							<span>&nbsp;</span>
 							<div>
-								<img ng-hide="$root.size_status === 'normal'" class="loader_buttons cursor_pointer" src="images/help.svg" height="16" width="16" ng-click="showAlert($event)"/>
+								<img ng-hide="$root.size_status === 'normal'" class="loader_buttons cursor_pointer" src="images/help.svg" height="16" width="16" ng-click="showAlert($event)">
 								<md-tooltip md-visible="false" md-direction="top">Click to show a tip</md-tooltip>
 							</div>
 							<span flex></span>
