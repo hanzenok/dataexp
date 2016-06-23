@@ -7,8 +7,8 @@ var port = process.env.PORT || 8080;
 //configuration
 app.use(express.static(__dirname + '/app'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
-app.use(bodyParser.urlencoded({'extended':'true'}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '100mb', extended:true}));
+app.use(bodyParser.json({limit: '100mb'}));
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 

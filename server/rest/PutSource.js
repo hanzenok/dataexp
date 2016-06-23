@@ -12,6 +12,7 @@ var putSource = function(req, res){
 
 	if (source_conf){
 
+		//if a source is a file
 		if (source_conf.data){
 
 			//save the dataset
