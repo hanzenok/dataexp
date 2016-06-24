@@ -188,15 +188,18 @@ angular.module('MainApp')
 		$scope.saveFormat = function(){
 			
 			$mdDialog.hide($scope.format);
-			console.log($scope.data);
 		};
 
 		/***********Both***********/
 		$scope.cancel = function() {
+
 			$mdDialog.cancel();
 		};
 
-		$scope.readFile = function(element){
+		//reads the file choosed in the 
+		//file dialog and saves it in the backend
+		//finally, closes the dialog
+		$scope.saveSourceFile = function(element){
 
 			//if the file was specified
 			if ($scope.source_conf.source.name) {
@@ -230,19 +233,14 @@ angular.module('MainApp')
 					$scope.source_conf.source.db = file.name;
 					$scope.source_conf.source.server = 'file';
 
-					if ($scope.source_conf.source.type === 'csv'){
-						console.log('csv:');
-						console.log(data);
-						console.log('json:');
-						console.log(CSV2JSONService.csv2json(data));
-					}
-
 					//send the dataset to the server
 					var dataset = {};
 					dataset.name = $scope.source_conf.source.name;
 					dataset.data = ($scope.source_conf.source.type === 'json') ? JSON.parse(data) : CSV2JSONService.csv2json(data);
 					SourcesService.post(dataset, function(res){}, function(err){});
-					console.log(dataset);
+
+					//simulates a click on the "Save" button
+					$scope.connect.call(this);
 				}
 
 				//read the file
