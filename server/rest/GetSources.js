@@ -4,7 +4,7 @@ var config_file = './server/config/sources.json';
 
 var getSources = function(req, res){
 
-	fs.readFile(config_file, function(err, data){
+	fs.readFile(config_file, 'utf-8', function(err, data){
 
 		if (err){
 		
@@ -12,7 +12,9 @@ var getSources = function(req, res){
 		}
 		else{
 
-			res.json(JSON.parse(data));
+			//send the sources
+			var sources = (data.length) ? JSON.parse(data) : [];
+			res.json(sources);
 		}
 	});
 }

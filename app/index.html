@@ -36,6 +36,10 @@
 				<div ng-controller="LeftNavCtrl" layout="column" flex layout-align="start">
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Sources ({{sources_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container chrome_bugfix2"> <!-- md-content is scrollable -->
+						<div ng-hide="sources_conf.length" layout="row">
+							<div flex></div>
+							<span ng-hide="sources_conf.length"> Click it!! </span>
+						</div>
 						<md-list class="chrome_bugfix1">
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
 								<md-checkbox ng-disabled="$root.disabled" ng-model="source_config.source.wanted" aria-label="Source checkbox" ng-change="$root.loadStores(source_config)"></md-checkbox>
