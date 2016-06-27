@@ -37,8 +37,8 @@
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Sources ({{sources_conf.length}})</md-subheader>
 					<md-content flex="33" class="list_container chrome_bugfix2"> <!-- md-content is scrollable -->
 						<div ng-hide="sources_conf.length" layout="row">
-							<div flex></div>
-							<span ng-hide="sources_conf.length"> Click it!! </span>
+							<div flex="55"></div>
+							<span ng-hide="sources_conf.length" class="stats_span"> Click it ---></span>
 						</div>
 						<md-list class="chrome_bugfix1">
 							<md-list-item ng-repeat="source_config in sources_conf" class="list_item">
