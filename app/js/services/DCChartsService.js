@@ -43,18 +43,33 @@ angular.module('MainApp')
 		var graph = function(container, key1, key2, ts_key){
 
 			//parse time format
-			dataset.forEach(function(doc){
-				
-				doc[ts_key] = new Date(doc[ts_key]);
-			});
+			//two keys
+			if (key1 && key2){
+
+				dataset.forEach(function(doc){
+					
+					doc[ts_key] = new Date(doc[ts_key]);
+					doc.diff = Math.abs(doc[key1] - doc[key2]);
+				});
+			}
+			else{
+				//one key
+				if (key1){
+
+					dataset.forEach(function(doc){
+						
+						doc[ts_key] = new Date(doc[ts_key]);
+					});
+				}
+			}
 
 			//dimensions
 			var dim = ndx.dimension(function(d){return d[ts_key]});
-			//var dim_days = ndx.dimension(function(d){return d.day;});
 			
 			//grouping
 			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
 			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
+			var group_euc = (key2) ? dim.group().reduceSum(function(d){return d.diff;}) : null;
 			
 			//min,max
 			var min_val={}, max_val={};
@@ -66,6 +81,7 @@ angular.module('MainApp')
 			var line_chart1 = dc.lineChart(composite_chart);
 			var line_chart2 = dc.lineChart(composite_chart);
 			var bar_chart = dc.barChart('#' + container + '_bar');
+			var euclid_chart = dc.lineChart('#' + container + '_euclid');
 
 			//line_chart1
 			line_chart1.dimension(dim)
@@ -79,6 +95,16 @@ angular.module('MainApp')
 				.group(group2, key2).colors('blue')
 				.x(d3.time.scale().domain([min_val, max_val]))
 				.useRightYAxis(true);
+			}
+
+			//euclid diff chart
+			if (group_euc){
+
+				euclid_chart.width(800).height(75)
+				.dimension(dim).group(group_euc).brushOn(false)
+				.elasticY(true).elasticX(true)
+				.x(d3.time.scale().domain([min_val, max_val]))
+				.margins({top: 20, right: 50, bottom: 20, left: 50});
 			}
 
 			//composite chart
@@ -110,6 +136,9 @@ angular.module('MainApp')
 			bar_chart.yAxis().ticks(0);
 			bar_chart.xUnits(d3.time.hours);
 			bar_chart.render();
+
+			//euclid diff chart
+			euclid_chart.render();
 
 			return composite_chart;
 		}
