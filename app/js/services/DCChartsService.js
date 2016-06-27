@@ -211,6 +211,7 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		//http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/
 		var correlation = function(container, key1, key2){
 	
 			//reduce functions	
