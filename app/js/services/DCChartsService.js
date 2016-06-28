@@ -6,7 +6,7 @@ angular.module('MainApp')
 		var ndx;
 
 		var pie_chart = function(container, key1, key2, ts_key){
-
+			key1 = 'correlated';
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
 
