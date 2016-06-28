@@ -48,7 +48,7 @@ angular.module('MainApp')
 				doc[ts_key] = new Date(doc[ts_key]);
 
 				if (!doc.correlation)
-					doc.correlation = 0.1;
+					doc.correlation = 0.3;
 			});
 
 			//dimensions
@@ -288,6 +288,18 @@ angular.module('MainApp')
 
 			//chart.render();
 			return chart;
+		}
+
+		var color_gen = function(value){
+
+			if (!value || value > 1 || value < 0)
+				return rgb(0, 0, 0);
+
+			//multip by 1000
+			//mod 256
+			//184 ==> rgb(46, 184, 92)
+
+
 		}
 
 		//enum with all the renderers
