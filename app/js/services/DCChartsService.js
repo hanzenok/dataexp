@@ -6,7 +6,7 @@ angular.module('MainApp')
 		var ndx;
 
 		var pie_chart = function(container, key1, key2, ts_key){
-			key1 = 'correlated';
+			key1 = 'correlation';
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
 
@@ -46,6 +46,9 @@ angular.module('MainApp')
 			dataset.forEach(function(doc){
 				
 				doc[ts_key] = new Date(doc[ts_key]);
+
+				if (!doc.correlation)
+					doc.correlation = 0.1;
 			});
 
 			//dimensions
@@ -54,6 +57,7 @@ angular.module('MainApp')
 			//grouping
 			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
 			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
+			var group_bar = (key2) ? dim.group().reduceSum(function(d){return d.correlation;}) : group1;
 			
 			//min,max
 			var min_val={}, max_val={};
@@ -114,7 +118,7 @@ angular.module('MainApp')
 
 			//scroll bar_chart
 			bar_chart.width(800).height(75)
-			.dimension(dim).group(group1)
+			.dimension(dim).group(group_bar)
 			.x(d3.time.scale().domain([min_val, max_val]))
 			.margins({top: 20, right: 50, bottom: 20, left: 50});
 			bar_chart.yAxis().ticks(0);
