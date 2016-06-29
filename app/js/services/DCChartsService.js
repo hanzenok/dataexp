@@ -48,7 +48,7 @@ angular.module('MainApp')
 				doc[ts_key] = new Date(doc[ts_key]);
 
 				if (!doc.correlation)
-					doc.correlation = 0.3;
+					doc.correlation = 0.2;
 			});
 
 			//dimensions
