@@ -83,6 +83,7 @@ TS.getTimeseries = function(req, res){
 			tsproc_config.transform = options.transform;
 			tsproc_config.reduction = options.reduction;
 			tsproc_config.date_borders = options.date_borders;
+			tsproc_config.correlation = options.correlation;
 
 			// //fields
 			tsproc_config.timeseries = [];

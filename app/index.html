@@ -436,17 +436,17 @@
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center">
 							<span flex="30">Correlation</span>
-							<md-switch ng-disabled="$root.disabled" ng-model="toogleCorrelation" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<md-switch ng-disabled="$root.disabled" ng-model="toogled_correlation" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<div flex></div>
 							<div layout="column" layout-align="center end">
 								<div layout="row" layout-align="center center">
 									<span class="reset_charts">Count negative</span>
-									<input type="checkbox" ng-model="countNegative" ng-disabled="!toogleCorrelation || $root.disabled">
+									<input type="checkbox" ng-model="count_negative" ng-disabled="!toogled_correlation || $root.disabled">
 									<md-tooltip md-visible="false" md-direction="top">Wheather or not detect negative correlations</md-tooltip>
 								</div>
-								<div layout="row" layout-align="center center" ng-init="maxCorrelation=true">
+								<div layout="row" layout-align="center center"
 									<span class="reset_charts">Max coef</span>
-									<input type="checkbox" ng-model="maxCorrelation" ng-disabled="!toogleCorrelation || $root.disabled">
+									<input type="checkbox" ng-model="max_coef" ng-disabled="!toogled_correlation || $root.disabled">
 									<md-tooltip md-visible="false" md-direction="top">Wheather use maximum correlation coef or maximum number of correlated datapoins as a criteria to detect the correlation</md-tooltip>
 								</div>
 							</div>

@@ -19,6 +19,8 @@ angular.module('MainApp')
 		$scope.target_field = '';
 		$scope.from_date = null;
 		$scope.to_date = null;
+		$scope.count_negative = false;
+		$scope.max_coef = true;
 
 		//dates switcher
 		$scope.enableDates = false;
@@ -45,7 +47,6 @@ angular.module('MainApp')
 			config.date_borders = {};
 			config.date_borders.from = {};
 			config.date_borders.to = {};
-
 			if ($scope.enableDates && $scope.from_date && $scope.to_date){
 
 				console.log('from:');
@@ -66,6 +67,11 @@ angular.module('MainApp')
 				config.date_borders.from.date = '';
 				config.date_borders.to.date = '';
 			}
+
+			//correlation detection options
+			config.correlation = {};
+			config.correlation.count_negative = $scope.count_negative;
+			config.correlation.max_coef = $scope.max_coef;
 
 			console.log('getConfig():');
 			console.log(config);
@@ -92,6 +98,8 @@ angular.module('MainApp')
 				$scope.target_field = '';
 				$scope.from_date = null;
 				$scope.to_date = null;
+				$scope.count_negative = false;
+				$scope.max_coef = true;
 
 				return;
 			}
@@ -149,5 +157,16 @@ angular.module('MainApp')
 			//http://stackoverflow.com/questions/20300866/angularjs-ng-click-stoppropagation
 			event.stopPropagation();
 		}
+
+		//done this way to fix
+		//the options when correlation disabled
+		$scope.$watch('toogled_correlation', function(){
+
+			if (!$scope.toogled_correlation){
+
+				$scope.count_negative = false;
+				$scope.max_coef = true;
+			}
+		});
 
 	})
