@@ -367,8 +367,8 @@
 					<!-- Transformations -->
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Transformations</md-subheader>
-					<div layout="column" class="list_container">
+					<md-subheader ng-click="hide_trans=!hide_trans" class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Transformations</md-subheader>
+					<div ng-hide="hide_trans" layout="column" class="list_container">
 						<md-radio-group ng-model="transform_type" class="margin_5">
 							<md-radio-button ng-disabled="$root.disabled" value="inters">Intersection</md-radio-button>
 							
@@ -387,8 +387,8 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Reduction</md-subheader>
-					<md-content layout="column" class="list_container">
+					<md-subheader ng-click="hide_redu=!hide_redu" class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Reduction</md-subheader>
+					<md-content ng-hide="hide_redu" layout="column" class="list_container">
 						<div layout="row">
 							<md-input-container class="marginb_0" flex>
 								<label>Type</label>
@@ -416,14 +416,14 @@
 
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA" ng-click="hide_dates=!hide_dates">
 						<div layout="row" layout-align="start center">
 							<span flex="25">Dates</span>
-							<md-switch ng-disabled="$root.disabled" ng-model="enableDates" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<md-switch ng-disabled="$root.disabled" ng-click="toogleDates($event)" class="md-mini margin_0" aria-label="Switch"></md-switch>
 						</div>
 					</md-subheader>
 
-					<div layout="column" layout-align="center center" class="list_container">
+					<div ng-hide="hide_dates" layout="column" layout-align="center center" class="list_container">
 						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="from_date" md-placeholder="From"></md-datepicker>
 						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>

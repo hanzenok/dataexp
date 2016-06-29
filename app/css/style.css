@@ -477,3 +477,9 @@
         color: rgb(100, 100, 100);
     }
 
+    /*http://stackoverflow.com/questions/30981429/angular-material-ng-click-strange-border-highlight*/
+	div:focus {
+		outline: none;
+		border: 0;
+	}
+

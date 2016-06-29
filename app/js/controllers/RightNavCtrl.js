@@ -128,7 +128,7 @@ angular.module('MainApp')
 		}
 
 
-		//
+		//show a tips alert
 		$scope.showAlert = function(ev){
 
 			$mdDialog.show({
@@ -139,5 +139,14 @@ angular.module('MainApp')
 				clickOutsideToClose: true,
 			});
 		};
+
+
+		$scope.toogleDates = function(event){
+
+			$scope.enableDates = !$scope.enableDates;
+
+			//http://stackoverflow.com/questions/20300866/angularjs-ng-click-stoppropagation
+			event.stopPropagation();
+		}
 
 	})
