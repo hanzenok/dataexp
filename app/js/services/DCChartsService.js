@@ -105,16 +105,19 @@ angular.module('MainApp')
 				composite_chart.compose([line_chart1]);
 			}
 
-			// bar_chart.on('pretransition', function (chart) {
+			bar_chart.on('pretransition', function (chart) {
 
-			// 	chart.selectAll("g rect").style("fill", function (d) {
-			// 		console.log(d);
-			// 		if (d.data && d.data.value < 15)
-			// 			return 'red';
-			// 		else
-			// 			return 'blue';
-			// 	});
-			// });
+				chart.selectAll("g rect").style("fill", function (d) {
+					
+					if (d.data && d.data.value >= 0.6){
+
+						return color_gen.call(this, d.data.value);
+					}
+					else{
+						return 'gray';
+					}
+				});
+			});
 
 			//scroll bar_chart
 			bar_chart.width(800).height(75)
@@ -295,11 +298,62 @@ angular.module('MainApp')
 			if (!value || value > 1 || value < 0)
 				return rgb(0, 0, 0);
 
-			//multip by 1000
-			//mod 256
-			//184 ==> rgb(46, 184, 92)
+			//multiply by 1000
+			//'value' is [0..1]
+			//with 4 digits after the dot
+			var digit = value*10000;
 
+			//modulo 256 to get 
+			//a digit [0..255]
+			var mod = digit%256;
 
+			//get the digits of mod
+			//144 --> [1, 4, 4]
+			//we know that mod is [0..255]
+			var hundreds = Math.trunc(mod/100);
+			var tens = Math.trunc((mod - hundreds*100)/10);
+			var ones = Math.trunc(mod - hundreds*100 - tens*10);
+			var digits = [hundreds, tens, ones];
+
+			//calc min and max
+			var min = 10;
+			for (var i=0; i<3; i++){
+				if (digits[i] < min)
+					min = digits[i];
+			}
+			var max = -1;
+			for (var i=0; i<3; i++){
+				if (digits[i] > max)
+					max = digits[i];
+			}
+
+			//generate a color
+			var rgb = new Array(3);
+			for (var i=0; i<3; i++){
+
+				//max
+				if (digits[i] === max){
+
+					rgb[i] = mod;
+					continue;
+				}
+
+				//min
+				if (digits[i] === min){
+
+					rgb[i] = Math.trunc(mod/4);
+					continue;
+				}
+
+				//middle
+				rgb[i] = Math.trunc(mod/2);
+			}
+
+			//compose a hex color
+			var color = '#' + rgb[0].toString(16) + '' +  rgb[1].toString(16) + '' + rgb[2].toString(16);
+
+			return color;
+			// console.log('color:' + color + ', rgb:' + rgb + ', max: ' + max + ', min: ' + min + ', hundreds: ' + hundreds + ', tens: ' + tens + ', ones: ' + ones + ', mod: ' + mod + ', digit: ' + digit + ', value: ' + value);
 		}
 
 		//enum with all the renderers
