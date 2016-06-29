@@ -111,7 +111,7 @@ angular.module('MainApp')
 			$rootScope.droppedCharts = [];
 
 			//remove the svg for DC.js
-			d3.selectAll('svg').remove();
+			// d3.selectAll('svg').remove();
 
 			//wait for the dom elements to be deleted
 			setTimeout(function() {
