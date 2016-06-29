@@ -69,9 +69,15 @@ angular.module('MainApp')
 			}
 
 			//correlation detection options
-			config.correlation = {};
-			config.correlation.count_negative = $scope.count_negative;
-			config.correlation.max_coef = $scope.max_coef;
+			if ($scope.toogled_correlation){
+
+				config.correlation = {};
+				config.correlation.count_negative = $scope.count_negative;
+				config.correlation.max_coef = $scope.max_coef;
+			}
+			else{
+				config.correlation = null;
+			}
 
 			console.log('getConfig():');
 			console.log(config);
