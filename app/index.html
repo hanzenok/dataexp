@@ -385,6 +385,7 @@
 						</md-radio-group>
 					</div>
 
+					<!-- Reductions -->
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<md-subheader ng-click="hide_redu=!hide_redu" class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Reduction</md-subheader>
@@ -414,11 +415,12 @@
 						</div>
 					</md-content>
 
+					<!-- Dates -->
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA" ng-click="hide_dates=!hide_dates">
 						<div layout="row" layout-align="start center">
-							<span flex="25">Dates</span>
+							<span flex="30">Dates</span>
 							<md-switch ng-disabled="$root.disabled" ng-click="toogleDates($event)" class="md-mini margin_0" aria-label="Switch"></md-switch>
 						</div>
 					</md-subheader>
@@ -428,11 +430,35 @@
 						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
+					<!-- Correlation -->
+					<md-divider></md-divider>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
+						<div layout="row" layout-align="start center">
+							<span flex="30">Correlation</span>
+							<md-switch ng-disabled="$root.disabled" ng-model="toogleCorrelation" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<div flex></div>
+							<div layout="column" layout-align="center end">
+								<div layout="row" layout-align="center center">
+									<span class="reset_charts">Count negative</span>
+									<input type="checkbox" ng-model="countNegative" ng-disabled="!toogleCorrelation || $root.disabled">
+									<md-tooltip md-visible="false" md-direction="top">Wheather or not detect negative correlations</md-tooltip>
+								</div>
+								<div layout="row" layout-align="center center" ng-init="maxCorrelation=true">
+									<span class="reset_charts">Max coef</span>
+									<input type="checkbox" ng-model="maxCorrelation" ng-disabled="!toogleCorrelation || $root.disabled">
+									<md-tooltip md-visible="false" md-direction="top">Wheather use maximum correlation coef or maximum number of correlated datapoins as a criteria to detect the correlation</md-tooltip>
+								</div>
+							</div>
+						</div>
+					</md-subheader>
+
+					<!-- Dataset -->
 					<md-divider></md-divider>
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center" class="padding_0">
-							<span flex="25">Dataset</span>
+							<span flex="30">Dataset</span>
 							<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<div flex></div>
 							<a class="reset_charts cursor_pointer" download="dataset.json" ng-href="{{(!$root.disabled && $root.dataset.length) ? $root.url : ''}}">
@@ -441,7 +467,6 @@
 							</a>
 						</div>
 					</md-subheader>
-
 
 					<md-content flex layout="column" layout-align="start center" class="list_container chrome_bugfix1 padding_0">
 					
@@ -472,6 +497,9 @@
 
 					</md-content>
 
+					<!-- Credits -->
+					<md-divider></md-divider>
+					<md-divider></md-divider>
 					<div class="subheader" layout="row" layout-align="center center">
 
 						<a href="http://www.maya-technologies.com/en/" style="margin-left: 10px;">

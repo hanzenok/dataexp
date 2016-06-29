@@ -140,7 +140,8 @@ angular.module('MainApp')
 			});
 		};
 
-
+		//done like this becaus of the
+		//event propagation
 		$scope.toogleDates = function(event){
 
 			$scope.enableDates = !$scope.enableDates;
