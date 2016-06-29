@@ -296,7 +296,7 @@ angular.module('MainApp')
 		var color_gen = function(value){
 
 			if (!value || value > 1 || value < 0)
-				return rgb(0, 0, 0);
+				return 'gray';
 
 			//multiply by 1000
 			//'value' is [0..1]
