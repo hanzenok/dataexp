@@ -122,7 +122,17 @@ TS.getTimeseries = function(req, res){
 			stats.homogen = tsp.isHomogeneous(); //check the 
 
 			//process the timseries
-			tsp.process(callback);
+			tsp.process(null);
+
+			//check the correlations
+			if (tsp.getTSSize() <= 3000){
+
+				tsp.checkSimilarity(callback);
+			}
+			else{
+
+				tsp.getTS(callback);
+			}
 
 			//get the other stats
 			var borders = tsp.getBorders();
