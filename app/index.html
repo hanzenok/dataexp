@@ -12,13 +12,15 @@
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
 		<!-- Toolbar -->
-		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="row">
-			<md-button ng-disabled="$root.disabled" class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
-				<md-tooltip md-visible="false" md-direction="top">Toogle panels</md-tooltip>
-				<md-icon md-svg-src="images/menu.svg"></md-icon>
-			</md-button>
-	
-			<md-progress-circular md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-circular>
+		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="column">
+			<div flex layout="row" layout-align="start center">
+				<md-button ng-disabled="$root.disabled" class="menu" aria-label="Menu button" ng-click="$root.tooglePanels()">
+					<md-tooltip md-visible="false" md-direction="top">Toogle panels</md-tooltip>
+					<md-icon md-svg-src="images/menu.svg"></md-icon>
+				</md-button>
+			</div>
+
+			<md-progress-linear md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-linear>
 		</md-toolbar>
 
 		<div layout="row" flex ng-disabled="$root.disabled">
