@@ -27,7 +27,67 @@ var TS = {};
 
 //returns the data
 TS.getTimeseries = function(req, res){
-	
+
+	/*======================================*/
+	var conf = {
+	        "transform":{"type":"interp","interp_type":"linear"},
+
+	        "reduction":{"type":"skip","size":1,"target_field":""},
+
+	        "date_borders":{"from":{"date":""},"to":{"date":""}},
+
+	        "correlation":{"count_negative":false,"max_coef":true},
+
+	        "timeseries":
+	            [
+	                {
+	                "fields":
+	                    [
+	                        {"name":"a"}
+	                    ],
+
+	                "timestamp":{"name":"year","format":"YYYY"}
+	                },
+
+	                {
+	                "fields":
+	                    [
+	                        {"name":"b"}
+	                    ],  
+
+	                "timestamp":{"name":"year","format":"YYYY"}
+	                }
+	            ]
+	    };
+
+		var ts = [
+		        [{a: 21.07, year:'2012'}, {a: 23.23, year:'2013'}, {a: 0.24, year:'2014'}, {a: 25.25, year:'2015'}, {a: 25.25, year:'2016'}, {a: 25.25, year:'2017'}],
+		        [{b: 21.42, year:'2012'}, {b: 23.11, year:'2013'}, {b: 0.11, year:'2014'}, {b: 21.01, year:'2015'}, {b: 4.5, year:'2016'}, {b: 35.2, year:'2017'}]
+		     ];
+
+		var tsp = new tsproc(ts, conf, null);
+
+		tsp.merge();
+		tsp.checkSimilarity(function(err, timeseries){
+
+		        if (timeseries) console.log(timeseries);
+		        //the result is:
+		        //[
+		        //  [
+		        //      {a: 21.07, year: '2012'},
+		        //      {a: 24.24, year: '2014'}
+		        //  ],
+		        //  [
+		        //      {b: 26.42, year: '2012'},
+		        //      {b: 22.11, year: '2014'}
+		        //  ]
+		        //]
+		});
+
+	/*======================================*/
+
+
+
 	//get the requested dataset
 	var fields_config = req.body;
 
