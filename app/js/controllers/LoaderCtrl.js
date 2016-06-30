@@ -99,72 +99,62 @@ angular.module('MainApp')
 				TimeseriesService.post(all_fields_conf, 
 					function(data){
 
-						console.log('data:');
-						console.log(data);
-
-						//mark all the fields as loaded					
-						//time stamp fields
-						all_fields_conf[1].forEach(function(tsfield_conf, index){
-							tsfield_conf.field.status = 'loaded';
-						});
-
-						//other fields
-						all_fields_conf[2].forEach(function(field_conf, index){
-							field_conf.field.status = 'loaded';
-						});
-
-						//save data
-						$rootScope.dataset = data;
-						console.log('dataset:');
-						console.log(data);
-
-						//loading timeseries finished
-						//show the progressbar
+						//hide the progressbar
 						$rootScope.showPB(false);
 
-						//load the stats
-						TimeseriesService.stats(function(stats){
+						//data has at least two elements
+						//(one is promise related)
+						if (data && data.length > 2){
+	
+							console.log('data:');
+							console.log(data);
 
-							var stat = stats[0];
-							console.log('stats:');
-							console.log(stat);
-							
-							$rootScope.setStats(stat);
-						});
+							//save data
+							$rootScope.dataset = data;
+							console.log('dataset:');
+							console.log(data);
 
-						//load the config
-						TimeseriesService.config(function(ts_config){
+							//load the stats
+							TimeseriesService.stats(function(stats){
 
-							//delete unnecessary frontend fields:
-							ts_config[0].timeseries.forEach(function(ts, index){
-
-								//delete timestamp fields
-								delete ts.timestamp.short;
-								delete ts.timestamp.status;
-								delete ts.timestamp.value;
-
-								//delete other fields
-								ts.fields.forEach(function(field, index){
-
-									delete field.short;
-									delete field.status;
-									delete field.value;
-								});
+								var stat = stats[0];
+								console.log('stats:');
+								console.log(stat);
+								
+								$rootScope.setStats(stat);
 							});
 
-							//let the config to be downloadable
-							var config = JSON.stringify(ts_config[0], null, 4);
-							var blob = new Blob([config], {type: 'text/json'});
-							$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
+							//load the config
+							TimeseriesService.config(function(ts_config){
+
+								//delete unnecessary frontend fields:
+								ts_config[0].timeseries.forEach(function(ts, index){
+
+									//delete timestamp fields
+									delete ts.timestamp.short;
+									delete ts.timestamp.status;
+									delete ts.timestamp.value;
+
+									//delete other fields
+									ts.fields.forEach(function(field, index){
+
+										delete field.short;
+										delete field.status;
+										delete field.value;
+									});
+								});
+
+								//let the config to be downloadable
+								var config = JSON.stringify(ts_config[0], null, 4);
+								var blob = new Blob([config], {type: 'text/json'});
+								$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
+
+							});
 
 							//let the dataset to be downloadable
 							var dataset = JSON.stringify($rootScope.dataset, null, 4);
 							var blob2 = new Blob([dataset], {type: 'text/json'});
 							$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
-
-							//mark as loaded
-							$rootScope.loaded = true;
-							console.log('loaded');
 
 							//load data into the charting library
 							var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
@@ -186,7 +176,22 @@ angular.module('MainApp')
 
 								$rootScope.reloadCharts();
 							}
-						});
+
+							//mark as loaded
+							$rootScope.loaded = true;
+
+							//mark all the fields as loaded					
+							//time stamp fields
+							all_fields_conf[1].forEach(function(tsfield_conf, index){
+								tsfield_conf.field.status = 'loaded';
+							});
+
+							//other fields
+							all_fields_conf[2].forEach(function(field_conf, index){
+								field_conf.field.status = 'loaded';
+							});
+
+						}
 
 					},
 					function(err){
