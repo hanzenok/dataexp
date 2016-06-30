@@ -175,4 +175,14 @@ angular.module('MainApp')
 			}
 		});
 
+		//desactivate the correlation detection
+		//if Canvas.js is forced
+		$rootScope.$watch('force_canvasjs', function(){
+
+			if ($rootScope.force_canvasjs){
+
+				$scope.toogled_correlation = false;
+			}
+		});
+
 	})

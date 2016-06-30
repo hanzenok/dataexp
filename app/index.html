@@ -21,7 +21,7 @@
 			<md-progress-circular md-diameter="96" md-mode="{{$root.activatePB}}" class="md-primary md-hue-1"></md-progress-circular>
 		</md-toolbar>
 
-		<div layout="row" flex ng-disabled="$root.disabled">
+		<div layout="row" flex ng-disabled="$root.disabled" style="opacity:{{($root.disabled) ? 0.7 : 1;}};">
 
 			<!-- Left Side Bar -->
 			<md-sidenav md-is-locked-open="true" class="md-sidenav-left md-whiteframe-z2" layout="column" ng-hide="!$root.showPanels">
@@ -114,7 +114,7 @@
 			<div flex layout="column">
 
 				<!-- Charts Container -->
-				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start" style="opacity:{{($root.disabled) ? 0.7 : 1;}};">
+				<md-content flex class="charts" ng-controller="ChartsCtrl" ng-drop="true" ng-drop-success="onDropChart($data)" layout-align="start start">
 
 					<!-- Fab Button to reload the DC charts-->
 					<md-button class="md-fab md-fab-top-right md-mini" aria-label="Reload" ng-click="$root.reloadCharts()" ng-disabled="$root.disabled">
@@ -436,7 +436,7 @@
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center">
 							<span flex="30">Correlation</span>
-							<md-switch ng-disabled="$root.disabled" ng-model="toogled_correlation" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<md-switch ng-disabled="$root.disabled || $root.force_canvasjs" ng-model="toogled_correlation" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<div flex></div>
 							<div layout="column" layout-align="center end">
 								<div layout="row" layout-align="center center">

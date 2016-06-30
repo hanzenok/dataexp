@@ -125,12 +125,17 @@ TS.getTimeseries = function(req, res){
 			tsp.process(null);
 
 			//check the correlations
+			//if size > 3000 means using
+			//Canvas.js on backend, so
+			//a graph chart doesn't have
+			//a scroll chart to visualise the correlations
 			if (tsp.getTSSize() <= 3000){
 
 				tsp.checkSimilarity(callback);
 			}
 			else{
 
+				//return a timeseries
 				tsp.getTS(callback);
 			}
 

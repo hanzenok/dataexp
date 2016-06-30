@@ -6,7 +6,7 @@ angular.module('MainApp')
 		var ndx;
 
 		var pie_chart = function(container, key1, key2, ts_key){
-			key1 = 'correlation';
+
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
 
@@ -42,14 +42,26 @@ angular.module('MainApp')
 
 		var graph = function(container, key1, key2, ts_key){
 
-			//parse time format
-			dataset.forEach(function(doc){
-				
-				doc[ts_key] = new Date(doc[ts_key]);
+			//check if correlation field is present
+			if (typeof dataset[0].correlation !== 'undefined'){
 
-				if (!doc.correlation)
-					doc.correlation = 0.2;
-			});
+				//parse time format and correlation
+				dataset.forEach(function(doc){
+					
+					doc[ts_key] = new Date(doc[ts_key]);
+
+					if (!doc.correlation)
+						doc.correlation = 0.2;
+				});
+			}
+			else{
+
+				//parse only time format
+				dataset.forEach(function(doc){
+					
+					doc[ts_key] = new Date(doc[ts_key]);
+				});
+			}
 
 			//dimensions
 			var dim = ndx.dimension(function(d){return d[ts_key]});
@@ -57,7 +69,7 @@ angular.module('MainApp')
 			//grouping
 			var group1 = dim.group().reduceSum(function(d) {return d[key1];});
 			var group2 = (key2) ? dim.group().reduceSum(function(d){return d[key2];}) : null;
-			var group_bar = (key2) ? dim.group().reduceSum(function(d){return d.correlation;}) : group1;
+			var group_bar = (key2 && typeof dataset[0].correlation !== 'undefined') ? dim.group().reduceSum(function(d){return d.correlation;}) : group1;
 			
 			//min,max
 			var min_val={}, max_val={};
@@ -107,7 +119,7 @@ angular.module('MainApp')
 
 			bar_chart.on('pretransition', function (chart) {
 
-				chart.selectAll("g rect").style("fill", function (d) {
+				chart.selectAll('g rect').style('fill', function (d) {
 					
 					if (d.data && d.data.value >= 0.6){
 
