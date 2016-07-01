@@ -381,6 +381,8 @@ angular.module('MainApp')
 		//load the dataset
 		this.load = function(data, err_callback){
 
+			console.log('DC.js load');
+
 			//check if all the libraries
 			//are imported
 			if (typeof crossfilter === 'undefined'){

@@ -149,46 +149,50 @@ angular.module('MainApp')
 								var blob = new Blob([config], {type: 'text/json'});
 								$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
 
-							});
+								//NOT CONFIG RELATED STUFF BUT
+								//SHOULD BE LAUNCHED SYNCHRONIOUSLY
 
-							//let the dataset to be downloadable
-							var dataset = JSON.stringify($rootScope.dataset, null, 4);
-							var blob2 = new Blob([dataset], {type: 'text/json'});
-							$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
+								//let the dataset to be downloadable
+								var dataset = JSON.stringify($rootScope.dataset, null, 4);
+								var blob2 = new Blob([dataset], {type: 'text/json'});
+								$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
 
-							//load data into the charting library
-							var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
-							chart_service.load($rootScope.dataset, function(err){
+								//load data into the charting library
+	
+								var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
+								chart_service.load($rootScope.dataset, function(err){
 
-								if (err){
-									$mdToast.show(
-										$mdToast.simple()
-											.textContent(err.message)
-											.action('OK')
-											.position('bottom')
-											.hideDelay(4000)
-									);
+									if (err){
+										$mdToast.show(
+											$mdToast.simple()
+												.textContent(err.message)
+												.action('OK')
+												.position('bottom')
+												.hideDelay(4000)
+										);
+									}
+								});
+
+								//if there are some charts, reload them
+								if ($rootScope.droppedCharts.length){
+
+									$rootScope.reloadCharts();
 								}
-							});
 
-							//if there are some charts, reload them
-							if ($rootScope.droppedCharts.length){
+								//mark as loaded
+								$rootScope.loaded = true;
 
-								$rootScope.reloadCharts();
-							}
+								//mark all the fields as loaded					
+								//time stamp fields
+								all_fields_conf[1].forEach(function(tsfield_conf, index){
+									tsfield_conf.field.status = 'loaded';
+								});
 
-							//mark as loaded
-							$rootScope.loaded = true;
+								//other fields
+								all_fields_conf[2].forEach(function(field_conf, index){
+									field_conf.field.status = 'loaded';
+								});
 
-							//mark all the fields as loaded					
-							//time stamp fields
-							all_fields_conf[1].forEach(function(tsfield_conf, index){
-								tsfield_conf.field.status = 'loaded';
-							});
-
-							//other fields
-							all_fields_conf[2].forEach(function(field_conf, index){
-								field_conf.field.status = 'loaded';
 							});
 
 						}

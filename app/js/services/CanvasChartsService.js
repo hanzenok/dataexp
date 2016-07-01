@@ -360,6 +360,7 @@ angular.module('MainApp')
 		//load the dataset
 		this.load = function(data, err_callback){
 
+			console.log('Canvas.js load');
 			//check if all the libraries
 			//are imported
 			if (typeof CanvasJS === 'undefined'){

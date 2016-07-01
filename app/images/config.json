@@ -1,0 +1,39 @@
+{
+    "transform": {
+        "type": "interp",
+        "interp_type": "linear"
+    },
+    "reduction": {
+        "type": "skip",
+        "size": 10,
+        "target_field": ""
+    },
+    "date_borders": {
+        "from": {
+            "date": "Tue Apr 12 2016 20:24:54 GMT+0200 (CEST)"
+        },
+        "to": {
+            "date": "Tue Apr 19 2016 20:04:36 GMT+0200 (CEST)"
+        }
+    },
+    "correlation": {
+        "count_negative": false,
+        "max_coef": true
+    },
+    "timeseries": [
+        {
+            "fields": [
+                {
+                    "name": "Dimming value (%)"
+                },
+                {
+                    "name": "Instantaneous power (W)"
+                }
+            ],
+            "timestamp": {
+                "name": "Status created",
+                "format": "YYYY-MM-DD HH:mm:ss"
+            }
+        }
+    ]
+}
