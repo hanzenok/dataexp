@@ -1,0 +1,37 @@
+<md-dialog aria-label="About" ng-controller="DialogCtrl" ng-cloak layout="column">
+
+	<!-- Toolbar -->
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon md-svg-src="../images/info.svg" aria-label="Info icon"></md-icon>
+			</md-button>
+			<h2 flex>About</h2>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon md-svg-src="../images/close.svg" aria-label="Close dialog"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<!-- Content -->
+	<div class="alert_div">
+		<p class="alert_p" align="justify">
+			Explain the project.
+		</p>
+
+		<p class="alert_p" align="justify">
+			Talk about authors.
+		</p>
+	</div>
+
+	<md-divider></md-divider>
+	<md-divider></md-divider>
+	<div class="subheader" layout="row" layout-align="center center">
+		<a href="http://www.maya-technologies.com/en/" style="margin-left: 10px;">
+			<img class="cursor_pointer" src="images/maya_logo.png" style="opacity: 0.5;">
+		</a>
+		<div flex></div>
+		<span style="margin-right: 10px; opacity: 0.5;" class="stats_span">2016</span>
+	</div>
+
+</md-dialog>

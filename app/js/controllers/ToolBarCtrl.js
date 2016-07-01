@@ -1,5 +1,5 @@
 angular.module('MainApp')
-	.controller('ToolBarCtrl', function($scope, $rootScope){
+	.controller('ToolBarCtrl', function($scope, $rootScope, $mdDialog){
 
 		//hiding panes
 		$rootScope.showPanels = true;
@@ -26,4 +26,17 @@ angular.module('MainApp')
 				$rootScope.activatePB = '';
 			}
 		}
+
+		//show about message
+		$scope.showAbout = function(ev){
+
+			$mdDialog.show({
+
+				templateUrl: '../../templates/About.html',
+				parent: angular.element(document.body),
+				targetEvent: ev,
+				clickOutsideToClose: true,
+			});
+		};
+
 });
