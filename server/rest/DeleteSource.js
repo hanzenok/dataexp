@@ -35,9 +35,9 @@ var deleteSource = function(req, res){
 					}
 				}
 
-				//if a file source (json,csv)
+				//if a file source (json or csv but saved as json)
 				var path = dataset_prefix + source_name + '.json';
-				if (sources_conf[index].source.type === 'json'){
+				if (sources_conf[index].source.type === 'json' || sources_conf[index].source.type === 'csv'){
 
 					//check if file exists
 					fs.access(path, fs.F_OK, function(err) {

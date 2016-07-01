@@ -52,7 +52,7 @@
 						<input class="ng-hide" id="input-file" type="file" onchange="angular.element(this).scope().saveSourceFile(this)"/>
 						<label for="input-file" class="md-button md-raised md-primary" ng-disabled="!source_conf.source.name" >Choose File</label>
 						<md-input-container class="md-block" style="margin:0;">
-							<input type="text" ng-model="source_conf.source.db" ng-disabled="true">
+							<input type="text" ng-model="source_conf.source.db" ng-disabled="true" aria-label="Source Database">
 						</md-input-container>
 					</div>
 

@@ -38,7 +38,6 @@ angular.module('MainApp')
 		        // Now that we have our delimiter out of the way,
 		        // let's check to see which kind of value we
 		        // captured (quoted or unquoted).
-		        console.log(arrMatches[2] + ' ' + arrMatches[3]);
 		        if (arrMatches[2]) {
 		            // We found a quoted value. When we capture
 		            // this value, unescape any double quotes.
