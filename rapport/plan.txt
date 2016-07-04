@@ -51,7 +51,7 @@ PARTIE 2: Projet
 
 			Problemes rencontrées, futurs évolutions:
 				(expliquer la probleme avec interpolation des séries temporelles nominaux,
-				imaginer des trucs à rajouter)
+				apporter des algo de détection de resemblence plus poussée)
 
 		Outil de visualisation
 			Choix technologiques:

@@ -14,4 +14,40 @@ PARTIE 2: Projet
 
 			Séries temporelles:
 				
-				
+				Série temporelles est une serie des données avec un timestamp ..
+
+				Differantes supports de stockage ..
+
+				Nature des données differantes, formats differants ..
+
+			Correlation:
+
+				Quest qu'une correlation ..
+
+				Utilité pour la détection de resemblance entre les graphs ..
+
+				Correlation .. 
+
+		Objectif
+			Intro:
+
+				De le début le but etait plutot generique: un outil d'explo. C'est à staigaire de choisir les solutions et le chemin à empreinter.
+
+				De le début le staigaire est amenée à développer un outil d'exploration des données
+				provenant de differantes sources avec des formats differantes.
+
+				Et de le début on est partie vers quelques chose uni. Mais au final, cet outil se separée en deux partis: un module de traitement des séries temporelles est un surcouche graphiqe développée separement.
+
+			Module d'exploration des séries temporelles:
+
+				Un module qui travaille avec les série temporelles de differantes formats et offre des possibilitées d'expolration des données et notament de similaritude entre les séries temporelles.
+
+				Aucune imposition sur les technos.
+
+			Outile graphique de visualisation:
+
+				Le but de cet outil de visualisation est de presenter les examples d'utilisation de module d'exploration, possibilité de generation de fichier de configuration de module (expliquée par la suite) pour les données spécifiques, fournir des examples de travail avec les outils de visualisation DC.js et Canvas.js, et comme un outil qui permetra d'explorer les données afin de choisir les graphes le plus pertinantes pour le client.
+
+				Contraintes de base: travail avec une BDD MySQL and MongoDB.
+
+
