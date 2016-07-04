@@ -1,0 +1,89 @@
+PARTIE 1: Généralités
+	Remerciements:
+		(remerciements à l'entreprise, directeur, responsable de stage, personel, responsable de stage de l'Universite)
+	
+	Introduction:
+		(but de stage d'entreprise, les raisons pour choisir cet entreprise, l'objectif du stage)
+
+	Une page sommaire
+
+
+PARTIE 2: Projet
+	Introduction au travail demandé
+		Contexte
+			IOT: 
+				(expliquer le domaine d'IOT et ces spécificitées)
+
+			Séries temporelles:
+				(expliquer les séries temporelles, parler de nature, heterogenité, format)
+
+			Corrélation:
+				(expliquer la correlation et son interet)
+
+		Objectif
+
+			P'tit intro pour expliquer qu'au début l'idée de le début, mais aprés cela a evolué vers deux couches separées.
+
+			Module d'exploration:
+				(les exigences foncitionelles, les contraintes imposées)
+
+			Outil de visualisation:
+				(les exigences fonctionelles, les contraintes imposées)
+
+
+	Réalisation
+
+		Prémiere approche:
+			(seule programme, utilisation de java à cause de Kura, utilisation de Morphia comme solution pour 
+			plusieurs sources, probleme d'expolration de données et leur rélation, decouverte de DC.js,
+			changement de langue de dev, mais pas grave car mayanet utilise Node.js come backend pour l'interface,)
+
+		Module d'exploration
+			Choix technologiques:
+				(javascript a été imposée, Smooth.js)
+
+			Prémier approche:
+				(probleme avec le format de timestamp en ISO, probleme de taille, montrer un
+				example d'ineso)
+
+			Fonctionalitées réaliseé:
+				(explique de quoi le module est-il capable, ses spécificitées et limitations)
+
+			Problemes rencontrées, futurs évolutions:
+				(expliquer la probleme avec interpolation des séries temporelles nominaux,
+				imaginer des trucs à rajouter)
+
+		Outil de visualisation
+			Choix technologiques:
+				(backend Node.js à cause de module, Angular.js pour faciliter le dev, Angular-Material pour
+				façiliter et diminuer le temps de dev)
+
+			Librairie de visualisation:
+				(expliqer la diff entre DC.js et Canvas.js (ptr aussi entre canvas et svg))
+
+			Fonctionalites:
+				(faire des print screens et expliquer les fonctionalitées offertes, expliquer combien de sources supportées)
+
+			Problemes, futurs évolutions
+				(problemes des datasets de grande taille, ajout d'autres formats d'entrée)
+
+
+	PARTIE 3: Bilan de stage
+
+		Plan professionnel:
+			(approfondi Javascript, gestion de differantes basses des données, appri Node.js et Angular.js, les outils de visualisation de graphs DC.js et Canvas.js)
+
+		Connaisance d'entreprise:
+			(differantes nuances de l'entreprise dont je ne savais pas)
+
+		Plan personnel:
+			(appris à etre autonome, faire une reévaluation de travail réalisée hebdomadaire, suivre et écouter les consinges, chercher des solution pour les écheances imposées)
+
+
+
+
+
+
+
+
+
