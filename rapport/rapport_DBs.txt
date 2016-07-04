@@ -1,0 +1,111 @@
+L'état de l'art des basses des données appliquable à la IoT.
+
+Les bases NoSQL (Not Only SQL) est une catégorie des systèmes de gestion de base de données qui nes sont fondée sur l'architecture classique des bases de donnée relationnelles.
+
+Lest trois types des bases NoSQL sont:
+
+	- clé/valeur:			les données sont représentées par un couple clé/valeur. Cet absence de structure a un impact sur le requêtage. Les representents sont: Redis, Memcached.
+	- orienté colonne:		la structure de données est indentique aux bases relationnelles, juste les colognes ne sont pas fixées. Les representant sont : Cassandra, HBase.
+	- orienté document:	ressemble à une paradigme clé/valeur, mais dans ce cas, le valeur correspond à un docuemnt (en format JSON ou XML, ou autre). Les representants sont: MondoDB, Couchbase.
+	- orienté graph:		basée sur la théorie des graphes, s'appui sur la notion des noeuds. Le principal representant est Neo4J.
+
+Le rercherche se planché sur 5 bases des données: Cassandra, Couchbase, Elasticsearch, HBase, MongoDB
+Les but de cet comparaison est de ne pas trouver la meilleure base de données, mais plutôt la plus adopté pour notre cas.
+
+Les criterers recherchée d'une base sont: scalabilité (possibilite d'agrandir la base de donées en repartissant sur plusieurs machines), API Java bien documentée, "licence" OpenSource, architecture multiplatforme et support de domaine de IoT.
+Un autre criétere de choix de la base de données est spécifique à le cas d'utilisation: la sturcture de données utilisé par la bd, doit être adopté pour le sondage d'état des objets connéectes de differentes types. C'est qui exige une base de données avec une structure des données dynamique.
+
+Tout d'abord, les bases de données orientées cologne:
+
+	Cassandra
+		Développeur: Apache
+		Ecrit en: Java
+		Les API sont simple, logique est proche des requetes SQL.
+		Une base de données orientée colgone, tres fiable, conçu pour gérer grandes massives de données sur un grande nombre des serverus.
+		En dépit de ces performances et certain niveau d'adaptation pour la IoT, la structure de données utilisée ne correspond pas vraiment.
+		Par contre, grace à un langage de requêtage proche à SQL cela ne se voit pas.
+		En conclusion, la base de données Cassandra a une tres bonne performance temporel et est une bonne solution pour le domain de web analytics.
+		liens:
+			installation: https://www.digitalocean.com/community/tutorials/how-to-install-cassandra-and-run-a-single-node-cluster-on-ubuntu-14-04
+			maven: http://mvnrepository.com/artifact/org.codehaus.mojo/cassandra-maven-plugin/
+
+
+	HBase
+		Développeur: Apache
+		Ecrit en: Java
+		Les API sont de complixité moyenne, le syntaxe est loin de SQL, donc necessite du temps pour ceux qui n'ont pas d'experience avec les bases orientées cologne.
+		Une base de données oriente cologne, basée sur un framework d'architecture distribuée Hadoop.
+		Tres perfomant pour les dataset de milliards lignes fois millions colognes.
+		Ne pas vraimenet adaptée à notre cas d'utilisation, plutôt utilisé pour les opérations MapReduce sur les enormes quantites des données sur une architecture distribuée.
+		liens:
+			installation: http://www.edureka.co/img/source_code/ide/module_1384444529.pdf
+			important de déclarer une variable d'environemment comme ici: http://www.hadooptpoint.com/hbase-installation-on-linux-ubuntu/
+			maven pour hbase: http://mvnrepository.com/artifact/org.apache.hbase/hbase
+			maven pour hadoop: http://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core
+
+
+Donc, les bases de données orientées cologne ne sont pas vraiment adoptées pour le cas de notre utilisation. La modèle de données de ce type peut être vue comme les données clé/valeur deux-dimensionelles. 
+C'est pas vraiment ce q'on veut stocker. On veut pas définir les colognes, qui ne seront pas utilisées dans les autres cas (par exemple la nature des donnée venant d'un frigo connécté ou un smartphone ne sont pas du tout les mêmes).
+C'est qu'on cherche c'est plutôt la possibilite de "jeter" un nuage des données dans la base sans se soucier de son format. 
+Pour cet raison donc, on procede avec la comparaison des bases orientées document.
+
+	Elasticsearch
+		Développeur: Shay Banon
+		Ecrit en: Java
+		Les API Java sont simples à utilser.
+		Un serveur de recherche qui utilise Lucene. Une base des données puissante et fiable, mais vraiment adopté pour la réalisation de recherche.
+		Ne correspond pas vraiment à nos besoins, car ça puissance principale est de faire du recherche.
+		liens:
+			un package .deb: https://www.elastic.co/downloads/elasticsearch
+			lancement de serveur: https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-service.html
+			maven: http://mvnrepository.com/artifact/org.elasticsearch/elasticsearch
+
+
+Toutes les bases vues apauravant ne correspondent pas vraiment à notre besoin pour la collection des informations provenant d'un objet connectée. HBase et Cassandra à cause de leur structure de données.
+Elasticsearch à cause de son spécialisation pour la réalisation de recherche.
+Du coup on va aborder les deux systèmes les plus adoptés pour notre cas: MongoDB et Couchbase. Les deux bases sont les bases de données orientées document les plus populaires. Les deux sont bien documentées et utilisent JSON (BSON pour MongoDB).
+Les deux ont un bon niveau de scalabilité et peuvent facilement être repartis sur une architecture distribuée.
+Les performances des deux systèmes sont presque les mêmes, pour plus de détails consultée ce lien : http://fr.slideshare.net/chakerallaoui/benchmarking-nosql-database-dans-le-cadre-dun-projet-iot-46662767
+
+Maintenant on va se concentrer sur leur differences.
+
+	Couchbase
+		Développeur: Couchbase Inc
+		Ecrit en: C/C++, Erlang, Golang
+		Fusion de Membase et CouchDB, orientée document depuis la vérsion 2.
+		A la base, le requetage se fais grace à les vus (façon SQL),  c'est qui est une problême dans le cas si la nature des donnés change souvent.
+		C'est pour cela que Couchbase ont développé leur propre language N1QL (Non-first Normal Form Query Language, prononcée nickel) qui est proche sytaxiquement de SQL, c'est qui donne un peu de flexibilité sur la nature des données.
+		Du fait que Couchbase est base sur Membase, qui lui-même se base sur une système de gestion de la mémoire cache distribuée, Couchbase à un point de plus par rapport MongoDB sur la gestion de la mémoire cache.
+		Par défaut, possede un interface WEB de gestion de la base, c'est qui est un grand avantage pour un utilisateur final.
+		Un autre avantage de Couchbase est CouchbaseLite, une base adopté pour les systèmes embarques en général et pour les smartphones sous Android et iOS.
+		En conclusion, Couchbase est une base de données bien performante et fiable, et correspond bien à nos exigences.
+		liens:
+			package .deb: http://www.couchbase.com/nosql-databases/downloads#PreRelease
+			configuration de la base via par interface web: http://developer.couchbase.com/documentation/server/4.0/clustersetup/manage-cluster-intro.html
+			maven: http://docs.couchbase.com/developer/java-2.1/download-links.html
+			
+
+	MongoDB
+		Développeur: MongoDB Inc
+		Ecrit en: C++
+		Selon le site de classement des bases de données www.db-engines.com, MongoDB est 4-eme base de données plus populaire, et une base non relationelle la plus populaire.
+		De se fait, c'est une base tres supporté par la communauté et possede un grand nombre des tutoriels, et une API simple.
+		Par rapport à Couchbase, dès le début c'est une base orienté document, donc par rapport à Couchbase, la gestion des documents est plus simple.
+		Possede un shell Javascript de gestion de la base de donnés. Il existe plusieurs surcouches visuelles (MongoVue, MongoHub, etc) OpenSource, mais il n'y a aucun par défaut.
+		Par rapport à Couchbase, MongoDB support deux types de sharding (partitionement de la base horizontale, separation d'une seule base en plusieurs bases logiques sur differentes serveurs): en gamme (range sharding) et par hachage (hash sharding).
+		Quand Couchbase ne support que le range sharding.
+		En conclusion, MongoDB est un base de données bien documente et tres orienté document avec une bonne communaute dérriere. Elle correspond aussi à nos exigences.
+		liens:
+			installation: https://docs.mongodb.org/v3.0/tutorial/install-mongodb-on-ubuntu/
+			pour ubuntu 15.10: http://askubuntu.com/a/637066
+			maven: http://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
+
+
+En conclusion, les deux bases, MongoDB et Couchbase sont conformé à nos exigences. Pour instant on ne possede pas un critére definitive pour choisir l'un ou autre. Cela dependra plutôt des cas d'utilisation spécifiques.
+Et aussi, comme les deux sont bien documentée, rien n'empeche de s'en servir des deux bases, pour adopter la solution pour differentes besoins.
+
+	Bibliographie:
+		http://blog.neoxia.com/nosql-5-minutes-pour-comprendre/
+		http://kkovacs.eu/cassandra-vs-mongodb-vs-couchdb-vs-redis/
+		https://scalegrid.io/blog/which-is-the-best-mongodb-gui/
+		https://docs.mongodb.org/manual/core/sharding-introduction/

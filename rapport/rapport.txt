@@ -1,0 +1,17 @@
+PARTIE 2: Projet
+	Introduction au travail demandé
+		Context
+			IoT:
+
+				IoT est un domaine ..
+
+				IoT travail avec les equipements réalisant de mesures physique, et qui sont 
+				connectées à l'internet ..
+
+				Parler de data mining, exploration des données ..
+
+				Visualisation des données ..
+
+			Séries temporelles:
+				
+				

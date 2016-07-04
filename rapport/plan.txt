@@ -3,7 +3,7 @@ PARTIE 1: Généralités
 		(remerciements à l'entreprise, directeur, responsable de stage, personel, responsable de stage de l'Universite)
 	
 	Introduction:
-		(but de stage d'entreprise, les raisons pour choisir cet entreprise, l'objectif du stage)
+		(but de stage d'entreprise, les raisons pour choisir cet entreprise (IoT, systémes embarquée), l'objectif du stage)
 
 	Une page sommaire
 
