@@ -33,7 +33,7 @@ PARTIE 2: Projet
 				De le début le but etait plutot generique: un outil d'explo. C'est à staigaire de choisir les solutions et le chemin à empreinter.
 
 				De le début le staigaire est amenée à développer un outil d'exploration des données
-				provenant de differantes sources avec des formats differantes.
+				provenant de differantes sources avec des formats differantes. Cet outile doit etre capable d'explorer la rélation entre ses données (provenant de differantes sources)
 
 				Et de le début on est partie vers quelques chose uni. Mais au final, cet outil se separée en deux partis: un module de traitement des séries temporelles est un surcouche graphiqe développée separement.
 
@@ -55,7 +55,7 @@ PARTIE 2: Projet
 		
 		Prémiere tentative. Conclusion:
 
-			Expliquer qu'one est partie sur la seule programme, plutot java (à cause de Kura). Utilisation de Morphia comme response à une problematique de plusieurs sources d'entrée.
+			Expliquer qu'on est partie sur la seule programme, plutot java (à cause de Kura). Utilisation de Morphia comme response à une problematique de plusieurs sources d'entrée.
 
 			Mais une question non repondu est comment explorer les données et leur rélation.
 
