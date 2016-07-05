@@ -1,5 +1,6 @@
 PARTIE 2: Projet
-	Introduction au travail demandé
+
+====Introduction au travail demandé====
 		Context
 			IoT:
 
@@ -26,10 +27,8 @@ PARTIE 2: Projet
 
 				Utilité pour la détection de resemblance entre les graphs ..
 
-				Correlation .. 
-
 		Objectif
-			Intro:
+			I'idée initial:
 
 				De le début le but etait plutot generique: un outil d'explo. C'est à staigaire de choisir les solutions et le chemin à empreinter.
 
@@ -49,5 +48,89 @@ PARTIE 2: Projet
 				Le but de cet outil de visualisation est de presenter les examples d'utilisation de module d'exploration, possibilité de generation de fichier de configuration de module (expliquée par la suite) pour les données spécifiques, fournir des examples de travail avec les outils de visualisation DC.js et Canvas.js, et comme un outil qui permetra d'explorer les données afin de choisir les graphes le plus pertinantes pour le client.
 
 				Contraintes de base: travail avec une BDD MySQL and MongoDB.
+
+
+
+====Etude, Réalisation====
+		
+		Prémiere tentative. Conclusion:
+
+			Expliquer qu'one est partie sur la seule programme, plutot java (à cause de Kura). Utilisation de Morphia comme response à une problematique de plusieurs sources d'entrée.
+
+			Mais une question non repondu est comment explorer les données et leur rélation.
+
+			Introduire et expliquer l'utilité de DC.js.
+			Et du coup, changement de cour de stage.
+
+		Module d'exploration
+
+			L'idée dérier:
+
+				Un chemin qu'on a choisi pour travailler avec plusieurs
+				sources des données est developper un noyau, un module qui fonctionne avec un seul format, et developper un surcouche qui pourrai transformer peut importe quel type de source des données à un format servable à noyau.
+
+			Choix technologiques:
+
+				Expliquer que javascript a été choisi parce-que partie backend est en Node.js et parce DC.js est un js.
+
+				Expliquer Smooth.js (les raisons pour en choisir sont expliquée par la suite)
+
+			Prémiere approche. Conclusions:
+
+				L'idée de imposer un delta, et ramener toutes les autres timeseries vers le meme denominateur c'est qui permet de visualiser les rélations avec DC.js.
+
+				Mais face à un cas réel (ineso, et où ne travaillez meme pas avec plusieurs timeseries) ou il fallait juste afficher un graph avec un pie chart, cet idée ne va pas parce que les timestamps seront modifiées. Une autre probleme avec l'ineso est le format de timestamp, et aussi la taille de timeseries et latence de response de DC.js.
+				N'oublier pas de montrer un print screen d'ineso.
+
+				Du coup, pour permettre de rélier plusieurs timeseries dans une, pour etre visualisable par DC.js on a decidéez d'utiliser l'interpolation des points manqantes.
+
+				Et c'est la où on est partie pour l'outilisation de Smooth.js.
+
+				Pour la probleme de timestamp, il fallait gerer mieux plusiers formats.
+
+				Et pour la probleme de taille et latence, on a décidé de 
+				- tirer une carac qui exprime le nombre de échantillons (approximative) par jour voir si on peut sous-échantilloner le nombre de poins tracée par le graphe
+				- offrir une possibilité de couper la timeseries entre deux bornes
+				- offrit une possibilité de diminuer la taiile de timeseries en faisant de la suréchantionnage par plusieurs methodes
+
+			Fonctionalitée réaliseé:
+
+				Expliquer que'il y une neceiste de config. Lister les methodes offertes.
+
+			Problemes rencontréez. Futurs évolutions:
+
+				Une des problemes est l'imposibilité d'interopler les timeseries ayant des attributs nominaux.
+				Pour les évolutions futurs ptr apporter d'autres algorithmes de détection de la correlation
+
+
+		Outil de visualisation
+
+			Choix technologiques:
+
+				Backend d'un outil graphique sera en Node.js est imposée par le fait que le module d'exploration est un module Node.js.
+				Angular.js est choisi pour faciliter le developpement d'interface dynamique, Angular Material pour faciliter la generation d'un interface est pour les foncitonalitées prédefinis.
+
+			Librairies de visualisation:
+
+				Comme explique dans une partie (Réalisation -> Module d'exploration -> Prémiere approche. Conclusion) si la taille de timeseries est tres important DC.js rame.
+
+				La raison de temps de response lent de DC.js est le fait qui'il trace ces graphes en utilisant des svg. Chaque element sur un graphe rendu par DC.js est un svg, et de plus, se sont de vrais elements DOM. C'est qui rapport de dynamisme parce-que les DOMs sont modifiables. Mais le desavantage est que cela prend plus de temps a generer les graphes (car chaque DOM à une ensemble des metadonées associée). Et du coup l'orsque le nombre des échantillons accroix, le rendu devient de plus en plus long.
+
+				La solution pour cet lattence est par example, peut etre ne rien afficher lorsque le nombre des documents dans les timeseries ne correspond pas à un cas idéal pour DC.js. Mais la solution, qu'on a fini de choisir est d'utiliser une autre bibliotheque de traçage des graphs Canvas.js.
+
+				A la difference de DC.js, Canvas.js utilise des canvas pour le rendement des image. Et pour le navigateur un canvas correspond à un trous avec des pixels. Du coup, aucun dynamisme devient impossible. Mais l'avantage important de Canvas.js est que le reponse temporel de cet bibliotheque varie tres peu en fonction de nombre des échantillons affiché.
+
+				Donc du coup, pour le rendu des graphes on utilise deux bibliothéques, chacun remplissant les inconvenients d'une autre. Cela permet d'afficher au moins un graphe, sans les options d'interaction dynamique, et offrir à l'utilisateur la possiblite de diminuer le nombre des documents dans une timeseries (notées dans une partie sur le module d'exploration) pour etre capable de visualiser un graph avec DC.js.
+
+			Fonctionalitées:
+
+				Expliquer les foncitonalitées principales, faire beaucoup des pritscreens.
+
+			Problemes, futurs évolutions:
+
+				La probleme principale est une latence, du coup, pour les futurs évolutions il sera interessant de trouver d'autres solutions pour le resoudre. Et ptr aussi rajouter d'autres formats de sources (autres bases des donées, fichiers, etc)
+
+
+
 
 
