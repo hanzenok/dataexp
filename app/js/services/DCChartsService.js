@@ -119,8 +119,9 @@ angular.module('MainApp')
 
 			bar_chart.on('pretransition', function (chart) {
 
-				chart.selectAll('g rect').style('fill', function (d) {
-					
+				chart.selectAll('g rect').style('fill', function (d) { //for bar_chart
+				// chart.selectAll('path.line').style('stroke', function (d) {
+					console.log(d);
 					if (d.data && d.data.value >= 0.6){
 
 						return color_gen.call(this, d.data.value);
@@ -131,8 +132,21 @@ angular.module('MainApp')
 				});
 			});
 
+		    // bar_chart.on('renderlet', function (chart) {
+		    //     chart.selectAll("circle.dot")
+		    //         .style("fill-opacity", 1)
+		    //         .on('mousemove', null)
+		    //         .on('mouseout', null);
+		    //     chart.selectAll("path.line")
+		    //          .style("stroke", function(d){
+		    //             console.log(d); 
+		    //             return "green";
+		    //      });
+		    // });
+
 			//scroll bar_chart
 			bar_chart.width(800).height(75)
+			// .renderArea(true)
 			.dimension(dim).group(group_bar)
 			.x(d3.time.scale().domain([min_val, max_val]))
 			.margins({top: 20, right: 50, bottom: 20, left: 50});

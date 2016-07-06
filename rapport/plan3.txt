@@ -17,7 +17,7 @@ PARTIE 2: Projet
 			Séries temporelles:
 				(expliquer les séries temporelles, parler de nature, heterogenité, format)
 
-			Corrélation:
+			?Corrélation:
 				(expliquer la correlation et son interet)
 
 
@@ -33,7 +33,7 @@ PARTIE 2: Projet
 		DC.js:
 			(expliquer l'interet de DC.js pour l'exploration entre les données)
 
-		Fixation de l'objectif:
+		Nouveau objectif:
 			(un noyau qui travaille avec un format des données fixes + un surcouche visuel qui aura un interface pour attacher plusieurs sources des donnés et permet de generer le format de module depuis peut importe quel format)
 
 
@@ -44,8 +44,7 @@ PARTIE 2: Projet
 				(javascript a été imposée, Smooth.js)
 
 			Prémier approche:
-				(probleme avec le format de timestamp en ISO, probleme de taille, montrer un
-				example d'ineso)
+				(probleme avec le format de timestamp en ISO, probleme de taille, montrer un example d'ineso)
 
 			Fonctionalitées réaliseé:
 				(explique de quoi le module est-il capable, ses spécificitées et limitations)
