@@ -122,7 +122,10 @@ TS.getTimeseries = function(req, res){
 			stats.homogen = tsp.isHomogeneous(); //check the 
 
 			//process the timseries
-			tsp.process(null);
+			tsp.process(function(err, data){
+
+				if (err) res.status(500).send(err.message);
+			});
 
 			//check the correlations
 			//if size > 3000 means using
