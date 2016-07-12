@@ -1,0 +1,98 @@
+{
+    "project": {
+        "name": "dataexp",
+        "description": "An application for exploring and visualizing the timeseries",
+        "version": "0.0.1",
+        "url": "http://www.maya-technologies.com/en/",
+        "themedir": "/usr/local/lib/node_modules/yuidocjs/themes/maya"
+    },
+    "files": {
+        "app/js/controllers/DialogCtrl.js": {
+            "name": "app/js/controllers/DialogCtrl.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/LeftNavCtrl.js": {
+            "name": "app/js/controllers/LeftNavCtrl.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/canvasjs.js": {
+            "name": "app/js/canvasjs.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {},
+    "elements": {},
+    "classitems": [
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 4,
+            "class": ""
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 186,
+            "class": ""
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 193,
+            "class": ""
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 69,
+            "class": ""
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 187,
+            "class": ""
+        },
+        {
+            "file": "app/js/canvasjs.js",
+            "line": 1,
+            "preserve": "CanvasJS HTML5 & JavaScript Charts - v1.8.1 GA - http://canvasjs.com/ \nCopyright 2013 fenopix",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: preserve",
+            "line": " app/js/canvasjs.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/DialogCtrl.js:4"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/DialogCtrl.js:186"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/DialogCtrl.js:193"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/LeftNavCtrl.js:69"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/LeftNavCtrl.js:187"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/canvasjs.js:1"
+        }
+    ]
+}

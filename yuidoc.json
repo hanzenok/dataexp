@@ -1,6 +1,11 @@
 {
-    "name": "The Foo API",
-    "description": "The Foo API: a library for doing X, Y, and Z",
-    "version": "1.2.1",
-    "url": "http://example.com/"
+    "name": "dataexp",
+    "description": "An application for exploring and visualizing the timeseries",
+    "version": "0.0.1",
+    "url": "http://www.maya-technologies.com/en/",
+    "themedir": "/usr/local/lib/node_modules/yuidocjs/themes/maya",
+    "options": {
+    	"exclude": "bower_components,node_modules,rapport",
+        "outdir": "./doc"
+    }
 }
