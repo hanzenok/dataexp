@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>server/connectors/MysqlConnector.js - dataexp</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html"><img src="../assets/css/logo.png" width="117" height="52">dataexp: server/connectors/MysqlConnector.js</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="modules" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Modules</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../modules/server.html">server</a>
+                                <ul>
+                                        <li><a href="../modules/server.html#Connectors">Connectors</a></li>
+                                        <li><a href="../modules/server.html#RestApi">RestApi</a></li>
+                                </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="classes" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Classes</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../classes/FileConnector.html">FileConnector</a></li>
+                            <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
+                            <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
+                            <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            <div id="fileTree" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Files</h2>
+                </div>
+                <div class="bd">
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li></ul></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li></ul></li></ul></li></ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>server/connectors/MysqlConnector.js</h4>
+
+<pre class="code prettyprint linenums">
+var mysql = require(&quot;mysql&quot;);
+
+/**
+ * Connectors to different types of storages.
+ * @module server
+ * @submodule Connectors
+ */
+
+/**
+ * A connector to the MySQL database
+ * @class MysqlConnector
+ */
+var MysqlConnector = {};
+
+MysqlConnector.getStoreNames = function(source_config, callback){
+
+	//check the source config
+	if (!isValidSourceConfig(source_config)){
+
+		if (callback) 
+			callback(new Error(&#x27;Invalid source config file&#x27;));
+
+		return;
+	}
+
+	//creating the connection
+	var connection = mysql.createConnection({
+
+		host: source_config.source.server,
+		user: source_config.source.user,
+		password: source_config.source.passw,
+		database: source_config.source.db
+	});
+
+	//connecting
+	connection.connect(function(err){
+
+		if (err){
+			if (callback){
+				callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
+			}
+		}
+
+		else{
+
+			//query
+			connection.query(&#x27;SHOW TABLES;&#x27;, function(err, rows){
+
+				if (err) {
+
+					callback(err);
+					return;
+				}
+				else{
+
+					//assemble the response
+					var tmp;
+					var stores = [];
+					rows.forEach(function(row, index){
+
+						//table name
+						tmp = {};
+						tmp.store = {};
+						tmp.store.name = rows[index][&#x27;Tables_in_&#x27; + source_config.source.db];
+
+						//copy the source
+						tmp.source = source_config.source;
+
+						//add
+						stores.push(tmp);
+					});
+
+					//call the callback
+					if (stores.length){
+
+						//console.log(&#x27;stores out of getStoreNames():&#x27;);
+						//console.log(stores);
+
+						callback(null, stores);
+					}
+					else{
+						callback(new Error(&#x27;Cannot list the stores&#x27;));
+					}
+				}
+			});
+
+			//close the connection
+			connection.end();
+		}
+	});
+}
+
+MysqlConnector.getStoreSize = function(store_config, callback){
+
+	if (!isValidStoreConfig.call(this, store_config)){
+
+		if (callback) 
+			callback(new Error(&#x27;Invalid store config&#x27;));
+
+		return;
+	}
+
+	//console.log(&#x27;store_config in for getStoreSize():&#x27;);
+	//console.log(store_config);
+
+
+	//creating the connection
+	var connection = mysql.createConnection({
+
+		host: store_config.source.server,
+		user: store_config.source.user,
+		password: store_config.source.passw,
+		database: store_config.source.db
+	});
+
+	//connecting
+	connection.connect(function(err){
+
+		if (err){
+			if (callback){
+				callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
+			}
+		}
+		else{
+
+			//query
+			connection.query(&#x27;SELECT COUNT(*) AS count FROM &#x27; + store_config.store.name + &#x27;;&#x27;, function(err, rows){
+
+				if (err) {
+
+					callback(new Error(&#x27;Cannot get the store size&#x27;));
+					return;
+				}
+				else{
+
+					//set the size
+					store_config.store.size = rows[0].count;
+
+					//console.log(&#x27;store_config out of getStoreSize():&#x27;);
+					//console.log(store_config);
+
+					callback(null, store_config);
+				}
+
+			});
+
+			//close the connection
+			connection.end()
+		}
+	});
+}
+
+MysqlConnector.getFields = function(store_config, callback){
+
+	//check the store config
+	if (!isValidStoreConfig.call(this, store_config)){
+
+		if (callback) 
+			callback(new Error(&#x27;Invalid store config&#x27;));
+
+		return;
+	}
+
+	//console.log(&#x27;store_config in for getFields():&#x27;);
+	//console.log(store_config);
+
+	//creating the connection
+	var connection = mysql.createConnection({
+
+		host: store_config.source.server,
+		user: store_config.source.user,
+		password: store_config.source.passw,
+		database: store_config.source.db
+	});
+
+	//connecting
+	connection.connect(function(err){
+
+		if (err){
+			if (callback){
+				callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
+			}
+		}
+		else{
+			
+			//query only one row from database
+			connection.query(&#x27;SELECT * FROM &#x27; + store_config.store.name + &#x27; LIMIT 1;&#x27;, function(err, rows){
+
+				if (err) {
+
+					callback(err);
+					return;
+				}
+				else{
+
+					//assemble the fields
+					var fields = [];
+					var tmp;
+					for (var key in rows[0]){
+
+						tmp = {};
+						tmp.field = {};
+
+						//name and value
+						tmp.field.name = key;
+						tmp.field.value = rows[0][key];
+
+						//copy store and source
+						tmp.store = store_config.store;
+						tmp.source = store_config.source;
+
+						//add
+						fields.push(tmp);
+					}
+
+					//send the repsonse
+					if (fields.length){
+
+						//console.log(&#x27;fields out of getFields():&#x27;);
+						//console.log(fields);
+
+						callback(null, fields);
+					}
+					else {
+
+						callback(new Error(&#x27;Cannot list the fields&#x27;));
+					}
+				}
+
+			});
+
+			//close the connection
+			connection.end();
+		}
+	});
+
+}
+
+MysqlConnector.getDataset = function(dataset_config, callback){
+
+	//check the field config
+	if (!isValidDatasetConfig.call(this, dataset_config)){
+
+		if (callback) 
+			callback(new Error(&#x27;Invalid dataset config&#x27;));
+
+		return;
+	}
+
+	//console.log(&#x27;dataset_config in for getDataset():&#x27;);
+	//console.log(dataset_config);
+
+	//creating the connection
+	var connection = mysql.createConnection({
+
+		host: dataset_config.source.server,
+		user: dataset_config.source.user,
+		password: dataset_config.source.passw,
+		database: dataset_config.source.db
+	});
+
+	//connecting
+	connection.connect(function(err){
+
+		if (err){
+			if (callback){
+				callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
+			}
+		}
+		else{
+			
+			//assemble the fields to query
+			var n = dataset_config.fields.length;
+			var fields = &#x27;&#x27;;
+			for (var i=0; i&lt;n-1; i++){
+
+				fields += dataset_config.fields[i].name + &#x27;,&#x27;;
+			}
+			fields += dataset_config.fields[i].name;
+
+			//query
+			connection.query(&#x27;SELECT &#x27; + fields + &#x27; FROM &#x27; + dataset_config.store.name + &#x27;;&#x27;, function(err, rows){
+
+				if (err) {
+
+					callback(err);
+					return;
+				}
+				else{
+
+					//delete the mysql fields
+					var dataset = [];
+					rows.forEach(function(row, index){
+						dataset.push(JSON.parse(JSON.stringify(rows[index])));
+					});
+
+					//send the response
+					if (dataset.length){
+
+						//console.log(&#x27;dataset out for getDataset():&#x27;);
+						//console.log(dataset);
+
+						//send the response
+						callback(null, dataset);
+					}
+					else{
+
+						callback(new Error(&#x27;Cannot load the dataset&#x27;));
+					}
+				}
+			});
+
+			//close the connection
+			connection.end();
+		}
+	});
+
+}
+
+function isValidSourceConfig(source_config){
+
+	if (!source_config || typeof source_config !== &#x27;object&#x27;) 
+		return false;
+
+	if (!source_config.source)
+		return false;
+
+	if (!source_config.source.type || !source_config.source.server || !source_config.source.db)
+		return false;
+
+	return true;
+}
+
+function isValidStoreConfig(store_config){
+
+	if (!isValidSourceConfig(store_config))
+		return false;
+
+	if (!store_config.store)
+		return false;
+
+	if (!store_config.store.name)
+		return false;
+
+	return true;
+}
+
+function isValidDatasetConfig(dataset_config){
+
+	if (!isValidStoreConfig(dataset_config))
+		return false;
+
+	if (!dataset_config.fields)
+		return false;
+
+	return true;
+}
+
+module.exports = MysqlConnector;
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

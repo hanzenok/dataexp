@@ -1,11 +1,82 @@
 var mongoose = require('mongoose');
 
+/**
+ * Connectors to different types of storages.
+ * @module server
+ * @submodule Connectors
+ */
+
+/**
+ * A connector to the MongoDB database
+ * @class MongoConnector
+ */
 var MongoConnector = {};
 
+/**
+ * A public method that returns the 
+ * names of the stores (mongo collections)
+ * that are present in the specified by
+ * config file database.
+ * @method getStoreNames
+ * @param {json} source_config Source (mongo database) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of stores (mongo collections) configuration
+ * 
+ * @example
+ *     var mongo_connector = require('../connectors/MongoConnector');
+ *
+ *     //the database 'test_database' has the following collections:
+ *     //	- collection1
+ *     //	- collection2
+ *
+ *     //config file
+ *     var source_config = { 
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'mongo',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'localhost',
+ *     			port: null,
+ *     			db: 'test_database'
+ *     	} 
+ *     };
+ *
+ *     //requesting the stores
+ *     mongo_connnector.getStoreNames(source_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[ 
+ *     		//	{ 
+ *     		//		store: {name: 'collection1'},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'mongo',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'localhost',
+ *     		//			port: null,
+ *     		//			db: 'test_database'
+ *     		//		}
+ *     		//	},
+ *     		//	{ 
+ *     		//		store: {name: 'collection2'},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'mongo',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'localhost',
+ *     		//			port: null,
+ *     		//			db: 'test_database'
+ *     		//		}
+ *     		//	}
+ *     		//]
+ *     });
+ *
+ */
 MongoConnector.getStoreNames = function(source_config, callback){
-
-	//console.log('source_config in for getStoreNames():');
-	//console.log(source_config);
 
 	//check the source config
 	if (!isValidSourceConfig(source_config)){
@@ -51,9 +122,6 @@ MongoConnector.getStoreNames = function(source_config, callback){
 				//call the callback
 				if (stores.length){
 
-					//console.log('stores out of getStoreNames():');
-					//console.log(stores);
-
 					callback(null, stores);
 				}
 				else{
@@ -71,6 +139,57 @@ MongoConnector.getStoreNames = function(source_config, callback){
 
 }
 
+/**
+ * A public method that adds a field 'size'
+ * to the store (mongo collection) configuration
+ * specified in <code>store_config</code>.
+ * @method getStoreSize
+ * @param {json} store_config Store (mongo collection) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of stores (mongo collections) configuration with
+ * additional 'size' field
+ * 
+ * @example
+ *     var mongo_connector = require('../connectors/MongoConnector');
+ *
+ *     //the database 'test_database' has the following collections:
+ *     //	- collection1
+ *     //	- collection2
+ *
+ *     //config file
+ *     var store_config = {
+ *     	store: {name: 'collection1'},
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'mongo',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'localhost',
+ *     			port: null,
+ *     			db: 'test_database'
+ *     	} 
+ *     };
+ *
+ *     //requesting the size
+ *     mongo_connnector.getStoreSize(store_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//{ 
+ *     		//	store: {name: 'collection1', size: 4},
+ *     		//	source: { 
+ *     		//		name: 'test',
+ *     		//		type: 'mongo',
+ *     		//		user: '',
+ *     		//		passw: '',
+ *     		//		server: 'localhost',
+ *     		//		port: null,
+ *     		//		db: 'test_database'
+ *     		//	}
+ *     		//}
+ *     });
+ *
+ */
 MongoConnector.getStoreSize = function(store_config, callback){
 
 	if (!isValidStoreConfig.call(this, store_config)){
@@ -80,9 +199,6 @@ MongoConnector.getStoreSize = function(store_config, callback){
 
 		return;
 	}
-
-	//console.log('store_config in for getStoreSize():');
-	//console.log(store_config);
 
 	//connection to mongo
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
@@ -98,15 +214,81 @@ MongoConnector.getStoreSize = function(store_config, callback){
 
 			store_config.store.size = count;
 
-			//console.log('store_config out of getStoreSize():');
-			//console.log(store_config);
-
 			callback(null, store_config);
 		}
 	});
 }
 
-//get all the fields of a store
+/**
+ * A public method that returns
+ * the field names present in each
+ * document.<br/>
+ * Fields are only checked in the 
+ * first document of store (mongo collection).<br/>
+ * Also the value of each field is saved (cf exemple).<br/>
+ * The mongodb '_id' field is ommited.
+ * @method getFields
+ * @param {json} store_config Store (collection) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of fields configuration
+ * 
+ * @example
+ *     var mongo_connector = require('../connectors/MongoConnector');
+ *
+ *     //the database 'test_database' has the following collections:
+ *     //	- collection1
+ *     //	- collection2
+ *
+ *     //config file
+ *     var store_config = {
+ *     	store: {name: 'collection1', size: 4}, //presence of 'size' is optional 
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'mongo',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'localhost',
+ *     			port: null,
+ *     			db: 'test_database'
+ *     	} 
+ *     };
+ *
+ *     //requesting the fields
+ *     mongo_connnector.getFields(store_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[
+ *     		//	{ 
+ *     		//		field: {name: 'a', value: 18.11},
+ *     		//		store: {name: 'collection1', size: 4},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'mongo',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'localhost',
+ *     		//			port: null,
+ *     		//			db: 'test_database'
+ *     		//		}
+ *     		//	},
+ *     		//	{
+ *     		//		field: {name: 'year', value: '2011'},
+ *     		//		store: {name: 'collection2', size: 4},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'mongo',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'localhost',
+ *     		//			port: null,
+ *     		//			db: 'test_database'
+ *     		//		}
+ *     		//	}
+ *          //]
+ *     });
+ *
+ */
 MongoConnector.getFields = function(store_config, callback){
 
 	//check the store config
@@ -117,9 +299,6 @@ MongoConnector.getFields = function(store_config, callback){
 
 		return;
 	}
-
-	//console.log('store_config in for getFields():');
-	//console.log(store_config);
 
 	//connection to mongo
 	var user_and_pass = (store_config.source.user && store_config.source.passw) ? store_config.source.user + ':' + store_config.source.passw + '@' : '';
@@ -170,9 +349,6 @@ MongoConnector.getFields = function(store_config, callback){
 			//send the repsonse
 			if (fields.length){
 
-				//console.log('fields out of getFields():');
-				//console.log(fields);
-
 				callback(null, fields);
 			}
 			else {
@@ -184,6 +360,53 @@ MongoConnector.getFields = function(store_config, callback){
 	});
 }
 
+/**
+ * A public method that takes in the fields configuration file
+ * (<code>dataset_config</code>) and returns the requested dataset.
+ * @method getDataset
+ * @param {json} dataset_config Dataset configuration
+ * @param {function} callback Callback function
+ * @return {array} An requested dataset
+ * 
+ * @example
+ *     var mongo_connector = require('../connectors/MongoConnector');
+ *
+ *     //the database 'test_database' has the following collections:
+ *     //	- collection1
+ *     //	- collection2
+ *
+ *     //config file
+ *     var dataset_config = {
+ *     	fields: [
+ *     		{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
+ *     		{name: 'a', value: 18.11}
+ *     	]
+ *     	store: {name: 'collection1'},
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'mongo',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'localhost',
+ *     			port: null,
+ *     			db: 'test_database'
+ *     	} 
+ *     };
+ *
+ *     //requesting the dataset
+ *     mongo_connnector.getStoreSize(dataset_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[
+ *     		//	{ a: 18.11, year: '2011' },
+ *     		//	{ a: 21.07, year: '2012' },
+ *     		//	{ a: 23.23, year: '2013' },
+ *     		//	{ a: 24.24, year: '2014' }
+ *     		//]
+ *     });
+ *
+ */
 MongoConnector.getDataset = function(dataset_config, callback){
 
 	//check the field config
@@ -194,9 +417,6 @@ MongoConnector.getDataset = function(dataset_config, callback){
 
 		return;
 	}
-
-	//console.log('dataset_config in for getDataset():');
-	//console.log(dataset_config);
 
 	//connection to mongo
 	var user_and_pass = (dataset_config.source.user && dataset_config.source.passw) ? dataset_config.source.user + ':' + dataset_config.source.passw + '@' : '';
@@ -222,9 +442,6 @@ MongoConnector.getDataset = function(dataset_config, callback){
 
 				if (dataset.length){
 
-					//console.log('dataset out for getDataset():');
-					//console.log(dataset);
-
 					//send the response
 					callback(null, dataset);
 				}
@@ -236,6 +453,15 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	});
 }
 
+/**
+ * A private method that checks
+ * the validity of source (mongo database)
+ * configuration 
+ * @method isValidSourceConfig
+ * @private
+ * @param {json} source_config Source (mongo database) configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidSourceConfig(source_config){
 
 	if (!source_config || typeof source_config !== 'object') 
@@ -250,6 +476,15 @@ function isValidSourceConfig(source_config){
 	return true;
 }
 
+/**
+ * A private method that checks
+ * the validity of store (mongo collection)
+ * configuration 
+ * @method isValidStoreConfig
+ * @private
+ * @param {json} store_config Store (mongo collection) configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidStoreConfig(store_config){
 
 	if (!isValidSourceConfig(store_config))
@@ -264,6 +499,15 @@ function isValidStoreConfig(store_config){
 	return true;
 }
 
+/**
+ * A private method that checks
+ * the validity of store dataset
+ * configuration 
+ * @method isValidDatasetConfig
+ * @private
+ * @param {json} dataset_config Dataset configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidDatasetConfig(dataset_config){
 
 	if (!isValidStoreConfig(dataset_config))

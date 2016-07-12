@@ -27,42 +27,380 @@
             "classes": {},
             "fors": {},
             "namespaces": {}
+        },
+        "server/connectors/FileConnector.js": {
+            "name": "server/connectors/FileConnector.js",
+            "modules": {
+                "Connectors": 1
+            },
+            "classes": {
+                "FileConnector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/connectors/MongoConnector.js": {
+            "name": "server/connectors/MongoConnector.js",
+            "modules": {},
+            "classes": {
+                "MongoConnector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/connectors/MysqlConnector.js": {
+            "name": "server/connectors/MysqlConnector.js",
+            "modules": {},
+            "classes": {
+                "MysqlConnector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetTimeseries.js": {
+            "name": "server/rest/GetTimeseries.js",
+            "modules": {
+                "RestApi": 1
+            },
+            "classes": {
+                "GetTimseries": 1
+            },
+            "fors": {},
+            "namespaces": {}
         }
     },
-    "modules": {},
-    "classes": {},
+    "modules": {
+        "server": {
+            "name": "server",
+            "submodules": {
+                "Connectors": 1,
+                "RestApi": 1
+            },
+            "elements": {},
+            "classes": {
+                "FileConnector": 1,
+                "MongoConnector": 1,
+                "MysqlConnector": 1,
+                "GetTimseries": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "file": "server/rest/GetTimeseries.js",
+            "line": 9
+        },
+        "Connectors": {
+            "name": "Connectors",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "FileConnector": 1,
+                "MongoConnector": 1,
+                "MysqlConnector": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "server",
+            "namespace": "",
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 9,
+            "description": "Connectors to different types of storages."
+        },
+        "RestApi": {
+            "name": "RestApi",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "GetTimseries": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "server",
+            "namespace": "",
+            "file": "server/rest/GetTimeseries.js",
+            "line": 9,
+            "description": "Rest API's offered by server."
+        }
+    },
+    "classes": {
+        "FileConnector": {
+            "name": "FileConnector",
+            "shortname": "FileConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "Connectors",
+            "namespace": "",
+            "file": "server/connectors/FileConnector.js",
+            "line": 11,
+            "description": "A connector to the files (JSON and CSV)"
+        },
+        "MongoConnector": {
+            "name": "MongoConnector",
+            "shortname": "MongoConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "Connectors",
+            "namespace": "",
+            "file": "server/connectors/MongoConnector.js",
+            "line": 9,
+            "description": "A connector to the MongoDB database"
+        },
+        "MysqlConnector": {
+            "name": "MysqlConnector",
+            "shortname": "MysqlConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "Connectors",
+            "namespace": "",
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 9,
+            "description": "A connector to the MySQL database"
+        },
+        "GetTimseries": {
+            "name": "GetTimseries",
+            "shortname": "GetTimseries",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetTimeseries.js",
+            "line": 9
+        }
+    },
     "elements": {},
     "classitems": [
         {
             "file": "app/js/controllers/DialogCtrl.js",
             "line": 4,
-            "class": ""
+            "class": "FileConnector"
         },
         {
             "file": "app/js/controllers/DialogCtrl.js",
             "line": 186,
-            "class": ""
+            "class": "FileConnector"
         },
         {
             "file": "app/js/controllers/DialogCtrl.js",
             "line": 193,
-            "class": ""
+            "class": "FileConnector"
         },
         {
             "file": "app/js/controllers/LeftNavCtrl.js",
             "line": 69,
-            "class": ""
+            "class": "FileConnector"
         },
         {
             "file": "app/js/controllers/LeftNavCtrl.js",
             "line": 187,
-            "class": ""
+            "class": "FileConnector"
         },
         {
             "file": "app/js/canvasjs.js",
             "line": 1,
             "preserve": "CanvasJS HTML5 & JavaScript Charts - v1.8.1 GA - http://canvasjs.com/ \nCopyright 2013 fenopix",
-            "class": ""
+            "class": "FileConnector"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 15,
+            "description": "A public method that returns the \nnames of the stores (mongo collections)\nthat are present in the specified by\nconfig file database.",
+            "itemtype": "method",
+            "name": "getStoreNames",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (mongo database) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (mongo collections) configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var source_config = { \n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the stores\n    mongo_connnector.getStoreNames(source_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[ \n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'collection1'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'collection2'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t}\n    \t\t//]\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 142,
+            "description": "A public method that adds a field 'size'\nto the store (mongo collection) configuration\nspecified in <code>store_config</code>.",
+            "itemtype": "method",
+            "name": "getStoreSize",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mongo collection) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (mongo collections) configuration with\nadditional 'size' field",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'collection1'},\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the size\n    mongo_connnector.getStoreSize(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//{ \n    \t\t//\tstore: {name: 'collection1', size: 4},\n    \t\t//\tsource: { \n    \t\t//\t\tname: 'test',\n    \t\t//\t\ttype: 'mongo',\n    \t\t//\t\tuser: '',\n    \t\t//\t\tpassw: '',\n    \t\t//\t\tserver: 'localhost',\n    \t\t//\t\tport: null,\n    \t\t//\t\tdb: 'test_database'\n    \t\t//\t}\n    \t\t//}\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 222,
+            "description": "A public method that returns\nthe field names present in each\ndocument.<br/>\nFields are only checked in the \nfirst document of store (mongo collection).<br/>\nAlso the value of each field is saved (cf exemple).<br/>\nThe mongodb '_id' field is ommited.",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (collection) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of fields configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'collection1', size: 4}, //presence of 'size' is optional \n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the fields\n    mongo_connnector.getFields(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ \n    \t\t//\t\tfield: {name: 'a', value: 18.11},\n    \t\t//\t\tstore: {name: 'collection1', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{\n    \t\t//\t\tfield: {name: 'year', value: '2011'},\n    \t\t//\t\tstore: {name: 'collection2', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t}\n         //]\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 363,
+            "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
+            "itemtype": "method",
+            "name": "getDataset",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An requested dataset",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t]\n    \tstore: {name: 'collection1'},\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mongo_connnector.getStoreSize(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 462,
+            "description": "A private method that checks\nthe validity of source (mongo database)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidSourceConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (mongo database) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 485,
+            "description": "A private method that checks\nthe validity of store (mongo collection)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidStoreConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mongo collection) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 508,
+            "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidDatasetConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
         }
     ],
     "warnings": [

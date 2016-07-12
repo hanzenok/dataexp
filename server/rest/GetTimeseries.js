@@ -1,5 +1,15 @@
 var tsproc = require('tsproc');
 
+/**
+ * Rest API's offered by server.
+ * @module server
+ * @submodule RestApi
+ */
+
+/**
+ * @class GetTimseries
+ */
+
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
 var mysql_connector = require('../connectors/MysqlConnector');

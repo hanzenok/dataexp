@@ -1,7 +1,17 @@
 var fs = require('fs');
 
+/**
+ * Connectors to different types of storages.
+ * @module server
+ * @submodule Connectors
+ */
+
 var dataset_prefix = './server/datasets/';
 
+/**
+ * A connector to the files (JSON and CSV)
+ * @class FileConnector
+ */
 var FileConnector = {};
 
 FileConnector.getStoreNames = function(source_config, callback){

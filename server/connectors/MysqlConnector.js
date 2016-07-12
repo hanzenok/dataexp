@@ -1,11 +1,18 @@
 var mysql = require("mysql");
 
+/**
+ * Connectors to different types of storages.
+ * @module server
+ * @submodule Connectors
+ */
+
+/**
+ * A connector to the MySQL database
+ * @class MysqlConnector
+ */
 var MysqlConnector = {};
 
 MysqlConnector.getStoreNames = function(source_config, callback){
-
-	//console.log('source_config in for getStoreNames():');
-	//console.log(source_config);
 
 	//check the source config
 	if (!isValidSourceConfig(source_config)){
