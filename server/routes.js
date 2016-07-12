@@ -24,16 +24,12 @@ module.exports = function(app){
 	app.post('/api/timeseries', getTimeseries);
 	app.get('/api/stats', getStats);
 	app.get('/api/config', getConfig);
-	// app.delete('/api/sources/:source_name', function(req, res){
-
-	// 	console.log(req.params.source_name);
-	// });
 
 	//other pages
 	app.use(function(req, res, next){
 	
 		res.setHeader('Content-Type', 'text/plain');
-		res.status(404).send('Page introuvable')
+		res.status(404).send('404 - File not found')
 	});
 
 };
