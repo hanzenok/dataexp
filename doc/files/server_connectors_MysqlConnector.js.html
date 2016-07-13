@@ -85,6 +85,70 @@ var mysql = require(&quot;mysql&quot;);
  */
 var MysqlConnector = {};
 
+/**
+ * A public method that returns the 
+ * names of the stores (mysql tables)
+ * that are present in the specified by
+ * config file database.
+ * @method getStoreNames
+ * @param {json} source_config Source (mysql database) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of stores (mysql tables) configuration
+ * 
+ * @example
+ *     var mysql_connector = require(&#x27;../connectors/MysqlConnector&#x27;);
+ *
+ *     //the MySQL database &#x27;test_database&#x27; has the following tables:
+ *     //	- table1
+ *     //	- table2
+ *
+ *     //config file
+ *     var source_config = { 
+ *     	source: {
+ *     			name: &#x27;test_mysql&#x27;,
+ *     			type: &#x27;mysql&#x27;,
+ *     			user: &#x27;root&#x27;,
+ *     			passw: &#x27;root&#x27;,
+ *     			server: &#x27;localhost&#x27;,
+ *     			port: null,
+ *     			db: &#x27;test_database&#x27;
+ *     	} 
+ *     };
+ *
+ *     //requesting the stores
+ *     mysql_connnector.getStoreNames(source_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[ 
+ *     		//	{ 
+ *     		//		store: {name: &#x27;table1&#x27;},
+ *     		//		source: { 
+ *     		//			name: &#x27;test_mysql&#x27;,
+ *     		//			type: &#x27;mysql&#x27;,
+ *     		//			user: &#x27;root&#x27;,
+ *     		//			passw: &#x27;root&#x27;,
+ *     		//			server: &#x27;localhost&#x27;,
+ *     		//			port: null,
+ *     		//			db: &#x27;test_database&#x27;
+ *     		//		}
+ *     		//	},
+ *     		//	{ 
+ *     		//		store: {name: &#x27;table2&#x27;},
+ *     		//		source: { 
+ *     		//			name: &#x27;test_mysql&#x27;,
+ *     		//			type: &#x27;mysql&#x27;,
+ *     		//			user: &#x27;root&#x27;,
+ *     		//			passw: &#x27;root&#x27;,
+ *     		//			server: &#x27;localhost&#x27;,
+ *     		//			port: null,
+ *     		//			db: &#x27;test_database&#x27;
+ *     		//		}
+ *     		//	}
+ *     		//]
+ *     });
+ *
+ */
 MysqlConnector.getStoreNames = function(source_config, callback){
 
 	//check the source config
@@ -146,9 +210,6 @@ MysqlConnector.getStoreNames = function(source_config, callback){
 					//call the callback
 					if (stores.length){
 
-						//console.log(&#x27;stores out of getStoreNames():&#x27;);
-						//console.log(stores);
-
 						callback(null, stores);
 					}
 					else{
@@ -163,6 +224,57 @@ MysqlConnector.getStoreNames = function(source_config, callback){
 	});
 }
 
+/**
+ * A public method that adds a field &#x27;size&#x27;
+ * to the store (mysql table) configuration
+ * specified in &lt;code&gt;store_config&lt;/code&gt;.
+ * @method getStoreSize
+ * @param {json} store_config Store (mysql table) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of stores (mysql tables) configuration with
+ * additional &#x27;size&#x27; field
+ * 
+ * @example
+ *     var mysql_connector = require(&#x27;../connectors/MysqlConnector&#x27;);
+ *
+ *     //the MySQL database &#x27;test_database&#x27; has the following tables:
+ *     //	- table1
+ *     //	- table2
+ *
+ *     //config file
+ *     var store_config = {
+ *     	store: {name: &#x27;table1&#x27;},
+ *     	source: {
+ *     			name: &#x27;test_mysql&#x27;,
+ *     			type: &#x27;mysql&#x27;,
+ *     			user: &#x27;root&#x27;,
+ *     			passw: &#x27;root&#x27;,
+ *     			server: &#x27;localhost&#x27;,
+ *     			port: null,
+ *     			db: &#x27;test_database&#x27;
+ *     	} 
+ *     };
+ *
+ *     //requesting the size
+ *     mysql_connnector.getStoreSize(store_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//{ 
+ *     		//	store: {name: &#x27;table1&#x27;, size: 4},
+ *     		//	source: { 
+ *     		//		name: &#x27;test_mysql&#x27;,
+ *     		//		type: &#x27;mysql&#x27;,
+ *     		//		user: &#x27;root&#x27;,
+ *     		//		passw: &#x27;root&#x27;,
+ *     		//		server: &#x27;localhost&#x27;,
+ *     		//		port: null,
+ *     		//		db: &#x27;test_database&#x27;
+ *     		//	}
+ *     		//}
+ *     });
+ *
+ */
 MysqlConnector.getStoreSize = function(store_config, callback){
 
 	if (!isValidStoreConfig.call(this, store_config)){
@@ -172,10 +284,6 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 
 		return;
 	}
-
-	//console.log(&#x27;store_config in for getStoreSize():&#x27;);
-	//console.log(store_config);
-
 
 	//creating the connection
 	var connection = mysql.createConnection({
@@ -209,9 +317,6 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 					//set the size
 					store_config.store.size = rows[0].count;
 
-					//console.log(&#x27;store_config out of getStoreSize():&#x27;);
-					//console.log(store_config);
-
 					callback(null, store_config);
 				}
 
@@ -223,6 +328,72 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 	});
 }
 
+/**
+ * A public method that returns
+ * the column names of the table.&lt;br/&gt;
+ * Also the first value of each column is saved (cf exemple).&lt;br/&gt;
+ * @method getFields
+ * @param {json} store_config Store (mysql table) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of fields configuration
+ * 
+ * @example
+ *     var mysql_connector = require(&#x27;../connectors/MysqlConnector&#x27;);
+ *
+ *     //the MySQL database &#x27;test_database&#x27; has the following tables:
+ *     //	- table1
+ *     //	- table2
+ *
+ *     //config file
+ *     var store_config = {
+ *     	store: {name: &#x27;table1&#x27;, size: 4}, //presence of &#x27;size&#x27; is optional 
+ *     	source: {
+ *     			name: &#x27;test_mysql&#x27;,
+ *     			type: &#x27;mysql&#x27;,
+ *     			user: &#x27;root&#x27;,
+ *     			passw: &#x27;root&#x27;,
+ *     			server: &#x27;localhost&#x27;,
+ *     			port: null,
+ *     			db: &#x27;test_database&#x27;
+ *     	} 
+ *     };
+ *
+ *     //requesting the fields
+ *     mysql_connnector.getFields(store_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[
+ *     		//	{ 
+ *     		//		field: {name: &#x27;a&#x27;, value: 18.11},
+ *     		//		store: {name: &#x27;table1&#x27;, size: 4},
+ *     		//		source: { 
+ *     		//			name: &#x27;test_mysql&#x27;,
+ *     		//			type: &#x27;mysql&#x27;,
+ *     		//			user: &#x27;root&#x27;,
+ *     		//			passw: &#x27;root&#x27;,
+ *     		//			server: &#x27;localhost&#x27;,
+ *     		//			port: null,
+ *     		//			db: &#x27;test_database&#x27;
+ *     		//		}
+ *     		//	},
+ *     		//	{
+ *     		//		field: {name: &#x27;year&#x27;, value: &#x27;2011&#x27;},
+ *     		//		store: {name: &#x27;table1&#x27;, size: 4},
+ *     		//		source: { 
+ *     		//			name: &#x27;test_mysql&#x27;,
+ *     		//			type: &#x27;mysql&#x27;,
+ *     		//			user: &#x27;root&#x27;,
+ *     		//			passw: &#x27;root&#x27;,
+ *     		//			server: &#x27;localhost&#x27;,
+ *     		//			port: null,
+ *     		//			db: &#x27;test_database&#x27;
+ *     		//		}
+ *     		//	}
+ *          //]
+ *     });
+ *
+ */
 MysqlConnector.getFields = function(store_config, callback){
 
 	//check the store config
@@ -233,9 +404,6 @@ MysqlConnector.getFields = function(store_config, callback){
 
 		return;
 	}
-
-	//console.log(&#x27;store_config in for getFields():&#x27;);
-	//console.log(store_config);
 
 	//creating the connection
 	var connection = mysql.createConnection({
@@ -289,9 +457,6 @@ MysqlConnector.getFields = function(store_config, callback){
 					//send the repsonse
 					if (fields.length){
 
-						//console.log(&#x27;fields out of getFields():&#x27;);
-						//console.log(fields);
-
 						callback(null, fields);
 					}
 					else {
@@ -309,6 +474,53 @@ MysqlConnector.getFields = function(store_config, callback){
 
 }
 
+/**
+ * A public method that takes in the fields configuration file
+ * (&lt;code&gt;dataset_config&lt;/code&gt;) and returns the requested dataset.
+ * @method getDataset
+ * @param {json} dataset_config Dataset configuration
+ * @param {function} callback Callback function
+ * @return {array} A requested dataset
+ * 
+ * @example
+ *     var mysql_connector = require(&#x27;../connectors/MysqlConnector&#x27;);
+ *
+ *     //the MySQL database &#x27;test_database&#x27; has the following tables:
+ *     //	- table1
+ *     //	- table2
+ *
+ *     //config file
+ *     var dataset_config = {
+ *     	fields: [
+ *     		{name: &#x27;year&#x27;, value: &#x27;2011&#x27;, format: &#x27;YYYY&#x27;}, //&#x27;value&#x27; and &#x27;format&#x27; fields are optional
+ *     		{name: &#x27;a&#x27;, value: 18.11}
+ *     	]
+ *     	store: {name: &#x27;table1&#x27;},
+ *     	source: {
+ *     			name: &#x27;test_mysql&#x27;,
+ *     			type: &#x27;mysql&#x27;,
+ *     			user: &#x27;root&#x27;,
+ *     			passw: &#x27;root&#x27;,
+ *     			server: &#x27;localhost&#x27;,
+ *     			port: null,
+ *     			db: &#x27;test_database&#x27;
+ *     	} 
+ *     };
+ *
+ *     //requesting the dataset
+ *     mysql_connnector.getDataset(dataset_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[
+ *     		//	{ a: 18.11, year: &#x27;2011&#x27; },
+ *     		//	{ a: 21.07, year: &#x27;2012&#x27; },
+ *     		//	{ a: 23.23, year: &#x27;2013&#x27; },
+ *     		//	{ a: 24.24, year: &#x27;2014&#x27; }
+ *     		//]
+ *     });
+ *
+ */
 MysqlConnector.getDataset = function(dataset_config, callback){
 
 	//check the field config
@@ -320,8 +532,8 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 		return;
 	}
 
-	//console.log(&#x27;dataset_config in for getDataset():&#x27;);
-	//console.log(dataset_config);
+	console.log(&#x27;dataset_config in for getDataset():&#x27;);
+	console.log(dataset_config);
 
 	//creating the connection
 	var connection = mysql.createConnection({
@@ -370,8 +582,8 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 					//send the response
 					if (dataset.length){
 
-						//console.log(&#x27;dataset out for getDataset():&#x27;);
-						//console.log(dataset);
+						console.log(&#x27;dataset out for getDataset():&#x27;);
+						console.log(dataset);
 
 						//send the response
 						callback(null, dataset);
@@ -390,6 +602,15 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 
 }
 
+/**
+ * A private method that checks
+ * the validity of source (mysql database)
+ * configuration 
+ * @method isValidSourceConfig
+ * @private
+ * @param {json} source_config Source (mysql database) configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidSourceConfig(source_config){
 
 	if (!source_config || typeof source_config !== &#x27;object&#x27;) 
@@ -404,6 +625,15 @@ function isValidSourceConfig(source_config){
 	return true;
 }
 
+/**
+ * A private method that checks
+ * the validity of store (mysql table)
+ * configuration 
+ * @method isValidStoreConfig
+ * @private
+ * @param {json} store_config Store (mysql table) configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidStoreConfig(store_config){
 
 	if (!isValidSourceConfig(store_config))
@@ -418,6 +648,15 @@ function isValidStoreConfig(store_config){
 	return true;
 }
 
+/**
+ * A private method that checks
+ * the validity of store dataset
+ * configuration 
+ * @method isValidDatasetConfig
+ * @private
+ * @param {json} dataset_config Dataset configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidDatasetConfig(dataset_config){
 
 	if (!isValidStoreConfig(dataset_config))

@@ -120,12 +120,12 @@
 
         </li>
     </ul>
-    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An requested dataset</p>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>A requested dataset</p>
 </div>
         <h5>Example</h5>
         <pre class="code prettyprint"><code>var mongo_connector = require('../connectors/MongoConnector');
 
-//the database 'test_database' has the following collections:
+//the MongoDB database 'test_database' has the following collections:
 //  - collection1
 //  - collection2
 
@@ -137,7 +137,7 @@ var dataset_config = {
     ]
     store: {name: 'collection1'},
     source: {
-            name: 'test',
+            name: 'test_mongo',
             type: 'mongo',
             user: '',
             passw: '',
@@ -148,7 +148,7 @@ var dataset_config = {
 };
 
 //requesting the dataset
-mongo_connnector.getStoreSize(dataset_config, function(err, data){
+mongo_connnector.getDataset(dataset_config, function(err, data){
 
         if (data) console.log(data);
         //the result is:
@@ -182,7 +182,7 @@ The mongodb '_id' field is ommited.</p>
     <ul class="params">
         <li>
             <code>store_config</code> <strong>&lt;Json&gt;</strong>
-        <p>Store (collection) configuration</p>
+        <p>Store (mongo collection) configuration</p>
 
         </li>
         <li>
@@ -196,7 +196,7 @@ The mongodb '_id' field is ommited.</p>
         <h5>Example</h5>
         <pre class="code prettyprint"><code>var mongo_connector = require('../connectors/MongoConnector');
 
-//the database 'test_database' has the following collections:
+//the MongoDB database 'test_database' has the following collections:
 //  - collection1
 //  - collection2
 
@@ -204,7 +204,7 @@ The mongodb '_id' field is ommited.</p>
 var store_config = {
     store: {name: 'collection1', size: 4}, //presence of 'size' is optional 
     source: {
-            name: 'test',
+            name: 'test_mongo',
             type: 'mongo',
             user: '',
             passw: '',
@@ -224,7 +224,7 @@ mongo_connnector.getFields(store_config, function(err, data){
         //      field: {name: 'a', value: 18.11},
         //      store: {name: 'collection1', size: 4},
         //      source: { 
-        //          name: 'test',
+        //          name: 'test_mongo',
         //          type: 'mongo',
         //          user: '',
         //          passw: '',
@@ -237,7 +237,7 @@ mongo_connnector.getFields(store_config, function(err, data){
         //      field: {name: 'year', value: '2011'},
         //      store: {name: 'collection2', size: 4},
         //      source: { 
-        //          name: 'test',
+        //          name: 'test_mongo',
         //          type: 'mongo',
         //          user: '',
         //          passw: '',
@@ -282,14 +282,14 @@ config file database.</p>
         <h5>Example</h5>
         <pre class="code prettyprint"><code>var mongo_connector = require('../connectors/MongoConnector');
 
-//the database 'test_database' has the following collections:
+//the MongoDB database 'test_database' has the following collections:
 //  - collection1
 //  - collection2
 
 //config file
 var source_config = { 
     source: {
-            name: 'test',
+            name: 'test_mongo',
             type: 'mongo',
             user: '',
             passw: '',
@@ -308,7 +308,7 @@ mongo_connnector.getStoreNames(source_config, function(err, data){
         //  { 
         //      store: {name: 'collection1'},
         //      source: { 
-        //          name: 'test',
+        //          name: 'test_mongo',
         //          type: 'mongo',
         //          user: '',
         //          passw: '',
@@ -320,7 +320,7 @@ mongo_connnector.getStoreNames(source_config, function(err, data){
         //  { 
         //      store: {name: 'collection2'},
         //      source: { 
-        //          name: 'test',
+        //          name: 'test_mongo',
         //          type: 'mongo',
         //          user: '',
         //          passw: '',
@@ -365,7 +365,7 @@ additional 'size' field</p>
         <h5>Example</h5>
         <pre class="code prettyprint"><code>var mongo_connector = require('../connectors/MongoConnector');
 
-//the database 'test_database' has the following collections:
+//the MongoDB database 'test_database' has the following collections:
 //  - collection1
 //  - collection2
 
@@ -373,7 +373,7 @@ additional 'size' field</p>
 var store_config = {
     store: {name: 'collection1'},
     source: {
-            name: 'test',
+            name: 'test_mongo',
             type: 'mongo',
             user: '',
             passw: '',
@@ -391,7 +391,7 @@ mongo_connnector.getStoreSize(store_config, function(err, data){
         //{ 
         //  store: {name: 'collection1', size: 4},
         //  source: { 
-        //      name: 'test',
+        //      name: 'test_mongo',
         //      type: 'mongo',
         //      user: '',
         //      passw: '',
@@ -410,7 +410,7 @@ mongo_connnector.getStoreSize(store_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l508"><code>server&#x2F;connectors&#x2F;MongoConnector.js:508</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l502"><code>server&#x2F;connectors&#x2F;MongoConnector.js:502</code></a>
     </span><br>
     <p>A private method that checks
 the validity of store dataset
@@ -433,7 +433,7 @@ configuration</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l462"><code>server&#x2F;connectors&#x2F;MongoConnector.js:462</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l456"><code>server&#x2F;connectors&#x2F;MongoConnector.js:456</code></a>
     </span><br>
     <p>A private method that checks
 the validity of source (mongo database)
@@ -456,7 +456,7 @@ configuration</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l485"><code>server&#x2F;connectors&#x2F;MongoConnector.js:485</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l479"><code>server&#x2F;connectors&#x2F;MongoConnector.js:479</code></a>
     </span><br>
     <p>A private method that checks
 the validity of store (mongo collection)

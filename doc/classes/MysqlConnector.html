@@ -52,6 +52,22 @@
                 </div>
             </div>
             
+            <div id="methods-on-page" class="sidebox on-page">
+                <div class="hd">
+                    <h2 class="no-toc">Methods On Page</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="#methods_getDataset">getDataset</a></li>
+                            <li><a href="#methods_getFields">getFields</a></li>
+                            <li><a href="#methods_getStoreNames">getStoreNames</a></li>
+                            <li><a href="#methods_getStoreSize">getStoreSize</a></li>
+                            <li><a href="#methods_isValidDatasetConfig">isValidDatasetConfig</a></li>
+                            <li><a href="#methods_isValidSourceConfig">isValidSourceConfig</a></li>
+                            <li><a href="#methods_isValidStoreConfig">isValidStoreConfig</a></li>
+                    </ul>
+                </div>
+            </div>
             
             
             
@@ -76,8 +92,384 @@
 
 <div id="classdocs">
     <ul>
+        <li><a href="#methods">Methods</a></li>
     </ul>
     <div>
+            <div id="methods">
+<a name="methods_getDataset"></a>
+<div class="method item">
+    Array <strong class="name"><code>getDataset</code></strong>( <code>dataset_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l404"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:404</code></a>
+    </span><br>
+    <p>A public method that takes in the fields configuration file
+(<code>dataset_config</code>) and returns the requested dataset.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>dataset_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Dataset configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>A requested dataset</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var mysql_connector = require('../connectors/MysqlConnector');
+
+//the MySQL database 'test_database' has the following tables:
+//  - table1
+//  - table2
+
+//config file
+var dataset_config = {
+    fields: [
+        {name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
+        {name: 'a', value: 18.11}
+    ]
+    store: {name: 'table1'},
+    source: {
+            name: 'test_mysql',
+            type: 'mysql',
+            user: 'root',
+            passw: 'root',
+            server: 'localhost',
+            port: null,
+            db: 'test_database'
+    } 
+};
+
+//requesting the dataset
+mysql_connnector.getDataset(dataset_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //[
+        //  { a: 18.11, year: '2011' },
+        //  { a: 21.07, year: '2012' },
+        //  { a: 23.23, year: '2013' },
+        //  { a: 24.24, year: '2014' }
+        //]
+});
+</code></pre>
+
+</div>
+<a name="methods_getFields"></a>
+<div class="method item">
+    Array <strong class="name"><code>getFields</code></strong>( <code>store_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l258"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:258</code></a>
+    </span><br>
+    <p>A public method that returns
+the column names of the table.<br/>
+Also the first value of each column is saved (cf exemple).<br/></p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>store_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Store (mysql table) configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An array of fields configuration</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var mysql_connector = require('../connectors/MysqlConnector');
+
+//the MySQL database 'test_database' has the following tables:
+//  - table1
+//  - table2
+
+//config file
+var store_config = {
+    store: {name: 'table1', size: 4}, //presence of 'size' is optional 
+    source: {
+            name: 'test_mysql',
+            type: 'mysql',
+            user: 'root',
+            passw: 'root',
+            server: 'localhost',
+            port: null,
+            db: 'test_database'
+    } 
+};
+
+//requesting the fields
+mysql_connnector.getFields(store_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //[
+        //  { 
+        //      field: {name: 'a', value: 18.11},
+        //      store: {name: 'table1', size: 4},
+        //      source: { 
+        //          name: 'test_mysql',
+        //          type: 'mysql',
+        //          user: 'root',
+        //          passw: 'root',
+        //          server: 'localhost',
+        //          port: null,
+        //          db: 'test_database'
+        //      }
+        //  },
+        //  {
+        //      field: {name: 'year', value: '2011'},
+        //      store: {name: 'table1', size: 4},
+        //      source: { 
+        //          name: 'test_mysql',
+        //          type: 'mysql',
+        //          user: 'root',
+        //          passw: 'root',
+        //          server: 'localhost',
+        //          port: null,
+        //          db: 'test_database'
+        //      }
+        //  }
+     //]
+});
+</code></pre>
+
+</div>
+<a name="methods_getStoreNames"></a>
+<div class="method item">
+    Array <strong class="name"><code>getStoreNames</code></strong>( <code>source_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l15"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:15</code></a>
+    </span><br>
+    <p>A public method that returns the
+names of the stores (mysql tables)
+that are present in the specified by
+config file database.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>source_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Source (mysql database) configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An array of stores (mysql tables) configuration</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var mysql_connector = require('../connectors/MysqlConnector');
+
+//the MySQL database 'test_database' has the following tables:
+//  - table1
+//  - table2
+
+//config file
+var source_config = { 
+    source: {
+            name: 'test_mysql',
+            type: 'mysql',
+            user: 'root',
+            passw: 'root',
+            server: 'localhost',
+            port: null,
+            db: 'test_database'
+    } 
+};
+
+//requesting the stores
+mysql_connnector.getStoreNames(source_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //[ 
+        //  { 
+        //      store: {name: 'table1'},
+        //      source: { 
+        //          name: 'test_mysql',
+        //          type: 'mysql',
+        //          user: 'root',
+        //          passw: 'root',
+        //          server: 'localhost',
+        //          port: null,
+        //          db: 'test_database'
+        //      }
+        //  },
+        //  { 
+        //      store: {name: 'table2'},
+        //      source: { 
+        //          name: 'test_mysql',
+        //          type: 'mysql',
+        //          user: 'root',
+        //          passw: 'root',
+        //          server: 'localhost',
+        //          port: null,
+        //          db: 'test_database'
+        //      }
+        //  }
+        //]
+});
+</code></pre>
+
+</div>
+<a name="methods_getStoreSize"></a>
+<div class="method item">
+    Array <strong class="name"><code>getStoreSize</code></strong>( <code>store_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l154"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:154</code></a>
+    </span><br>
+    <p>A public method that adds a field 'size'
+to the store (mysql table) configuration
+specified in <code>store_config</code>.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>store_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Store (mysql table) configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An array of stores (mysql tables) configuration with
+additional 'size' field</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var mysql_connector = require('../connectors/MysqlConnector');
+
+//the MySQL database 'test_database' has the following tables:
+//  - table1
+//  - table2
+
+//config file
+var store_config = {
+    store: {name: 'table1'},
+    source: {
+            name: 'test_mysql',
+            type: 'mysql',
+            user: 'root',
+            passw: 'root',
+            server: 'localhost',
+            port: null,
+            db: 'test_database'
+    } 
+};
+
+//requesting the size
+mysql_connnector.getStoreSize(store_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //{ 
+        //  store: {name: 'table1', size: 4},
+        //  source: { 
+        //      name: 'test_mysql',
+        //      type: 'mysql',
+        //      user: 'root',
+        //      passw: 'root',
+        //      server: 'localhost',
+        //      port: null,
+        //      db: 'test_database'
+        //  }
+        //}
+});
+</code></pre>
+
+</div>
+<a name="methods_isValidDatasetConfig"></a>
+<div class="method item private">
+    Boolean <strong class="name"><code>isValidDatasetConfig</code></strong>( <code>dataset_config </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l578"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:578</code></a>
+    </span><br>
+    <p>A private method that checks
+the validity of store dataset
+configuration</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>dataset_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Dataset configuration</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; <p>true if config is valid, false if not</p>
+</div>
+</div>
+<a name="methods_isValidSourceConfig"></a>
+<div class="method item private">
+    Boolean <strong class="name"><code>isValidSourceConfig</code></strong>( <code>source_config </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l532"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:532</code></a>
+    </span><br>
+    <p>A private method that checks
+the validity of source (mysql database)
+configuration</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>source_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Source (mysql database) configuration</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; <p>true if config is valid, false if not</p>
+</div>
+</div>
+<a name="methods_isValidStoreConfig"></a>
+<div class="method item private">
+    Boolean <strong class="name"><code>isValidStoreConfig</code></strong>( <code>store_config </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_MysqlConnector.js.html#l555"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:555</code></a>
+    </span><br>
+    <p>A private method that checks
+the validity of store (mysql table)
+configuration</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>store_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Store (mysql table) configuration</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; <p>true if config is valid, false if not</p>
+</div>
+</div>
+            </div>
     </div>
 </div>
 </div>

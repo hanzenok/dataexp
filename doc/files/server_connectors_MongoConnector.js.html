@@ -98,14 +98,14 @@ var MongoConnector = {};
  * @example
  *     var mongo_connector = require(&#x27;../connectors/MongoConnector&#x27;);
  *
- *     //the database &#x27;test_database&#x27; has the following collections:
+ *     //the MongoDB database &#x27;test_database&#x27; has the following collections:
  *     //	- collection1
  *     //	- collection2
  *
  *     //config file
  *     var source_config = { 
  *     	source: {
- *     			name: &#x27;test&#x27;,
+ *     			name: &#x27;test_mongo&#x27;,
  *     			type: &#x27;mongo&#x27;,
  *     			user: &#x27;&#x27;,
  *     			passw: &#x27;&#x27;,
@@ -124,7 +124,7 @@ var MongoConnector = {};
  *     		//	{ 
  *     		//		store: {name: &#x27;collection1&#x27;},
  *     		//		source: { 
- *     		//			name: &#x27;test&#x27;,
+ *     		//			name: &#x27;test_mongo&#x27;,
  *     		//			type: &#x27;mongo&#x27;,
  *     		//			user: &#x27;&#x27;,
  *     		//			passw: &#x27;&#x27;,
@@ -136,7 +136,7 @@ var MongoConnector = {};
  *     		//	{ 
  *     		//		store: {name: &#x27;collection2&#x27;},
  *     		//		source: { 
- *     		//			name: &#x27;test&#x27;,
+ *     		//			name: &#x27;test_mongo&#x27;,
  *     		//			type: &#x27;mongo&#x27;,
  *     		//			user: &#x27;&#x27;,
  *     		//			passw: &#x27;&#x27;,
@@ -225,7 +225,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
  * @example
  *     var mongo_connector = require(&#x27;../connectors/MongoConnector&#x27;);
  *
- *     //the database &#x27;test_database&#x27; has the following collections:
+ *     //the MongoDB database &#x27;test_database&#x27; has the following collections:
  *     //	- collection1
  *     //	- collection2
  *
@@ -233,7 +233,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
  *     var store_config = {
  *     	store: {name: &#x27;collection1&#x27;},
  *     	source: {
- *     			name: &#x27;test&#x27;,
+ *     			name: &#x27;test_mongo&#x27;,
  *     			type: &#x27;mongo&#x27;,
  *     			user: &#x27;&#x27;,
  *     			passw: &#x27;&#x27;,
@@ -251,7 +251,7 @@ MongoConnector.getStoreNames = function(source_config, callback){
  *     		//{ 
  *     		//	store: {name: &#x27;collection1&#x27;, size: 4},
  *     		//	source: { 
- *     		//		name: &#x27;test&#x27;,
+ *     		//		name: &#x27;test_mongo&#x27;,
  *     		//		type: &#x27;mongo&#x27;,
  *     		//		user: &#x27;&#x27;,
  *     		//		passw: &#x27;&#x27;,
@@ -301,14 +301,14 @@ MongoConnector.getStoreSize = function(store_config, callback){
  * Also the value of each field is saved (cf exemple).&lt;br/&gt;
  * The mongodb &#x27;_id&#x27; field is ommited.
  * @method getFields
- * @param {json} store_config Store (collection) configuration
+ * @param {json} store_config Store (mongo collection) configuration
  * @param {function} callback Callback function
  * @return {array} An array of fields configuration
  * 
  * @example
  *     var mongo_connector = require(&#x27;../connectors/MongoConnector&#x27;);
  *
- *     //the database &#x27;test_database&#x27; has the following collections:
+ *     //the MongoDB database &#x27;test_database&#x27; has the following collections:
  *     //	- collection1
  *     //	- collection2
  *
@@ -316,7 +316,7 @@ MongoConnector.getStoreSize = function(store_config, callback){
  *     var store_config = {
  *     	store: {name: &#x27;collection1&#x27;, size: 4}, //presence of &#x27;size&#x27; is optional 
  *     	source: {
- *     			name: &#x27;test&#x27;,
+ *     			name: &#x27;test_mongo&#x27;,
  *     			type: &#x27;mongo&#x27;,
  *     			user: &#x27;&#x27;,
  *     			passw: &#x27;&#x27;,
@@ -336,7 +336,7 @@ MongoConnector.getStoreSize = function(store_config, callback){
  *     		//		field: {name: &#x27;a&#x27;, value: 18.11},
  *     		//		store: {name: &#x27;collection1&#x27;, size: 4},
  *     		//		source: { 
- *     		//			name: &#x27;test&#x27;,
+ *     		//			name: &#x27;test_mongo&#x27;,
  *     		//			type: &#x27;mongo&#x27;,
  *     		//			user: &#x27;&#x27;,
  *     		//			passw: &#x27;&#x27;,
@@ -349,7 +349,7 @@ MongoConnector.getStoreSize = function(store_config, callback){
  *     		//		field: {name: &#x27;year&#x27;, value: &#x27;2011&#x27;},
  *     		//		store: {name: &#x27;collection2&#x27;, size: 4},
  *     		//		source: { 
- *     		//			name: &#x27;test&#x27;,
+ *     		//			name: &#x27;test_mongo&#x27;,
  *     		//			type: &#x27;mongo&#x27;,
  *     		//			user: &#x27;&#x27;,
  *     		//			passw: &#x27;&#x27;,
@@ -439,12 +439,12 @@ MongoConnector.getFields = function(store_config, callback){
  * @method getDataset
  * @param {json} dataset_config Dataset configuration
  * @param {function} callback Callback function
- * @return {array} An requested dataset
+ * @return {array} A requested dataset
  * 
  * @example
  *     var mongo_connector = require(&#x27;../connectors/MongoConnector&#x27;);
  *
- *     //the database &#x27;test_database&#x27; has the following collections:
+ *     //the MongoDB database &#x27;test_database&#x27; has the following collections:
  *     //	- collection1
  *     //	- collection2
  *
@@ -456,7 +456,7 @@ MongoConnector.getFields = function(store_config, callback){
  *     	]
  *     	store: {name: &#x27;collection1&#x27;},
  *     	source: {
- *     			name: &#x27;test&#x27;,
+ *     			name: &#x27;test_mongo&#x27;,
  *     			type: &#x27;mongo&#x27;,
  *     			user: &#x27;&#x27;,
  *     			passw: &#x27;&#x27;,
@@ -467,7 +467,7 @@ MongoConnector.getFields = function(store_config, callback){
  *     };
  *
  *     //requesting the dataset
- *     mongo_connnector.getStoreSize(dataset_config, function(err, data){
+ *     mongo_connnector.getDataset(dataset_config, function(err, data){
  *	
  *     		if (data) console.log(data);
  *     		//the result is:
@@ -490,9 +490,6 @@ MongoConnector.getDataset = function(dataset_config, callback){
 
 		return;
 	}
-
-	console.log(&#x27;dataset_config in for getDataset():&#x27;);
-	console.log(dataset_config);
 
 	//connection to mongo
 	var user_and_pass = (dataset_config.source.user &amp;&amp; dataset_config.source.passw) ? dataset_config.source.user + &#x27;:&#x27; + dataset_config.source.passw + &#x27;@&#x27; : &#x27;&#x27;;
@@ -517,9 +514,6 @@ MongoConnector.getDataset = function(dataset_config, callback){
 			else {
 
 				if (dataset.length){
-
-					console.log(&#x27;dataset out for getDataset():&#x27;);
-					console.log(dataset);
 
 					//send the response
 					callback(null, dataset);
