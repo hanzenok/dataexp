@@ -169,8 +169,6 @@
 					</div>
 
 					<div flex></div>
-					<!-- <md-checkbox class="md-mini"></md-checkbox> -->
-					<!-- <input type="checkbox"> -->
 
 					<!-- Hide Button -->
 					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toogle()">
@@ -363,7 +361,7 @@
 							</div>
 							<span flex></span>
 							<div>
-								<input type="checkbox" ng-disabled="$root.disabled" ng-model="$root.force_canvasjs">
+								<input type="checkbox" ng-disabled="$root.disabled" ng-change="$root.reloadCharts()" ng-model="$root.force_canvasjs">
 								<md-tooltip md-visible="false" md-direction="top">Disregard the size and render only by Canvas.js</md-tooltip>
 							</div>
 						</div>

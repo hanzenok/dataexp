@@ -109,7 +109,7 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var graph = function(container, key1, key2, ts_key){
+		var timeline = function(container, key1, key2, ts_key){
 			
 			var canvas_dataset = [];
 			var canvas_dataset2 = [];
@@ -351,7 +351,7 @@ angular.module('MainApp')
 		var ChartsEnum = {
 
 			'Pie': pie_chart,
-			'Graph': graph,
+			'Timeline': timeline,
 			'Scatter': scatter,
 			'Row': row_chart,
 			'Bar': bar_chart
