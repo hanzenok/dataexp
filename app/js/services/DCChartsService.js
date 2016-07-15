@@ -193,13 +193,26 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var bar_chart = function(container, key1, key2){
-	
+		var bar_chart = function(container, key1, key2, ts_key){
+
+
+			dataset.forEach(function(doc){
+				
+				doc[ts_key] = new Date(doc[ts_key]);
+			});
+
+			console.log('key1: ' + key1 + ', ts_key: ' + ts_key);
+
 			//dimension
-			var dim = ndx.dimension(function(d){return +d[key1];});
+			var dim = ndx.dimension(function(d){return d[ts_key];});
 			
 			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return +d[key2];});
+			var group = (!key2) ? dim.group(d3.time.year) : dim.group().reduceSum(function(d) {return +d[key2];});
+
+			//min,max
+			var min_val={}, max_val={};
+			min_val = dim.bottom(1)[0][ts_key];
+			max_val = dim.top(1)[0][ts_key];
 
 			//chart
 			var chart = dc.barChart('#' + container);
@@ -210,17 +223,18 @@ angular.module('MainApp')
 			.renderHorizontalGridLines(true)
 			.renderVerticalGridLines(true)
 			.elasticY(true).xAxisLabel(key1)
-			.x(d3.scale.ordinal().domain(dim))
-			.xUnits(dc.units.ordinal)
+			.x(d3.time.scale().domain([min_val, max_val]))
+			//.x(d3.scale.ordinal().domain(dim))
+			//.xUnits(dc.units.ordinal)
 			.yAxis().tickFormat(d3.format('s'));
 			chart.margins({top: 20, right: 20, bottom: 50, left: 50});
 
-			chart.on('pretransition', function (chart) {
+			// chart.on('pretransition', function (chart) {
 
-				chart.selectAll("g rect").style("fill", function (d) {
-					return 'green';
-				});
-			});
+			// 	chart.selectAll("g rect").style("fill", function (d) {
+			// 		return 'green';
+			// 	});
+			// });
 
 			//on hover text and axis labels
 			if (!key2){

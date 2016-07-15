@@ -70,7 +70,7 @@ angular.module('MainApp')
 				chart_config.type = data.chart;
 				chart_config.key1 = filtered_fields[0].field.name;
 				chart_config.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
-				chart_config.ts_key = (data.chart === EnumCharts.timeline) ? 'time' : null;
+				chart_config.ts_key = (data.chart === EnumCharts.timeline || data.chart === EnumCharts.bar) ? 'time' : null;
 
 				//add to the charts list
 				$rootScope.droppedCharts.push(chart_config);
@@ -153,7 +153,7 @@ angular.module('MainApp')
 			//the chart dropps
 			if ($scope.reload){
 
-				//shot title
+				//show title
 				$scope.hideTitle = false;
 
 				//launch the progress bar

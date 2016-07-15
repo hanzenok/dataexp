@@ -158,7 +158,7 @@
 
 				<!-- Reset Chart Filters -->
 				<div layout="row">
-					<div ng-if="$root.size_status === 'normal'" layout="row" layout-align="start center">
+					<div ng-if="$root.size_status === 'normal' && !$root.force_canvasjs" layout="row" layout-align="start center">
 						<span id="paranth" class="reset_charts">(</span>
 						<span class="reset_charts" id="counter"></span>	<!-- will be filled by DC.js-->
 						<span class="reset_charts">)</span>
