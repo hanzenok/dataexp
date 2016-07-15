@@ -45,11 +45,38 @@ angular.module('MainApp')
 
 				//checks
 				var error_message = '';
-				if (filtered_fields.length > 2)
+				var nb_fields = filtered_fields.length;
+				if (nb_fields > 2)
 					error_message = data.chart + 'Chart should have 1 or 2 fields';
 
-				if (data.chart === EnumCharts.scatter && filtered_fields.length !== 2)
+				if (data.chart === EnumCharts.scatter && nb_fields !== 2)
 					error_message = data.chart + 'Plot should have 2 fields';
+
+				if ($rootScope.force_canvasjs || $rootScope.size_status === 'overflow'){
+
+					if (nb_fields > 1 && (data.chart === EnumCharts.pie || data.chart === EnumCharts.row))
+						error_message = 'Canvas.js PieChart and RowChart should have only 1 field';
+
+					if (nb_fields > 1 && data.chart === EnumCharts.bar){
+
+						//check for the timestamp fields
+						error_message = 'Canvas.js BarChart should have only 1 ';// non-timestamp field';
+						for(var i=0; i<n; i++){
+
+							if (filtered_fields[i].field.format){
+
+								error_message += 'non-timestamp ';
+								break;
+							}
+						}
+						error_message += 'field';
+					}
+
+					if (nb_fields === 1 && data.chart === EnumCharts.bar && filtered_fields[0].field.format){
+
+						error_message = 'Canvas.js BarChart should have only non-timestamp field';
+					}
+				}
 
 				if (error_message){
 
@@ -57,7 +84,7 @@ angular.module('MainApp')
 					$rootScope.$apply(function(){
 						$rootScope.showPB(false);
 					});
-					
+
 					$mdToast.show(
 						$mdToast.simple()
 							.textContent(error_message)
