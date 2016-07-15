@@ -158,7 +158,7 @@
 
 				<!-- Reset Chart Filters -->
 				<div layout="row">
-					<div ng-if="$root.size_status === 'normal' && !$root.force_canvasjs" layout="row" layout-align="start center">
+					<div ng-if="$root.size_status === 'normal' && $root.force_canvasjs" layout="row" layout-align="start center">
 						<span id="paranth" class="reset_charts">(</span>
 						<span class="reset_charts" id="counter"></span>	<!-- will be filled by DC.js-->
 						<span class="reset_charts">)</span>
@@ -439,6 +439,49 @@
 						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="from_date" md-placeholder="From"></md-datepicker>
 						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="to_date" md-placeholder="To"></md-datepicker>
 					</div>
+
+					<!-- Quantification -->
+					<md-divider></md-divider>
+					<md-divider></md-divider>
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
+						<div layout="row" layout-align="start center">
+							<span flex="30">Quantification</span>
+						</div>
+					</md-subheader>
+					<md-content class="list_container">
+						<!-- timestamp field -->
+						<div layout="row">
+							<span>time</span>
+
+							<md-input-container class="margin_0">
+								<md-select ng-model="yup">
+									<md-option value="day">Day</md-option>
+									<md-option value="month">Month</md-option>
+									<md-option value="year">Yeaer</md-option>
+								</md-select>
+							</md-input-container>
+						</div>
+
+						<!-- other fields -->
+						<div layout="column">
+							<!-- <div  > -->
+								
+								<md-slider-container ng-repeat="field_config in $root.droppedFields" layout="row">
+									<span>
+										{{field_config.field.short}}
+									</span>
+									
+									<md-slider flex min="1" max="256" ng-model="yupp" aria-label="red" class="md-mini" id="red-slider">
+									</md-slider>
+
+									<md-input-container class="margin_0" flex="20">
+										<input type="number" ng-model="yupp" min="1" ng-pattern="/^\d*$/">
+									</md-input-container>
+								</md-slider-container>
+							<!-- </div> -->
+						</div>
+
+					</md-content>
 
 					<!-- Correlation -->
 					<md-divider></md-divider>
