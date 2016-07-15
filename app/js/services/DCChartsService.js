@@ -195,23 +195,34 @@ angular.module('MainApp')
 
 		var bar_chart = function(container, key1, key2, ts_key){
 
-			console.log('key1: ' + key1 + ', key2: ' + key2);
+			var pkey = key1; //primary key
+			var skey = key2; //secondary key
 
-			dataset.forEach(function(doc){
-				
-				doc[ts_key] = new Date(doc[ts_key]);
-			});
+			//timestamp field could be passes
+			//as key1 or key2
+			//so assure that it would always be pkey
+			if (skey === ts_key){
 
+				skey = pkey;
+				pkey = ts_key;
+			}
+
+			//parse dates if pkey is a timestamp
+			if (pkey === ts_key){
+
+				dataset.forEach(function(doc){
+					
+					doc[pkey] = new Date(doc[pkey]);
+				});
+			}
+
+
+			console.log('pkey: ' + pkey + ', skey: ' + skey);
 			//dimension
-			var dim = ndx.dimension(function(d){return d[ts_key];});
+			var dim = ndx.dimension(function(d){return d[pkey];});
 			
 			//grouping
-			var group = (!key2) ? dim.group(d3.time.year) : dim.group().reduceSum(function(d) {return +d[key2];});
-
-			//min,max
-			var min_val={}, max_val={};
-			min_val = dim.bottom(1)[0][ts_key];
-			max_val = dim.top(1)[0][ts_key];
+			var group = (!skey) ? dim.group() : dim.group().reduceSum(function(d) {return +d[skey];});
 
 			//chart
 			var chart = dc.barChart('#' + container);
@@ -221,12 +232,27 @@ angular.module('MainApp')
 			.dimension(dim).group(group)
 			.renderHorizontalGridLines(true)
 			.renderVerticalGridLines(true)
-			.elasticY(true).xAxisLabel(key1)
-			.x(d3.time.scale().domain([min_val, max_val]))
-			//.x(d3.scale.ordinal().domain(dim))
-			//.xUnits(dc.units.ordinal)
+			.elasticY(true).xAxisLabel(pkey)
 			.yAxis().tickFormat(d3.format('s'));
 			chart.margins({top: 20, right: 20, bottom: 50, left: 50});
+
+			//x range
+			if (pkey === ts_key){
+
+				//min,max
+				var min_val={}, max_val={};
+				min_val = dim.bottom(1)[0][pkey];
+				max_val = dim.top(1)[0][pkey];
+
+				//time scale
+				chart.x(d3.time.scale().domain([min_val, max_val]));
+			}
+			else{
+
+				//ordinal scale
+				chart.x(d3.scale.ordinal().domain(dim))
+				.xUnits(dc.units.ordinal);
+			}
 
 			// chart.on('pretransition', function (chart) {
 
@@ -236,23 +262,13 @@ angular.module('MainApp')
 			// });
 
 			//on hover text and axis labels
-			if (!key2){
-				chart.title(function(d){
-					return "(" + d.key + ")" 
-					+ "\n" + d.value;
-				})
-				.yAxisLabel('#');
+			if (!skey){
+				chart.yAxisLabel('#');
 			}
 			else{
-				chart.title(function(d){
-					return "(" + d.key + ")"
-					+ "\n" + key2
-					+ ": " + d.value; 
-				})
-				.yAxisLabel(key2);
+				chart.yAxisLabel(skey);
 			}
 
-			//chart.render();
 			return chart;
 		}
 
