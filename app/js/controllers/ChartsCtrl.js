@@ -53,6 +53,11 @@ angular.module('MainApp')
 
 				if (error_message){
 
+					//stop the progress bar
+					$rootScope.$apply(function(){
+						$rootScope.showPB(false);
+					});
+					
 					$mdToast.show(
 						$mdToast.simple()
 							.textContent(error_message)
@@ -66,11 +71,29 @@ angular.module('MainApp')
 
 				//create chart object
 				var chart_config = {};
-				chart_config.id = 'chart_' + Math.floor(Math.random()*2000); //random
+				chart_config.id = 'chart_' + Math.floor(Math.random()*2000); //random dom id
 				chart_config.type = data.chart;
 				chart_config.key1 = filtered_fields[0].field.name;
 				chart_config.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
-				chart_config.ts_key = (data.chart === EnumCharts.timeline || data.chart === EnumCharts.bar) ? 'time' : null;
+				chart_config.ts_key = (data.chart === EnumCharts.timeline || data.chart === EnumCharts.bar) ? 'time' : null; //timestamp key
+
+				//check if user added a timestamp to the barchart
+				//this timestamp is different from ts_key because
+				//it is a key before the dataset goes throug tsproc
+				if (chart_config.type === EnumCharts.bar){
+
+					//first key
+					if(filtered_fields[0].field.format){
+
+						chart_config.key1 = chart_config.ts_key;
+					}
+
+					//or second
+					if (chart_config.key2 && filtered_fields[1].field.format){
+
+						chart_config.key2 = chart_config.ts_key;
+					}
+				}
 
 				//add to the charts list
 				$rootScope.droppedCharts.push(chart_config);

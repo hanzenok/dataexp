@@ -195,13 +195,12 @@ angular.module('MainApp')
 
 		var bar_chart = function(container, key1, key2, ts_key){
 
+			console.log('key1: ' + key1 + ', key2: ' + key2);
 
 			dataset.forEach(function(doc){
 				
 				doc[ts_key] = new Date(doc[ts_key]);
 			});
-
-			console.log('key1: ' + key1 + ', ts_key: ' + ts_key);
 
 			//dimension
 			var dim = ndx.dimension(function(d){return d[ts_key];});
