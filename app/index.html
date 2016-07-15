@@ -149,8 +149,8 @@
 						<!-- Chart -->
 						<div id="{{chart.id}}"></div>
 
-						<!-- Thoose two are only for DC.js graph and scatter -->
-						<div ng-if="chart.type === 'Graph'" id="{{chart.id + '_bar'}}"></div>
+						<!-- Thoose two are only for DC.js charts timeline and scatter -->
+						<div ng-if="chart.type === 'Timeline'" id="{{chart.id + '_bar'}}"></div>
 						<div ng-if="chart.type === 'Scatter'" id="{{chart.id + '_correl'}}"></div>
 					</div>
 
@@ -246,19 +246,19 @@
 									</div>
 								</md-list-item>
 
-								<!-- Graph -->
+								<!-- Timeline -->
 								<md-list-item layout="column">
 									<div class="platform"  layout="column" layout-align="end end">
-										<img src="images/graph_chart.png" class="chart_img" alt="Graph Chart">
+										<img src="images/timeline_chart.png" class="chart_img" alt="Timeline Chart">
 										
-										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Graph')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Graph'}"> 
+										<div class="chart_movable cursor_move md-whiteframe-4dp" ng-drop="true" ng-drop-success="onDropComplete($data, 'Timeline')" ng-drag="!$root.disabled" ng-drag-data="{chart:'Timeline'}"> 
 
-											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Graph'">
+											<div ng-repeat="field_config in $root.chartFields" ng-drag="false" ng-drag-data="field_config" class="loaded drag_field" ng-if="field_config.chart==='Timeline'">
 												{{field_config.field.short}}
 											</div>
 										</div>
 
-										<span class="movable_chart_title">Graph</span>
+										<span class="movable_chart_title">Timeline</span>
 									</div>
 								</md-list-item>
 
