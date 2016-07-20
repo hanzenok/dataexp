@@ -120,7 +120,7 @@ TS.getTimeseries = function(req, res){
 			//save the config before using tsproc
 			//cause tsproc will modify it
 			config = JSON.parse(JSON.stringify(tsproc_config));
-
+			console.log(JSON.stringify(tsproc_config, null, 2));
 			//instantiate the timeseries processor
 			var tsp = new tsproc(datasets, tsproc_config, callback);
 			
