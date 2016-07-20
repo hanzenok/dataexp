@@ -21,6 +21,8 @@ angular.module('MainApp')
 		$scope.to_date = null;
 		$scope.count_negative = false;
 		$scope.max_coef = true;
+		$scope.tsfield_quantum_size = 1;
+		$scope.tsfield_quantum = 'none';
 
 		//dates switcher
 		$scope.enableDates = false;
@@ -78,6 +80,9 @@ angular.module('MainApp')
 			else{
 				config.correlation = null;
 			}
+
+			//quantification options
+			config.tsfield_quantum = $scope.tsfield_quantum;
 
 			console.log('getConfig():');
 			console.log(config);

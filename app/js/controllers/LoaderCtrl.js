@@ -20,6 +20,10 @@ angular.module('MainApp')
 				//if not exists
 				if (index == -1){
 
+					//add the quantification field
+					data.field.quantum = 1;
+
+					//add
 					$rootScope.droppedFields.push(data);
 				}
 			}		
@@ -82,16 +86,28 @@ angular.module('MainApp')
 		//load one merged dataset
 		$scope.load = function(){
 
-			if ($rootScope.droppedTSFields.length && $rootScope.droppedFields.length){
+			var timestamps = $rootScope.droppedTSFields;
+			var fields = $rootScope.droppedFields;
+
+			if (timestamps.length && fields.length){
 
 				//show the progressbar
 				$rootScope.showPB(true);
 
-				//compose all the config and all the fields that needs to be downloaded into one
+				//get the options
+				var options = $rootScope.getOptions();
+
+				//mark all the quantum of all the timestamps
+				timestamps.forEach(function(ts_config, index){
+
+					ts_config.field.quantum = options.tsfield_quantum;
+				});
+
+				//compose all the options and all the fields that needs to be downloaded into one
 				var all_fields_conf = [
-										$rootScope.getOptions(),
-										$rootScope.droppedTSFields, 
-										$rootScope.droppedFields
+										options,
+										timestamps, 
+										fields
 									];
 				console.log(all_fields_conf);
 

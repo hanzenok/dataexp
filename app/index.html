@@ -448,38 +448,58 @@
 							<span flex="30">Quantification</span>
 						</div>
 					</md-subheader>
-					<md-content class="list_container">
-						<!-- timestamp field -->
-						<div layout="row">
-							<span>time</span>
+					<md-content class="list_container" style="height: 120px;">
 
-							<md-input-container class="margin_0">
-								<md-select ng-model="yup">
-									<md-option value="day">Day</md-option>
-									<md-option value="month">Month</md-option>
-									<md-option value="year">Yeaer</md-option>
-								</md-select>
-							</md-input-container>
-						</div>
+						<md-list>
+							<!-- timestamp field -->
+							<md-list-item>
 
-						<!-- other fields -->
-						<div layout="column">
-							<!-- <div  > -->
-								
-								<md-slider-container ng-repeat="field_config in $root.droppedFields" layout="row">
-									<span>
+								<div layout="row" layout-align="left center" flex style="height: 34px;">
+									<span class="drag_field margin_0">time</span>
+
+									<div flex="5"></div>
+									<md-input-container class="margin_0" flex>
+										<md-select ng-model="tsfield_quantum" flex>
+											<md-option value="none"><span class="font_0p8">None</span></md-option>
+											<md-option value="day"><span class="font_0p8">Day</span></md-option>
+											<md-option value="month"><span class="font_0p8">Month</span></md-option>
+											<md-option value="year"><span class="font_0p8">Year</span></md-option>
+										</md-select>
+									</md-input-container>
+									<div flex="5"></div>
+
+									<!-- style="background-color: #3f51b5; font-weight: bold; color:white; width:18px; border-radius: 50%;" -->
+									<!-- style="background: rgba(1, 87, 155, 0.8); border:solid 2px 0px 2px 2px rgb(1, 87, 100); border-top-left-radius: 10px; border-bottom-left-radius: 10px;" -->
+									<md-input-container class="margin_0" flex="20">
+										<input type="number" ng-model="tsfield_quantum_size" min="1" max="1" ng-pattern="/^\d*$/">
+									</md-input-container>
+								</div>
+
+								<md-divider></md-divider>
+							</md-list-item>
+
+
+							<!-- other fields -->
+							<md-list-item ng-repeat="field_config in $root.droppedFields">
+								<md-slider-container layout="row" style="height: 38px;" layout-align="center center">
+									<span class="drag_field margin_0">
 										{{field_config.field.short}}
 									</span>
 									
-									<md-slider flex min="1" max="256" ng-model="yupp" aria-label="red" class="md-mini" id="red-slider">
+									<div flex="5"></div>
+									<md-slider flex min="1" max="256" ng-model="field_config.field.quantum" aria-label="red" class="md-mini">
 									</md-slider>
+									<div flex="5"></div>
 
 									<md-input-container class="margin_0" flex="20">
-										<input type="number" ng-model="yupp" min="1" ng-pattern="/^\d*$/">
+										<input type="number" class="margin_0" ng-model="field_config.field.quantum" min="1" ng-pattern="/^\d*$/">
 									</md-input-container>
 								</md-slider-container>
-							<!-- </div> -->
-						</div>
+
+								<md-divider></md-divider>
+							</md-list-item>
+
+						</md-list>
 
 					</md-content>
 
