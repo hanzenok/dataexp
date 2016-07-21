@@ -8,10 +8,10 @@ angular.module('MainApp')
 		var pie_chart = function(container, key1, key2, ts_key){
 
 			//dimension
-			var dim = ndx.dimension(function(d){return +d[key1];}); //+d for number representation of an object
+			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
 
 			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return +d[key2];});
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
 
 			//chart
 			var chart = dc.pieChart('#' + container);
@@ -159,10 +159,10 @@ angular.module('MainApp')
 		var row_chart = function(container, key1, key2){
 
 			//dimension
-			var dim = ndx.dimension(function(d){return +d[key1];});
+			var dim = ndx.dimension(function(d){return d[key1];});
 			
 			//grouping
-			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return +d[key2];});
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
 
 			//chart
 			var chart = dc.rowChart('#' + container);

@@ -120,8 +120,7 @@ TS.getTimeseries = function(req, res){
 			//save the config before using tsproc
 			//cause tsproc will modify it
 			config = JSON.parse(JSON.stringify(tsproc_config));
-			console.log('before:');
-			console.log(JSON.stringify(tsproc_config, null, 2));
+
 			//instantiate the timeseries processor
 			var tsp = new tsproc(datasets, tsproc_config, callback);
 			
@@ -159,9 +158,6 @@ TS.getTimeseries = function(req, res){
 			stats.to = borders[1];
 			stats.size = tsp.getTSSize();
 			stats.per_day = tsp.getAvgPerDay();
-
-			console.log('after:');
-			console.log(JSON.stringify(tsp.getConfig(), null, 2));
 		})
 		.catch(function(error){
 
