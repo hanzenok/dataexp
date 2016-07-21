@@ -21,7 +21,7 @@ angular.module('MainApp')
 				if (index == -1){
 
 					//add the quantification field
-					data.field.quantum = 1;
+					data.field.quantum = 0;
 
 					//add
 					$rootScope.droppedFields.push(data);

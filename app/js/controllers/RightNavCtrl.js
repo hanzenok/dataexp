@@ -21,7 +21,7 @@ angular.module('MainApp')
 		$scope.to_date = null;
 		$scope.count_negative = false;
 		$scope.max_coef = true;
-		$scope.tsfield_quantum_size = 1;
+		$scope.tsfield_quantum_size = 0;
 		$scope.tsfield_quantum = 'none';
 
 		//dates switcher

@@ -51,7 +51,7 @@ angular.module('MainApp')
 					doc[ts_key] = new Date(doc[ts_key]);
 
 					if (!doc.correlation)
-						doc.correlation = 0.2;
+						doc.correlation = 0.1;
 				});
 			}
 			else{
@@ -80,7 +80,7 @@ angular.module('MainApp')
 			var composite_chart = dc.compositeChart('#' + container);
 			var line_chart1 = dc.lineChart(composite_chart);
 			var line_chart2 = dc.lineChart(composite_chart);
-			var bar_chart = dc.lineChart('#' + container + '_bar');
+			var bar_chart = dc.barChart('#' + container + '_bar');
 
 			//line_chart1
 			line_chart1.dimension(dim)
