@@ -520,7 +520,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 532,
+            "line": 526,
             "description": "A private method that checks\nthe validity of source (mysql database)\nconfiguration",
             "itemtype": "method",
             "name": "isValidSourceConfig",
@@ -543,7 +543,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 555,
+            "line": 549,
             "description": "A private method that checks\nthe validity of store (mysql table)\nconfiguration",
             "itemtype": "method",
             "name": "isValidStoreConfig",
@@ -566,7 +566,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 578,
+            "line": 572,
             "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
             "itemtype": "method",
             "name": "isValidDatasetConfig",

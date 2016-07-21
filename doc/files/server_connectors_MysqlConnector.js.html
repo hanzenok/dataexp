@@ -532,9 +532,6 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 		return;
 	}
 
-	console.log(&#x27;dataset_config in for getDataset():&#x27;);
-	console.log(dataset_config);
-
 	//creating the connection
 	var connection = mysql.createConnection({
 
@@ -581,9 +578,6 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 
 					//send the response
 					if (dataset.length){
-
-						console.log(&#x27;dataset out for getDataset():&#x27;);
-						console.log(dataset);
 
 						//send the response
 						callback(null, dataset);

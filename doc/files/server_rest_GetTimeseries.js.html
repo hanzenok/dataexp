@@ -111,6 +111,57 @@ var TS = {};
 //returns the data
 TS.getTimeseries = function(req, res){
 
+var config = {
+        &quot;transform&quot;:{&quot;type&quot;:&quot;interp&quot;,&quot;interp_type&quot;:&quot;linear&quot;},
+
+        &quot;reduction&quot;:{&quot;type&quot;:&quot;skip&quot;,&quot;size&quot;:1,&quot;target_field&quot;:&quot;&quot;},
+
+        &quot;date_borders&quot;:{&quot;from&quot;:{&quot;date&quot;:&quot;&quot;},&quot;to&quot;:{&quot;date&quot;:&quot;&quot;}},
+
+        &quot;correlation&quot;:{&quot;count_negative&quot;:false,&quot;max_coef&quot;:true},
+
+        &quot;timeseries&quot;:
+            [
+                {
+                &quot;fields&quot;:
+                    [
+                        {&quot;name&quot;:&quot;a&quot;, &quot;quantum&quot;: 2}  //new field
+                    ],
+
+                &quot;timestamp&quot;:{&quot;name&quot;:&quot;year&quot;,&quot;format&quot;:&quot;YYYY&quot;, &quot;quantum&quot;: &quot;none&quot;}
+                },
+
+                {
+                &quot;fields&quot;:
+                    [
+                        {&quot;name&quot;:&quot;b&quot;, &quot;quantum&quot;: 2}  //new field
+                    ],  
+
+                &quot;timestamp&quot;:{&quot;name&quot;:&quot;year&quot;,&quot;format&quot;:&quot;YYYY&quot;, &quot;quantum&quot;: &quot;none&quot;}
+                }
+            ]
+    };
+
+
+var ts = [
+        [{a: 21.07, year:&#x27;2012&#x27;}, {a: 23.23, year:&#x27;2013&#x27;}, {a: 0.24, year:&#x27;2014&#x27;}, {a: 25.25, year:&#x27;2015&#x27;}, {a: 25.25, year:&#x27;2016&#x27;}, {a: 25.25, year:&#x27;2017&#x27;}],
+        [{b: 21.42, year:&#x27;2012&#x27;}, {b: 23.11, year:&#x27;2013&#x27;}, {b: 0.11, year:&#x27;2014&#x27;}, {b: 21.01, year:&#x27;2015&#x27;}, {b: 4.5, year:&#x27;2016&#x27;}, {b: 35.2, year:&#x27;2017&#x27;}]
+     ];
+
+var tsp = new tsproc(ts, config, null);
+
+//we can just merge (without interpolation) the timeseries
+//because they are homogeneous
+tsp.merge();
+tsp.toISO();
+
+
+tsp.quantize(function(err, timeseries){
+
+        if (timeseries) console.log(timeseries);
+});
+
+
 	//get the requested dataset
 	var fields_config = req.body;
 
