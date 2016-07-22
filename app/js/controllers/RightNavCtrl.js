@@ -159,7 +159,7 @@ angular.module('MainApp')
 			});
 		};
 
-		//done like this becaus of the
+		//done like this because of the
 		//event propagation
 		$scope.toogleDates = function(event){
 
@@ -189,5 +189,19 @@ angular.module('MainApp')
 				$scope.toogled_correlation = false;
 			}
 		});
+
+		$scope.hide_dataset = false;
+		$scope.toogleDataset = function(event){
+
+			if (event.target.childNodes.length > 2){
+
+				$scope.hide_dataset = !$scope.hide_dataset;
+
+				$scope.hide_trans = $scope.hide_dataset;
+				$scope.hide_redu = $scope.hide_dataset;
+				$scope.hide_dates = $scope.hide_dataset;
+				$scope.hide_quant = $scope.hide_dataset;
+			}
+		}
 
 	})
