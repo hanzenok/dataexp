@@ -218,6 +218,191 @@
             "class": "FileConnector"
         },
         {
+            "file": "server/connectors/FileConnector.js",
+            "line": 17,
+            "description": "A public method that returns the \nname of the store (single one because it's\na file) that are present in the specified by\nconfig file database.",
+            "itemtype": "method",
+            "name": "getStoreNames",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (file) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (file) configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var source_config = { \n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t} \n    };\n\n    //requesting the stores\n    file_connnector.getStoreNames(source_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[ \n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'test'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'json',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'file',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test.json'\n    \t\t//\t\t}\n    \t\t//\t}\n    \t\t//]\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 88,
+            "description": "A public method that adds a field 'size'\nto the store (file) configuration\nspecified in <code>store_config</code>.",
+            "itemtype": "method",
+            "name": "getStoreSize",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (file) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (file) configuration with\nadditional 'size' field",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'test'},\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t} \n    };\n\n    //requesting the size\n    file_connnector.getStoreSize(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//{ \n    \t\t//\tstore: {name: 'test', size: 4},\n    \t\t//\tsource: { \n    \t\t//\t\tname: 'test',\n    \t\t//\t\ttype: 'json',\n    \t\t//\t\tuser: '',\n    \t\t//\t\tpassw: '',\n    \t\t//\t\tserver: 'file',\n    \t\t//\t\tport: null,\n    \t\t//\t\tdb: 'test.json'\n    \t\t//\t}\n    \t\t//}\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 171,
+            "description": "A public method that returns\nthe field names present in each\ndocument.<br/>\nFields are only checked in the \nfirst document of store (file).<br/>\nAlso the value of each field is saved (cf exemple).<br/>",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (file) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of fields configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'test', size: 4}, //presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t} \n    };\n\n    //requesting the fields\n    file_connnector.getFields(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ \n    \t\t//\t\tfield: {name: 'a', value: 18.11},\n    \t\t//\t\tstore: {name: 'test', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'json',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'file',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test.json'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{\n    \t\t//\t\tfield: {name: 'year', value: '2011'},\n    \t\t//\t\tstore: {name: 'test', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'json',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'file',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test.json'\n    \t\t//\t\t}\n    \t\t//\t}\n         //]\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 290,
+            "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
+            "itemtype": "method",
+            "name": "getDataset",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "A requested dataset",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t],\n    \tstore: {name: 'test', size: 4}, //presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t}\n    };\n\n    //requesting the dataset\n    file_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 389,
+            "description": "A private method that checks\nthe validity of source (file)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidSourceConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (file) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 412,
+            "description": "A private method that checks\nthe validity of store (file)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidStoreConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (file) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 435,
+            "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidDatasetConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
             "file": "server/connectors/MongoConnector.js",
             "line": 15,
             "description": "A public method that returns the \nnames of the stores (mongo collections)\nthat are present in the specified by\nconfig file database.",
@@ -248,7 +433,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 142,
+            "line": 143,
             "description": "A public method that adds a field 'size'\nto the store (mongo collection) configuration\nspecified in <code>store_config</code>.",
             "itemtype": "method",
             "name": "getStoreSize",
@@ -277,7 +462,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 222,
+            "line": 227,
             "description": "A public method that returns\nthe field names present in each\ndocument.<br/>\nFields are only checked in the \nfirst document of store (mongo collection).<br/>\nAlso the value of each field is saved (cf exemple).<br/>\nThe mongodb '_id' field is ommited.",
             "itemtype": "method",
             "name": "getFields",
@@ -306,7 +491,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 363,
+            "line": 369,
             "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
             "itemtype": "method",
             "name": "getDataset",
@@ -327,7 +512,7 @@
                 "type": "Array"
             },
             "example": [
-                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the MongoDB database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t]\n    \tstore: {name: 'collection1'},\n    \tsource: {\n    \t\t\tname: 'test_mongo',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mongo_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the MongoDB database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t],\n    \tstore: {name: 'collection1', size: 3},\t//presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test_mongo',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mongo_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
             ],
             "class": "MongoConnector",
             "module": "server",
@@ -335,7 +520,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 456,
+            "line": 463,
             "description": "A private method that checks\nthe validity of source (mongo database)\nconfiguration",
             "itemtype": "method",
             "name": "isValidSourceConfig",
@@ -358,7 +543,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 479,
+            "line": 486,
             "description": "A private method that checks\nthe validity of store (mongo collection)\nconfiguration",
             "itemtype": "method",
             "name": "isValidStoreConfig",
@@ -381,7 +566,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 502,
+            "line": 509,
             "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
             "itemtype": "method",
             "name": "isValidDatasetConfig",
@@ -433,7 +618,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 154,
+            "line": 155,
             "description": "A public method that adds a field 'size'\nto the store (mysql table) configuration\nspecified in <code>store_config</code>.",
             "itemtype": "method",
             "name": "getStoreSize",
@@ -462,7 +647,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 258,
+            "line": 260,
             "description": "A public method that returns\nthe column names of the table.<br/>\nAlso the first value of each column is saved (cf exemple).<br/>",
             "itemtype": "method",
             "name": "getFields",
@@ -491,7 +676,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 404,
+            "line": 406,
             "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
             "itemtype": "method",
             "name": "getDataset",
@@ -512,7 +697,7 @@
                 "type": "Array"
             },
             "example": [
-                "\n    var mysql_connector = require('../connectors/MysqlConnector');\n\n    //the MySQL database 'test_database' has the following tables:\n    //\t- table1\n    //\t- table2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t]\n    \tstore: {name: 'table1'},\n    \tsource: {\n    \t\t\tname: 'test_mysql',\n    \t\t\ttype: 'mysql',\n    \t\t\tuser: 'root',\n    \t\t\tpassw: 'root',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mysql_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+                "\n    var mysql_connector = require('../connectors/MysqlConnector');\n\n    //the MySQL database 'test_database' has the following tables:\n    //\t- table1\n    //\t- table2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t]\n    \tstore: {name: 'table1', size: 4},\t//presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test_mysql',\n    \t\t\ttype: 'mysql',\n    \t\t\tuser: 'root',\n    \t\t\tpassw: 'root',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mysql_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
             ],
             "class": "MysqlConnector",
             "module": "server",
@@ -520,7 +705,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 526,
+            "line": 529,
             "description": "A private method that checks\nthe validity of source (mysql database)\nconfiguration",
             "itemtype": "method",
             "name": "isValidSourceConfig",
@@ -543,7 +728,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 549,
+            "line": 552,
             "description": "A private method that checks\nthe validity of store (mysql table)\nconfiguration",
             "itemtype": "method",
             "name": "isValidStoreConfig",
@@ -566,7 +751,7 @@
         },
         {
             "file": "server/connectors/MysqlConnector.js",
-            "line": 572,
+            "line": 575,
             "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
             "itemtype": "method",
             "name": "isValidDatasetConfig",

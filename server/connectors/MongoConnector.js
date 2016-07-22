@@ -122,7 +122,8 @@ MongoConnector.getStoreNames = function(source_config, callback){
 				//call the callback
 				if (stores.length){
 
-					callback(null, stores);
+					if (callback)
+						callback(null, stores);
 				}
 				else{
 					callback(new Error('Cannot list the stores'));
@@ -192,9 +193,10 @@ MongoConnector.getStoreNames = function(source_config, callback){
  */
 MongoConnector.getStoreSize = function(store_config, callback){
 
+	//check the config
 	if (!isValidStoreConfig.call(this, store_config)){
 
-		if (callback) 
+		if (callback)
 			callback(new Error('Invalid store config'));
 
 		return;
@@ -212,9 +214,12 @@ MongoConnector.getStoreSize = function(store_config, callback){
 		if (err) callback(new Error('Cannot get the store size'));
 		if (count) {
 
+			//add size to store config
 			store_config.store.size = count;
 
-			callback(null, store_config);
+			//send
+			if (callback)
+				callback(null, store_config);
 		}
 	});
 }
@@ -294,7 +299,7 @@ MongoConnector.getFields = function(store_config, callback){
 	//check the store config
 	if (!isValidStoreConfig.call(this, store_config)){
 
-		if (callback) 
+		if (callback)
 			callback(new Error('Invalid store config'));
 
 		return;
@@ -349,7 +354,8 @@ MongoConnector.getFields = function(store_config, callback){
 			//send the repsonse
 			if (fields.length){
 
-				callback(null, fields);
+				if (callback)
+					callback(null, fields);
 			}
 			else {
 
@@ -380,8 +386,8 @@ MongoConnector.getFields = function(store_config, callback){
  *     	fields: [
  *     		{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
  *     		{name: 'a', value: 18.11}
- *     	]
- *     	store: {name: 'collection1'},
+ *     	],
+ *     	store: {name: 'collection1', size: 3},	//presence of 'size' is optional
  *     	source: {
  *     			name: 'test_mongo',
  *     			type: 'mongo',
@@ -412,7 +418,7 @@ MongoConnector.getDataset = function(dataset_config, callback){
 	//check the field config
 	if (!isValidDatasetConfig.call(this, dataset_config)){
 
-		if (callback) 
+		if (callback)
 			callback(new Error('Invalid dataset config'));
 
 		return;
@@ -443,7 +449,8 @@ MongoConnector.getDataset = function(dataset_config, callback){
 				if (dataset.length){
 
 					//send the response
-					callback(null, dataset);
+					if (callback)
+						callback(null, dataset);
 				}
 				else{
 

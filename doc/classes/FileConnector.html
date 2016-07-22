@@ -52,6 +52,22 @@
                 </div>
             </div>
             
+            <div id="methods-on-page" class="sidebox on-page">
+                <div class="hd">
+                    <h2 class="no-toc">Methods On Page</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="#methods_getDataset">getDataset</a></li>
+                            <li><a href="#methods_getFields">getFields</a></li>
+                            <li><a href="#methods_getStoreNames">getStoreNames</a></li>
+                            <li><a href="#methods_getStoreSize">getStoreSize</a></li>
+                            <li><a href="#methods_isValidDatasetConfig">isValidDatasetConfig</a></li>
+                            <li><a href="#methods_isValidSourceConfig">isValidSourceConfig</a></li>
+                            <li><a href="#methods_isValidStoreConfig">isValidStoreConfig</a></li>
+                    </ul>
+                </div>
+            </div>
             
             
             
@@ -76,8 +92,367 @@
 
 <div id="classdocs">
     <ul>
+        <li><a href="#methods">Methods</a></li>
     </ul>
     <div>
+            <div id="methods">
+<a name="methods_getDataset"></a>
+<div class="method item">
+    Array <strong class="name"><code>getDataset</code></strong>( <code>dataset_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l290"><code>server&#x2F;connectors&#x2F;FileConnector.js:290</code></a>
+    </span><br>
+    <p>A public method that takes in the fields configuration file
+(<code>dataset_config</code>) and returns the requested dataset.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>dataset_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Dataset configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>A requested dataset</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var file_connector = require('../connectors/FileConnector');
+
+//the json file called 'test.json'
+
+//config file
+var dataset_config = {
+    fields: [
+        {name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
+        {name: 'a', value: 18.11}
+    ],
+    store: {name: 'test', size: 4}, //presence of 'size' is optional
+    source: {
+            name: 'test',
+            type: 'json',
+            user: '',
+            passw: '',
+            server: 'file',
+            port: null,
+            db: 'test.json'
+    }
+};
+
+//requesting the dataset
+file_connnector.getDataset(dataset_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //[
+        //  { a: 18.11, year: '2011' },
+        //  { a: 21.07, year: '2012' },
+        //  { a: 23.23, year: '2013' },
+        //  { a: 24.24, year: '2014' }
+        //]
+});
+</code></pre>
+
+</div>
+<a name="methods_getFields"></a>
+<div class="method item">
+    Array <strong class="name"><code>getFields</code></strong>( <code>store_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l171"><code>server&#x2F;connectors&#x2F;FileConnector.js:171</code></a>
+    </span><br>
+    <p>A public method that returns
+the field names present in each
+document.<br/>
+Fields are only checked in the
+first document of store (file).<br/>
+Also the value of each field is saved (cf exemple).<br/></p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>store_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Store (file) configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An array of fields configuration</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var file_connector = require('../connectors/FileConnector');
+
+//the json file called 'test.json'
+
+//config file
+var store_config = {
+    store: {name: 'test', size: 4}, //presence of 'size' is optional
+    source: {
+            name: 'test',
+            type: 'json',
+            user: '',
+            passw: '',
+            server: 'file',
+            port: null,
+            db: 'test.json'
+    } 
+};
+
+//requesting the fields
+file_connnector.getFields(store_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //[
+        //  { 
+        //      field: {name: 'a', value: 18.11},
+        //      store: {name: 'test', size: 4},
+        //      source: { 
+        //          name: 'test',
+        //          type: 'json',
+        //          user: '',
+        //          passw: '',
+        //          server: 'file',
+        //          port: null,
+        //          db: 'test.json'
+        //      }
+        //  },
+        //  {
+        //      field: {name: 'year', value: '2011'},
+        //      store: {name: 'test', size: 4},
+        //      source: { 
+        //          name: 'test',
+        //          type: 'json',
+        //          user: '',
+        //          passw: '',
+        //          server: 'file',
+        //          port: null,
+        //          db: 'test.json'
+        //      }
+        //  }
+     //]
+});
+</code></pre>
+
+</div>
+<a name="methods_getStoreNames"></a>
+<div class="method item">
+    Array <strong class="name"><code>getStoreNames</code></strong>( <code>source_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l17"><code>server&#x2F;connectors&#x2F;FileConnector.js:17</code></a>
+    </span><br>
+    <p>A public method that returns the
+name of the store (single one because it's
+a file) that are present in the specified by
+config file database.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>source_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Source (file) configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An array of stores (file) configuration</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var file_connector = require('../connectors/FileConnector');
+
+//the json file called 'test.json'
+
+//config file
+var source_config = { 
+    source: {
+            name: 'test',
+            type: 'json',
+            user: '',
+            passw: '',
+            server: 'file',
+            port: null,
+            db: 'test.json'
+    } 
+};
+
+//requesting the stores
+file_connnector.getStoreNames(source_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //[ 
+        //  { 
+        //      store: {name: 'test'},
+        //      source: { 
+        //          name: 'test',
+        //          type: 'json',
+        //          user: '',
+        //          passw: '',
+        //          server: 'file',
+        //          port: null,
+        //          db: 'test.json'
+        //      }
+        //  }
+        //]
+});
+</code></pre>
+
+</div>
+<a name="methods_getStoreSize"></a>
+<div class="method item">
+    Array <strong class="name"><code>getStoreSize</code></strong>( <code>store_config, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l88"><code>server&#x2F;connectors&#x2F;FileConnector.js:88</code></a>
+    </span><br>
+    <p>A public method that adds a field 'size'
+to the store (file) configuration
+specified in <code>store_config</code>.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>store_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Store (file) configuration</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Callback function</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; <p>An array of stores (file) configuration with
+additional 'size' field</p>
+</div>
+        <h5>Example</h5>
+        <pre class="code prettyprint"><code>var file_connector = require('../connectors/FileConnector');
+
+//the json file called 'test.json'
+
+//config file
+var store_config = {
+    store: {name: 'test'},
+    source: {
+            name: 'test',
+            type: 'json',
+            user: '',
+            passw: '',
+            server: 'file',
+            port: null,
+            db: 'test.json'
+    } 
+};
+
+//requesting the size
+file_connnector.getStoreSize(store_config, function(err, data){
+
+        if (data) console.log(data);
+        //the result is:
+        //{ 
+        //  store: {name: 'test', size: 4},
+        //  source: { 
+        //      name: 'test',
+        //      type: 'json',
+        //      user: '',
+        //      passw: '',
+        //      server: 'file',
+        //      port: null,
+        //      db: 'test.json'
+        //  }
+        //}
+});
+</code></pre>
+
+</div>
+<a name="methods_isValidDatasetConfig"></a>
+<div class="method item private">
+    Boolean <strong class="name"><code>isValidDatasetConfig</code></strong>( <code>dataset_config </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l435"><code>server&#x2F;connectors&#x2F;FileConnector.js:435</code></a>
+    </span><br>
+    <p>A private method that checks
+the validity of store dataset
+configuration</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>dataset_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Dataset configuration</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; <p>true if config is valid, false if not</p>
+</div>
+</div>
+<a name="methods_isValidSourceConfig"></a>
+<div class="method item private">
+    Boolean <strong class="name"><code>isValidSourceConfig</code></strong>( <code>source_config </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l389"><code>server&#x2F;connectors&#x2F;FileConnector.js:389</code></a>
+    </span><br>
+    <p>A private method that checks
+the validity of source (file)
+configuration</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>source_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Source (file) configuration</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; <p>true if config is valid, false if not</p>
+</div>
+</div>
+<a name="methods_isValidStoreConfig"></a>
+<div class="method item private">
+    Boolean <strong class="name"><code>isValidStoreConfig</code></strong>( <code>store_config </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/server_connectors_FileConnector.js.html#l412"><code>server&#x2F;connectors&#x2F;FileConnector.js:412</code></a>
+    </span><br>
+    <p>A private method that checks
+the validity of store (file)
+configuration</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>store_config</code> <strong>&lt;Json&gt;</strong>
+        <p>Store (file) configuration</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; <p>true if config is valid, false if not</p>
+</div>
+</div>
+            </div>
     </div>
 </div>
 </div>

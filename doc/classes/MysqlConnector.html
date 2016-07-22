@@ -102,7 +102,7 @@
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MysqlConnector.js.html#l404"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:404</code></a>
+        <a href="../files/server_connectors_MysqlConnector.js.html#l406"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:406</code></a>
     </span><br>
     <p>A public method that takes in the fields configuration file
 (<code>dataset_config</code>) and returns the requested dataset.</p>
@@ -135,7 +135,7 @@ var dataset_config = {
         {name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
         {name: 'a', value: 18.11}
     ]
-    store: {name: 'table1'},
+    store: {name: 'table1', size: 4},   //presence of 'size' is optional
     source: {
             name: 'test_mysql',
             type: 'mysql',
@@ -168,7 +168,7 @@ mysql_connnector.getDataset(dataset_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MysqlConnector.js.html#l258"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:258</code></a>
+        <a href="../files/server_connectors_MysqlConnector.js.html#l260"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:260</code></a>
     </span><br>
     <p>A public method that returns
 the column names of the table.<br/>
@@ -336,7 +336,7 @@ mysql_connnector.getStoreNames(source_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MysqlConnector.js.html#l154"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:154</code></a>
+        <a href="../files/server_connectors_MysqlConnector.js.html#l155"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:155</code></a>
     </span><br>
     <p>A public method that adds a field 'size'
 to the store (mysql table) configuration
@@ -406,7 +406,7 @@ mysql_connnector.getStoreSize(store_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MysqlConnector.js.html#l572"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:572</code></a>
+        <a href="../files/server_connectors_MysqlConnector.js.html#l575"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:575</code></a>
     </span><br>
     <p>A private method that checks
 the validity of store dataset
@@ -429,7 +429,7 @@ configuration</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MysqlConnector.js.html#l526"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:526</code></a>
+        <a href="../files/server_connectors_MysqlConnector.js.html#l529"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:529</code></a>
     </span><br>
     <p>A private method that checks
 the validity of source (mysql database)
@@ -452,7 +452,7 @@ configuration</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MysqlConnector.js.html#l549"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:549</code></a>
+        <a href="../files/server_connectors_MysqlConnector.js.html#l552"><code>server&#x2F;connectors&#x2F;MysqlConnector.js:552</code></a>
     </span><br>
     <p>A private method that checks
 the validity of store (mysql table)

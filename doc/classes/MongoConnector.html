@@ -102,7 +102,7 @@
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l363"><code>server&#x2F;connectors&#x2F;MongoConnector.js:363</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l369"><code>server&#x2F;connectors&#x2F;MongoConnector.js:369</code></a>
     </span><br>
     <p>A public method that takes in the fields configuration file
 (<code>dataset_config</code>) and returns the requested dataset.</p>
@@ -134,8 +134,8 @@ var dataset_config = {
     fields: [
         {name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
         {name: 'a', value: 18.11}
-    ]
-    store: {name: 'collection1'},
+    ],
+    store: {name: 'collection1', size: 3},  //presence of 'size' is optional
     source: {
             name: 'test_mongo',
             type: 'mongo',
@@ -168,7 +168,7 @@ mongo_connnector.getDataset(dataset_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l222"><code>server&#x2F;connectors&#x2F;MongoConnector.js:222</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l227"><code>server&#x2F;connectors&#x2F;MongoConnector.js:227</code></a>
     </span><br>
     <p>A public method that returns
 the field names present in each
@@ -340,7 +340,7 @@ mongo_connnector.getStoreNames(source_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l142"><code>server&#x2F;connectors&#x2F;MongoConnector.js:142</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l143"><code>server&#x2F;connectors&#x2F;MongoConnector.js:143</code></a>
     </span><br>
     <p>A public method that adds a field 'size'
 to the store (mongo collection) configuration
@@ -410,7 +410,7 @@ mongo_connnector.getStoreSize(store_config, function(err, data){
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l502"><code>server&#x2F;connectors&#x2F;MongoConnector.js:502</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l509"><code>server&#x2F;connectors&#x2F;MongoConnector.js:509</code></a>
     </span><br>
     <p>A private method that checks
 the validity of store dataset
@@ -433,7 +433,7 @@ configuration</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l456"><code>server&#x2F;connectors&#x2F;MongoConnector.js:456</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l463"><code>server&#x2F;connectors&#x2F;MongoConnector.js:463</code></a>
     </span><br>
     <p>A private method that checks
 the validity of source (mongo database)
@@ -456,7 +456,7 @@ configuration</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_connectors_MongoConnector.js.html#l479"><code>server&#x2F;connectors&#x2F;MongoConnector.js:479</code></a>
+        <a href="../files/server_connectors_MongoConnector.js.html#l486"><code>server&#x2F;connectors&#x2F;MongoConnector.js:486</code></a>
     </span><br>
     <p>A private method that checks
 the validity of store (mongo collection)

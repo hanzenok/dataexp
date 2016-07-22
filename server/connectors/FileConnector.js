@@ -14,6 +14,56 @@ var dataset_prefix = './server/datasets/';
  */
 var FileConnector = {};
 
+/**
+ * A public method that returns the 
+ * name of the store (single one because it's
+ * a file) that are present in the specified by
+ * config file database.
+ * @method getStoreNames
+ * @param {json} source_config Source (file) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of stores (file) configuration
+ * 
+ * @example
+ *     var file_connector = require('../connectors/FileConnector');
+ *
+ *     //the json file called 'test.json'
+ *
+ *     //config file
+ *     var source_config = { 
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'json',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'file',
+ *     			port: null,
+ *     			db: 'test.json'
+ *     	} 
+ *     };
+ *
+ *     //requesting the stores
+ *     file_connnector.getStoreNames(source_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[ 
+ *     		//	{ 
+ *     		//		store: {name: 'test'},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'json',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'file',
+ *     		//			port: null,
+ *     		//			db: 'test.json'
+ *     		//		}
+ *     		//	}
+ *     		//]
+ *     });
+ *
+ */
 FileConnector.getStoreNames = function(source_config, callback){
 
 	//check the source config
@@ -24,7 +74,7 @@ FileConnector.getStoreNames = function(source_config, callback){
 
 		return;
 	}
-	
+
 	//send the source name
 	var doc = {};
 	doc.store = {name: source_config.source.name};
@@ -35,8 +85,58 @@ FileConnector.getStoreNames = function(source_config, callback){
 	}
 }
 
+/**
+ * A public method that adds a field 'size'
+ * to the store (file) configuration
+ * specified in <code>store_config</code>.
+ * @method getStoreSize
+ * @param {json} store_config Store (file) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of stores (file) configuration with
+ * additional 'size' field
+ * 
+ * @example
+ *     var file_connector = require('../connectors/FileConnector');
+ *
+ *     //the json file called 'test.json'
+ *
+ *     //config file
+ *     var store_config = {
+ *     	store: {name: 'test'},
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'json',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'file',
+ *     			port: null,
+ *     			db: 'test.json'
+ *     	} 
+ *     };
+ *
+ *     //requesting the size
+ *     file_connnector.getStoreSize(store_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//{ 
+ *     		//	store: {name: 'test', size: 4},
+ *     		//	source: { 
+ *     		//		name: 'test',
+ *     		//		type: 'json',
+ *     		//		user: '',
+ *     		//		passw: '',
+ *     		//		server: 'file',
+ *     		//		port: null,
+ *     		//		db: 'test.json'
+ *     		//	}
+ *     		//}
+ *     });
+ *
+ */
 FileConnector.getStoreSize = function(store_config, callback){
 
+	//check the config
 	if (!isValidStoreConfig.call(this, store_config)){
 
 		if (callback) 
@@ -49,7 +149,6 @@ FileConnector.getStoreSize = function(store_config, callback){
 	fs.readFile(dataset_prefix + store_config.source.name + '.json', function(err, data){
 
 		if (err){
-			console.log('here: ' + dataset_prefix + store_config.source.name + '.json');
 			callback(new Error('Cannot read the dataset'));
 		}
 		else{
@@ -57,9 +156,9 @@ FileConnector.getStoreSize = function(store_config, callback){
 			//get the dataset
 			var dataset = JSON.parse(data);
 
-			//add size
+			//add size to the store config
 			store_config.store.size = dataset.length;
-			
+
 			//send
 			if (callback)
 				callback(null, store_config);
@@ -69,10 +168,76 @@ FileConnector.getStoreSize = function(store_config, callback){
 
 }
 
-//get all the fields of a store
+/**
+ * A public method that returns
+ * the field names present in each
+ * document.<br/>
+ * Fields are only checked in the 
+ * first document of store (file).<br/>
+ * Also the value of each field is saved (cf exemple).<br/>
+ * @method getFields
+ * @param {json} store_config Store (file) configuration
+ * @param {function} callback Callback function
+ * @return {array} An array of fields configuration
+ * 
+ * @example
+ *     var file_connector = require('../connectors/FileConnector');
+ *
+ *     //the json file called 'test.json'
+ *
+ *     //config file
+ *     var store_config = {
+ *     	store: {name: 'test', size: 4}, //presence of 'size' is optional
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'json',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'file',
+ *     			port: null,
+ *     			db: 'test.json'
+ *     	} 
+ *     };
+ *
+ *     //requesting the fields
+ *     file_connnector.getFields(store_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[
+ *     		//	{ 
+ *     		//		field: {name: 'a', value: 18.11},
+ *     		//		store: {name: 'test', size: 4},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'json',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'file',
+ *     		//			port: null,
+ *     		//			db: 'test.json'
+ *     		//		}
+ *     		//	},
+ *     		//	{
+ *     		//		field: {name: 'year', value: '2011'},
+ *     		//		store: {name: 'test', size: 4},
+ *     		//		source: { 
+ *     		//			name: 'test',
+ *     		//			type: 'json',
+ *     		//			user: '',
+ *     		//			passw: '',
+ *     		//			server: 'file',
+ *     		//			port: null,
+ *     		//			db: 'test.json'
+ *     		//		}
+ *     		//	}
+ *          //]
+ *     });
+ *
+ */
 FileConnector.getFields = function(store_config, callback){
 
-	//check the store config
+	//check the config
 	if (!isValidStoreConfig.call(this, store_config)){
 
 		if (callback) 
@@ -122,6 +287,51 @@ FileConnector.getFields = function(store_config, callback){
 
 }
 
+/**
+ * A public method that takes in the fields configuration file
+ * (<code>dataset_config</code>) and returns the requested dataset.
+ * @method getDataset
+ * @param {json} dataset_config Dataset configuration
+ * @param {function} callback Callback function
+ * @return {array} A requested dataset
+ * 
+ * @example
+ *     var file_connector = require('../connectors/FileConnector');
+ *
+ *     //the json file called 'test.json'
+ *
+ *     //config file
+ *     var dataset_config = {
+ *     	fields: [
+ *     		{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
+ *     		{name: 'a', value: 18.11}
+ *     	],
+ *     	store: {name: 'test', size: 4}, //presence of 'size' is optional
+ *     	source: {
+ *     			name: 'test',
+ *     			type: 'json',
+ *     			user: '',
+ *     			passw: '',
+ *     			server: 'file',
+ *     			port: null,
+ *     			db: 'test.json'
+ *     	}
+ *     };
+ *
+ *     //requesting the dataset
+ *     file_connnector.getDataset(dataset_config, function(err, data){
+ *	
+ *     		if (data) console.log(data);
+ *     		//the result is:
+ *     		//[
+ *     		//	{ a: 18.11, year: '2011' },
+ *     		//	{ a: 21.07, year: '2012' },
+ *     		//	{ a: 23.23, year: '2013' },
+ *     		//	{ a: 24.24, year: '2014' }
+ *     		//]
+ *     });
+ *
+ */
 FileConnector.getDataset = function(dataset_config, callback){
 
 	//check the field config
@@ -132,6 +342,9 @@ FileConnector.getDataset = function(dataset_config, callback){
 
 		return;
 	}
+
+	console.log('FileConnector:getFields() in');
+	console.log(JSON.stringify(dataset_config, null, 2));
 
 	//read the file
 	fs.readFile(dataset_prefix + dataset_config.source.name + '.json', function(err, data){
@@ -163,6 +376,9 @@ FileConnector.getDataset = function(dataset_config, callback){
 
 			});
 
+			console.log('FileConnector:getFields() out');
+			console.log(new_dataset);
+
 			//send
 			if (callback)
 				callback(null, new_dataset);
@@ -170,6 +386,15 @@ FileConnector.getDataset = function(dataset_config, callback){
 	});
 }
 
+/**
+ * A private method that checks
+ * the validity of source (file)
+ * configuration 
+ * @method isValidSourceConfig
+ * @private
+ * @param {json} source_config Source (file) configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidSourceConfig(source_config){
 
 	if (!source_config || typeof source_config !== 'object') 
@@ -184,6 +409,15 @@ function isValidSourceConfig(source_config){
 	return true;
 }
 
+/**
+ * A private method that checks
+ * the validity of store (file)
+ * configuration 
+ * @method isValidStoreConfig
+ * @private
+ * @param {json} store_config Store (file) configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidStoreConfig(store_config){
 
 	if (!isValidSourceConfig(store_config))
@@ -198,6 +432,15 @@ function isValidStoreConfig(store_config){
 	return true;
 }
 
+/**
+ * A private method that checks
+ * the validity of store dataset
+ * configuration 
+ * @method isValidDatasetConfig
+ * @private
+ * @param {json} dataset_config Dataset configuration
+ * @return {boolean} true if config is valid, false if not
+ */
 function isValidDatasetConfig(dataset_config){
 
 	if (!isValidStoreConfig(dataset_config))

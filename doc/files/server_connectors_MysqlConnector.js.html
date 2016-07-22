@@ -210,7 +210,8 @@ MysqlConnector.getStoreNames = function(source_config, callback){
 					//call the callback
 					if (stores.length){
 
-						callback(null, stores);
+						if (callback)
+							callback(null, stores);
 					}
 					else{
 						callback(new Error(&#x27;Cannot list the stores&#x27;));
@@ -277,6 +278,7 @@ MysqlConnector.getStoreNames = function(source_config, callback){
  */
 MysqlConnector.getStoreSize = function(store_config, callback){
 
+	//check the config
 	if (!isValidStoreConfig.call(this, store_config)){
 
 		if (callback) 
@@ -298,9 +300,8 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 	connection.connect(function(err){
 
 		if (err){
-			if (callback){
+
 				callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
-			}
 		}
 		else{
 
@@ -317,7 +318,8 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 					//set the size
 					store_config.store.size = rows[0].count;
 
-					callback(null, store_config);
+					if (callback)
+						callback(null, store_config);
 				}
 
 			});
@@ -418,9 +420,8 @@ MysqlConnector.getFields = function(store_config, callback){
 	connection.connect(function(err){
 
 		if (err){
-			if (callback){
-				callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
-			}
+
+			callback(new Error(&#x27;Error connecting to the mysql server&#x27;));
 		}
 		else{
 			
@@ -457,7 +458,8 @@ MysqlConnector.getFields = function(store_config, callback){
 					//send the repsonse
 					if (fields.length){
 
-						callback(null, fields);
+						if (callback)
+							callback(null, fields);
 					}
 					else {
 
@@ -495,7 +497,7 @@ MysqlConnector.getFields = function(store_config, callback){
  *     		{name: &#x27;year&#x27;, value: &#x27;2011&#x27;, format: &#x27;YYYY&#x27;}, //&#x27;value&#x27; and &#x27;format&#x27; fields are optional
  *     		{name: &#x27;a&#x27;, value: 18.11}
  *     	]
- *     	store: {name: &#x27;table1&#x27;},
+ *     	store: {name: &#x27;table1&#x27;, size: 4},	//presence of &#x27;size&#x27; is optional
  *     	source: {
  *     			name: &#x27;test_mysql&#x27;,
  *     			type: &#x27;mysql&#x27;,
@@ -580,7 +582,8 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 					if (dataset.length){
 
 						//send the response
-						callback(null, dataset);
+						if (callback)
+							callback(null, dataset);
 					}
 					else{
 

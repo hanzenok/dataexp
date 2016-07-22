@@ -137,7 +137,8 @@ MysqlConnector.getStoreNames = function(source_config, callback){
 					//call the callback
 					if (stores.length){
 
-						callback(null, stores);
+						if (callback)
+							callback(null, stores);
 					}
 					else{
 						callback(new Error('Cannot list the stores'));
@@ -204,6 +205,7 @@ MysqlConnector.getStoreNames = function(source_config, callback){
  */
 MysqlConnector.getStoreSize = function(store_config, callback){
 
+	//check the config
 	if (!isValidStoreConfig.call(this, store_config)){
 
 		if (callback) 
@@ -225,9 +227,8 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 	connection.connect(function(err){
 
 		if (err){
-			if (callback){
+
 				callback(new Error('Error connecting to the mysql server'));
-			}
 		}
 		else{
 
@@ -244,7 +245,8 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 					//set the size
 					store_config.store.size = rows[0].count;
 
-					callback(null, store_config);
+					if (callback)
+						callback(null, store_config);
 				}
 
 			});
@@ -345,9 +347,8 @@ MysqlConnector.getFields = function(store_config, callback){
 	connection.connect(function(err){
 
 		if (err){
-			if (callback){
-				callback(new Error('Error connecting to the mysql server'));
-			}
+
+			callback(new Error('Error connecting to the mysql server'));
 		}
 		else{
 			
@@ -384,7 +385,8 @@ MysqlConnector.getFields = function(store_config, callback){
 					//send the repsonse
 					if (fields.length){
 
-						callback(null, fields);
+						if (callback)
+							callback(null, fields);
 					}
 					else {
 
@@ -422,7 +424,7 @@ MysqlConnector.getFields = function(store_config, callback){
  *     		{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional
  *     		{name: 'a', value: 18.11}
  *     	]
- *     	store: {name: 'table1'},
+ *     	store: {name: 'table1', size: 4},	//presence of 'size' is optional
  *     	source: {
  *     			name: 'test_mysql',
  *     			type: 'mysql',
@@ -507,7 +509,8 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 					if (dataset.length){
 
 						//send the response
-						callback(null, dataset);
+						if (callback)
+							callback(null, dataset);
 					}
 					else{
 
