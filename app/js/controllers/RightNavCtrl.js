@@ -161,13 +161,14 @@ angular.module('MainApp')
 
 		//done like this because of the
 		//event propagation
-		$scope.toogleDates = function(event){
+		//used with 'ng-click="toogleDates($event)"'
+		// $scope.toogleDates = function(event){
 
-			$scope.enableDates = !$scope.enableDates;
+		// 	$scope.enableDates = !$scope.enableDates;
 
-			//http://stackoverflow.com/questions/20300866/angularjs-ng-click-stoppropagation
-			event.stopPropagation();
-		}
+		// 	//http://stackoverflow.com/questions/20300866/angularjs-ng-click-stoppropagation
+		// 	event.stopPropagation();
+		// }
 
 		//done this way to fix
 		//the options when correlation disabled
