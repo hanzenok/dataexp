@@ -73,8 +73,8 @@
     .wrap_quantif_field{
 
         width: 125px;
-        border: solid 2px rgb(1, 87, 100);
-        background-color: #fff6d9;
+        /*border: solid 2px #427ba8;*/
+        background-color: #dedede;/*#fff6d9;*/
         display: inline-block;
         margin: 5px;
         border-radius: 10px;
@@ -95,9 +95,9 @@
     .quantif_field{
 
         width: 70px;
-        height: 35px;
-        background: rgba(1, 87, 155, 0.8);
-        color: rgba(250, 250, 250, 0.8);
+        height: 30px;
+        background: #838c94;/*#427ba8;*//*rgba(1, 87, 155, 0.8);*/
+        color: white;
         text-align: center;
         font-weight: bold;
         line-height:30px;
@@ -513,10 +513,17 @@
     }
 
     /*http://stackoverflow.com/questions/30981429/angular-material-ng-click-strange-border-highlight*/
-	div:focus {
+	div:focus{
+
 		outline: none;
 		border: 0;
 	}
+
+    .bold_gray{
+
+        font-weight: bold;
+        color:#666d73 !important;
+    }
 
 /*	.md-subheader-inner{
 

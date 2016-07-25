@@ -449,28 +449,28 @@
 						</div>
 					</md-subheader>
 					<div style="overflow: auto; height: 100px;" class="list_container chrome_bugfix1" ng-hide="hide_quant">
-						<div layout-align="center" class="chrome_bugfix2">
+						<div layout-align="center center" class="chrome_bugfix2">
 
 							<!-- timestamp field 'time'-->
-							<div class="wrap_quantif_field" layout="row" id="wrap_timestamp">
+							<div class="wrap_quantif_field" layout="row" layout-align="center center" id="wrap_timestamp">
 								<div class="quantif_field inline_block">
 									time
+
+									<md-tooltip md-visible="false" md-direction="top">
+										timestamp field
+									</md-tooltip>
 								</div>
 
-								<div class="inline_block" layout="row" layout-align="center center">
-									<md-input-container class="margin_0">
-										<md-select ng-model="tsfield_quantum" flex>
-											<md-option value="none"><span class="font_0p8">None</span></md-option>
-											<md-option value="day"><span class="font_0p8">Day</span></md-option>
-											<md-option value="month"><span class="font_0p8">Month</span></md-option>
-											<md-option value="year"><span class="font_0p8">Year</span></md-option>
+								<div class="inline_block">
+									<md-input-container class="margin_0" style="height: 20px;">
+										<md-select ng-model="tsfield_quantum" flex aria-label="Quantum Select">
+											<md-option value="none"><span class="font_0p8 bold_gray">None</span></md-option>
+											<md-option value="day"><span class="font_0p8 bold_gray">Day</span></md-option>
+											<md-option value="month"><span class="font_0p8 bold_gray">Month</span></md-option>
+											<md-option value="year"><span class="font_0p8 bold_gray">Year</span></md-option>
 										</md-select>
 									</md-input-container>
 								</div>
-
-								<md-tooltip md-visible="false" md-direction="top">
-									timestamp field
-								</md-tooltip>
 							</div>
 
 
@@ -478,15 +478,15 @@
 							<div class="wrap_quantif_field" layout="row" ng-repeat="field_config in $root.droppedFields">
 								<div class="quantif_field inline_block">
 									{{field_config.field.short}}
+
+									<md-tooltip md-visible="false" md-direction="top">
+										{{field_config.field.name}} ({{field_config.store.name}})
+									</md-tooltip>
 								</div>
 
 								<md-input-container class="margin_0" style="width:45px; height: 20px;">
-									<input type="number" class="margin_0" ng-model="field_config.field.quantum" min="0" ng-pattern="/^\d*$/">
+									<input type="number" aria-label="Quantum Select" class="bold_gray" ng-model="field_config.field.quantum" min="0" ng-pattern="/^\d*$/">
 								</md-input-container>
-
-								<md-tooltip md-visible="false" md-direction="top">
-									{{field_config.field.name}} ({{field_config.store.name}})
-								</md-tooltip>
 							</div>
 						</div>
 					</div>
