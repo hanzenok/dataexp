@@ -6,10 +6,6 @@ var tsproc = require('tsproc');
  * @submodule RestApi
  */
 
-/**
- * @class GetTimseries
- */
-
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
 var mysql_connector = require('../connectors/MysqlConnector');
@@ -33,6 +29,9 @@ stats.to = '';
 //ts config
 var config = {};
 
+/**
+ * @class GetTimseries
+ */
 var TS = {};
 
 //returns the data
@@ -47,7 +46,7 @@ TS.getTimeseries = function(req, res){
 	//2 - other fields
 	if(fields_config.length){
 
-		//regroup the field from the same source
+		//regroup the fields from the same source
 		var new_fields_config = regroupFields.call(this, fields_config);
 
 		//options config

@@ -57,13 +57,31 @@
             "fors": {},
             "namespaces": {}
         },
-        "server/rest/GetTimeseries.js": {
-            "name": "server/rest/GetTimeseries.js",
+        "server/rest/GetSources.js": {
+            "name": "server/rest/GetSources.js",
             "modules": {
                 "RestApi": 1
             },
             "classes": {
+                "GetSources": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetTimeseries.js": {
+            "name": "server/rest/GetTimeseries.js",
+            "modules": {},
+            "classes": {
                 "GetTimseries": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/routes.js": {
+            "name": "server/routes.js",
+            "modules": {},
+            "classes": {
+                "routes": 1
             },
             "fors": {},
             "namespaces": {}
@@ -81,12 +99,14 @@
                 "FileConnector": 1,
                 "MongoConnector": 1,
                 "MysqlConnector": 1,
-                "GetTimseries": 1
+                "GetSources": 1,
+                "GetTimseries": 1,
+                "routes": 1
             },
             "fors": {},
             "namespaces": {},
-            "file": "server/rest/GetTimeseries.js",
-            "line": 9
+            "file": "server/routes.js",
+            "line": 16
         },
         "Connectors": {
             "name": "Connectors",
@@ -111,15 +131,17 @@
             "submodules": {},
             "elements": {},
             "classes": {
-                "GetTimseries": 1
+                "GetSources": 1,
+                "GetTimseries": 1,
+                "routes": 1
             },
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
             "module": "server",
             "namespace": "",
-            "file": "server/rest/GetTimeseries.js",
-            "line": 9,
+            "file": "server/routes.js",
+            "line": 16,
             "description": "Rest API's offered by server."
         }
     },
@@ -169,6 +191,20 @@
             "line": 9,
             "description": "A connector to the MySQL database"
         },
+        "GetSources": {
+            "name": "GetSources",
+            "shortname": "GetSources",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetSources.js",
+            "line": 9
+        },
         "GetTimseries": {
             "name": "GetTimseries",
             "shortname": "GetTimseries",
@@ -181,7 +217,22 @@
             "submodule": "RestApi",
             "namespace": "",
             "file": "server/rest/GetTimeseries.js",
-            "line": 9
+            "line": 32
+        },
+        "routes": {
+            "name": "routes",
+            "shortname": "routes",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/routes.js",
+            "line": 16,
+            "description": "A class (module) that defines all \nthe API URLs, and the related methods.\n<br/>\nHere are some of the URLs: <br/>\n- <b>/api/sources</b>: GET a JSON with sources configuration\n- <b>/api/sources</b>: POST a new source, returns an empty array\n- <b>/api/sources/:source_name</b>: DELETE source, returns an empty array\n- <b>/api/stores</b>: POST a sources config, returns an array of stores\n- <b>/api/fields</b>: POST a stores config, returns an array of fields\n- <b>/api/timeseries</b>: POST a fields config, returns the realted dataset\n- <b>/api/stats</b>: GET statistics from tsproc\n- <b>/api/config</b>: GET configuration JSON of tsproc"
         }
     },
     "elements": {},
@@ -335,7 +386,7 @@
         },
         {
             "file": "server/connectors/FileConnector.js",
-            "line": 389,
+            "line": 383,
             "description": "A private method that checks\nthe validity of source (file)\nconfiguration",
             "itemtype": "method",
             "name": "isValidSourceConfig",
@@ -358,7 +409,7 @@
         },
         {
             "file": "server/connectors/FileConnector.js",
-            "line": 412,
+            "line": 406,
             "description": "A private method that checks\nthe validity of store (file)\nconfiguration",
             "itemtype": "method",
             "name": "isValidStoreConfig",
@@ -381,7 +432,7 @@
         },
         {
             "file": "server/connectors/FileConnector.js",
-            "line": 435,
+            "line": 429,
             "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
             "itemtype": "method",
             "name": "isValidDatasetConfig",
@@ -771,6 +822,28 @@
             "class": "MysqlConnector",
             "module": "server",
             "submodule": "Connectors"
+        },
+        {
+            "file": "server/rest/GetSources.js",
+            "line": 16,
+            "description": "A method that returns a JSON file\nwith configuration of sources (ex: MySQL database)\n<br/>\nThe configuration of sources is in the file\n<code>./server/config/sources.json</code>",
+            "itemtype": "method",
+            "name": "getSources",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetSources",
+            "module": "server",
+            "submodule": "RestApi"
         }
     ],
     "warnings": [

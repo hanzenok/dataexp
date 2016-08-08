@@ -343,9 +343,6 @@ FileConnector.getDataset = function(dataset_config, callback){
 		return;
 	}
 
-	console.log('FileConnector:getFields() in');
-	console.log(JSON.stringify(dataset_config, null, 2));
-
 	//read the file
 	fs.readFile(dataset_prefix + dataset_config.source.name + '.json', function(err, data){
 
@@ -375,9 +372,6 @@ FileConnector.getDataset = function(dataset_config, callback){
 				new_dataset[index] = tmp;
 
 			});
-
-			console.log('FileConnector:getFields() out');
-			console.log(new_dataset);
 
 			//send
 			if (callback)
