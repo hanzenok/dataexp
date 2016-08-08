@@ -11,6 +11,23 @@ var ConnectorsEnum = {
 					'csv': file_connector
 					};
 
+/**
+ * Rest API's offered by server.
+ * @module server
+ * @submodule RestApi
+ */
+
+/**
+ * @class GetFields
+ */
+
+/**
+ * A method that returns (via the object <code>res</code>) the fields
+ * configuration of the requested (via the object <code>req</code>) stores.
+ * @method getFields
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 var getFields = function(req, res){
 	
 	//get the requested stores
@@ -35,8 +52,6 @@ var getFields = function(req, res){
 
 
 		//wait for parsed fields
-		//add sources and stores 
-		//information
 		Promise.all(promises)
 		.then(function(fields){
 

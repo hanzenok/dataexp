@@ -1,10 +1,34 @@
 var fs = require('fs');
 var underscore = require('underscore');
 
-var config_file = './server/config/sources.json';
-var dataset_prefix = './server/datasets/'
+/**
+ * Rest API's offered by server.
+ * @module server
+ * @submodule RestApi
+ */
 
-//adds a new source to the config file
+/**
+ * @class PutSource
+ */
+
+var config_file = './server/config/sources.json'; //config file path
+var dataset_prefix = './server/datasets/'; //directory with sources of type 'file' (JSON and CSV)
+
+/**
+ * A method that adds a new source configuration
+ * to the <code>./server/config/sources.json</code>
+ * file. The source to add is passed via the <code>req</code>
+ * object.
+ * <br/>
+ * If the new source is a file (JSON or CSV),
+ * then it would be saved as a json to the directory 
+ * <code>./server/datasets/</code>.
+ * <br/>
+ * An empty array is returned by the <code>res</code> object.
+ * @method putSource
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 var putSource = function(req, res){
 	
 	//get the recieved source
@@ -115,14 +139,10 @@ var putSource = function(req, res){
 							res.status(500).send('The source name doesn\'t supposed to change');
 						}
 					}
-					
 				}
 			});
 		}
 	}
-
-
 }
-
 
 module.exports = putSource;

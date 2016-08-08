@@ -11,10 +11,23 @@ var ConnectorsEnum = {
 					'csv': file_connector
 					};
 
-var config_file = './server/config/sources.json';
+/**
+ * Rest API's offered by server.
+ * @module server
+ * @submodule RestApi
+ */
 
-//return the config file with all the stores
-//of sources specified in the sources config file
+/**
+ * @class GetStores
+ */
+
+/**
+ * A method that returns (via the object <code>res</code>) the stores
+ * configuration of the requested (via the object <code>req</code>) sources.
+ * @method getStores
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 var getStores = function(req, res){
 
 	//get the requested sources

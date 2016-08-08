@@ -57,13 +57,40 @@
             "fors": {},
             "namespaces": {}
         },
-        "server/rest/GetSources.js": {
-            "name": "server/rest/GetSources.js",
+        "server/rest/DeleteSource.js": {
+            "name": "server/rest/DeleteSource.js",
             "modules": {
                 "RestApi": 1
             },
             "classes": {
+                "DeleteSource": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetFields.js": {
+            "name": "server/rest/GetFields.js",
+            "modules": {},
+            "classes": {
+                "GetFields": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetSources.js": {
+            "name": "server/rest/GetSources.js",
+            "modules": {},
+            "classes": {
                 "GetSources": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetStores.js": {
+            "name": "server/rest/GetStores.js",
+            "modules": {},
+            "classes": {
+                "GetStores": 1
             },
             "fors": {},
             "namespaces": {}
@@ -73,6 +100,15 @@
             "modules": {},
             "classes": {
                 "GetTimseries": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/PutSource.js": {
+            "name": "server/rest/PutSource.js",
+            "modules": {},
+            "classes": {
+                "PutSource": 1
             },
             "fors": {},
             "namespaces": {}
@@ -99,14 +135,18 @@
                 "FileConnector": 1,
                 "MongoConnector": 1,
                 "MysqlConnector": 1,
+                "DeleteSource": 1,
+                "GetFields": 1,
                 "GetSources": 1,
+                "GetStores": 1,
                 "GetTimseries": 1,
+                "PutSource": 1,
                 "routes": 1
             },
             "fors": {},
             "namespaces": {},
             "file": "server/routes.js",
-            "line": 16
+            "line": 17
         },
         "Connectors": {
             "name": "Connectors",
@@ -131,8 +171,12 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "DeleteSource": 1,
+                "GetFields": 1,
                 "GetSources": 1,
+                "GetStores": 1,
                 "GetTimseries": 1,
+                "PutSource": 1,
                 "routes": 1
             },
             "fors": {},
@@ -141,7 +185,7 @@
             "module": "server",
             "namespace": "",
             "file": "server/routes.js",
-            "line": 16,
+            "line": 17,
             "description": "Rest API's offered by server."
         }
     },
@@ -191,6 +235,34 @@
             "line": 9,
             "description": "A connector to the MySQL database"
         },
+        "DeleteSource": {
+            "name": "DeleteSource",
+            "shortname": "DeleteSource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/DeleteSource.js",
+            "line": 9
+        },
+        "GetFields": {
+            "name": "GetFields",
+            "shortname": "GetFields",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetFields.js",
+            "line": 20
+        },
         "GetSources": {
             "name": "GetSources",
             "shortname": "GetSources",
@@ -204,6 +276,20 @@
             "namespace": "",
             "file": "server/rest/GetSources.js",
             "line": 9
+        },
+        "GetStores": {
+            "name": "GetStores",
+            "shortname": "GetStores",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetStores.js",
+            "line": 20
         },
         "GetTimseries": {
             "name": "GetTimseries",
@@ -219,6 +305,20 @@
             "file": "server/rest/GetTimeseries.js",
             "line": 32
         },
+        "PutSource": {
+            "name": "PutSource",
+            "shortname": "PutSource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/PutSource.js",
+            "line": 10
+        },
         "routes": {
             "name": "routes",
             "shortname": "routes",
@@ -231,7 +331,7 @@
             "submodule": "RestApi",
             "namespace": "",
             "file": "server/routes.js",
-            "line": 16,
+            "line": 17,
             "description": "A class (module) that defines all \nthe API URLs, and the related methods.\n<br/>\nHere are some of the URLs: <br/>\n- <b>/api/sources</b>: GET a JSON with sources configuration\n- <b>/api/sources</b>: POST a new source, returns an empty array\n- <b>/api/sources/:source_name</b>: DELETE source, returns an empty array\n- <b>/api/stores</b>: POST a sources config, returns an array of stores\n- <b>/api/fields</b>: POST a stores config, returns an array of fields\n- <b>/api/timeseries</b>: POST a fields config, returns the realted dataset\n- <b>/api/stats</b>: GET statistics from tsproc\n- <b>/api/config</b>: GET configuration JSON of tsproc"
         }
     },
@@ -824,9 +924,53 @@
             "submodule": "Connectors"
         },
         {
+            "file": "server/rest/DeleteSource.js",
+            "line": 16,
+            "description": "A method that removes a source configuration\nfrom the <code>./server/config/sources.json</code>\nfile. The source to delete is specified\nby it's name in the <code>req</code> object.\n<br/>\nIf the source to delete is a file (JSON or CSV),\nthen it would be deleted from the directory \n<code>./server/datasets/</code>.\n<br/>\nAn empty array is returned by the <code>res</code> object.",
+            "itemtype": "method",
+            "name": "deleteSource",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "DeleteSource",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetFields.js",
+            "line": 24,
+            "description": "A method that returns (via the object <code>res</code>) the fields\nconfiguration of the requested (via the object <code>req</code>) stores.",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetFields",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
             "file": "server/rest/GetSources.js",
             "line": 16,
-            "description": "A method that returns a JSON file\nwith configuration of sources (ex: MySQL database)\n<br/>\nThe configuration of sources is in the file\n<code>./server/config/sources.json</code>",
+            "description": "A method that returns (via the object <code>res</code>) a JSON file\nwith configuration of sources (ex: MySQL database).\n<br/>\nThe configuration on the server is stored in the file\n<code>./server/config/sources.json</code>.",
             "itemtype": "method",
             "name": "getSources",
             "params": [
@@ -842,6 +986,136 @@
                 }
             ],
             "class": "GetSources",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetStores.js",
+            "line": 24,
+            "description": "A method that returns (via the object <code>res</code>) the stores\nconfiguration of the requested (via the object <code>req</code>) sources.",
+            "itemtype": "method",
+            "name": "getStores",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetStores",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 37,
+            "description": "A method that returns (via the object <code>res</code>) the full\ntimeseries with all requested (via the object <code>req</code>) fields.\nThe tsproc configuration is also passed by <code>req</code> object.\n<br/>\nThe method passes all the timeseries through the tsproc module.",
+            "itemtype": "method",
+            "name": "getTimeseries",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 181,
+            "description": "A method that returns (via the object <code>res</code>) the stats\nthat were pulled from tsproc module during the call of the getTimeseries() method.",
+            "itemtype": "method",
+            "name": "getStats",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 193,
+            "description": "A method that returns (via the object <code>res</code>) the configuration file\nthat were pulled from tsproc module during the call of the getTimeseries() method.\n<br/>\nThe config is pulled from tsproc before it starts to process data, which can modify the config.\nthe getConfig() method to return",
+            "itemtype": "method",
+            "name": "getConfig",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 208,
+            "description": "A method that receives an array of size 3 (from front-end) that contains:\n- 0: tsproc module options\n- 1: array of timestamp fields configuration\n- 2: array of other fields configuration\n<br/>\nThen it pulls from it the two arays, and returns\na single configuration which has all the fields\nregrouped by store (cf example)\n<br/>\nThe method is used to prepare a configuration file for the tsproc.",
+            "itemtype": "method",
+            "name": "regroupFields",
+            "params": [
+                {
+                    "name": "configs",
+                    "description": "An array of configurations for tsproc module",
+                    "type": "Json array"
+                }
+            ],
+            "example": [
+                "\n    //config in\n    var old_config = \n    [\n         //tspoc config\n         {\n           \"transform\": {\n                \"type\": \"interp\",\n                \"interp_type\": \"linear\"\n            },\n            \"reduction\": {\n                \"type\": \"skip\",\n                \"size\": 1,\n                \"target_field\": \"\"\n            },\n            \"date_borders\": {\n                \"from\": {\n                   \"date\": \"\"\n                },\n                \"to\": {\n                    \"date\": \"\"\n                }\n            },\n            \"correlation\": null,\n            \"tsfield_quantum\": \"none\"\n        },\n\n        //timestamp fields\n        [\n            {\n                \"field\": {\n                    \"name\": \"year\",\n                    \"value\": 1911,\n                    \"format\": \"YYYY\",\n                    \"quantum\": \"none\"\n                },\n                \"store\": {\n                    \"name\": \"colorado_river\",\n                    \"size\": 61,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            },\n            {\n                \"field\": {\n                    \"name\": \"year\",\n                    \"value\": 1919,\n                    \"format\": \"YYYY\",\n                    \"quantum\": \"none\"\n                },\n                \"store\": {\n                    \"name\": \"funder_river\",\n                    \"size\": 37,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            }\n        ],\n\n        //other fields\n        [\n           {\n                \"field\": {\n                    \"name\": \"flows_colorado\",\n                    \"value\": 18.11,\n                    \"quantum\": 0\n                },\n                \"store\": {\n                    \"name\": \"colorado_river\",\n                    \"size\": 61,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            },\n            {\n                \"field\": {\n                    \"name\": \"flows_funder\",\n                    \"value\": 26.42,\n                    \"quantum\": 0\n                },\n                \"store\": {\n                    \"name\": \"funder_river\",\n                    \"size\": 37,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            }\n        ]\n    ];\n\n    //config out\n    var new_config = regroupFields.call(this, old_config);\n    console.log(JSON.stringify(new_config, null, 4));\n    //the result is:\n    // [\n    //    {\n    //        \"fields\": [\n    //            {\n    //                \"name\": \"year\",\n    //                \"value\": 1911,\n    //                \"format\": \"YYYY\",\n    //                \"quantum\": \"none\"\n    //            },\n    //            {\n    //                \"name\": \"flows_colorado\",\n    //                \"value\": 18.11,\n    //                \"quantum\": 0\n    //            }\n    //        ],\n    //        \"store\": {\n    //            \"name\": \"colorado_river\",\n    //            \"size\": 61\n    //        },\n    //        \"source\": {\n    //            \"name\": \"rivers\",\n    //            \"type\": \"mongo\",\n    //            \"user\": \"\",\n    //            \"passw\": \"\",\n    //            \"server\": \"localhost\",\n    //            \"port\": null,\n    //            \"db\": \"river_flows\"\n    //        }\n    //    },\n    //    {\n    //        \"fields\": [\n    //            {\n    //                \"name\": \"year\",\n    //                \"value\": 1919,\n    //                \"format\": \"YYYY\",\n    //                \"quantum\": \"none\"\n    //            },\n    //            {\n    //                \"name\": \"flows_funder\",\n    //                \"value\": 26.42,\n    //                \"status\": \"loaded\",\n    //                \"quantum\": 0\n    //            }\n    //        ],\n    //        \"store\": {\n    //            \"name\": \"funder_river\",\n    //            \"size\": 37\n    //        },\n    //        \"source\": {\n    //            \"name\": \"rivers\",\n    //            \"type\": \"mongo\",\n    //            \"user\": \"\",\n    //            \"passw\": \"\",\n    //            \"server\": \"localhost\",\n    //            \"port\": null,\n    //            \"db\": \"river_flows\"\n    //        }\n    //    }\n    //]\n    //all the fields are regrouped by store"
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/PutSource.js",
+            "line": 17,
+            "description": "A method that adds a new source configuration\nto the <code>./server/config/sources.json</code>\nfile. The source to add is passed via the <code>req</code>\nobject.\n<br/>\nIf the new source is a file (JSON or CSV),\nthen it would be saved as a json to the directory \n<code>./server/datasets/</code>.\n<br/>\nAn empty array is returned by the <code>res</code> object.",
+            "itemtype": "method",
+            "name": "putSource",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "PutSource",
             "module": "server",
             "submodule": "RestApi"
         }

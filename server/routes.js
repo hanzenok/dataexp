@@ -1,9 +1,10 @@
 var getSources = require('./rest/GetSources');
 var getStores = require('./rest/GetStores');
 var getFields = require('./rest/GetFields');
-var getTimeseries = require('./rest/GetTimeseries').getTimeseries;
-var getStats = require('./rest/GetTimeseries').getStats;
-var getConfig = require('./rest/GetTimeseries').getConfig;
+var timeseries = require('./rest/GetTimeseries');
+var getTimeseries = timeseries.getTimeseries;
+var getStats = timeseries.getStats;
+var getConfig = timeseries.getConfig;
 var putSource = require('./rest/PutSource');
 var deleteSource = require('./rest/DeleteSource');
 

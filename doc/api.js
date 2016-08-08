@@ -1,11 +1,15 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "DeleteSource",
         "FileConnector",
+        "GetFields",
         "GetSources",
+        "GetStores",
         "GetTimseries",
         "MongoConnector",
         "MysqlConnector",
+        "PutSource",
         "routes"
     ],
     "modules": [

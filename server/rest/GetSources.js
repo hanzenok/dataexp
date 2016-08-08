@@ -14,15 +14,14 @@ var fs = require('fs');
 var config_file = './server/config/sources.json';
 
 /**
- * A method that returns a JSON file
- * with configuration of sources (ex: MySQL database)
+ * A method that returns (via the object <code>res</code>) a JSON file
+ * with configuration of sources (ex: MySQL database).
  * <br/>
  * The configuration on the server is stored in the file
- * <code>./server/config/sources.json</code>
+ * <code>./server/config/sources.json</code>.
  * @method getSources
  * @param {request} req Express.js request
  * @param {response} res Express.js response
- *
  */
 var getSources = function(req, res){
 

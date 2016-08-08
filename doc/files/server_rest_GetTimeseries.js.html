@@ -44,11 +44,15 @@
                 </div>
                 <div class="bd">
                     <ul>
+                            <li><a href="../classes/DeleteSource.html">DeleteSource</a></li>
                             <li><a href="../classes/FileConnector.html">FileConnector</a></li>
+                            <li><a href="../classes/GetFields.html">GetFields</a></li>
                             <li><a href="../classes/GetSources.html">GetSources</a></li>
+                            <li><a href="../classes/GetStores.html">GetStores</a></li>
                             <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
                             <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
                             <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
+                            <li><a href="../classes/PutSource.html">PutSource</a></li>
                             <li><a href="../classes/routes.html">routes</a></li>
                     </ul>
                 </div>
@@ -63,7 +67,7 @@
                     <h2 class="no-toc">Files</h2>
                 </div>
                 <div class="bd">
-                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li></ul></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li></ul></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
                 </div>
             </div>
             
@@ -74,12 +78,6 @@
 
 <pre class="code prettyprint linenums">
 var tsproc = require(&#x27;tsproc&#x27;);
-
-/**
- * Rest API&#x27;s offered by server.
- * @module server
- * @submodule RestApi
- */
 
 //connectors
 var mongo_connector = require(&#x27;../connectors/MongoConnector&#x27;);
@@ -92,6 +90,12 @@ var ConnectorsEnum = {
 					&#x27;json&#x27;: file_connector,
 					&#x27;csv&#x27;: file_connector
 					};
+
+/**
+ * Rest API&#x27;s offered by server.
+ * @module server
+ * @submodule RestApi
+ */
 
 //stats config
 var stats = {};
@@ -109,7 +113,17 @@ var config = {};
  */
 var TS = {};
 
-//returns the data
+/**
+ * A method that returns (via the object &lt;code&gt;res&lt;/code&gt;) the full
+ * timeseries with all requested (via the object &lt;code&gt;req&lt;/code&gt;) fields.
+ * The tsproc configuration is also passed by &lt;code&gt;req&lt;/code&gt; object.
+ * &lt;br/&gt;
+ * The method passes all the timeseries through the tsproc module.
+ * @method getTimeseries
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ * 
+ */
 TS.getTimeseries = function(req, res){
 
 	//get the requested dataset
@@ -122,7 +136,9 @@ TS.getTimeseries = function(req, res){
 	if(fields_config.length){
 
 		//regroup the fields from the same source
+		console.log(&#x27;before:&#x27;);console.log(JSON.stringify(fields_config, null, 4));
 		var new_fields_config = regroupFields.call(this, fields_config);
+		console.log(&#x27;after:&#x27;);console.log(JSON.stringify(new_fields_config, null, 4));
 
 		//options config
 		var options = fields_config[0];
@@ -192,7 +208,8 @@ TS.getTimeseries = function(req, res){
 			});
 
 			//save the config before using tsproc
-			//cause tsproc will modify it
+			//cause tsproc will modify it (if timeseries is
+			//not homogeneous)
 			config = JSON.parse(JSON.stringify(tsproc_config));
 
 			//instantiate the timeseries processor
@@ -212,9 +229,9 @@ TS.getTimeseries = function(req, res){
 			});
 
 			//check the correlations
-			//if size &gt; 3000 means using
-			//Canvas.js on backend, so
-			//a graph chart doesn&#x27;t have
+			//if size &gt; 3000 means that 
+			//Canvas.js is used on the front-end;
+			//it means that a graph chart doesn&#x27;t have
 			//a scroll chart to visualise the correlations
 			if (tsp.getTSSize() &lt;= 3000){
 
@@ -240,20 +257,230 @@ TS.getTimeseries = function(req, res){
 	}
 }
 
-//returns the stats
-//that were generated in the getTimeseries() function
+/**
+ * A method that returns (via the object &lt;code&gt;res&lt;/code&gt;) the stats
+ * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * @method getStats
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 TS.getStats = function(req, res){
 	
 	res.json([stats]);
 }
 
+/**
+ * A method that returns (via the object &lt;code&gt;res&lt;/code&gt;) the configuration file
+ * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * &lt;br/&gt;
+ * The config is pulled from tsproc before it starts to process data, which can modify the config.
+ * the getConfig() method to return 
+ * @method getConfig
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 TS.getConfig = function(req, res){
 
 	res.json([config]);
 }
 
-//used to regroup fields of the same 
-//store into one config
+/**
+ * A method that receives an array of size 3 (from front-end) that contains:
+ * - 0: tsproc module options
+ * - 1: array of timestamp fields configuration
+ * - 2: array of other fields configuration
+ * &lt;br/&gt;
+ * Then it pulls from it the two arays, and returns
+ * a single configuration which has all the fields
+ * regrouped by store (cf example)
+ * &lt;br/&gt;
+ * The method is used to prepare a configuration file for the tsproc.
+ * @method regroupFields
+ * @param {json array} configs An array of configurations for tsproc module
+ * 
+ * @example
+ *     //config in
+ *     var old_config = 
+ *     [
+ *          //tspoc config
+ *          {
+ *            &quot;transform&quot;: {
+ *                 &quot;type&quot;: &quot;interp&quot;,
+ *                 &quot;interp_type&quot;: &quot;linear&quot;
+ *             },
+ *             &quot;reduction&quot;: {
+ *                 &quot;type&quot;: &quot;skip&quot;,
+ *                 &quot;size&quot;: 1,
+ *                 &quot;target_field&quot;: &quot;&quot;
+ *             },
+ *             &quot;date_borders&quot;: {
+ *                 &quot;from&quot;: {
+ *                    &quot;date&quot;: &quot;&quot;
+ *                 },
+ *                 &quot;to&quot;: {
+ *                     &quot;date&quot;: &quot;&quot;
+ *                 }
+ *             },
+ *             &quot;correlation&quot;: null,
+ *             &quot;tsfield_quantum&quot;: &quot;none&quot;
+ *         },
+ *
+ *         //timestamp fields
+ *         [
+ *             {
+ *                 &quot;field&quot;: {
+ *                     &quot;name&quot;: &quot;year&quot;,
+ *                     &quot;value&quot;: 1911,
+ *                     &quot;format&quot;: &quot;YYYY&quot;,
+ *                     &quot;quantum&quot;: &quot;none&quot;
+ *                 },
+ *                 &quot;store&quot;: {
+ *                     &quot;name&quot;: &quot;colorado_river&quot;,
+ *                     &quot;size&quot;: 61,
+ *                 },
+ *                 &quot;source&quot;: {
+ *                     &quot;name&quot;: &quot;rivers&quot;,
+ *                     &quot;type&quot;: &quot;mongo&quot;,
+ *                     &quot;user&quot;: &quot;&quot;,
+ *                     &quot;passw&quot;: &quot;&quot;,
+ *                     &quot;server&quot;: &quot;localhost&quot;,
+ *                     &quot;port&quot;: null,
+ *                     &quot;db&quot;: &quot;river_flows&quot;
+ *                 }
+ *             },
+ *             {
+ *                 &quot;field&quot;: {
+ *                     &quot;name&quot;: &quot;year&quot;,
+ *                     &quot;value&quot;: 1919,
+ *                     &quot;format&quot;: &quot;YYYY&quot;,
+ *                     &quot;quantum&quot;: &quot;none&quot;
+ *                 },
+ *                 &quot;store&quot;: {
+ *                     &quot;name&quot;: &quot;funder_river&quot;,
+ *                     &quot;size&quot;: 37,
+ *                 },
+ *                 &quot;source&quot;: {
+ *                     &quot;name&quot;: &quot;rivers&quot;,
+ *                     &quot;type&quot;: &quot;mongo&quot;,
+ *                     &quot;user&quot;: &quot;&quot;,
+ *                     &quot;passw&quot;: &quot;&quot;,
+ *                     &quot;server&quot;: &quot;localhost&quot;,
+ *                     &quot;port&quot;: null,
+ *                     &quot;db&quot;: &quot;river_flows&quot;
+ *                 }
+ *             }
+ *         ],
+ *
+ *         //other fields
+ *         [
+ *            {
+ *                 &quot;field&quot;: {
+ *                     &quot;name&quot;: &quot;flows_colorado&quot;,
+ *                     &quot;value&quot;: 18.11,
+ *                     &quot;quantum&quot;: 0
+ *                 },
+ *                 &quot;store&quot;: {
+ *                     &quot;name&quot;: &quot;colorado_river&quot;,
+ *                     &quot;size&quot;: 61,
+ *                 },
+ *                 &quot;source&quot;: {
+ *                     &quot;name&quot;: &quot;rivers&quot;,
+ *                     &quot;type&quot;: &quot;mongo&quot;,
+ *                     &quot;user&quot;: &quot;&quot;,
+ *                     &quot;passw&quot;: &quot;&quot;,
+ *                     &quot;server&quot;: &quot;localhost&quot;,
+ *                     &quot;port&quot;: null,
+ *                     &quot;db&quot;: &quot;river_flows&quot;
+ *                 }
+ *             },
+ *             {
+ *                 &quot;field&quot;: {
+ *                     &quot;name&quot;: &quot;flows_funder&quot;,
+ *                     &quot;value&quot;: 26.42,
+ *                     &quot;quantum&quot;: 0
+ *                 },
+ *                 &quot;store&quot;: {
+ *                     &quot;name&quot;: &quot;funder_river&quot;,
+ *                     &quot;size&quot;: 37,
+ *                 },
+ *                 &quot;source&quot;: {
+ *                     &quot;name&quot;: &quot;rivers&quot;,
+ *                     &quot;type&quot;: &quot;mongo&quot;,
+ *                     &quot;user&quot;: &quot;&quot;,
+ *                     &quot;passw&quot;: &quot;&quot;,
+ *                     &quot;server&quot;: &quot;localhost&quot;,
+ *                     &quot;port&quot;: null,
+ *                     &quot;db&quot;: &quot;river_flows&quot;
+ *                 }
+ *             }
+ *         ]
+ *     ];
+ *
+ *     //config out
+ *     var new_config = regroupFields.call(this, old_config);
+ *     console.log(JSON.stringify(new_config, null, 4));
+ *     //the result is:
+ *     // [
+ *     //    {
+ *     //        &quot;fields&quot;: [
+ *     //            {
+ *     //                &quot;name&quot;: &quot;year&quot;,
+ *     //                &quot;value&quot;: 1911,
+ *     //                &quot;format&quot;: &quot;YYYY&quot;,
+ *     //                &quot;quantum&quot;: &quot;none&quot;
+ *     //            },
+ *     //            {
+ *     //                &quot;name&quot;: &quot;flows_colorado&quot;,
+ *     //                &quot;value&quot;: 18.11,
+ *     //                &quot;quantum&quot;: 0
+ *     //            }
+ *     //        ],
+ *     //        &quot;store&quot;: {
+ *     //            &quot;name&quot;: &quot;colorado_river&quot;,
+ *     //            &quot;size&quot;: 61
+ *     //        },
+ *     //        &quot;source&quot;: {
+ *     //            &quot;name&quot;: &quot;rivers&quot;,
+ *     //            &quot;type&quot;: &quot;mongo&quot;,
+ *     //            &quot;user&quot;: &quot;&quot;,
+ *     //            &quot;passw&quot;: &quot;&quot;,
+ *     //            &quot;server&quot;: &quot;localhost&quot;,
+ *     //            &quot;port&quot;: null,
+ *     //            &quot;db&quot;: &quot;river_flows&quot;
+ *     //        }
+ *     //    },
+ *     //    {
+ *     //        &quot;fields&quot;: [
+ *     //            {
+ *     //                &quot;name&quot;: &quot;year&quot;,
+ *     //                &quot;value&quot;: 1919,
+ *     //                &quot;format&quot;: &quot;YYYY&quot;,
+ *     //                &quot;quantum&quot;: &quot;none&quot;
+ *     //            },
+ *     //            {
+ *     //                &quot;name&quot;: &quot;flows_funder&quot;,
+ *     //                &quot;value&quot;: 26.42,
+ *     //                &quot;status&quot;: &quot;loaded&quot;,
+ *     //                &quot;quantum&quot;: 0
+ *     //            }
+ *     //        ],
+ *     //        &quot;store&quot;: {
+ *     //            &quot;name&quot;: &quot;funder_river&quot;,
+ *     //            &quot;size&quot;: 37
+ *     //        },
+ *     //        &quot;source&quot;: {
+ *     //            &quot;name&quot;: &quot;rivers&quot;,
+ *     //            &quot;type&quot;: &quot;mongo&quot;,
+ *     //            &quot;user&quot;: &quot;&quot;,
+ *     //            &quot;passw&quot;: &quot;&quot;,
+ *     //            &quot;server&quot;: &quot;localhost&quot;,
+ *     //            &quot;port&quot;: null,
+ *     //            &quot;db&quot;: &quot;river_flows&quot;
+ *     //        }
+ *     //    }
+ *     //]
+ *     //all the fields are regrouped by store
+ */
 function regroupFields(configs){
 
 	var timestamps = configs[1];

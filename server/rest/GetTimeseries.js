@@ -1,11 +1,5 @@
 var tsproc = require('tsproc');
 
-/**
- * Rest API's offered by server.
- * @module server
- * @submodule RestApi
- */
-
 //connectors
 var mongo_connector = require('../connectors/MongoConnector');
 var mysql_connector = require('../connectors/MysqlConnector');
@@ -17,6 +11,12 @@ var ConnectorsEnum = {
 					'json': file_connector,
 					'csv': file_connector
 					};
+
+/**
+ * Rest API's offered by server.
+ * @module server
+ * @submodule RestApi
+ */
 
 //stats config
 var stats = {};
@@ -34,7 +34,17 @@ var config = {};
  */
 var TS = {};
 
-//returns the data
+/**
+ * A method that returns (via the object <code>res</code>) the full
+ * timeseries with all requested (via the object <code>req</code>) fields.
+ * The tsproc configuration is also passed by <code>req</code> object.
+ * <br/>
+ * The method passes all the timeseries through the tsproc module.
+ * @method getTimeseries
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ * 
+ */
 TS.getTimeseries = function(req, res){
 
 	//get the requested dataset
@@ -47,7 +57,9 @@ TS.getTimeseries = function(req, res){
 	if(fields_config.length){
 
 		//regroup the fields from the same source
+		console.log('before:');console.log(JSON.stringify(fields_config, null, 4));
 		var new_fields_config = regroupFields.call(this, fields_config);
+		console.log('after:');console.log(JSON.stringify(new_fields_config, null, 4));
 
 		//options config
 		var options = fields_config[0];
@@ -117,7 +129,8 @@ TS.getTimeseries = function(req, res){
 			});
 
 			//save the config before using tsproc
-			//cause tsproc will modify it
+			//cause tsproc will modify it (if timeseries is
+			//not homogeneous)
 			config = JSON.parse(JSON.stringify(tsproc_config));
 
 			//instantiate the timeseries processor
@@ -137,9 +150,9 @@ TS.getTimeseries = function(req, res){
 			});
 
 			//check the correlations
-			//if size > 3000 means using
-			//Canvas.js on backend, so
-			//a graph chart doesn't have
+			//if size > 3000 means that 
+			//Canvas.js is used on the front-end;
+			//it means that a graph chart doesn't have
 			//a scroll chart to visualise the correlations
 			if (tsp.getTSSize() <= 3000){
 
@@ -165,20 +178,230 @@ TS.getTimeseries = function(req, res){
 	}
 }
 
-//returns the stats
-//that were generated in the getTimeseries() function
+/**
+ * A method that returns (via the object <code>res</code>) the stats
+ * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * @method getStats
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 TS.getStats = function(req, res){
 	
 	res.json([stats]);
 }
 
+/**
+ * A method that returns (via the object <code>res</code>) the configuration file
+ * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * <br/>
+ * The config is pulled from tsproc before it starts to process data, which can modify the config.
+ * the getConfig() method to return 
+ * @method getConfig
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 TS.getConfig = function(req, res){
 
 	res.json([config]);
 }
 
-//used to regroup fields of the same 
-//store into one config
+/**
+ * A method that receives an array of size 3 (from front-end) that contains:
+ * - 0: tsproc module options
+ * - 1: array of timestamp fields configuration
+ * - 2: array of other fields configuration
+ * <br/>
+ * Then it pulls from it the two arays, and returns
+ * a single configuration which has all the fields
+ * regrouped by store (cf example)
+ * <br/>
+ * The method is used to prepare a configuration file for the tsproc.
+ * @method regroupFields
+ * @param {json array} configs An array of configurations for tsproc module
+ * 
+ * @example
+ *     //config in
+ *     var old_config = 
+ *     [
+ *          //tspoc config
+ *          {
+ *            "transform": {
+ *                 "type": "interp",
+ *                 "interp_type": "linear"
+ *             },
+ *             "reduction": {
+ *                 "type": "skip",
+ *                 "size": 1,
+ *                 "target_field": ""
+ *             },
+ *             "date_borders": {
+ *                 "from": {
+ *                    "date": ""
+ *                 },
+ *                 "to": {
+ *                     "date": ""
+ *                 }
+ *             },
+ *             "correlation": null,
+ *             "tsfield_quantum": "none"
+ *         },
+ *
+ *         //timestamp fields
+ *         [
+ *             {
+ *                 "field": {
+ *                     "name": "year",
+ *                     "value": 1911,
+ *                     "format": "YYYY",
+ *                     "quantum": "none"
+ *                 },
+ *                 "store": {
+ *                     "name": "colorado_river",
+ *                     "size": 61,
+ *                 },
+ *                 "source": {
+ *                     "name": "rivers",
+ *                     "type": "mongo",
+ *                     "user": "",
+ *                     "passw": "",
+ *                     "server": "localhost",
+ *                     "port": null,
+ *                     "db": "river_flows"
+ *                 }
+ *             },
+ *             {
+ *                 "field": {
+ *                     "name": "year",
+ *                     "value": 1919,
+ *                     "format": "YYYY",
+ *                     "quantum": "none"
+ *                 },
+ *                 "store": {
+ *                     "name": "funder_river",
+ *                     "size": 37,
+ *                 },
+ *                 "source": {
+ *                     "name": "rivers",
+ *                     "type": "mongo",
+ *                     "user": "",
+ *                     "passw": "",
+ *                     "server": "localhost",
+ *                     "port": null,
+ *                     "db": "river_flows"
+ *                 }
+ *             }
+ *         ],
+ *
+ *         //other fields
+ *         [
+ *            {
+ *                 "field": {
+ *                     "name": "flows_colorado",
+ *                     "value": 18.11,
+ *                     "quantum": 0
+ *                 },
+ *                 "store": {
+ *                     "name": "colorado_river",
+ *                     "size": 61,
+ *                 },
+ *                 "source": {
+ *                     "name": "rivers",
+ *                     "type": "mongo",
+ *                     "user": "",
+ *                     "passw": "",
+ *                     "server": "localhost",
+ *                     "port": null,
+ *                     "db": "river_flows"
+ *                 }
+ *             },
+ *             {
+ *                 "field": {
+ *                     "name": "flows_funder",
+ *                     "value": 26.42,
+ *                     "quantum": 0
+ *                 },
+ *                 "store": {
+ *                     "name": "funder_river",
+ *                     "size": 37,
+ *                 },
+ *                 "source": {
+ *                     "name": "rivers",
+ *                     "type": "mongo",
+ *                     "user": "",
+ *                     "passw": "",
+ *                     "server": "localhost",
+ *                     "port": null,
+ *                     "db": "river_flows"
+ *                 }
+ *             }
+ *         ]
+ *     ];
+ *
+ *     //config out
+ *     var new_config = regroupFields.call(this, old_config);
+ *     console.log(JSON.stringify(new_config, null, 4));
+ *     //the result is:
+ *     // [
+ *     //    {
+ *     //        "fields": [
+ *     //            {
+ *     //                "name": "year",
+ *     //                "value": 1911,
+ *     //                "format": "YYYY",
+ *     //                "quantum": "none"
+ *     //            },
+ *     //            {
+ *     //                "name": "flows_colorado",
+ *     //                "value": 18.11,
+ *     //                "quantum": 0
+ *     //            }
+ *     //        ],
+ *     //        "store": {
+ *     //            "name": "colorado_river",
+ *     //            "size": 61
+ *     //        },
+ *     //        "source": {
+ *     //            "name": "rivers",
+ *     //            "type": "mongo",
+ *     //            "user": "",
+ *     //            "passw": "",
+ *     //            "server": "localhost",
+ *     //            "port": null,
+ *     //            "db": "river_flows"
+ *     //        }
+ *     //    },
+ *     //    {
+ *     //        "fields": [
+ *     //            {
+ *     //                "name": "year",
+ *     //                "value": 1919,
+ *     //                "format": "YYYY",
+ *     //                "quantum": "none"
+ *     //            },
+ *     //            {
+ *     //                "name": "flows_funder",
+ *     //                "value": 26.42,
+ *     //                "status": "loaded",
+ *     //                "quantum": 0
+ *     //            }
+ *     //        ],
+ *     //        "store": {
+ *     //            "name": "funder_river",
+ *     //            "size": 37
+ *     //        },
+ *     //        "source": {
+ *     //            "name": "rivers",
+ *     //            "type": "mongo",
+ *     //            "user": "",
+ *     //            "passw": "",
+ *     //            "server": "localhost",
+ *     //            "port": null,
+ *     //            "db": "river_flows"
+ *     //        }
+ *     //    }
+ *     //]
+ *     //all the fields are regrouped by store
+ */
 function regroupFields(configs){
 
 	var timestamps = configs[1];

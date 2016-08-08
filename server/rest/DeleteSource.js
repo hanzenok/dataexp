@@ -1,9 +1,33 @@
 var fs = require('fs');
 
-var config_file = './server/config/sources.json';
-var dataset_prefix = './server/datasets/';
+/**
+ * Rest API's offered by server.
+ * @module server
+ * @submodule RestApi
+ */
 
-//adds a new source to the config file
+/**
+ * @class DeleteSource
+ */
+
+var config_file = './server/config/sources.json'; //config file path
+var dataset_prefix = './server/datasets/'; //directory with sources of type 'file' (JSON and CSV)
+
+/**
+ * A method that removes a source configuration
+ * from the <code>./server/config/sources.json</code>
+ * file. The source to delete is specified
+ * by it's name in the <code>req</code> object.
+ * <br/>
+ * If the source to delete is a file (JSON or CSV),
+ * then it would be deleted from the directory 
+ * <code>./server/datasets/</code>.
+ * <br/>
+ * An empty array is returned by the <code>res</code> object.
+ * @method deleteSource
+ * @param {request} req Express.js request
+ * @param {response} res Express.js response
+ */
 var deleteSource = function(req, res){
 	
 	//get the name of the source to delete
