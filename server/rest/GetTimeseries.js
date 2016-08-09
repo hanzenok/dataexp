@@ -57,9 +57,7 @@ TS.getTimeseries = function(req, res){
 	if(fields_config.length){
 
 		//regroup the fields from the same source
-		console.log('before:');console.log(JSON.stringify(fields_config, null, 4));
 		var new_fields_config = regroupFields.call(this, fields_config);
-		console.log('after:');console.log(JSON.stringify(new_fields_config, null, 4));
 
 		//options config
 		var options = fields_config[0];

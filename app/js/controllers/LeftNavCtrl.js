@@ -153,7 +153,7 @@ angular.module('MainApp')
 							.textContent(err.data)
 							.action('OK')
 							.position('bottom')
-							.hideDelay(4000);
+							.hideDelay(4000)
 					);
 				}
 			);

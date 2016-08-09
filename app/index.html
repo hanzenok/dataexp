@@ -497,7 +497,7 @@
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center">
 							<span flex="30">Correlation</span>
-							<md-switch ng-disabled="$root.disabled || $root.force_canvasjs" ng-model="toogled_correlation" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<md-switch ng-disabled="$root.disabled || $root.force_canvasjs || $root.size_status === 'overflow'" ng-model="toogled_correlation" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<div flex></div>
 							<div layout="column" layout-align="center end">
 								<div layout="row" layout-align="center center">
