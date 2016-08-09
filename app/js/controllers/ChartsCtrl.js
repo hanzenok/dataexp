@@ -1,6 +1,41 @@
-angular.module('MainApp')
-	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, $mdColorPalette, DCChartsService, CanvasChartsService) {
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
 
+/**
+ * A controller that serves 
+ * the container of DC.js and Canvas.js charts
+ * in the <code>index.html</code> view.
+ * <br/>
+ * It uses two custom angular services:
+ * - <b>DCChartsService</b>: generates the DC.js charts
+ * - <b>CanvasChartsService</b>: generates the Canvas.js charts
+ *
+ * It defines three methods which should be explained:
+ * - <b>renderAll()</b>: a method that launches automatically
+ * when all the DOM elements needed for rendering all 
+ * the charts from the <code>$rootScope.droppedCharts</code> list where generated
+ * (but charts not yet traced). This is done by using angular <code>$last</code> directive.
+ * When the method is launched, if the boolean <code>$scope.reload</code> is true, it traces
+ * all the charts from the <code>$rootScope.droppedCharts</code> list.
+ * It is done this way, because in order to trace a DC.js or Canvas.js charts,
+ * all the DOM containers (divs) should be already present (and we are generating them progrmatically).
+ * - <b>onDropChart()</b>: a method that traces only one chart, when the 'movable chart'
+ * is dropped to the charts container. It also adds it to the <code>$rootScope.droppedCharts</code>
+ * list, which will trigger automatically the <b>renderAll()</b> function, that will retrace all
+ * for the second time. To prevent this, the <b>onDropChart()</b> method sets the variable 
+ * <code>$scope.reload</code> to false.
+ * - <b>reloadCharts()</b>: a method that reloads all the DOM elements chart containers,
+ * and then reintroduces them. Which triggers the <b>renderAll()</b> method that traces all the 
+ * charts. To allow it, the <b>reloadCharts()</b> sets the variable <code>$scope.reload</code> to true.
+ * @class ChartsCtrl
+ */
+angular.module('MainApp')
+	.controller('ChartsCtrl', function ($scope, $rootScope, $http, $mdToast, DCChartsService, CanvasChartsService) {
+
+		//chart types
 		var EnumCharts = {
 							pie: 'Pie',
 							timeline: 'Timeline',
@@ -10,15 +45,23 @@ angular.module('MainApp')
 						};
 
 		$scope.reload = false;
-		$scope.hideTitle = false;
-		$rootScope.droppedCharts = [];
+		$scope.hideTitle = false; //'Rendering ...' title
+		$rootScope.droppedCharts = []; //dropped charts container
 
+		/**
+		* A <b>local scope</b> method that fires
+		* when a movable chart is dropped on the 
+		* charts container in the <code>index.html</code>
+		* and traces a chart (DC.js or Canvas.js).
+		* @method onDropChart
+		* @param data Dropped object
+		*/
 		$scope.onDropChart = function(data){
 
-			//if dropped object not a DC.js chart
+			//if dropped is a movable chart
 			if (data && data.chart && $rootScope.chartFields.length){
 
-				//to shot to the $scope.renderAll function
+				//to show to the $scope.renderAll function
 				//that we are adding a new chart
 				//and not reloading all the charts
 				$scope.reload = false;
@@ -29,10 +72,9 @@ angular.module('MainApp')
 				//launch the progress bar
 				$rootScope.showPB(true);
 
-				var filtered_fields = [];
-
 				//filtering all the dropped fields
 				//by chart type
+				var filtered_fields = [];
 				var fields = $rootScope.chartFields;
 				var n = fields.length;
 				for (var i=0; i<n; i++){
@@ -147,6 +189,13 @@ angular.module('MainApp')
 
 		}
 
+		/**
+		* A <b>root scope</b> method that fires
+		* on clicking the FAB button in the main 
+		* container. It reloads all the charts (DC.js or Canvas.js)
+		* from the <code>$rootScope.droppedCharts</code>.
+		* @method reloadCharts
+		*/
 		$rootScope.reloadCharts = function(){
 
 			//copy the charts before cleaning
@@ -157,11 +206,8 @@ angular.module('MainApp')
 			});
 
 			//drop the list of charts to clear
-			//up the dom elements
+			//up the DOM elements
 			$rootScope.droppedCharts = [];
-
-			//remove the svg for DC.js
-			// d3.selectAll('svg').remove();
 
 			//wait for the dom elements to be deleted
 			setTimeout(function() {
@@ -185,7 +231,7 @@ angular.module('MainApp')
 					//that we are reloading
 					$scope.reload = true;
 
-					//reintroduce the chats list
+					//reintroduce the charts list
 					$rootScope.$apply(function () {
 						$rootScope.droppedCharts = new_charts;
 					});
@@ -196,6 +242,15 @@ angular.module('MainApp')
 
 		//launched when the list of charts in the DOM
 		//is finished generating
+		/**
+		* A <b>local scope</b> method that
+		* launches automatically when all the DOM
+		* elements-containers for charts from the 
+		* <code>$rootScope.droppedCharts</code> where generated.
+		* When launched, it traces all the charts from the <code>$rootScope.droppedCharts</code>
+		* list.
+		* @method renderAll
+		*/
 		$scope.renderAll = function(){
 
 			//check if we are reloading all the charts

@@ -10,7 +10,7 @@
  * and <code>SaveFormat.html</code>.
  * <br/>
  * It uses two custom angular services:
- * - <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources in the backend
+ * - <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources from/to/to/from the backend
  * - <b>CSV2JSONService</b>: used for csv type sources
  * @class DialogCtrl
  */

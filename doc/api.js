@@ -1,6 +1,7 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "ChartsCtrl",
         "DeleteSource",
         "DeleteZoneCtrl",
         "DialogCtrl",
@@ -11,6 +12,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "GetStores",
         "GetTimseries",
         "HideBtnCtrl",
+        "LeftNavCtrl",
         "MongoConnector",
         "MovableChartsCtrl",
         "MysqlConnector",

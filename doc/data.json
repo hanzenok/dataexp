@@ -7,11 +7,20 @@
         "themedir": "/usr/local/lib/node_modules/yuidocjs/themes/maya"
     },
     "files": {
-        "app/js/controllers/DeleteZoneCtrl.js": {
-            "name": "app/js/controllers/DeleteZoneCtrl.js",
+        "app/js/controllers/ChartsCtrl.js": {
+            "name": "app/js/controllers/ChartsCtrl.js",
             "modules": {
                 "Controllers": 1
             },
+            "classes": {
+                "ChartsCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/DeleteZoneCtrl.js": {
+            "name": "app/js/controllers/DeleteZoneCtrl.js",
+            "modules": {},
             "classes": {
                 "DeleteZoneCtrl": 1
             },
@@ -48,7 +57,9 @@
         "app/js/controllers/LeftNavCtrl.js": {
             "name": "app/js/controllers/LeftNavCtrl.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "LeftNavCtrl": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -191,10 +202,12 @@
             },
             "elements": {},
             "classes": {
+                "ChartsCtrl": 1,
                 "DeleteZoneCtrl": 1,
                 "DialogCtrl": 1,
                 "FabCtrl": 1,
                 "HideBtnCtrl": 1,
+                "LeftNavCtrl": 1,
                 "MovableChartsCtrl": 1,
                 "ToolBarCtrl": 1,
                 "main": 1
@@ -210,10 +223,12 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "ChartsCtrl": 1,
                 "DeleteZoneCtrl": 1,
                 "DialogCtrl": 1,
                 "FabCtrl": 1,
                 "HideBtnCtrl": 1,
+                "LeftNavCtrl": 1,
                 "MovableChartsCtrl": 1,
                 "ToolBarCtrl": 1
             },
@@ -292,6 +307,21 @@
         }
     },
     "classes": {
+        "ChartsCtrl": {
+            "name": "ChartsCtrl",
+            "shortname": "ChartsCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 7,
+            "description": "A controller that serves \nthe container of DC.js and Canvas.js charts\nin the <code>index.html</code> view.\n<br/>\nIt uses two custom angular services:\n- <b>DCChartsService</b>: generates the DC.js charts\n- <b>CanvasChartsService</b>: generates the Canvas.js charts\n\nIt defines three methods which should be explained:\n- <b>renderAll()</b>: a method that launches automatically\nwhen all the DOM elements needed for rendering all \nthe charts from the <code>$rootScope.droppedCharts</code> list where generated\n(but charts not yet traced). This is done by using angular <code>$last</code> directive.\nWhen the method is launched, if the boolean <code>$scope.reload</code> is true, it traces\nall the charts from the <code>$rootScope.droppedCharts</code> list.\nIt is done this way, because in order to trace a DC.js or Canvas.js charts,\nall the DOM containers (divs) should be already present (and we are generating them progrmatically).\n- <b>onDropChart()</b>: a method that traces only one chart, when the 'movable chart'\nis dropped to the charts container. It also adds it to the <code>$rootScope.droppedCharts</code>\nlist, which will trigger automatically the <b>renderAll()</b> function, that will retrace all\nfor the second time. To prevent this, the <b>onDropChart()</b> method sets the variable \n<code>$scope.reload</code> to false.\n- <b>reloadCharts()</b>: a method that reloads all the DOM elements chart containers,\nand then reintroduces them. Which triggers the <b>renderAll()</b> method that traces all the \ncharts. To allow it, the <b>reloadCharts()</b> sets the variable <code>$scope.reload</code> to true."
+        },
         "DeleteZoneCtrl": {
             "name": "DeleteZoneCtrl",
             "shortname": "DeleteZoneCtrl",
@@ -320,7 +350,7 @@
             "namespace": "",
             "file": "app/js/controllers/DialogCtrl.js",
             "line": 7,
-            "description": "A controller that serves the two templates\nfor dialog windows: <code>AddSource.html</code>\nand <code>SaveFormat.html</code>.\n<br/>\nIt uses two custom angular services:\n- <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources in the backend\n- <b>CSV2JSONService</b>: used for csv type sources"
+            "description": "A controller that serves the two templates\nfor dialog windows: <code>AddSource.html</code>\nand <code>SaveFormat.html</code>.\n<br/>\nIt uses two custom angular services:\n- <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources from/to/to/from the backend\n- <b>CSV2JSONService</b>: used for csv type sources"
         },
         "FabCtrl": {
             "name": "FabCtrl",
@@ -351,6 +381,21 @@
             "file": "app/js/controllers/HideBtnCtrl.js",
             "line": 7,
             "description": "A controller that serves a button\nthat hides a footer\nin the <code>index.html</code> view."
+        },
+        "LeftNavCtrl": {
+            "name": "LeftNavCtrl",
+            "shortname": "LeftNavCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 7,
+            "description": "A controller that serves all the left panel\nin the <code>index.html</code> view.\n<br/>\nIt uses three custom angular services:\n- <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources from/to/to/from the backend\n- <b>StoresService</b>: deals with getting stores from the backend\n- <b>FieldsService</b>: deals with getting fields from the backend"
         },
         "MovableChartsCtrl": {
             "name": "MovableChartsCtrl",
@@ -544,6 +589,42 @@
     "elements": {},
     "classitems": [
         {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 51,
+            "description": "A <b>local scope</b> method that fires\nwhen a movable chart is dropped on the \ncharts container in the <code>index.html</code>\nand traces a chart (DC.js or Canvas.js).",
+            "itemtype": "method",
+            "name": "onDropChart",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Dropped object"
+                }
+            ],
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 192,
+            "description": "A <b>root scope</b> method that fires\non clicking the FAB button in the main \ncontainer. It reloads all the charts (DC.js or Canvas.js)\nfrom the <code>$rootScope.droppedCharts</code>.",
+            "itemtype": "method",
+            "name": "reloadCharts",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 245,
+            "description": "A <b>local scope</b> method that\nlaunches automatically when all the DOM\nelements-containers for charts from the \n<code>$rootScope.droppedCharts</code> where generated.\nWhen launched, it traces all the charts from the <code>$rootScope.droppedCharts</code>\nlist.",
+            "itemtype": "method",
+            "name": "renderAll",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
             "file": "app/js/controllers/DeleteZoneCtrl.js",
             "line": 16,
             "description": "A <b>local scope</b> method tha removes \na dropped object from the list of objects\nof its type.\n<br/>\nDropped objects could be:\n- normal fields\n- timestamp fields\n- DC.js or Canvas.js charts\n- movable charts",
@@ -712,15 +793,187 @@
         },
         {
             "file": "app/js/controllers/LeftNavCtrl.js",
-            "line": 69,
-            "class": "MovableChartsCtrl",
-            "module": "client"
+            "line": 24,
+            "description": "A <b>root scope</b> method that is used by \n<b>$rootScope.loadStores()</b> to add the store configs from\nthe <code>stores_conf</code> to the <code>$rootScope.stores_conf</code> list.",
+            "itemtype": "method",
+            "name": "addStores",
+            "params": [
+                {
+                    "name": "stores_conf",
+                    "description": "A list of store configs to add to the <code>$rootScope.stores_conf</code> list",
+                    "type": "Json array"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
         },
         {
             "file": "app/js/controllers/LeftNavCtrl.js",
-            "line": 187,
-            "class": "MovableChartsCtrl",
-            "module": "client"
+            "line": 39,
+            "description": "A <b>root scope</b> method that removes the store configs\nthat are part of source config <code>source_conf</code> from the\n<code>$rootScope.sources_conf</code> list.",
+            "itemtype": "method",
+            "name": "removeStores",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "Source config whoose store configs should be removed from the <code>$rootScope.sources_conf</code> list",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 66,
+            "description": "A <b>root scope</b> method that clears the \n<code>$rootScope.stores_conf</code> list.",
+            "itemtype": "method",
+            "name": "clearStores",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 76,
+            "description": "A <b>root scope</b> method that is used by \n<b>$rootScope.loadFields()</b> to add the field configs from\nthe <code>fields_conf</code> to the <code>$rootScope.fields_conf</code> list.",
+            "itemtype": "method",
+            "name": "addFields",
+            "params": [
+                {
+                    "name": "fields_conf",
+                    "description": "A list of field configs to add to the <code>$rootScope.fields_conf</code> list",
+                    "type": "Json array"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 91,
+            "description": "A <b>root scope</b> method that removes the field configs\nthat are part of store config <code>store_conf</code> from the\n<code>$rootScope.fields_conf</code> list.",
+            "itemtype": "method",
+            "name": "removeFields",
+            "params": [
+                {
+                    "name": "store_conf",
+                    "description": "Store config whoose field configs should be removed from the <code>$rootScope.fields_conf</code> list",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 115,
+            "description": "A <b>root scope</b> method that clears the \n<code>$rootScope.fields_conf</code> list.",
+            "itemtype": "method",
+            "name": "clearFields",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 125,
+            "description": "A <b>root scope</b> method that is \nusing a <b>SourcesService</b> service to query\na list of source configs from the back-end and\nloads it to the <code>$scope.sources_conf</code>",
+            "itemtype": "method",
+            "name": "loadSources",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 165,
+            "description": "A <b>root scope</b> method that is using\nthe <b>StoresServie</b> service to query\na list of store configs that are part \nof the source config <code>source_conf</code>.\nThen by using the <b>$rootScope.addStores()</b> method\nit adds them to the <code>$rootScope.stores_conf</code>.",
+            "itemtype": "method",
+            "name": "loadStores",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A source config whoose stores configs should be loaded",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 221,
+            "description": "A <b>local scope</b> method that returns\na formatted name of the type of source specified\nby <code>source_conf</code>.",
+            "itemtype": "method",
+            "name": "getSourceType",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A source config to get the type from",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "A type name",
+                "type": "String"
+            },
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 243,
+            "description": "A <b>local scope</b> method that launches\na dialog to modify a source config.\n<br/>\nThe template used by dialog is <code>AddSource.html</code>.",
+            "itemtype": "method",
+            "name": "modifySource",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event"
+                },
+                {
+                    "name": "source_conf",
+                    "description": "A source config to modify",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 272,
+            "description": "A <b>local scope</b> method that is using \na <code>FieldsService</code> service to query\na list of field config that are part of the \nstore config <code>store_config</code>.\nThen by using the <b>$rootScope.addFields()</b> method\nit adds them to the <code>$scope.fields_conf</code>.",
+            "itemtype": "method",
+            "name": "loadFields",
+            "params": [
+                {
+                    "name": "store_conf",
+                    "description": "A store config whoose field configs should be loaded into <code>$scope.fields_conf</code>",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 317,
+            "description": "A <b>local scope</b> method that is \ncalled by clicking on the 'clear all' link\non the left panel. It clears all the \nchoosen sources, stores and fields.",
+            "itemtype": "method",
+            "name": "clear",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
         },
         {
             "file": "app/js/controllers/MovableChartsCtrl.js",
@@ -1560,14 +1813,6 @@
         {
             "message": "Missing item type",
             "line": " app/js/controllers/DialogCtrl.js:308"
-        },
-        {
-            "message": "Missing item type",
-            "line": " app/js/controllers/LeftNavCtrl.js:69"
-        },
-        {
-            "message": "Missing item type",
-            "line": " app/js/controllers/LeftNavCtrl.js:187"
         },
         {
             "message": "Missing item type",

@@ -2,7 +2,7 @@ angular.module('MainApp')
 	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService, DCChartsService, CanvasChartsService){
 
 		//containers
-		$rootScope.droppedFields = [];//fields that are dropped to the loader
+		$rootScope.droppedFields = []; //fields that are dropped to the loader
 		$rootScope.droppedTSFields = []; //timestamp fields that are dropped to the loader
 		$rootScope.chartFields = []; //loaded fields that are dropped to any chart
 		$rootScope.dataset = [];
@@ -240,11 +240,4 @@ angular.module('MainApp')
 			}
 
 		};
-
-		//delte fields from the loader
-		// $scope.clear = function(){
-
-		// 	$rootScope.droppedFields = [];
-		// 	$rootScope.droppedTSFields = [];
-		// }
 	});
