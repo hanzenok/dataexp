@@ -7,10 +7,41 @@
         "themedir": "/usr/local/lib/node_modules/yuidocjs/themes/maya"
     },
     "files": {
+        "app/js/controllers/DeleteZoneCtrl.js": {
+            "name": "app/js/controllers/DeleteZoneCtrl.js",
+            "modules": {
+                "Controllers": 1
+            },
+            "classes": {
+                "DeleteZoneCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/js/controllers/DialogCtrl.js": {
             "name": "app/js/controllers/DialogCtrl.js",
             "modules": {},
-            "classes": {},
+            "classes": {
+                "DialogCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/FabCtrl.js": {
+            "name": "app/js/controllers/FabCtrl.js",
+            "modules": {},
+            "classes": {
+                "FabCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/HideBtnCtrl.js": {
+            "name": "app/js/controllers/HideBtnCtrl.js",
+            "modules": {},
+            "classes": {
+                "HideBtnCtrl": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -21,10 +52,39 @@
             "fors": {},
             "namespaces": {}
         },
+        "app/js/controllers/MovableChartsCtrl.js": {
+            "name": "app/js/controllers/MovableChartsCtrl.js",
+            "modules": {},
+            "classes": {
+                "MovableChartsCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/ToolBarCtrl.js": {
+            "name": "app/js/controllers/ToolBarCtrl.js",
+            "modules": {},
+            "classes": {
+                "ToolBarCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/js/canvasjs.js": {
             "name": "app/js/canvasjs.js",
             "modules": {},
             "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/main.js": {
+            "name": "app/js/main.js",
+            "modules": {
+                "client": 1
+            },
+            "classes": {
+                "main": 1
+            },
             "fors": {},
             "namespaces": {}
         },
@@ -124,6 +184,48 @@
         }
     },
     "modules": {
+        "client": {
+            "name": "client",
+            "submodules": {
+                "Controllers": 1
+            },
+            "elements": {},
+            "classes": {
+                "DeleteZoneCtrl": 1,
+                "DialogCtrl": 1,
+                "FabCtrl": 1,
+                "HideBtnCtrl": 1,
+                "MovableChartsCtrl": 1,
+                "ToolBarCtrl": 1,
+                "main": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/js/main.js",
+            "line": 5
+        },
+        "Controllers": {
+            "name": "Controllers",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DeleteZoneCtrl": 1,
+                "DialogCtrl": 1,
+                "FabCtrl": 1,
+                "HideBtnCtrl": 1,
+                "MovableChartsCtrl": 1,
+                "ToolBarCtrl": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "client",
+            "namespace": "",
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 7,
+            "description": "Angualr.js controllers."
+        },
         "server": {
             "name": "server",
             "submodules": {
@@ -190,6 +292,110 @@
         }
     },
     "classes": {
+        "DeleteZoneCtrl": {
+            "name": "DeleteZoneCtrl",
+            "shortname": "DeleteZoneCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/DeleteZoneCtrl.js",
+            "line": 7,
+            "description": "A controller that serves the delete zone\n(where all the Drag&Drop objects can be dropped)\nin the footer of  <code>index.html</code> view."
+        },
+        "DialogCtrl": {
+            "name": "DialogCtrl",
+            "shortname": "DialogCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 7,
+            "description": "A controller that serves the two templates\nfor dialog windows: <code>AddSource.html</code>\nand <code>SaveFormat.html</code>.\n<br/>\nIt uses two custom angular services:\n- <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources in the backend\n- <b>CSV2JSONService</b>: used for csv type sources"
+        },
+        "FabCtrl": {
+            "name": "FabCtrl",
+            "shortname": "FabCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/FabCtrl.js",
+            "line": 7,
+            "description": "A controller that serves a fab button\nin the <code>index.html</code> view\nthat is used to add a new source."
+        },
+        "HideBtnCtrl": {
+            "name": "HideBtnCtrl",
+            "shortname": "HideBtnCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 7,
+            "description": "A controller that serves a button\nthat hides a footer\nin the <code>index.html</code> view."
+        },
+        "MovableChartsCtrl": {
+            "name": "MovableChartsCtrl",
+            "shortname": "MovableChartsCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/MovableChartsCtrl.js",
+            "line": 7,
+            "description": "A controller that serves all the \nmovable charts in the footer of <code>index.html</code> view.\n<br/>\nThere are 5 chart types:\n- Pie Chart\n- Timeline\n- Scatter Plot\n- Row Chart\n- Bar Chart"
+        },
+        "ToolBarCtrl": {
+            "name": "ToolBarCtrl",
+            "shortname": "ToolBarCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 7,
+            "description": "A controller that serves the toolbar\nin the <code>index.html</code> view."
+        },
+        "main": {
+            "name": "main",
+            "shortname": "main",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "namespace": "",
+            "file": "app/js/main.js",
+            "line": 5,
+            "description": "A main angular module.\n<br/>\nThe dependencies are:\n- <b>ngMaterial</b>: UI components framework <a href=\"https://material.angularjs.org/latest/\">Angular-Material</a>\n- <b>ngDraggable</b>: a Drag&Drop <a href=\"https://github.com/fatlinesofcode/ngDraggable\">module</a>\n- <b>ngResource</b>: lets to use a <a href=\"https://docs.angularjs.org/api/ngResource\">$resource</a> factory with RESTful communication with the back-end\n- <b>ngMessages</b>: angular <a href=\"https://docs.angularjs.org/api/ngMessages/directive/ngMessages\">directory</a> that lets to show and hide messages"
+        },
         "FileConnector": {
             "name": "FileConnector",
             "shortname": "FileConnector",
@@ -338,35 +544,253 @@
     "elements": {},
     "classitems": [
         {
-            "file": "app/js/controllers/DialogCtrl.js",
-            "line": 4,
-            "class": "FileConnector"
+            "file": "app/js/controllers/DeleteZoneCtrl.js",
+            "line": 16,
+            "description": "A <b>local scope</b> method tha removes \na dropped object from the list of objects\nof its type.\n<br/>\nDropped objects could be:\n- normal fields\n- timestamp fields\n- DC.js or Canvas.js charts\n- movable charts",
+            "itemtype": "method",
+            "name": "onDropRemove",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "A dropped object"
+                }
+            ],
+            "class": "DeleteZoneCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DeleteZoneCtrl.js",
+            "line": 103,
+            "description": "A <b>local scope</b> method that fires \nwhen the delete zone (placed in the footer of <code>index.html</code>)\nis clicked.\n<br/>\nIt clears all the Drag&Drop objects from\ntheir respective lists.\nIt also deletes a loaded dataset.",
+            "itemtype": "method",
+            "name": "clearAll",
+            "class": "DeleteZoneCtrl",
+            "module": "client",
+            "submodule": "Controllers"
         },
         {
             "file": "app/js/controllers/DialogCtrl.js",
-            "line": 186,
-            "class": "FileConnector"
+            "line": 20,
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
         },
         {
             "file": "app/js/controllers/DialogCtrl.js",
-            "line": 193,
-            "class": "FileConnector"
+            "line": 57,
+            "description": "A <b>local scope</b> method\nthat returns the title of a toolbar.\n<br/>\nIts value depends on wheather or not \nthe <code>AddSource.html</code> dialog was called to add or modify a source.",
+            "itemtype": "method",
+            "name": "getToobarTitle",
+            "return": {
+                "description": "A toolbar title",
+                "type": "String"
+            },
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 74,
+            "description": "A <b>local scope</b> method\nthat returns the label of the OK button\nin the  dialog.\n<br/>\nIts value depends on wheather or not \nthe <code>AddSource.html</code> dialog was called to add or modify a source.",
+            "itemtype": "method",
+            "name": "getButtonLabel",
+            "return": {
+                "description": "A button label",
+                "type": "String"
+            },
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 92,
+            "description": "A <b>local scope</b> method, attached to \nthe OK button in the <code>AddSource.html</code> dialog, that\nuses services <b>SourcesService</b> and\n<b>CSV2JSONService</b> to add or modify a source in the back-end.",
+            "itemtype": "method",
+            "name": "connect",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 191,
+            "description": "A <b>local scope</b> method, attached \nto the delete button in the toolbar of the \n<code>AddSource.html</code> dialog, that uses \na service <b>SourcesService</b> to delete a source from the\nback-end.",
+            "itemtype": "method",
+            "name": "deleteSource",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 231,
+            "description": "A <b>local scope</b> method that serves <code>AddSource.html</code> \nand reads the choosen file on front-end \nand saves it on the back-end.\n<br/>\nCalled when the added source is of the \n'file' type (JSON or CSV).",
+            "itemtype": "method",
+            "name": "saveSourceFile",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "Used to get the choosen file on the front-end"
+                }
+            ],
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 290,
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 291,
+            "description": "A <b>local scope</b> method that serves\n<code>SaveFormat.html</code> dialog and saves\nthe the timestamp format specified by user.\n<br/>\nIt is done by calling the method <code>hide()</code>\nof <b>$mdDialog</b> service and passing it the format.\nThis way the format can be grabbed in the <code>.then()</code>\nmethod in the controller <b>LoaderCtrl</b>.",
+            "itemtype": "method",
+            "name": "saveFormat",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 308,
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 309,
+            "description": "A <b>local scope</b> method that serves \nthe <code>AddSource.html</code> and <code>SaveFormat.html</code>\ndialogs and is used to close the dialog.\n<br/>\nDone by calling the <code>cancel()</code> method\nof <b>$mdDialog</b> service.",
+            "itemtype": "method",
+            "name": "cancel",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/FabCtrl.js",
+            "line": 16,
+            "description": "A <b>local scope</b> method that renders a view\n(from <code>AddSource.html</code> template) with\ninputs to add a new source.",
+            "itemtype": "method",
+            "name": "showDialog",
+            "params": [
+                {
+                    "name": "ev",
+                    "description": "event"
+                }
+            ],
+            "class": "FabCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 19,
+            "description": "A <b>local scope</b> method that hides/shows\nthe footer at the <code>index.htlm</code> view.",
+            "itemtype": "method",
+            "name": "toggle",
+            "class": "HideBtnCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 30,
+            "description": "A <b>root scope</b> $watch method that swithces\nthe image on the hide button depending on its state.",
+            "itemtype": "method",
+            "name": "switchImage",
+            "class": "HideBtnCtrl",
+            "module": "client",
+            "submodule": "Controllers"
         },
         {
             "file": "app/js/controllers/LeftNavCtrl.js",
             "line": 69,
-            "class": "FileConnector"
+            "class": "MovableChartsCtrl",
+            "module": "client"
         },
         {
             "file": "app/js/controllers/LeftNavCtrl.js",
             "line": 187,
-            "class": "FileConnector"
+            "class": "MovableChartsCtrl",
+            "module": "client"
+        },
+        {
+            "file": "app/js/controllers/MovableChartsCtrl.js",
+            "line": 22,
+            "description": "A <b>local scope</b> method that is fired\nwhen the field is dropped into one of the movable\ncharts in the footer of <code>index.html</code>.\n<br/>\nIt adds the fields into the <code>$rootScope.chartFields</code> list.",
+            "itemtype": "method",
+            "name": "onDropComplete",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Dropped field"
+                },
+                {
+                    "name": "type",
+                    "description": "Chart type"
+                }
+            ],
+            "class": "MovableChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 15,
+            "description": "A <b>root scope</b> method that hides/shows\nall the panels (and also footer) in the\n<code>index.html</code>.",
+            "itemtype": "method",
+            "name": "togglePanels",
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 31,
+            "description": "A <b>root scope</b> method that hides/shows\na progress bar. Also activates/desactivates\nall the inputs in the <code>index.html</code>.",
+            "itemtype": "method",
+            "name": "showPB",
+            "params": [
+                {
+                    "name": "activate",
+                    "description": "Wheather to activate or not the progress\nbar and inputs",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 52,
+            "description": "A <b>local scope</b> method that shows\nan about dialog.\n<br/>\nDialog view is specified in hte <code>About.html</code> template.",
+            "itemtype": "method",
+            "name": "showAbout",
+            "params": [
+                {
+                    "name": "ev",
+                    "description": "Event"
+                }
+            ],
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
         },
         {
             "file": "app/js/canvasjs.js",
             "line": 1,
             "preserve": "CanvasJS HTML5 & JavaScript Charts - v1.8.1 GA - http://canvasjs.com/ \nCopyright 2013 fenopix",
-            "class": "FileConnector"
+            "class": "main",
+            "module": "client"
         },
         {
             "file": "server/connectors/FileConnector.js",
@@ -1127,15 +1551,15 @@
         },
         {
             "message": "Missing item type",
-            "line": " app/js/controllers/DialogCtrl.js:4"
+            "line": " app/js/controllers/DialogCtrl.js:20"
         },
         {
             "message": "Missing item type",
-            "line": " app/js/controllers/DialogCtrl.js:186"
+            "line": " app/js/controllers/DialogCtrl.js:290"
         },
         {
             "message": "Missing item type",
-            "line": " app/js/controllers/DialogCtrl.js:193"
+            "line": " app/js/controllers/DialogCtrl.js:308"
         },
         {
             "message": "Missing item type",

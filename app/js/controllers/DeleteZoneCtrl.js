@@ -1,10 +1,32 @@
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
+
+/**
+ * A controller that serves the delete zone
+ * (where all the Drag&Drop objects can be dropped)
+ * in the footer of  <code>index.html</code> view.
+ * @class DeleteZoneCtrl
+ */
 angular.module('MainApp')
 	.controller('DeleteZoneCtrl', function($scope, $rootScope){
 
+		/**
+		* A <b>local scope</b> method tha removes 
+		* a dropped object from the list of objects
+		* of its type.
+		* <br/>
+		* Dropped objects could be:
+		* - normal fields
+		* - timestamp fields
+		* - DC.js or Canvas.js charts
+		* - movable charts
+		* @method onDropRemove
+		* @param data A dropped object 
+		*/
 		$scope.onDropRemove = function(data){
-
-			console.log('delete:');
-			console.log(data);
 
 			//if it is a field
 			if (data.field && data.store && data.source){
@@ -18,8 +40,6 @@ angular.module('MainApp')
 
 						$rootScope.droppedTSFields.splice(index, 1);
 					}
-					console.log($rootScope.droppedTSFields);
-
 				}
 				else{
 					
@@ -67,9 +87,6 @@ angular.module('MainApp')
 				//movable charts
 				else{
 
-					console.log('delete chart:');
-					console.log(data);
-
 					for (var i=0; i<$rootScope.chartFields.length; i++){
 
 						if ($rootScope.chartFields[i].chart === data.chart){
@@ -83,9 +100,16 @@ angular.module('MainApp')
 		}
 
 
-		//delete all the dropped items:
-		//DC charts, movable charts, timestamp fields
-		//and normal fields
+		/**
+		* A <b>local scope</b> method that fires 
+		* when the delete zone (placed in the footer of <code>index.html</code>)
+		* is clicked.
+		* <br/>
+		* It clears all the Drag&Drop objects from
+		* their respective lists.
+		* It also deletes a loaded dataset.
+		* @method clearAll
+		*/
 		$scope.clearAll = function(){
 
 			//delete dataset

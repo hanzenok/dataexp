@@ -28,6 +28,11 @@
                 </div>
                 <div class="bd">
                     <ul>
+                            <li><a href="../modules/client.html">client</a>
+                                <ul>
+                                        <li><a href="../modules/client.html#Controllers">Controllers</a></li>
+                                </ul>
+                            </li>
                             <li><a href="../modules/server.html">server</a>
                                 <ul>
                                         <li><a href="../modules/server.html#Connectors">Connectors</a></li>
@@ -45,15 +50,22 @@
                 <div class="bd">
                     <ul>
                             <li><a href="../classes/DeleteSource.html">DeleteSource</a></li>
+                            <li><a href="../classes/DeleteZoneCtrl.html">DeleteZoneCtrl</a></li>
+                            <li><a href="../classes/DialogCtrl.html">DialogCtrl</a></li>
+                            <li><a href="../classes/FabCtrl.html">FabCtrl</a></li>
                             <li><a href="../classes/FileConnector.html">FileConnector</a></li>
                             <li><a href="../classes/GetFields.html">GetFields</a></li>
                             <li><a href="../classes/GetSources.html">GetSources</a></li>
                             <li><a href="../classes/GetStores.html">GetStores</a></li>
                             <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
+                            <li><a href="../classes/HideBtnCtrl.html">HideBtnCtrl</a></li>
+                            <li><a href="../classes/main.html">main</a></li>
                             <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
+                            <li><a href="../classes/MovableChartsCtrl.html">MovableChartsCtrl</a></li>
                             <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
                             <li><a href="../classes/PutSource.html">PutSource</a></li>
                             <li><a href="../classes/routes.html">routes</a></li>
+                            <li><a href="../classes/ToolBarCtrl.html">ToolBarCtrl</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,7 +79,7 @@
                     <h2 class="no-toc">Files</h2>
                 </div>
                 <div class="bd">
-                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li></ul></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
                 </div>
             </div>
             
@@ -77,11 +89,27 @@
             <div class="content"><h4>app/js/controllers/DialogCtrl.js</h4>
 
 <pre class="code prettyprint linenums">
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
+
+/**
+ * A controller that serves the two templates
+ * for dialog windows: &lt;code&gt;AddSource.html&lt;/code&gt;
+ * and &lt;code&gt;SaveFormat.html&lt;/code&gt;.
+ * &lt;br/&gt;
+ * It uses two custom angular services:
+ * - &lt;b&gt;SourcesService&lt;/b&gt;: deals with getting/sendig/adding/deleting sources in the backend
+ * - &lt;b&gt;CSV2JSONService&lt;/b&gt;: used for csv type sources
+ * @class DialogCtrl
+ */
 angular.module(&#x27;MainApp&#x27;)
 	.controller(&#x27;DialogCtrl&#x27;, function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, CSV2JSONService){
 
 		/*******AddSource.html********/
-		$scope.showHints = false; //managin the error hints
+		$scope.showHints = false; //managing the error hints
 
 		//deletable if dialog gives the possibility
 		//to modify the existing source
@@ -117,6 +145,15 @@ angular.module(&#x27;MainApp&#x27;)
 			old_source_conf = JSON.parse(JSON.stringify($scope.source_conf));
 		}
 
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method
+		* that returns the title of a toolbar.
+		* &lt;br/&gt;
+		* Its value depends on wheather or not 
+		* the &lt;code&gt;AddSource.html&lt;/code&gt; dialog was called to add or modify a source.
+		* @method getToobarTitle
+		* @return {string} A toolbar title
+		*/
 		$scope.getToolbarTitle = function(){
 
 			if ($scope.deletable)
@@ -125,6 +162,16 @@ angular.module(&#x27;MainApp&#x27;)
 				return &#x27;Adding a new source&#x27;;
 		}
 
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method
+		* that returns the label of the OK button
+		* in the  dialog.
+		* &lt;br/&gt;
+		* Its value depends on wheather or not 
+		* the &lt;code&gt;AddSource.html&lt;/code&gt; dialog was called to add or modify a source.
+		* @method getButtonLabel
+		* @return {string} A button label
+		*/
 		$scope.getButtonLabel = function(){
 
 			if ($scope.deletable)
@@ -133,12 +180,16 @@ angular.module(&#x27;MainApp&#x27;)
 				return &#x27;Save&#x27;;
 		}
 
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method, attached to 
+		* the OK button in the &lt;code&gt;AddSource.html&lt;/code&gt; dialog, that
+		* uses services &lt;b&gt;SourcesService&lt;/b&gt; and
+		* &lt;b&gt;CSV2JSONService&lt;/b&gt; to add or modify a source in the back-end.
+		* @method connect
+		*/
 		$scope.connect = function() {
 			
 			$scope.showHints = true;
-			
-			console.log(&#x27;DialogController:&#x27;);
-			console.log($scope.source_conf);
 
 			//if we are modifying the existing source
 			if ($scope.deletable){
@@ -189,8 +240,6 @@ angular.module(&#x27;MainApp&#x27;)
 			//if we are adding a new source
 			else{
 
-				console.log(&#x27;not deletable!!&#x27;);
-
 				//if all the inputs are specified
 				if ($scope.source_conf.source.name &amp;&amp; $scope.source_conf.source.type &amp;&amp; 
 					$scope.source_conf.source.server &amp;&amp; $scope.source_conf.source.db){
@@ -225,16 +274,21 @@ angular.module(&#x27;MainApp&#x27;)
 				//not all fields are specified
 				//show the error hints
 				else{
-					console.log(&#x27;here1&#x27;);
 					$scope.showHints = true;
 				}
 			}
 		};
 
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method, attached 
+		* to the delete button in the toolbar of the 
+		* &lt;code&gt;AddSource.html&lt;/code&gt; dialog, that uses 
+		* a service &lt;b&gt;SourcesService&lt;/b&gt; to delete a source from the
+		* back-end.
+		* @method deleteSource
+		*/
 		$scope.deleteSource = function(){
 
-			console.log(&#x27;delete!!&#x27;);
-			console.log($scope.source_conf);
 			SourcesService.delete($scope.source_conf.source.name, 
 				function(){
 
@@ -262,22 +316,19 @@ angular.module(&#x27;MainApp&#x27;)
 			);
 		}
 
-		/*******SaveFormat.html********/
-		$scope.format = &#x27;ISO&#x27;;
-		$scope.saveFormat = function(){
-			
-			$mdDialog.hide($scope.format);
-		};
-
-		/***********Both***********/
-		$scope.cancel = function() {
-
-			$mdDialog.cancel();
-		};
-
 		//reads the file choosed in the 
 		//file dialog and saves it in the backend
 		//finally, closes the dialog
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method that serves &lt;code&gt;AddSource.html&lt;/code&gt; 
+		* and reads the choosen file on front-end 
+		* and saves it on the back-end.
+		* &lt;br/&gt;
+		* Called when the added source is of the 
+		* &#x27;file&#x27; type (JSON or CSV).
+		* @method saveSourceFile
+		* @param element Used to get the choosen file on the front-end
+		*/
 		$scope.saveSourceFile = function(element){
 
 			//if the file was specified
@@ -326,6 +377,39 @@ angular.module(&#x27;MainApp&#x27;)
 				reader.readAsText(file);
 			}
 		}
+
+		/*******SaveFormat.html********/
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method that serves
+		* &lt;code&gt;SaveFormat.html&lt;/code&gt; dialog and saves
+		* the the timestamp format specified by user.
+		* &lt;br/&gt;
+		* It is done by calling the method &lt;code&gt;hide()&lt;/code&gt;
+		* of &lt;b&gt;$mdDialog&lt;/b&gt; service and passing it the format.
+		* This way the format can be grabbed in the &lt;code&gt;.then()&lt;/code&gt;
+		* method in the controller &lt;b&gt;LoaderCtrl&lt;/b&gt;.
+		* @method saveFormat
+		*/
+		$scope.format = &#x27;ISO&#x27;; //the default format
+		$scope.saveFormat = function(){
+			
+			$mdDialog.hide($scope.format);
+		};
+
+		/***********Both***********/
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method that serves 
+		* the &lt;code&gt;AddSource.html&lt;/code&gt; and &lt;code&gt;SaveFormat.html&lt;/code&gt;
+		* dialogs and is used to close the dialog.
+		* &lt;br/&gt;
+		* Done by calling the &lt;code&gt;cancel()&lt;/code&gt; method
+		* of &lt;b&gt;$mdDialog&lt;/b&gt; service.
+		* @method cancel
+		*/
+		$scope.cancel = function() {
+
+			$mdDialog.cancel();
+		};
 
 	});
 

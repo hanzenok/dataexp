@@ -1,8 +1,24 @@
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
+
+/**
+ * A controller that serves the two templates
+ * for dialog windows: <code>AddSource.html</code>
+ * and <code>SaveFormat.html</code>.
+ * <br/>
+ * It uses two custom angular services:
+ * - <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources in the backend
+ * - <b>CSV2JSONService</b>: used for csv type sources
+ * @class DialogCtrl
+ */
 angular.module('MainApp')
 	.controller('DialogCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, CSV2JSONService){
 
 		/*******AddSource.html********/
-		$scope.showHints = false; //managin the error hints
+		$scope.showHints = false; //managing the error hints
 
 		//deletable if dialog gives the possibility
 		//to modify the existing source
@@ -38,6 +54,15 @@ angular.module('MainApp')
 			old_source_conf = JSON.parse(JSON.stringify($scope.source_conf));
 		}
 
+		/**
+		* A <b>local scope</b> method
+		* that returns the title of a toolbar.
+		* <br/>
+		* Its value depends on wheather or not 
+		* the <code>AddSource.html</code> dialog was called to add or modify a source.
+		* @method getToobarTitle
+		* @return {string} A toolbar title
+		*/
 		$scope.getToolbarTitle = function(){
 
 			if ($scope.deletable)
@@ -46,6 +71,16 @@ angular.module('MainApp')
 				return 'Adding a new source';
 		}
 
+		/**
+		* A <b>local scope</b> method
+		* that returns the label of the OK button
+		* in the  dialog.
+		* <br/>
+		* Its value depends on wheather or not 
+		* the <code>AddSource.html</code> dialog was called to add or modify a source.
+		* @method getButtonLabel
+		* @return {string} A button label
+		*/
 		$scope.getButtonLabel = function(){
 
 			if ($scope.deletable)
@@ -54,12 +89,16 @@ angular.module('MainApp')
 				return 'Save';
 		}
 
+		/**
+		* A <b>local scope</b> method, attached to 
+		* the OK button in the <code>AddSource.html</code> dialog, that
+		* uses services <b>SourcesService</b> and
+		* <b>CSV2JSONService</b> to add or modify a source in the back-end.
+		* @method connect
+		*/
 		$scope.connect = function() {
 			
 			$scope.showHints = true;
-			
-			console.log('DialogController:');
-			console.log($scope.source_conf);
 
 			//if we are modifying the existing source
 			if ($scope.deletable){
@@ -110,8 +149,6 @@ angular.module('MainApp')
 			//if we are adding a new source
 			else{
 
-				console.log('not deletable!!');
-
 				//if all the inputs are specified
 				if ($scope.source_conf.source.name && $scope.source_conf.source.type && 
 					$scope.source_conf.source.server && $scope.source_conf.source.db){
@@ -146,16 +183,21 @@ angular.module('MainApp')
 				//not all fields are specified
 				//show the error hints
 				else{
-					console.log('here1');
 					$scope.showHints = true;
 				}
 			}
 		};
 
+		/**
+		* A <b>local scope</b> method, attached 
+		* to the delete button in the toolbar of the 
+		* <code>AddSource.html</code> dialog, that uses 
+		* a service <b>SourcesService</b> to delete a source from the
+		* back-end.
+		* @method deleteSource
+		*/
 		$scope.deleteSource = function(){
 
-			console.log('delete!!');
-			console.log($scope.source_conf);
 			SourcesService.delete($scope.source_conf.source.name, 
 				function(){
 
@@ -183,22 +225,19 @@ angular.module('MainApp')
 			);
 		}
 
-		/*******SaveFormat.html********/
-		$scope.format = 'ISO';
-		$scope.saveFormat = function(){
-			
-			$mdDialog.hide($scope.format);
-		};
-
-		/***********Both***********/
-		$scope.cancel = function() {
-
-			$mdDialog.cancel();
-		};
-
 		//reads the file choosed in the 
 		//file dialog and saves it in the backend
 		//finally, closes the dialog
+		/**
+		* A <b>local scope</b> method that serves <code>AddSource.html</code> 
+		* and reads the choosen file on front-end 
+		* and saves it on the back-end.
+		* <br/>
+		* Called when the added source is of the 
+		* 'file' type (JSON or CSV).
+		* @method saveSourceFile
+		* @param element Used to get the choosen file on the front-end
+		*/
 		$scope.saveSourceFile = function(element){
 
 			//if the file was specified
@@ -247,6 +286,39 @@ angular.module('MainApp')
 				reader.readAsText(file);
 			}
 		}
+
+		/*******SaveFormat.html********/
+		/**
+		* A <b>local scope</b> method that serves
+		* <code>SaveFormat.html</code> dialog and saves
+		* the the timestamp format specified by user.
+		* <br/>
+		* It is done by calling the method <code>hide()</code>
+		* of <b>$mdDialog</b> service and passing it the format.
+		* This way the format can be grabbed in the <code>.then()</code>
+		* method in the controller <b>LoaderCtrl</b>.
+		* @method saveFormat
+		*/
+		$scope.format = 'ISO'; //the default format
+		$scope.saveFormat = function(){
+			
+			$mdDialog.hide($scope.format);
+		};
+
+		/***********Both***********/
+		/**
+		* A <b>local scope</b> method that serves 
+		* the <code>AddSource.html</code> and <code>SaveFormat.html</code>
+		* dialogs and is used to close the dialog.
+		* <br/>
+		* Done by calling the <code>cancel()</code> method
+		* of <b>$mdDialog</b> service.
+		* @method cancel
+		*/
+		$scope.cancel = function() {
+
+			$mdDialog.cancel();
+		};
 
 	});
 

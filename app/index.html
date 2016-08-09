@@ -15,9 +15,9 @@
 		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="column">
 			<div flex layout="row" layout-align="start center">
 
-				<!-- Toogle Panels button-->
-				<md-button ng-disabled="$root.disabled" class="menu md-icon-button" aria-label="Menu button" ng-click="$root.tooglePanels()" md-ink-ripple="false">
-					<md-tooltip md-visible="false" md-direction="bottom">Toogle panels</md-tooltip>
+				<!-- Toggle Panels button-->
+				<md-button ng-disabled="$root.disabled" class="menu md-icon-button" aria-label="Menu button" ng-click="$root.togglePanels()" md-ink-ripple="false">
+					<md-tooltip md-visible="false" md-direction="bottom">Toggle panels</md-tooltip>
 					<md-icon md-svg-src="images/menu.svg"></md-icon>
 				</md-button>
 
@@ -171,7 +171,7 @@
 					<div flex></div>
 
 					<!-- Hide Button -->
-					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toogle()">
+					<img id="hide_button" ng-controller="HideBtnCtrl" class="cursor_pointer md-whiteframe-1dp" src="{{image}}" ng-click="toggle()">
 				</div>
 
 				<!-- Footer -->

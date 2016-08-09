@@ -1,11 +1,35 @@
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
+
+/**
+ * A controller that serves all the 
+ * movable charts in the footer of <code>index.html</code> view.
+ * <br/>
+ * There are 5 chart types:
+ * - Pie Chart
+ * - Timeline
+ * - Scatter Plot
+ * - Row Chart
+ * - Bar Chart
+ * @class MovableChartsCtrl
+ */
 angular.module('MainApp')
 	.controller('MovableChartsCtrl', function ($scope, $rootScope) {
 
+		/**
+		* A <b>local scope</b> method that is fired
+		* when the field is dropped into one of the movable
+		* charts in the footer of <code>index.html</code>.
+		* <br/>
+		* It adds the fields into the <code>$rootScope.chartFields</code> list.
+		* @method onDropComplete
+		* @param data Dropped field
+		* @param type Chart type
+		*/
 		$scope.onDropComplete = function(data, type){
-			console.log('Object:');
-			console.log(data);
-			console.log('type:');
-			console.log(type);
 
 			if (data.field && data.field.status === 'loaded' && (!data.field.format || type === 'Bar')){
 
@@ -27,9 +51,6 @@ angular.module('MainApp')
 				//clone the object and set the type
 				var clone = JSON.parse(JSON.stringify(data));
 				clone.chart = type;
-
-				console.log('clone:');
-				console.log(clone);
 
 				//check if exists
 				var index = -1;
