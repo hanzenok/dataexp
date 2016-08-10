@@ -61,12 +61,14 @@
                             <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
                             <li><a href="../classes/HideBtnCtrl.html">HideBtnCtrl</a></li>
                             <li><a href="../classes/LeftNavCtrl.html">LeftNavCtrl</a></li>
+                            <li><a href="../classes/LoaderCtrl.html">LoaderCtrl</a></li>
                             <li><a href="../classes/main.html">main</a></li>
                             <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
                             <li><a href="../classes/MovableChartsCtrl.html">MovableChartsCtrl</a></li>
                             <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
                             <li><a href="../classes/PutSource.html">PutSource</a></li>
                             <li><a href="../classes/routes.html">routes</a></li>
+                            <li><a href="../classes/server.html">server</a></li>
                             <li><a href="../classes/ToolBarCtrl.html">ToolBarCtrl</a></li>
                     </ul>
                 </div>
@@ -81,7 +83,7 @@
                     <h2 class="no-toc">Files</h2>
                 </div>
                 <div class="bd">
-                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_LoaderCtrl.js.html">LoaderCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server.js/<ul></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
                 </div>
             </div>
             
@@ -106,29 +108,45 @@
 angular.module(&#x27;MainApp&#x27;)
 	.controller(&#x27;HideBtnCtrl&#x27;, function ($scope, $rootScope) {
 
-	$rootScope.hideFooter = false;
-	$scope.image = &#x27;images/down.svg&#x27;;
+		/**
+		* @property hideFooter
+		* @type boolean
+		* @description A &lt;b&gt;root scope&lt;/b&gt; variable
+		* that sets the state of a footer (wheather it&#x27;s hided or not) 
+		* in the &lt;code&gt;index.html&lt;/cdoe&gt; view.
+		*/
+		$rootScope.hideFooter = false;
 
-	/**
-	* A &lt;b&gt;local scope&lt;/b&gt; method that hides/shows
-	* the footer at the &lt;code&gt;index.htlm&lt;/code&gt; view.
-	* @method toggle
-	*/
-	$scope.toggle = function(){
+		/**
+		* @property image
+		* @type string
+		* @description A &lt;b&gt;local scope&lt;/b&gt; variable
+		* that is binded to the footer 
+		* in the &lt;code&gt;index.html&lt;/code&gt; view and holds
+		* path to the buttons image.
+		*/
+		$scope.image = &#x27;images/down.svg&#x27;;
 
-		//toggle the footer
-		$rootScope.hideFooter = !$rootScope.hideFooter;
-	}
+		/**
+		* A &lt;b&gt;local scope&lt;/b&gt; method that hides/shows
+		* the footer at the &lt;code&gt;index.htlm&lt;/code&gt; view.
+		* @method toggle
+		*/
+		$scope.toggle = function(){
 
-	/**
-	* A &lt;b&gt;root scope&lt;/b&gt; $watch method that swithces
-	* the image on the hide button depending on its state.
-	* @method switchImage
-	*/
-	$rootScope.$watch(&#x27;hideFooter&#x27;, function(){
+			//toggle the footer
+			$rootScope.hideFooter = !$rootScope.hideFooter;
+		}
 
-		$scope.image = ($rootScope.hideFooter) ? &#x27;images/up.svg&#x27; : &#x27;images/down.svg&#x27;;
-	});
+		/**
+		* A &lt;b&gt;root scope&lt;/b&gt; $watch method that swithces
+		* the image on the hide button depending on its state.
+		* @method switchImage
+		*/
+		$rootScope.$watch(&#x27;hideFooter&#x27;, function(){
+
+			$scope.image = ($rootScope.hideFooter) ? &#x27;images/up.svg&#x27; : &#x27;images/down.svg&#x27;;
+		});
 	
 });
 </pre>

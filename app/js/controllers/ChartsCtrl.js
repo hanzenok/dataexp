@@ -43,9 +43,33 @@ angular.module('MainApp')
 							row: 'Row',
 							bar: 'Bar'
 						};
-
+		/**
+		* @property reload
+		* @type boolean
+		* @description A <b>local scope</b> variable
+		* that is used to trigger (or not)
+		* the <b>renderAll()</b> method
+		* to reload all the charts.
+		*/
 		$scope.reload = false;
+
+		/**
+		* @property hideTitle
+		* @type boolean
+		* @description A <b>local scope</b> variable
+		* that is used to show/hide
+		* the message 'Rendering ...' while
+		* the chart (DC.js or Canvas.js) is rendering.
+		*/		
 		$scope.hideTitle = false; //'Rendering ...' title
+
+		/**
+		* @property droppedCharts
+		* @type array
+		* @description A <b>root scope</b> variable
+		* that holds all the dropped movable charts
+		* on the charts container in the <code>index.html</code>.
+		*/
 		$rootScope.droppedCharts = []; //dropped charts container
 
 		/**

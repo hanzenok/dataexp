@@ -1,3 +1,14 @@
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
+
+/**
+ * A controller that serves all the 
+ * right panel in the <code>index.html</code> view.
+ * @class RightNavCtrl
+ */
 angular.module('MainApp')
 	.controller('RightNavCtrl', function($scope, $rootScope, $mdDialog){
 
@@ -7,7 +18,7 @@ angular.module('MainApp')
 		$rootScope.size_status = 'normal';
 
 		//stats
-		$scope.homogen = '?'
+		$scope.homogen = '?';
 		$scope.size = '?';
 		$scope.per_day = '?';
 
@@ -28,6 +39,15 @@ angular.module('MainApp')
 		$scope.enableDates = false;
 
 		//returns the current config
+		/**
+		* A <b>root scope</b> method, that
+		* collects all the choosen options
+		* from the right panel in 
+		* the <code>index.html</code>, and returns them 
+		* compacted into one json
+		* @method getOptions
+		* @return {json} All the options from the right panel
+		*/
 		$rootScope.getOptions = function(){
 
 			//config json
@@ -51,16 +71,6 @@ angular.module('MainApp')
 			config.date_borders.to = {};
 			if ($scope.enableDates && $scope.from_date && $scope.to_date){
 
-				console.log('from:');
-				console.log($scope.from_date.getDate() + ', ' + $scope.from_date.getMonth() + ', ' + $scope.from_date.getFullYear());
-				console.log(new Date($scope.from_date.getFullYear(), $scope.from_date.getMonth() + 1, $scope.from_date.getDate()));
-				console.log(new Date($scope.from_date).toString());
-
-				console.log('to:');
-				console.log($scope.to_date.getDate() + ', ' + $scope.to_date.getMonth() + ', ' + $scope.to_date.getFullYear());
-				console.log($scope.to_date);
-				console.log(new Date($scope.to_date).toString());
-
 				config.date_borders.from.date = new Date($scope.from_date).toString();
 				config.date_borders.to.date = new Date($scope.to_date).toString();
 			}
@@ -83,9 +93,6 @@ angular.module('MainApp')
 
 			//quantification options
 			config.tsfield_quantum = $scope.tsfield_quantum;
-
-			console.log('getConfig():');
-			console.log(config);
 
 			return config;
 
@@ -159,16 +166,17 @@ angular.module('MainApp')
 			});
 		};
 
+		/*left here because it could be useful*/
 		//done like this because of the
 		//event propagation
 		//used with 'ng-click="toogleDates($event)"'
-		// $scope.toogleDates = function(event){
+		/*$scope.toogleDates = function(event){
 
-		// 	$scope.enableDates = !$scope.enableDates;
+			$scope.enableDates = !$scope.enableDates;
 
-		// 	//http://stackoverflow.com/questions/20300866/angularjs-ng-click-stoppropagation
-		// 	event.stopPropagation();
-		// }
+			//http://stackoverflow.com/questions/20300866/angularjs-ng-click-stoppropagation
+			event.stopPropagation();
+		}*/
 
 		//done this way to fix
 		//the options when correlation disabled

@@ -41,6 +41,7 @@ angular.module('MainApp')
 						$rootScope.droppedTSFields.splice(index, 1);
 					}
 				}
+				//normal field
 				else{
 					
 					var index = $rootScope.droppedFields.indexOf(data);

@@ -13,12 +13,21 @@ angular.module('MainApp')
 	.controller('ToolBarCtrl', function($scope, $rootScope, $mdDialog){
 		
 		/**
+		* @property showPanels
+		* @type boolean
+		* @description A <b>root scope</b> variable,
+		* binded to the <code>index.html</code> view,
+		* that sets the state of left, right and footer panels 
+		* (wheather they are hided or not).
+		*/
+		$rootScope.showPanels = true; //hiding panels
+		
+		/**
 		* A <b>root scope</b> method that hides/shows
 		* all the panels (and also footer) in the
 		* <code>index.html</code>.
 		* @method togglePanels
 		*/
-		$rootScope.showPanels = true; //hiding panels
 		$rootScope.togglePanels = function(){
 
 			//hide panels

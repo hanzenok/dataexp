@@ -61,12 +61,14 @@
                             <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
                             <li><a href="../classes/HideBtnCtrl.html">HideBtnCtrl</a></li>
                             <li><a href="../classes/LeftNavCtrl.html">LeftNavCtrl</a></li>
+                            <li><a href="../classes/LoaderCtrl.html">LoaderCtrl</a></li>
                             <li><a href="../classes/main.html">main</a></li>
                             <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
                             <li><a href="../classes/MovableChartsCtrl.html">MovableChartsCtrl</a></li>
                             <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
                             <li><a href="../classes/PutSource.html">PutSource</a></li>
                             <li><a href="../classes/routes.html">routes</a></li>
+                            <li><a href="../classes/server.html">server</a></li>
                             <li><a href="../classes/ToolBarCtrl.html">ToolBarCtrl</a></li>
                     </ul>
                 </div>
@@ -93,7 +95,7 @@
                     <h2 class="no-toc">Files</h2>
                 </div>
                 <div class="bd">
-                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_LoaderCtrl.js.html">LoaderCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server.js/<ul></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
                 </div>
             </div>
             
@@ -136,6 +138,7 @@ charts. To allow it, the <b>reloadCharts()</b> sets the variable <code>$scope.re
 <div id="classdocs">
     <ul>
         <li><a href="#methods">Methods</a></li>
+        <li><a href="#props">Properties</a></li>
     </ul>
     <div>
             <div id="methods">
@@ -145,7 +148,7 @@ charts. To allow it, the <b>reloadCharts()</b> sets the variable <code>$scope.re
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_ChartsCtrl.js.html#l51"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:51</code></a>
+        <a href="../files/app_js_controllers_ChartsCtrl.js.html#l75"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:75</code></a>
     </span><br>
     <p>A <b>local scope</b> method that fires
 when a movable chart is dropped on the
@@ -167,7 +170,7 @@ and traces a chart (DC.js or Canvas.js).</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_ChartsCtrl.js.html#l192"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:192</code></a>
+        <a href="../files/app_js_controllers_ChartsCtrl.js.html#l216"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:216</code></a>
     </span><br>
     <p>A <b>root scope</b> method that fires
 on clicking the FAB button in the main
@@ -181,7 +184,7 @@ from the <code>$rootScope.droppedCharts</code>.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_ChartsCtrl.js.html#l245"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:245</code></a>
+        <a href="../files/app_js_controllers_ChartsCtrl.js.html#l269"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:269</code></a>
     </span><br>
     <p>A <b>local scope</b> method that
 launches automatically when all the DOM
@@ -189,6 +192,37 @@ elements-containers for charts from the
 <code>$rootScope.droppedCharts</code> where generated.
 When launched, it traces all the charts from the <code>$rootScope.droppedCharts</code>
 list.</p>
+
+</div>
+            </div>
+            <div id="props">
+<a name="props_droppedCharts"></a>
+<div class="props item">
+    <code>droppedCharts</code> &lt;<strong>Array</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_ChartsCtrl.js.html#l66"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:66</code></a></span>
+    <p>A <b>root scope</b> variable
+that holds all the dropped movable charts
+on the charts container in the <code>index.html</code>.</p>
+
+</div>
+<a name="props_hideTitle"></a>
+<div class="props item">
+    <code>hideTitle</code> &lt;<strong>Boolean</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_ChartsCtrl.js.html#l56"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:56</code></a></span>
+    <p>A <b>local scope</b> variable
+that is used to show/hide
+the message 'Rendering ...' while
+the chart (DC.js or Canvas.js) is rendering.</p>
+
+</div>
+<a name="props_reload"></a>
+<div class="props item">
+    <code>reload</code> &lt;<strong>Boolean</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_ChartsCtrl.js.html#l46"><code>app&#x2F;js&#x2F;controllers&#x2F;ChartsCtrl.js:46</code></a></span>
+    <p>A <b>local scope</b> variable
+that is used to trigger (or not)
+the <b>renderAll()</b> method
+to reload all the charts.</p>
 
 </div>
             </div>

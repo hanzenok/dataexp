@@ -17,16 +17,41 @@
 angular.module('MainApp')
 	.controller('DialogCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, CSV2JSONService){
 
+		//===========================//
 		/*******AddSource.html********/
-		$scope.showHints = false; //managing the error hints
+		//===========================//
 
-		//deletable if dialog gives the possibility
-		//to modify the existing source
-		//false if adding a new source (via fab button)
+		/**
+		* @property showHints
+		* @type boolean
+		* @description A <b>local scope</b> variable
+		* that manages the error
+		* hints in a form at <code>AddSource.html</code>
+		* dialog.
+		*/
+		$scope.showHints = false;
+
+		/**
+		* @property deletable
+		* @type boolean
+		* @description A <b>local scope</b> variable
+		* that defines wheather the <code>AddSource.html</code>
+		* is used for adding a new source or for modifying 
+		* the existing one.
+		* <br/>
+		* <code>$scope.deletable</code> is <b>true</b> if 
+		* the source is modifyable.
+		*/
 		$scope.deletable = true;
 
-		//if adding the new source,
-		//initialase the source_conf
+		/**
+		* @property source_conf
+		* @type json
+		* @description A <b>local scope</b> variable
+		* that holds the source config.
+		* <br/>
+		* Binded to the <code>AddSource.html</code> dialog.
+		*/
 		if (!$scope.source_conf){
 
 			$scope.source_conf = {
@@ -287,7 +312,21 @@ angular.module('MainApp')
 			}
 		}
 
+		//============================//
 		/*******SaveFormat.html********/
+		//============================//
+
+		/**
+		 * @property format
+		 * @type string
+		 * @description A <b>local scope</b> variable
+		 * that is binded to the <code>SaveFormat.html</code>
+		 * dialog and holds the choosen timestamp format.
+		 * <br/>
+		 * The default value is 'ISO' (ISO8601).
+		 */
+		$scope.format = 'ISO'; //the default format
+
 		/**
 		* A <b>local scope</b> method that serves
 		* <code>SaveFormat.html</code> dialog and saves
@@ -299,7 +338,6 @@ angular.module('MainApp')
 		* method in the controller <b>LoaderCtrl</b>.
 		* @method saveFormat
 		*/
-		$scope.format = 'ISO'; //the default format
 		$scope.saveFormat = function(){
 			
 			$mdDialog.hide($scope.format);

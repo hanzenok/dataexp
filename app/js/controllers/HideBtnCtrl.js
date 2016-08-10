@@ -13,28 +13,44 @@
 angular.module('MainApp')
 	.controller('HideBtnCtrl', function ($scope, $rootScope) {
 
-	$rootScope.hideFooter = false;
-	$scope.image = 'images/down.svg';
+		/**
+		* @property hideFooter
+		* @type boolean
+		* @description A <b>root scope</b> variable
+		* that sets the state of a footer (wheather it's hided or not) 
+		* in the <code>index.html</cdoe> view.
+		*/
+		$rootScope.hideFooter = false;
 
-	/**
-	* A <b>local scope</b> method that hides/shows
-	* the footer at the <code>index.htlm</code> view.
-	* @method toggle
-	*/
-	$scope.toggle = function(){
+		/**
+		* @property image
+		* @type string
+		* @description A <b>local scope</b> variable
+		* that is binded to the footer 
+		* in the <code>index.html</code> view and holds
+		* path to the buttons image.
+		*/
+		$scope.image = 'images/down.svg';
 
-		//toggle the footer
-		$rootScope.hideFooter = !$rootScope.hideFooter;
-	}
+		/**
+		* A <b>local scope</b> method that hides/shows
+		* the footer at the <code>index.htlm</code> view.
+		* @method toggle
+		*/
+		$scope.toggle = function(){
 
-	/**
-	* A <b>root scope</b> $watch method that swithces
-	* the image on the hide button depending on its state.
-	* @method switchImage
-	*/
-	$rootScope.$watch('hideFooter', function(){
+			//toggle the footer
+			$rootScope.hideFooter = !$rootScope.hideFooter;
+		}
 
-		$scope.image = ($rootScope.hideFooter) ? 'images/up.svg' : 'images/down.svg';
-	});
+		/**
+		* A <b>root scope</b> $watch method that swithces
+		* the image on the hide button depending on its state.
+		* @method switchImage
+		*/
+		$rootScope.$watch('hideFooter', function(){
+
+			$scope.image = ($rootScope.hideFooter) ? 'images/up.svg' : 'images/down.svg';
+		});
 	
 });

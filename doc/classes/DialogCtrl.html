@@ -61,12 +61,14 @@
                             <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
                             <li><a href="../classes/HideBtnCtrl.html">HideBtnCtrl</a></li>
                             <li><a href="../classes/LeftNavCtrl.html">LeftNavCtrl</a></li>
+                            <li><a href="../classes/LoaderCtrl.html">LoaderCtrl</a></li>
                             <li><a href="../classes/main.html">main</a></li>
                             <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
                             <li><a href="../classes/MovableChartsCtrl.html">MovableChartsCtrl</a></li>
                             <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
                             <li><a href="../classes/PutSource.html">PutSource</a></li>
                             <li><a href="../classes/routes.html">routes</a></li>
+                            <li><a href="../classes/server.html">server</a></li>
                             <li><a href="../classes/ToolBarCtrl.html">ToolBarCtrl</a></li>
                     </ul>
                 </div>
@@ -97,7 +99,7 @@
                     <h2 class="no-toc">Files</h2>
                 </div>
                 <div class="bd">
-                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_LoaderCtrl.js.html">LoaderCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server.js/<ul></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
                 </div>
             </div>
             
@@ -121,6 +123,7 @@ It uses two custom angular services:</p>
 <div id="classdocs">
     <ul>
         <li><a href="#methods">Methods</a></li>
+        <li><a href="#props">Properties</a></li>
     </ul>
     <div>
             <div id="methods">
@@ -130,7 +133,7 @@ It uses two custom angular services:</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l309"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:309</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l347"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:347</code></a>
     </span><br>
     <p>A <b>local scope</b> method that serves
 the <code>AddSource.html</code> and <code>SaveFormat.html</code>
@@ -146,7 +149,7 @@ of <b>$mdDialog</b> service.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l92"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:92</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l117"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:117</code></a>
     </span><br>
     <p>A <b>local scope</b> method, attached to
 the OK button in the <code>AddSource.html</code> dialog, that
@@ -160,7 +163,7 @@ uses services <b>SourcesService</b> and
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l191"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:191</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l216"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:216</code></a>
     </span><br>
     <p>A <b>local scope</b> method, attached
 to the delete button in the toolbar of the
@@ -175,7 +178,7 @@ back-end.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l74"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:74</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l99"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:99</code></a>
     </span><br>
     <p>A <b>local scope</b> method
 that returns the label of the OK button
@@ -193,7 +196,7 @@ the <code>AddSource.html</code> dialog was called to add or modify a source.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l57"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:57</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l82"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:82</code></a>
     </span><br>
     <p>A <b>local scope</b> method
 that returns the title of a toolbar.
@@ -210,7 +213,7 @@ the <code>AddSource.html</code> dialog was called to add or modify a source.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l291"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:291</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l330"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:330</code></a>
     </span><br>
     <p>A <b>local scope</b> method that serves
 <code>SaveFormat.html</code> dialog and saves
@@ -228,7 +231,7 @@ method in the controller <b>LoaderCtrl</b>.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_DialogCtrl.js.html#l231"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:231</code></a>
+        <a href="../files/app_js_controllers_DialogCtrl.js.html#l256"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:256</code></a>
     </span><br>
     <p>A <b>local scope</b> method that serves <code>AddSource.html</code>
 and reads the choosen file on front-end
@@ -245,6 +248,52 @@ Called when the added source is of the
 
         </li>
     </ul>
+</div>
+            </div>
+            <div id="props">
+<a name="props_deletable"></a>
+<div class="props item">
+    <code>deletable</code> &lt;<strong>Boolean</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_DialogCtrl.js.html#l34"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:34</code></a></span>
+    <p>A <b>local scope</b> variable
+that defines wheather the <code>AddSource.html</code>
+is used for adding a new source or for modifying
+the existing one.
+<br/>
+<code>$scope.deletable</code> is <b>true</b> if
+the source is modifyable.</p>
+
+</div>
+<a name="props_format"></a>
+<div class="props item">
+    <code>format</code> &lt;<strong>String</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_DialogCtrl.js.html#l319"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:319</code></a></span>
+    <p>A <b>local scope</b> variable
+that is binded to the <code>SaveFormat.html</code>
+dialog and holds the choosen timestamp format.
+<br/>
+The default value is 'ISO' (ISO8601).</p>
+
+</div>
+<a name="props_showHints"></a>
+<div class="props item">
+    <code>showHints</code> &lt;<strong>Boolean</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_DialogCtrl.js.html#l24"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:24</code></a></span>
+    <p>A <b>local scope</b> variable
+that manages the error
+hints in a form at <code>AddSource.html</code>
+dialog.</p>
+
+</div>
+<a name="props_source_conf"></a>
+<div class="props item">
+    <code>source_conf</code> &lt;<strong>Json</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_DialogCtrl.js.html#l47"><code>app&#x2F;js&#x2F;controllers&#x2F;DialogCtrl.js:47</code></a></span>
+    <p>A <b>local scope</b> variable
+that holds the source config.
+<br/>
+Binded to the <code>AddSource.html</code> dialog.</p>
+
 </div>
             </div>
     </div>

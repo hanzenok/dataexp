@@ -61,12 +61,14 @@
                             <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
                             <li><a href="../classes/HideBtnCtrl.html">HideBtnCtrl</a></li>
                             <li><a href="../classes/LeftNavCtrl.html">LeftNavCtrl</a></li>
+                            <li><a href="../classes/LoaderCtrl.html">LoaderCtrl</a></li>
                             <li><a href="../classes/main.html">main</a></li>
                             <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
                             <li><a href="../classes/MovableChartsCtrl.html">MovableChartsCtrl</a></li>
                             <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
                             <li><a href="../classes/PutSource.html">PutSource</a></li>
                             <li><a href="../classes/routes.html">routes</a></li>
+                            <li><a href="../classes/server.html">server</a></li>
                             <li><a href="../classes/ToolBarCtrl.html">ToolBarCtrl</a></li>
                     </ul>
                 </div>
@@ -92,7 +94,7 @@
                     <h2 class="no-toc">Files</h2>
                 </div>
                 <div class="bd">
-                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_LoaderCtrl.js.html">LoaderCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li></ul></li></ul></li><li>server.js/<ul></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
                 </div>
             </div>
             
@@ -110,6 +112,7 @@ in the <code>index.html</code> view.</p>
 <div id="classdocs">
     <ul>
         <li><a href="#methods">Methods</a></li>
+        <li><a href="#props">Properties</a></li>
     </ul>
     <div>
             <div id="methods">
@@ -119,7 +122,7 @@ in the <code>index.html</code> view.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_HideBtnCtrl.js.html#l30"><code>app&#x2F;js&#x2F;controllers&#x2F;HideBtnCtrl.js:30</code></a>
+        <a href="../files/app_js_controllers_HideBtnCtrl.js.html#l46"><code>app&#x2F;js&#x2F;controllers&#x2F;HideBtnCtrl.js:46</code></a>
     </span><br>
     <p>A <b>root scope</b> $watch method that swithces
 the image on the hide button depending on its state.</p>
@@ -131,10 +134,31 @@ the image on the hide button depending on its state.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/app_js_controllers_HideBtnCtrl.js.html#l19"><code>app&#x2F;js&#x2F;controllers&#x2F;HideBtnCtrl.js:19</code></a>
+        <a href="../files/app_js_controllers_HideBtnCtrl.js.html#l35"><code>app&#x2F;js&#x2F;controllers&#x2F;HideBtnCtrl.js:35</code></a>
     </span><br>
     <p>A <b>local scope</b> method that hides/shows
 the footer at the <code>index.htlm</code> view.</p>
+
+</div>
+            </div>
+            <div id="props">
+<a name="props_hideFooter"></a>
+<div class="props item">
+    <code>hideFooter</code> &lt;<strong>Boolean</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_HideBtnCtrl.js.html#l16"><code>app&#x2F;js&#x2F;controllers&#x2F;HideBtnCtrl.js:16</code></a></span>
+    <p>A <b>root scope</b> variable
+that sets the state of a footer (wheather it's hided or not)
+in the <code>index.html</cdoe> view.</p>
+
+</div>
+<a name="props_image"></a>
+<div class="props item">
+    <code>image</code> &lt;<strong>String</strong>&gt;<br>
+    <span class="foundat"><a href="../files/app_js_controllers_HideBtnCtrl.js.html#l25"><code>app&#x2F;js&#x2F;controllers&#x2F;HideBtnCtrl.js:25</code></a></span>
+    <p>A <b>local scope</b> variable
+that is binded to the footer
+in the <code>index.html</code> view and holds
+path to the buttons image.</p>
 
 </div>
             </div>

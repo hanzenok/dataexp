@@ -13,13 +13,15 @@ YUI.add("yuidoc-meta", function(Y) {
         "GetTimseries",
         "HideBtnCtrl",
         "LeftNavCtrl",
+        "LoaderCtrl",
         "MongoConnector",
         "MovableChartsCtrl",
         "MysqlConnector",
         "PutSource",
         "ToolBarCtrl",
         "main",
-        "routes"
+        "routes",
+        "server"
     ],
     "modules": [
         "Connectors",
@@ -50,7 +52,8 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "server",
-            "name": "server"
+            "name": "server",
+            "description": "Rest API's offered by server."
         }
     ],
     "elements": []

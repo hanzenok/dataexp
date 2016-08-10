@@ -29,7 +29,6 @@ var deleteSource = require('./rest/DeleteSource');
  * - <b>/api/config</b>: GET configuration JSON of tsproc
  * @class routes
  */
-
 module.exports = function(app){
 
 	//main page

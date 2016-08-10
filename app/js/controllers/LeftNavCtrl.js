@@ -17,9 +17,32 @@
 angular.module('MainApp')
 	.controller('LeftNavCtrl', function($scope, $rootScope, $mdDialog, $mdToast, SourcesService, StoresService, FieldsService){
 
-		$rootScope.stores_conf = []; //stores configs container
-		$rootScope.fields_conf = []; //fields configs container
-		//sources configs are loaded by the $rootScope.loadSources() method
+		/**
+		* @property stores_conf
+		* @type array
+		* @description A <b>root scope</b> variable,
+		* binded to the left panel in the <code>index.html</code> view,
+		* that holds the store configs.
+		*/
+		$rootScope.stores_conf = [];
+
+		/**
+		* @property fields_conf
+		* @type array
+		* @description A <b>root scope</b> variable,
+		* binded to the left panel in the <code>index.html</code> view,
+		* that holds the field configs.
+		*/
+		$rootScope.fields_conf = [];
+	
+		/**
+		* @property sources_conf
+		* @type array
+		* @description A <b>local scope</b> variable,
+		* binded to the left panel in the <code>index.html</code> view,
+		* that holds the source configs.
+		*/
+		$scope.sources_conf = [];
 
 		/**
 		* A <b>root scope</b> method that is used by 

@@ -4,6 +4,17 @@ var methodOverride = require('method-override');
 var app = express();
 var port = process.env.PORT || 8080; 
 
+/**
+ * Rest API's offered by server.
+ * @module server
+ */
+
+/**
+ * A script that configures the server
+ * part.
+ * @class server
+ */
+
 //configuration
 app.use(express.static(__dirname + '/app'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));

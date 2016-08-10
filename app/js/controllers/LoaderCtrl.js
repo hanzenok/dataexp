@@ -1,14 +1,78 @@
+/**
+ * Angualr.js controllers.
+ * @module client
+ * @submodule Controllers
+ */
+
+/**
+ * A controller that serves loader zone
+ * in the footer of <code>index.html</code> view.
+ * <br/>
+ * It uses three custom angular services:
+ * - <b>TimeseriesService</b>: deals with getting the timeseries, <code>tsproc</code> config and timeseries statistics from the back-end
+ * - <b>DCChartService</b>: used to load data to the DC.js charting library 
+ * - <b>CanvasChartService</b>: used to load data to the Canvas.js charting library
+ * @class LoaderCtrl
+ */
 angular.module('MainApp')
 	.controller('LoaderCtrl', function($scope, $rootScope, $mdDialog, $mdToast, TimeseriesService, DCChartsService, CanvasChartsService){
 
-		//containers
-		$rootScope.droppedFields = []; //fields that are dropped to the loader
-		$rootScope.droppedTSFields = []; //timestamp fields that are dropped to the loader
-		$rootScope.chartFields = []; //loaded fields that are dropped to any chart
+		/**
+		* @property droppedFields
+		* @type array
+		* @description A <b>root scope</b> variable,
+		* binded to the footer in the <code>index.html</code> view,
+		* that holds the list of dropped field configs
+		* to the area 'Fields' of the loader.
+		*/
+		$rootScope.droppedFields = [];
+
+		/**
+		* @property droppedTSFields
+		* @type array
+		* @description A <b>root scope</b> variable,
+		* binded to the footer in the <code>index.html</code> view,
+		* that holds the list of dropped timestamp field configs
+		* to the area 'Timestamp Fields' of the loader.
+		*/
+		$rootScope.droppedTSFields = [];
+
+		/**
+		* @property chartFields
+		* @type array
+		* @description A <b>root scope</b> variable,
+		* binded to the footer in the <code>index.html</code> view,
+		* that holds the list of dropped field configs
+		* to the 'movable charts' area.
+		*/
+		$rootScope.chartFields = [];
+
+		/**
+		* @property dataset
+		* @type array
+		* @description A <b>root scope</b> variable,
+		* binded to the in the <code>index.html</code> view,
+		* that holds the loaded from the back-end dataset.
+		*/
 		$rootScope.dataset = [];
+
+		/**
+		* @property loaded
+		* @type boolean
+		* @description A <b>root scope</b> variable,
+		* binded to the <code>index.html</code> view,
+		* that sets the state of dataset, wheather it is 
+		* loaded or not.
+		*/
 		$rootScope.loaded = false;
 
-		//a field dropped
+		/**
+		* A <b>local scope</b> method that is launched
+		* when the field config is dropped into the 'Fields' area.
+		* Then it adds it to the <code>$rootScope.droppedFields</code>.
+		* @method onDropComplete
+		* @param {json} data Dropped field config
+		*/
 		$scope.onDropComplete = function(data){
 
 			//if dropped object is a field
@@ -29,7 +93,13 @@ angular.module('MainApp')
 			}		
 		};
 
-		//a primary field dropped
+		/**
+		* A <b>local scope</b> method that is launched
+		* when the field config is dropped into the 'Timestamp Fields' area.
+		* Then it adds it to the <code>$rootScope.droppedTSFields</code>.
+		* @method onTSDropComplete
+		* @param {json} data Dropped field config
+		*/
 		$scope.onTSDropComplete = function(data){
 
 			//if dropped object is a field
@@ -83,7 +153,21 @@ angular.module('MainApp')
 			}	
 		};
 
-		//load one merged dataset
+		/**
+		* A <b>local scope</b> method that is fired
+		* when the download button in the loader zone is clicked.
+		* It uses the <b>TimeseriesService</b> to pass all the 
+		* field configs and option to the backend, and then 
+		* it receives a dataset with all the queried fields.
+		* On the back-end side, this request goes through <code>tsproc</code>
+		* module.
+		* <br/>
+		* It initiates one of the charting libraries (either by
+		* DCChartsService or CanvasChartsService) withe loaded dataset.
+		* <br/>
+		* The method also lets the <code>tsproc</code> configuration json
+		* to be downloadable, as well as loaded dataset (as a json).
+		*/
 		$scope.load = function(){
 
 			var timestamps = $rootScope.droppedTSFields;
@@ -109,7 +193,6 @@ angular.module('MainApp')
 										timestamps, 
 										fields
 									];
-				console.log(all_fields_conf);
 
 				//send them to the server
 				TimeseriesService.post(all_fields_conf, 
@@ -121,22 +204,14 @@ angular.module('MainApp')
 						//data has at least two elements
 						//(one is promise related)
 						if (data && data.length > 2){
-	
-							console.log('data:');
-							console.log(data);
 
 							//save data
 							$rootScope.dataset = data;
-							console.log('dataset:');
-							console.log(data);
 
-							//load the stats
+							//load and set the stats
 							TimeseriesService.stats(function(stats){
 
 								var stat = stats[0];
-								console.log('stats:');
-								console.log(stat);
-								
 								$rootScope.setStats(stat);
 							});
 
@@ -165,8 +240,10 @@ angular.module('MainApp')
 								var blob = new Blob([config], {type: 'text/json'});
 								$scope.url = (window.URL || window.webkitURL).createObjectURL(blob);
 
+								//=================================
 								//NOT CONFIG RELATED STUFF BUT
 								//SHOULD BE LAUNCHED SYNCHRONIOUSLY
+								//=================================
 
 								//let the dataset to be downloadable
 								var dataset = JSON.stringify($rootScope.dataset, null, 4);
@@ -174,7 +251,6 @@ angular.module('MainApp')
 								$rootScope.url = (window.URL || window.webkitURL).createObjectURL(blob2);
 
 								//load data into the charting library
-	
 								var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
 								chart_service.load($rootScope.dataset, function(err){
 
