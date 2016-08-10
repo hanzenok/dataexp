@@ -200,17 +200,14 @@ angular.module('MainApp')
 		});
 
 		$scope.hide_dataset = false;
-		$scope.toogleDataset = function(event){
+		$scope.toggleDataset = function(){
 
-			if (event.target.childNodes.length > 2){
+			$scope.hide_dataset = !$scope.hide_dataset;
 
-				$scope.hide_dataset = !$scope.hide_dataset;
-
-				$scope.hide_trans = $scope.hide_dataset;
-				$scope.hide_redu = $scope.hide_dataset;
-				$scope.hide_dates = $scope.hide_dataset;
-				$scope.hide_quant = $scope.hide_dataset;
-			}
-		}
+			$scope.hide_trans = $scope.hide_dataset;
+			$scope.hide_redu = $scope.hide_dataset;
+			$scope.hide_dates = $scope.hide_dataset;
+			$scope.hide_quant = $scope.hide_dataset;
+		};
 
 	})

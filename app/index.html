@@ -517,10 +517,10 @@
 					<!-- Dataset -->
 					<md-divider></md-divider>
 					<md-divider></md-divider>
-					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA" ng-click="toogleDataset($event)">
+					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">
 						<div layout="row" layout-align="start center" class="padding_0">
 							<span flex="30">Dataset</span>
-							<md-switch ng-disabled="$root.disabled" ng-model="showDataset" class="md-mini margin_0" aria-label="Switch"></md-switch>
+							<md-switch ng-disabled="$root.disabled" ng-model="showDataset" ng-change="toggleDataset()" class="md-mini margin_0" aria-label="Switch"></md-switch>
 							<div flex></div>
 							<a class="reset_charts cursor_pointer" download="dataset.json" ng-href="{{(!$root.disabled && $root.dataset.length) ? $root.url : ''}}">
 								save
