@@ -416,9 +416,24 @@
         margin: 5px;
     }
 
+    .margin_10{
+
+        margin: 10px;
+    }
+
     .marginb_0{
 
         margin-bottom: 0px;
+    }
+
+    .marginr_10{
+
+        margin-right: 10px;
+    }
+
+    .marginl_10{
+
+        margin-left: 10px;
     }
 
     .height_100{
@@ -502,4 +517,9 @@
 
         width:45px;
         height: 20px;
+    }
+
+    .opacity_05{
+
+        opacity: 0.5;
     }
