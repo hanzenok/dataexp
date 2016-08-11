@@ -11,6 +11,41 @@
 
 	<body ng-app="MainApp" layout="column" ng-cloak>
 
+		<!-- bower:js -->
+		<script src="../bower_components/angular/angular.js"></script>
+		<script src="../bower_components/angular-animate/angular-animate.js"></script>
+		<script src="../bower_components/angular-aria/angular-aria.js"></script>
+		<script src="../bower_components/angular-messages/angular-messages.js"></script>
+		<script src="../bower_components/angular-material/angular-material.js"></script>
+		<script src="../bower_components/ngDraggable/ngDraggable.js"></script>
+		<script src="../bower_components/angular-resource/angular-resource.js"></script>
+		<script src="../bower_components/crossfilter/crossfilter.js"></script>
+		<script src="../bower_components/d3/d3.js"></script>
+		<script src="../bower_components/crossfilter2/crossfilter.min.js"></script>
+		<script src="../bower_components/dcjs/dc.js"></script>
+		<!-- endbower -->
+
+		<!-- Controllers, Services, main, canvas.js -->
+		<script src="js/main.js"></script>
+		<script src="js/canvasjs.js"></script>
+		<script src="js/services/SourcesService.js"></script>
+		<script src="js/services/StoresService.js"></script>
+		<script src="js/services/FieldsService.js"></script>
+		<script src="js/services/TimeseriesService.js"></script>
+		<script src="js/services/DCChartsService.js"></script>
+		<script src="js/services/CanvasChartsService.js"></script>
+		<script src="js/services/CSV2JSONService.js"></script>
+		<script src="js/controllers/FabCtrl.js"></script>
+		<script src="js/controllers/LeftNavCtrl.js"></script>
+		<script src="js/controllers/RightNavCtrl.js"></script>
+		<script src="js/controllers/DialogCtrl.js"></script>
+		<script src="js/controllers/MovableChartsCtrl.js"></script>
+		<script src="js/controllers/DeleteZoneCtrl.js"></script>
+		<script src="js/controllers/ChartsCtrl.js"></script>
+		<script src="js/controllers/LoaderCtrl.js"></script>
+		<script src="js/controllers/ToolBarCtrl.js"></script>
+		<script src="js/controllers/HideBtnCtrl.js"></script>
+
 		<!-- Toolbar -->
 		<md-toolbar ng-controller="ToolBarCtrl" class="md-medium-tall md-primary md-whiteframe-4dp" layout="column">
 			<div flex layout="row" layout-align="start center">
@@ -215,10 +250,6 @@
 									<img class="loader_buttons cursor_pointer" src="images/save.svg">
 									<md-tooltip md-visible="false" md-direction="top">Save the config</md-tooltip>
 								</a>
-<!-- 								<div>
-									<img  class="loader_buttons cursor_pointer" src="images/clear.svg" ng-click="($root.disabled) ? '' : clear()">
-									<md-tooltip md-visible="false" md-direction="top">Clear the loader</md-tooltip>
-								</div> -->
 							</div>
 						</div>
 
@@ -566,40 +597,6 @@
 
 
 		</div>
-
-		<!-- bower:js -->
-		<script src="../bower_components/angular/angular.js"></script>
-		<script src="../bower_components/angular-animate/angular-animate.js"></script>
-		<script src="../bower_components/angular-aria/angular-aria.js"></script>
-		<script src="../bower_components/angular-messages/angular-messages.js"></script>
-		<script src="../bower_components/angular-material/angular-material.js"></script>
-		<script src="../bower_components/ngDraggable/ngDraggable.js"></script>
-		<script src="../bower_components/angular-resource/angular-resource.js"></script>
-		<script src="../bower_components/crossfilter/crossfilter.js"></script>
-		<script src="../bower_components/d3/d3.js"></script>
-		<script src="../bower_components/crossfilter2/crossfilter.min.js"></script>
-		<script src="../bower_components/dcjs/dc.js"></script>
-		<!-- endbower -->
-
-		<script src="js/main.js"></script>
-		<script src="js/canvasjs.js"></script>
-		<script src="js/services/SourcesService.js"></script>
-		<script src="js/services/StoresService.js"></script>
-		<script src="js/services/FieldsService.js"></script>
-		<script src="js/services/TimeseriesService.js"></script>
-		<script src="js/services/DCChartsService.js"></script>
-		<script src="js/services/CanvasChartsService.js"></script>
-		<script src="js/services/CSV2JSONService.js"></script>
-		<script src="js/controllers/FabCtrl.js"></script>
-		<script src="js/controllers/LeftNavCtrl.js"></script>
-		<script src="js/controllers/RightNavCtrl.js"></script>
-		<script src="js/controllers/DialogCtrl.js"></script>
-		<script src="js/controllers/MovableChartsCtrl.js"></script>
-		<script src="js/controllers/DeleteZoneCtrl.js"></script>
-		<script src="js/controllers/ChartsCtrl.js"></script>
-		<script src="js/controllers/LoaderCtrl.js"></script>
-		<script src="js/controllers/ToolBarCtrl.js"></script>
-		<script src="js/controllers/HideBtnCtrl.js"></script>
 
 	</body>
 
