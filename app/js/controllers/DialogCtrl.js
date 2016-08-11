@@ -178,7 +178,7 @@ angular.module('MainApp')
 				if ($scope.source_conf.source.name && $scope.source_conf.source.type && 
 					$scope.source_conf.source.server && $scope.source_conf.source.db){
 
-					SourcesService.post($scope.source_conf, 
+					SourcesService.send($scope.source_conf, 
 						function(result){
 
 							//reload sources, clear all
@@ -301,7 +301,7 @@ angular.module('MainApp')
 					var dataset = {};
 					dataset.name = $scope.source_conf.source.name;
 					dataset.data = ($scope.source_conf.source.type === 'json') ? JSON.parse(data) : CSV2JSONService.csv2json(data);
-					SourcesService.post(dataset, function(res){}, function(err){});
+					SourcesService.send(dataset, function(res){}, function(err){});
 
 					//simulates a click on the "Save" button
 					$scope.connect.call(this);

@@ -6,6 +6,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "DeleteZoneCtrl",
         "DialogCtrl",
         "FabCtrl",
+        "FieldsService",
         "FileConnector",
         "GetFields",
         "GetSources",
@@ -28,6 +29,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "Connectors",
         "Controllers",
         "RestApi",
+        "Services",
         "client",
         "server"
     ],
@@ -55,6 +57,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "server",
             "name": "server",
             "description": "Rest API's offered by server."
+        },
+        {
+            "displayName": "Services",
+            "name": "Services",
+            "description": "Angualr.js controllers."
         }
     ],
     "elements": []

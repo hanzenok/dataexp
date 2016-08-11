@@ -99,6 +99,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "app/js/services/FieldsService.js": {
+            "name": "app/js/services/FieldsService.js",
+            "modules": {
+                "Services": 1
+            },
+            "classes": {
+                "FieldsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/js/canvasjs.js": {
             "name": "app/js/canvasjs.js",
             "modules": {},
@@ -227,7 +238,8 @@
         "client": {
             "name": "client",
             "submodules": {
-                "Controllers": 1
+                "Controllers": 1,
+                "Services": 1
             },
             "elements": {},
             "classes": {
@@ -241,6 +253,7 @@
                 "MovableChartsCtrl": 1,
                 "RightNavCtrl": 1,
                 "ToolBarCtrl": 1,
+                "FieldsService": 1,
                 "main": 1
             },
             "fors": {},
@@ -271,6 +284,22 @@
             "module": "client",
             "namespace": "",
             "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 7,
+            "description": "Angualr.js controllers."
+        },
+        "Services": {
+            "name": "Services",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "FieldsService": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "client",
+            "namespace": "",
+            "file": "app/js/services/FieldsService.js",
             "line": 7,
             "description": "Angualr.js controllers."
         },
@@ -492,6 +521,21 @@
             "file": "app/js/controllers/ToolBarCtrl.js",
             "line": 7,
             "description": "A controller that serves the toolbar\nin the <code>index.html</code> view."
+        },
+        "FieldsService": {
+            "name": "FieldsService",
+            "shortname": "FieldsService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/FieldsService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query the fields."
         },
         "main": {
             "name": "main",
