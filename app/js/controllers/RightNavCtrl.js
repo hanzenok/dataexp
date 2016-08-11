@@ -14,31 +14,106 @@ angular.module('MainApp')
 
 		//used to monitor with 
 		//oversized datasets
+		/**
+		* @property max_size
+		* @type integer
+		* @description A <b>global scope</b> variable
+		* that holds the maximal size of the 
+		* timeseries accepted by DC.js in order
+		* to explore the data interactively.
+		*/
 		$rootScope.max_size = 3000;
+
+		/**
+		* @property size_status
+		* @type string
+		* @description A <b>global scope</b> variable
+		* that holds the state of the timeseries size.
+		* It is equal to 'overflow' when the size is bigger
+		* than <code>$rootScope.max_size</code> or 'normal'
+		* otherwise.
+		*/
 		$rootScope.size_status = 'normal';
 
-		//stats
-		$scope.homogen = '?';
-		$scope.size = '?';
-		$scope.per_day = '?';
+		/**
+		* @property stats
+		* @type json
+		* @description A <b>local scope</b> variable
+		* that holds three timeseries statistics:
+		* - <i>homogen</i>: wheater or not 
+		* one or multiple timeseries where 
+		* homogeneous before the merge
+		* - <i>size</i>: a size of the final fused timeseries
+		* - <i>per_day</i>: an average number of datapoints
+		* per day in the timeseries 
+		*/
+		$scope.stats = {};
+		$scope.stats.homogen = '?';
+		$scope.stats.size = '?';
+		$scope.stats.per_day = '?';
 
-		//options
-		$scope.transform_type = 'interp';
-		$scope.interp_type = 'linear';
-		$scope.reduc_type = 'skip';
-		$scope.reduc_size = 1;
-		$scope.target_field = '';
-		$scope.from_date = null;
-		$scope.to_date = null;
-		$scope.count_negative = false;
-		$scope.max_coef = true;
-		$scope.tsfield_quantum_size = 0;
-		$scope.tsfield_quantum = 'none';
+		/**
+		* @property options
+		* @type json
+		* @description A <b>local scope</b> variable
+		* that holds some <code>tsproc</code> configurations.
+		* <br/>Transformation configs:
+		* - <i>transform_type</i>: the type
+		* of transformation to apply in order
+		* to synchronise multiple timeseries.
+		* Possible values are 'interp' (interpolation)
+		* and 'inters' (intersection)
+		* - <i>interp_type</i>: interpolation method.
+		* Possible values are: 'linear', 'cubic', <a href="https://en.wikipedia.org/wiki/Lanczos_resampling">
+		* 'lanczos'</a>, 'nearest' (nearest neighbor)
+		*
+		* Reduction configs:
+		* - <i>reduc_type</i>: the reduction method to combine <code>$scope.options.reduc_size</code>
+		* datapoints into one. Possible values are: 'skip', 'sum', 'avg', 'max', 'min'
+		* - <i>reduc_size</i>: the number of datapoints to be reduced into one 
+		* the <code>$scope.options.reduc_type</code> method
+		* - <i>target_field</i>: a target field used for 'max' and 'min' methods
+		* 
+		* Date configs:
+		* - <i>from_date</i>: a date from which to cut the dates
+		* - <i>to_date</i>: a date till withc to cut the dates
+		*
+		* Correlation configs:
+		* - <i>count_negative</i>: wheather or not to count 
+		* the negative correlation as a correaltion
+		* - <i>max_coef</i>: wheather or not to use the
+		* maximum correlation value as a criteria to consider
+		* the set of datapoints as correlated. If <code>max_coef</code>
+		* is false, use max number of datapoints as a criteria
+		*
+		* Quantification config:
+		* - <i>tsfield_quantum</i>: the quantum of the 
+		* timestamp attribute. Possible values are: 
+		* 'none', 'day', 'month', 'year'
+		*/
+		$scope.options = {};
+		$scope.options.transform_type = 'interp';
+		$scope.options.interp_type = 'linear';
+		$scope.options.reduc_type = 'skip';
+		$scope.options.reduc_size = 1;
+		$scope.options.target_field = '';
+		$scope.options.from_date = null;
+		$scope.options.to_date = null;
+		$scope.options.count_negative = false;
+		$scope.options.max_coef = true;
+		$scope.options.tsfield_quantum = 'none';
 
-		//dates switcher
+		/**
+		* @property enableDates
+		* @type boolean
+		* @description A <b>local scope</b> variable
+		* that serves the right panel 
+		* in the <code>index.html</code> view and
+		* is used to enable/disable the dates
+		* section.
+		*/
 		$scope.enableDates = false;
 
-		//returns the current config
 		/**
 		* A <b>root scope</b> method, that
 		* collects all the choosen options
@@ -55,24 +130,24 @@ angular.module('MainApp')
 
 			//transformation type
 			config.transform = {};
-			config.transform.type = $scope.transform_type;
-			if ($scope.transform_type === 'interp')
-				config.transform.interp_type = $scope.interp_type;
+			config.transform.type = $scope.options.transform_type;
+			if ($scope.options.transform_type === 'interp')
+				config.transform.interp_type = $scope.options.interp_type;
 
 			//reduction type
 			config.reduction = {};
-			config.reduction.type = $scope.reduc_type;
-			config.reduction.size = $scope.reduc_size;
-			config.reduction.target_field = $scope.target_field;
+			config.reduction.type = $scope.options.reduc_type;
+			config.reduction.size = $scope.options.reduc_size;
+			config.reduction.target_field = $scope.options.target_field;
 
 			//date borders
 			config.date_borders = {};
 			config.date_borders.from = {};
 			config.date_borders.to = {};
-			if ($scope.enableDates && $scope.from_date && $scope.to_date){
+			if ($scope.enableDates && $scope.options.from_date && $scope.options.to_date){
 
-				config.date_borders.from.date = new Date($scope.from_date).toString();
-				config.date_borders.to.date = new Date($scope.to_date).toString();
+				config.date_borders.from.date = new Date($scope.options.from_date).toString();
+				config.date_borders.to.date = new Date($scope.options.to_date).toString();
 			}
 			else{
 
@@ -84,77 +159,103 @@ angular.module('MainApp')
 			if ($scope.toogled_correlation){
 
 				config.correlation = {};
-				config.correlation.count_negative = $scope.count_negative;
-				config.correlation.max_coef = $scope.max_coef;
+				config.correlation.count_negative = $scope.options.count_negative;
+				config.correlation.max_coef = $scope.options.max_coef;
 			}
 			else{
 				config.correlation = null;
 			}
 
 			//quantification options
-			config.tsfield_quantum = $scope.tsfield_quantum;
+			config.tsfield_quantum = $scope.options.tsfield_quantum;
 
 			return config;
 
 		}
 
-		//shows the stats
+		/**
+		* A <b>root scope</b> method, that
+		* is binded to all the options in the right panel 
+		* of <code>index.html</code> view and
+		* sets them from the <code>config</code>
+		* json.
+		* @method setStats
+		* @param {json} config A json with options to set
+		*/
 		$rootScope.setStats = function(config){
 
 			if (!config){
 
-				$scope.size = '?';
 				$rootScope.size_status = 'normal';
-				$scope.per_day = '?';
-				$scope.homogen = '?'
-				$scope.size = '?';
-				$scope.per_day = '?';
-				$scope.transform_type = 'interp';
-				$scope.interp_type = 'linear';
-				$scope.reduc_type = 'skip';
-				$scope.reduc_size = 1;
-				$scope.target_field = '';
-				$scope.from_date = null;
-				$scope.to_date = null;
-				$scope.count_negative = false;
-				$scope.max_coef = true;
+
+				$scope.stats = {};
+				$scope.stats.homogen = '?'
+				$scope.stats.size = '?';
+				$scope.stats.per_day = '?';
+
+				$scope.options = {};
+				$scope.options.transform_type = 'interp';
+				$scope.options.interp_type = 'linear';
+				$scope.options.reduc_type = 'skip';
+				$scope.options.reduc_size = 1;
+				$scope.options.target_field = '';
+				$scope.options.from_date = null;
+				$scope.options.to_date = null;
+				$scope.options.count_negative = false;
+				$scope.options.max_coef = true;
+				$scope.options.tsfield_quantum = 'none';
 
 				return;
 			}
 
 			//size
-			$scope.size = (config.size) ? config.size : '?';
-			$rootScope.size_status = ($scope.size > $rootScope.max_size) ? 'overflow' : 'normal';
+			$scope.stats.size = (config.size) ? config.size : '?';
+			$rootScope.size_status = ($scope.stats.size > $rootScope.max_size) ? 'overflow' : 'normal';
 
 			//instances per day
-			$scope.per_day = (config.per_day) ? config.per_day.toFixed(5) : '?';
+			$scope.stats.per_day = (config.per_day) ? config.per_day.toFixed(5) : '?';
 
 			//homogenity
 			if (config.homogen)
-				$scope.homogen = 'yes';
+				$scope.stats.homogen = 'yes';
 			else
-				$scope.homogen = 'no';
+				$scope.stats.homogen = 'no';
 
 			//setting the dates
-			$scope.from_date = new Date(config.from);
-			$scope.to_date = new Date(config.to);
+			$scope.options.from_date = new Date(config.from);
+			$scope.options.to_date = new Date(config.to);
 
 		}
 
-		//target field for the reduction
-		$scope.target_field = '';
+		/**
+		* A <b>local scope</b> method, that
+		* serves the righ panel of <code>index.html</code>
+		* view and fires when the dragged field is dropped
+		* on the input in the 'Reduction' section.
+		* When it is done, the input would have the name 
+		* of the field on it.
+		* @method onDroppedField
+		* @param {json} data A dropped field
+		*/
 		$scope.onDroppedField = function(data){
 
 			//if it is not a timestamp field
-			if (!data.format){
+			if (!data.format && data.field){
 
 				//real target field
-				$scope.target_field = data.field.name;
+				$scope.options.target_field = data.field.name;
 			}
 		}
 
 
-		//show a tips alert
+		/**
+		* A <b>local scope</b> method, attached to 
+		* right panel of the <code>index.html</code>
+		* that shows a dialog (templated by <code>Alert.html</code>)
+		* with alert message about the size of a timeseries.
+		* @method showAlert
+		* @param ev Event
+		*/
 		$scope.showAlert = function(ev){
 
 			$mdDialog.show({
@@ -178,19 +279,29 @@ angular.module('MainApp')
 			event.stopPropagation();
 		}*/
 
-		//done this way to fix
-		//the options when correlation disabled
+		/**
+		* A <b>local scope</b> $watch method, attached
+		* to the right panel in the <code>index.html</code> that
+		* fires when the 'Correlation' section is toogled.
+		* It then forces the values of the 
+		* <code>$scope.options.count_negative</code> 
+		* and <code>$scope.options.max_coef</code>.
+		*/
 		$scope.$watch('toogled_correlation', function(){
 
 			if (!$scope.toogled_correlation){
 
-				$scope.count_negative = false;
-				$scope.max_coef = true;
+				$scope.options.count_negative = false;
+				$scope.options.max_coef = true;
 			}
 		});
 
-		//desactivate the correlation detection
-		//if Canvas.js is forced
+		/**
+		* A <b>root scope</b> $watch method, attached 
+		* to the right panel in the <code>index.html</code>
+		* that disables the correlation detection when 
+		* the usage of Canvas.js is forced.t
+		*/
 		$rootScope.$watch('force_canvasjs', function(){
 
 			if ($rootScope.force_canvasjs){
@@ -199,7 +310,26 @@ angular.module('MainApp')
 			}
 		});
 
+		/**
+		* @property hide_dataset
+		* @type boolean
+		* @description A <b>local scope</b> variable
+		* that serves the right panel 
+		* in the <code>index.html</code> view and
+		* is used to indicate the state of the
+		* section 'Dataset' (wheather it is 
+		* activated or not).
+		*/
 		$scope.hide_dataset = false;
+
+		/**
+		* A <b>local scope</b> method that
+		* serves the righ panel of <code>index.html</code>
+		* view and attached to the switch in the 
+		* 'Dataset' section.
+		* It is used to show/hide the dataset (
+		* in a form of a table).
+		*/		
 		$scope.toggleDataset = function(){
 
 			$scope.hide_dataset = !$scope.hide_dataset;

@@ -81,6 +81,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "app/js/controllers/RightNavCtrl.js": {
+            "name": "app/js/controllers/RightNavCtrl.js",
+            "modules": {},
+            "classes": {
+                "RightNavCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "app/js/controllers/ToolBarCtrl.js": {
             "name": "app/js/controllers/ToolBarCtrl.js",
             "modules": {},
@@ -230,6 +239,7 @@
                 "LeftNavCtrl": 1,
                 "LoaderCtrl": 1,
                 "MovableChartsCtrl": 1,
+                "RightNavCtrl": 1,
                 "ToolBarCtrl": 1,
                 "main": 1
             },
@@ -252,6 +262,7 @@
                 "LeftNavCtrl": 1,
                 "LoaderCtrl": 1,
                 "MovableChartsCtrl": 1,
+                "RightNavCtrl": 1,
                 "ToolBarCtrl": 1
             },
             "fors": {},
@@ -451,6 +462,21 @@
             "file": "app/js/controllers/MovableChartsCtrl.js",
             "line": 7,
             "description": "A controller that serves all the \nmovable charts in the footer of <code>index.html</code> view.\n<br/>\nThere are 5 chart types:\n- Pie Chart\n- Timeline\n- Scatter Plot\n- Row Chart\n- Bar Chart"
+        },
+        "RightNavCtrl": {
+            "name": "RightNavCtrl",
+            "shortname": "RightNavCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 7,
+            "description": "A controller that serves all the \nright panel in the <code>index.html</code> view."
         },
         "ToolBarCtrl": {
             "name": "ToolBarCtrl",
@@ -729,7 +755,7 @@
         },
         {
             "file": "app/js/controllers/DeleteZoneCtrl.js",
-            "line": 103,
+            "line": 104,
             "description": "A <b>local scope</b> method that fires \nwhen the delete zone (placed in the footer of <code>index.html</code>)\nis clicked.\n<br/>\nIt clears all the Drag&Drop objects from\ntheir respective lists.\nIt also deletes a loaded dataset.",
             "itemtype": "method",
             "name": "clearAll",
@@ -1275,6 +1301,160 @@
                 }
             ],
             "class": "MovableChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 17,
+            "itemtype": "property",
+            "name": "max_size",
+            "type": "integer",
+            "description": "A <b>global scope</b> variable\nthat holds the maximal size of the \ntimeseries accepted by DC.js in order\nto explore the data interactively.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 27,
+            "itemtype": "property",
+            "name": "size_status",
+            "type": "string",
+            "description": "A <b>global scope</b> variable\nthat holds the state of the timeseries size.\nIt is equal to 'overflow' when the size is bigger\nthan <code>$rootScope.max_size</code> or 'normal'\notherwise.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 38,
+            "itemtype": "property",
+            "name": "stats",
+            "type": "json",
+            "description": "A <b>local scope</b> variable\nthat holds three timeseries statistics:\n- <i>homogen</i>: wheater or not \none or multiple timeseries where \nhomogeneous before the merge\n- <i>size</i>: a size of the final fused timeseries\n- <i>per_day</i>: an average number of datapoints\nper day in the timeseries",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 55,
+            "itemtype": "property",
+            "name": "options",
+            "type": "json",
+            "description": "A <b>local scope</b> variable\nthat holds some <code>tsproc</code> configurations.\n<br/>Transformation configs:\n- <i>transform_type</i>: the type\nof transformation to apply in order\nto synchronise multiple timeseries.\nPossible values are 'interp' (interpolation)\nand 'inters' (intersection)\n- <i>interp_type</i>: interpolation method.\nPossible values are: 'linear', 'cubic', <a href=\"https://en.wikipedia.org/wiki/Lanczos_resampling\">\n'lanczos'</a>, 'nearest' (nearest neighbor)\n\nReduction configs:\n- <i>reduc_type</i>: the reduction method to combine <code>$scope.options.reduc_size</code>\ndatapoints into one. Possible values are: 'skip', 'sum', 'avg', 'max', 'min'\n- <i>reduc_size</i>: the number of datapoints to be reduced into one \nthe <code>$scope.options.reduc_type</code> method\n- <i>target_field</i>: a target field used for 'max' and 'min' methods\n\nDate configs:\n- <i>from_date</i>: a date from which to cut the dates\n- <i>to_date</i>: a date till withc to cut the dates\n\nCorrelation configs:\n- <i>count_negative</i>: wheather or not to count \nthe negative correlation as a correaltion\n- <i>max_coef</i>: wheather or not to use the\nmaximum correlation value as a criteria to consider\nthe set of datapoints as correlated. If <code>max_coef</code>\nis false, use max number of datapoints as a criteria\n\nQuantification config:\n- <i>tsfield_quantum</i>: the quantum of the \ntimestamp attribute. Possible values are: \n'none', 'day', 'month', 'year'",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 106,
+            "itemtype": "property",
+            "name": "enableDates",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat serves the right panel \nin the <code>index.html</code> view and\nis used to enable/disable the dates\nsection.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 117,
+            "description": "A <b>root scope</b> method, that\ncollects all the choosen options\nfrom the right panel in \nthe <code>index.html</code>, and returns them \ncompacted into one json",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "All the options from the right panel",
+                "type": "Json"
+            },
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 176,
+            "description": "A <b>root scope</b> method, that\nis binded to all the options in the right panel \nof <code>index.html</code> view and\nsets them from the <code>config</code>\njson.",
+            "itemtype": "method",
+            "name": "setStats",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "A json with options to set",
+                    "type": "Json"
+                }
+            ],
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 230,
+            "description": "A <b>local scope</b> method, that\nserves the righ panel of <code>index.html</code>\nview and fires when the dragged field is dropped\non the input in the 'Reduction' section.\nWhen it is done, the input would have the name \nof the field on it.",
+            "itemtype": "method",
+            "name": "onDroppedField",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "A dropped field",
+                    "type": "Json"
+                }
+            ],
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 251,
+            "description": "A <b>local scope</b> method, attached to \nright panel of the <code>index.html</code>\nthat shows a dialog (templated by <code>Alert.html</code>)\nwith alert message about the size of a timeseries.",
+            "itemtype": "method",
+            "name": "showAlert",
+            "params": [
+                {
+                    "name": "ev",
+                    "description": "Event"
+                }
+            ],
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 282,
+            "description": "A <b>local scope</b> $watch method, attached\nto the right panel in the <code>index.html</code> that\nfires when the 'Correlation' section is toogled.\nIt then forces the values of the \n<code>$scope.options.count_negative</code> \nand <code>$scope.options.max_coef</code>.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 299,
+            "description": "A <b>root scope</b> $watch method, attached \nto the right panel in the <code>index.html</code>\nthat disables the correlation detection when \nthe usage of Canvas.js is forced.t",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 313,
+            "itemtype": "property",
+            "name": "hide_dataset",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat serves the right panel \nin the <code>index.html</code> view and\nis used to indicate the state of the\nsection 'Dataset' (wheather it is \nactivated or not).",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 325,
+            "description": "A <b>local scope</b> method that\nserves the righ panel of <code>index.html</code>\nview and attached to the switch in the \n'Dataset' section.\nIt is used to show/hide the dataset (\nin a form of a table).",
+            "class": "RightNavCtrl",
             "module": "client",
             "submodule": "Controllers"
         },
@@ -2111,6 +2291,18 @@
         {
             "message": "Missing item type\nA <b>local scope</b> method that is fired\nwhen the download button in the loader zone is clicked.\nIt uses the <b>TimeseriesService</b> to pass all the \nfield configs and option to the backend, and then \nit receives a dataset with all the queried fields.\nOn the back-end side, this request goes through <code>tsproc</code>\nmodule.\n<br/>\nIt initiates one of the charting libraries (either by\nDCChartsService or CanvasChartsService) withe loaded dataset.\n<br/>\nThe method also lets the <code>tsproc</code> configuration json\nto be downloadable, as well as loaded dataset (as a json).",
             "line": " app/js/controllers/LoaderCtrl.js:156"
+        },
+        {
+            "message": "Missing item type\nA <b>local scope</b> $watch method, attached\nto the right panel in the <code>index.html</code> that\nfires when the 'Correlation' section is toogled.\nIt then forces the values of the \n<code>$scope.options.count_negative</code> \nand <code>$scope.options.max_coef</code>.",
+            "line": " app/js/controllers/RightNavCtrl.js:282"
+        },
+        {
+            "message": "Missing item type\nA <b>root scope</b> $watch method, attached \nto the right panel in the <code>index.html</code>\nthat disables the correlation detection when \nthe usage of Canvas.js is forced.t",
+            "line": " app/js/controllers/RightNavCtrl.js:299"
+        },
+        {
+            "message": "Missing item type\nA <b>local scope</b> method that\nserves the righ panel of <code>index.html</code>\nview and attached to the switch in the \n'Dataset' section.\nIt is used to show/hide the dataset (\nin a form of a table).",
+            "line": " app/js/controllers/RightNavCtrl.js:325"
         },
         {
             "message": "Missing item type",

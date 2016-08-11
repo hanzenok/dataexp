@@ -347,13 +347,13 @@
 					<md-content layout="column"  class="list_container padding_5">
 						<div layout="row" class="stats_div">
 							<span class="stats_span">Homogeneous:&nbsp;</span>
-							<i class="stats_i">{{homogen}}</i>
+							<i class="stats_i">{{stats.homogen}}</i>
 						</div>
 						<md-divider></md-divider>
 
 						<div layout="row" class="stats_div">
 							<span class="stats_span ">Size:&nbsp;</span>
-							<i class="stats_i {{$root.size_status}}">{{size}}</i>
+							<i class="stats_i {{$root.size_status}}">{{stats.size}}</i>
 							<span>&nbsp;</span>
 							<div>
 								<img ng-hide="$root.size_status === 'normal'" class="loader_buttons cursor_pointer" src="images/help.svg" height="16" width="16" ng-click="showAlert($event)">
@@ -369,7 +369,7 @@
 
 						<div layout="row" class="stats_div">
 							<span class="stats_span">Per day (mean):&nbsp;</span>
-							<i class="stats_i">{{per_day}}</i>
+							<i class="stats_i">{{stats.per_day}}</i>
 						</div>
 						
 					</md-content>
@@ -379,13 +379,13 @@
 					<md-divider></md-divider>
 					<md-subheader class="md-no-sticky md-primary subheader" md-ink-ripple="#AAAAAA">Transformations</md-subheader>
 					<div ng-hide="hide_trans" layout="column" class="list_container">
-						<md-radio-group ng-model="transform_type" class="margin_5">
+						<md-radio-group ng-model="options.transform_type" class="margin_5">
 							<md-radio-button ng-disabled="$root.disabled" value="inters">Intersection</md-radio-button>
 							
 							<div layout="row" layout-align="start center" class="height_30">
 								<md-radio-button ng-disabled="$root.disabled" class="marginb_0" value="interp">Interpolation:</md-radio-button>
 								<span>&nbsp;</span>
-								<md-select ng-disabled="transform_type=='inters' || $root.disabled" ng-model="interp_type" aria-label="Interpolation Type">
+								<md-select ng-disabled="options.transform_type=='inters' || $root.disabled" ng-model="options.interp_type" aria-label="Interpolation Type">
 									<md-option value="linear"><span class="font_0p8">Linear</span></md-option>
 									<md-option value="cubic"><span class="font_0p8">Cubic</span></md-option>
 									<md-option value="lanczos"><span class="font_0p8">Lanczos</span></md-option>
@@ -403,23 +403,23 @@
 						<div layout="row">
 							<md-input-container class="marginb_0" flex>
 								<label>Type</label>
-								<md-select ng-disabled="$root.disabled" ng-model="reduc_type">
+								<md-select ng-disabled="$root.disabled" ng-model="options.reduc_type">
 									<md-option value="skip">Skip</md-option>
 									<md-option value="sum">Sum</md-option>
 									<md-option value="avg">Average</md-option>
-									<md-option value="max" ng-disabled="target_field==''">Max</md-option>
-									<md-option value="min" ng-disabled="target_field==''">Min</md-option>
+									<md-option value="max" ng-disabled="options.target_field==''">Max</md-option>
+									<md-option value="min" ng-disabled="options.target_field==''">Min</md-option>
 								</md-select>
 							</md-input-container>
 
 							<md-input-container class="marginb_0" flex>
 								<label>Size</label>
-								<input ng-disabled="$root.disabled" type="number" ng-model="reduc_size" min="1" ng-pattern="/^\d*$/">
+								<input ng-disabled="$root.disabled" type="number" ng-model="options.reduc_size" min="1" ng-pattern="/^\d*$/">
 							</md-input-container>
 
 							<md-input-container class="marginb_0 height_auto" flex ng-drop="true" ng-drop-success="onDroppedField($data)">
 								<label>Field</label>
-								<input ng-disabled="$root.disabled" ng-model="target_field">
+								<input ng-disabled="$root.disabled" ng-model="options.target_field">
 							</md-input-container>
 
 						</div>
@@ -436,8 +436,8 @@
 					</md-subheader>
 
 					<div ng-hide="hide_dates" layout="column" layout-align="center center" class="list_container">
-						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="from_date" md-placeholder="From"></md-datepicker>
-						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="to_date" md-placeholder="To"></md-datepicker>
+						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="options.from_date" md-placeholder="From"></md-datepicker>
+						<md-datepicker class="md_datepicker" ng-disabled="!enableDates || $root.disabled" ng-model="options.to_date" md-placeholder="To"></md-datepicker>
 					</div>
 
 					<!-- Quantification -->
@@ -452,24 +452,26 @@
 						<div layout-align="center center" class="chrome_bugfix2">
 
 							<!-- timestamp field 'time'-->
-							<div class="wrap_quantif_field" layout="row" layout-align="center center" id="wrap_timestamp">
-								<div class="quantif_field inline_block">
-									time
+							<div layout="row" layout-align="center center">
+								<div class="wrap_quantif_field" layout="row" layout-align="center center" id="wrap_timestamp">
+									<div class="quantif_field inline_block">
+										time
 
-									<md-tooltip md-visible="false" md-direction="top">
-										timestamp field
-									</md-tooltip>
-								</div>
+										<md-tooltip md-visible="false" md-direction="top">
+											timestamp field
+										</md-tooltip>
+									</div>
 
-								<div class="inline_block">
-									<md-input-container class="margin_0" style="height: 20px;">
-										<md-select ng-model="tsfield_quantum" flex aria-label="Quantum Select">
-											<md-option value="none"><span class="font_0p8 bold_gray">None</span></md-option>
-											<md-option value="day"><span class="font_0p8 bold_gray">Day</span></md-option>
-											<md-option value="month"><span class="font_0p8 bold_gray">Month</span></md-option>
-											<md-option value="year"><span class="font_0p8 bold_gray">Year</span></md-option>
-										</md-select>
-									</md-input-container>
+									<div class="inline_block">
+										<md-input-container class="margin_0" style="height: 20px;">
+											<md-select ng-model="options.tsfield_quantum" flex aria-label="Quantum Select">
+												<md-option value="none"><span class="font_0p8 bold_gray">None</span></md-option>
+												<md-option value="day"><span class="font_0p8 bold_gray">Day</span></md-option>
+												<md-option value="month"><span class="font_0p8 bold_gray">Month</span></md-option>
+												<md-option value="year"><span class="font_0p8 bold_gray">Year</span></md-option>
+											</md-select>
+										</md-input-container>
+									</div>
 								</div>
 							</div>
 
@@ -502,12 +504,12 @@
 							<div layout="column" layout-align="center end">
 								<div layout="row" layout-align="center center">
 									<span class="reset_charts">Count negative</span>
-									<input type="checkbox" ng-model="count_negative" ng-disabled="!toogled_correlation || $root.disabled">
+									<input type="checkbox" ng-model="options.count_negative" ng-disabled="!toogled_correlation || $root.disabled">
 									<md-tooltip md-visible="false" md-direction="top">Wheather or not detect negative correlations</md-tooltip>
 								</div>
 								<div layout="row" layout-align="center center"
 									<span class="reset_charts">Max coef</span>
-									<input type="checkbox" ng-model="max_coef" ng-disabled="!toogled_correlation || $root.disabled">
+									<input type="checkbox" ng-model="options.max_coef" ng-disabled="!toogled_correlation || $root.disabled">
 									<md-tooltip md-visible="false" md-direction="top">Wheather use maximum correlation coef or maximum number of correlated datapoins as a criteria to detect the correlation</md-tooltip>
 								</div>
 							</div>

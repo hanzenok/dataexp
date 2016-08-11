@@ -18,6 +18,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "MovableChartsCtrl",
         "MysqlConnector",
         "PutSource",
+        "RightNavCtrl",
         "ToolBarCtrl",
         "main",
         "routes",
