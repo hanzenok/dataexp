@@ -109,7 +109,7 @@
 					</md-subheader>
 
 					<!-- using a div and not md-content beacuse of a chrome bug -->
-					<div style="overflow: auto;" flex="33" class="list_container chrome_bugfix1">
+					<div flex="33" class="list_container chrome_bugfix1 overflow_auto">
 						<div layout-align="center" class="chrome_bugfix2">
 							<span class="drag-object md-whiteframe-4dp drag_field" ng-repeat="field_config in fields_conf" ng-drag="!$root.disabled" ng-drag-data="field_config">
 									{{field_config.field.short}}
@@ -141,7 +141,7 @@
 						<span ng-hide="hideTitle" class="chart_title reset_charts">Rendering ...</span>
 
 						<!-- Chart title -->
-						<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object" style="margin:5px;">
+						<span ng-drag="!$root.disabled" ng-drag-data="chart" class="drag-object margin_5">
 							<img src="images/hand.svg" height="12" width="12">
 							{{chart.key1}}
 						</span>
@@ -322,14 +322,14 @@
 								</div>
 						</div>
 
-						<!-- Draggable objects -->
+						<!-- Draggable objects definitions -->
 						<div ng-drag-clone="">
 							<!-- field -->
 							<div ng-if="clonedData.field" class="md-whiteframe-4dp drag_field {{clonedData.field.status}}">{{clonedData.field.short}}</div>
 							<!-- movable chart -->
-							<div ng-if="clonedData.chart" style="width:200px; height: 150px;" class="chart_movable md-whiteframe-4dp"></div>
+							<div ng-if="clonedData.chart" class="chart_movable movable_drag md-whiteframe-4dp"></div>
 							<!-- DC or Canvas chart -->
-							<span ng-if="clonedData.key1" style="margin:5px;">
+							<span ng-if="clonedData.key1" class="margin_5">
 								<img src="images/hand.svg" height="12" width="12">
 								{{clonedData.key1}}
 							</span>
@@ -448,7 +448,7 @@
 							<span flex="30">Quantification</span>
 						</div>
 					</md-subheader>
-					<div style="overflow: auto; height: 100px;" class="list_container chrome_bugfix1" ng-hide="hide_quant">
+					<div class="list_container chrome_bugfix1 overflow_auto height_100" ng-hide="hide_quant">
 						<div layout-align="center center" class="chrome_bugfix2">
 
 							<!-- timestamp field 'time'-->
@@ -463,7 +463,7 @@
 									</div>
 
 									<div class="inline_block">
-										<md-input-container class="margin_0" style="height: 20px;">
+										<md-input-container class="margin_0 height_20">
 											<md-select ng-model="options.tsfield_quantum" flex aria-label="Quantum Select">
 												<md-option value="none"><span class="font_0p8 bold_gray">None</span></md-option>
 												<md-option value="day"><span class="font_0p8 bold_gray">Day</span></md-option>
@@ -486,7 +486,7 @@
 									</md-tooltip>
 								</div>
 
-								<md-input-container class="margin_0" style="width:45px; height: 20px;">
+								<md-input-container class="margin_0 quant_chip">
 									<input type="number" aria-label="Quantum Select" class="bold_gray" ng-model="field_config.field.quantum" min="0" ng-pattern="/^\d*$/">
 								</md-input-container>
 							</div>
