@@ -126,7 +126,7 @@ angular.module('MainApp')
 					if (nb_fields > 1 && data.chart === EnumCharts.bar){
 
 						//check for the timestamp fields
-						error_message = 'Canvas.js BarChart should have only 1 ';// non-timestamp field';
+						error_message = 'Canvas.js BarChart should have only 1 '; //non-timestamp field;
 						for(var i=0; i<n; i++){
 
 							if (filtered_fields[i].field.format){
@@ -164,7 +164,7 @@ angular.module('MainApp')
 
 				//create chart object
 				var chart_config = {};
-				chart_config.id = 'chart_' + Math.floor(Math.random()*2000); //random dom id
+				chart_config.id = 'chart_' + Math.floor(Math.random()*2000); //random DOM id
 				chart_config.type = data.chart;
 				chart_config.key1 = filtered_fields[0].field.name;
 				chart_config.key2 = (filtered_fields[1]) ? filtered_fields[1].field.name : null;
@@ -196,7 +196,7 @@ angular.module('MainApp')
 				setTimeout(function() {
 
 					var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
-					var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
+					var chart = chart_service.getChart(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 					chart.render();
 
 					//hide the title
@@ -295,7 +295,7 @@ angular.module('MainApp')
 					var chart_service = ($rootScope.size_status === 'overflow' || $rootScope.force_canvasjs) ? CanvasChartsService : DCChartsService;
 					$rootScope.droppedCharts.forEach(function(chart_config, index){
 
-						var chart = chart_service.traceOne(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
+						var chart = chart_service.getChart(chart_config.type, chart_config.id, chart_config.key1, chart_config.key2, chart_config.ts_key);
 						chart.render();
 					});
 

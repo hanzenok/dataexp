@@ -1,11 +1,51 @@
+/**
+ * Angualr.js services.
+ * @module client
+ * @submodule Services
+ */
+
+/**
+ * A service that wraps 
+ * a DC.js charting library and 
+ * offers two public methods:
+ * - <b>load()</b>: loads the data (json array)
+ * that should be visualysed
+ * - <b>getChart()</b>: returns the chart
+ * filled with the data from the <b>load()</b> function.
+ * The chart can be then traced by calling <i>render()</i>
+ * function on it.
+ * @class DCChartsService
+ */
 angular.module('MainApp')
 	.service('DCChartsService', function(){
 		
-		//data containers
+		/**
+		* @property dataset
+		* @type array
+		* @description A local variable
+		* that holds the loaded dataset.
+		*/
 		var dataset;
+
+		/**
+		* @property ndx
+		* @type object
+		* @description A crossfilter
+		* object.
+		*/
 		var ndx;
 
-		var pie_chart = function(container, key1, key2, ts_key){
+		/**
+		* A private method that returns a 
+		* DC.js pie chart.
+		* Can work with two fieds.
+		* @method pie_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
+		var pie_chart = function(container, key1, key2){
 
 			//dimension
 			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
@@ -40,6 +80,17 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		/**
+		* A private method that returns a 
+		* DC.js timeline.
+		* Can work with two fields.
+		* @method timeline
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised 
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
 		var timeline = function(container, key1, key2, ts_key){
 
 			//check if correlation field is present
@@ -117,13 +168,13 @@ angular.module('MainApp')
 				composite_chart.compose([line_chart1]);
 			}
 
+			//coloring
 			bar_chart.on('pretransition', function (chart) {
 
-				chart.selectAll('g rect').style('fill', function (d) { //for bar_chart
-				// chart.selectAll('path.line').style('stroke', function (d) {
+				chart.selectAll('g rect').style('fill', function (d) {
 					if (d.data && d.data.value >= 0.6){
 
-						return color_gen.call(this, d.data.value);
+						return '#' + color_gen.call(this, d.data.value);
 					}
 					else{
 						return 'gray';
@@ -131,6 +182,7 @@ angular.module('MainApp')
 				});
 			});
 
+			/*=====Left because it could be useful=====*/
 		    // bar_chart.on('renderlet', function (chart) {
 		    //     chart.selectAll("circle.dot")
 		    //         .style("fill-opacity", 1)
@@ -145,7 +197,6 @@ angular.module('MainApp')
 
 			//scroll bar_chart
 			bar_chart.width(800).height(75)
-			// .renderArea(true)
 			.dimension(dim).group(group_bar)
 			.x(d3.time.scale().domain([min_val, max_val]))
 			.margins({top: 20, right: 50, bottom: 20, left: 50});
@@ -156,6 +207,16 @@ angular.module('MainApp')
 			return composite_chart;
 		}
 
+		/**
+		* A private method that returns a 
+		* DC.js row chart.
+		* Can work with two fields.
+		* @method row_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
 		var row_chart = function(container, key1, key2){
 
 			//dimension
@@ -193,6 +254,18 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		/**
+		* A private method that returns a 
+		* DC.js bar chart.
+		* Can work with two fields, and also 
+		* with a timestamp field.
+		* @method bar_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
 		var bar_chart = function(container, key1, key2, ts_key){
 
 			var pkey = key1; //primary key
@@ -216,8 +289,6 @@ angular.module('MainApp')
 				});
 			}
 
-
-			console.log('pkey: ' + pkey + ', skey: ' + skey);
 			//dimension
 			var dim = ndx.dimension(function(d){return d[pkey];});
 			
@@ -254,8 +325,8 @@ angular.module('MainApp')
 				.xUnits(dc.units.ordinal);
 			}
 
+			/*=====Left because it could be useful=====*/
 			// chart.on('pretransition', function (chart) {
-
 			// 	chart.selectAll("g rect").style("fill", function (d) {
 			// 		return 'green';
 			// 	});
@@ -272,7 +343,17 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		//http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/
+		/**
+		* A private method that is used
+		* by the correlation scatter plot
+		* to show the correlation <a href="http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/"></a>
+		* between two attributes
+		* @method correlation
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first attribute to calculate the correlation
+		* @param {string} key2 A second attribute to calculate the correlation
+		* @return A DC.js number chart, that can be rendered by calling the <i>render()</i> function
+		*/
 		var correlation = function(container, key1, key2){
 	
 			//reduce functions	
@@ -319,6 +400,16 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		/**
+		* A private method that returns a 
+		* DC.js scatter plot.
+		* Only works with two fields.
+		* @method scatter
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A x axis
+		* @param {string} key2 A y axis
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
 		var scatter = function(container, key1, key2){
 
 			//dimensions
@@ -347,6 +438,18 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		/**
+		* A local method used by <code>timeline</code>
+		* to color the correlated fields.
+		* It is using an algorithm to generate a color 
+		* (hexa format, without alpha) from a [0..1] value.
+		* @method color_gen
+		* @param {float} value A [0..1] value from which the color should be generated
+		* @return {string} A color in hexa format
+		* @example
+		*     console.log(color_gen.call(this, 0.7338)); //55aa2a
+		*     console.log(color_gen.call(this, 0.9321)); //341a69
+		*/
 		var color_gen = function(value){
 
 			if (!value || value > 1 || value < 0)
@@ -404,13 +507,18 @@ angular.module('MainApp')
 			}
 
 			//compose a hex color
-			var color = '#' + rgb[0].toString(16) + '' +  rgb[1].toString(16) + '' + rgb[2].toString(16);
+			var color = rgb[0].toString(16) + '' +  rgb[1].toString(16) + '' + rgb[2].toString(16);
 
 			return color;
-			// console.log('color:' + color + ', rgb:' + rgb + ', max: ' + max + ', min: ' + min + ', hundreds: ' + hundreds + ', tens: ' + tens + ', ones: ' + ones + ', mod: ' + mod + ', digit: ' + digit + ', value: ' + value);
 		}
 
-		//enum with all the renderers
+		/**
+		* @property ChartsEnum
+		* @type json
+		* @description A local variable
+		* that holds all the chart names
+		* and their related methods.
+		*/
 		var ChartsEnum = {
 
 			'Pie': pie_chart,
@@ -420,10 +528,17 @@ angular.module('MainApp')
 			'Bar': bar_chart
 		};
 
-		//load the dataset
+		/**
+		* A public method that loads the data
+		* to visualise into the local
+		* variable <code>dataset</code>.
+		* Also checks the presence of the 
+		* DC.js, D3.js and Crossfilter.js libraries.
+		* @method load
+		* @param {array} data Data that should be visualised
+		* @param {callback} err_callback An error callback
+		*/
 		this.load = function(data, err_callback){
-
-			console.log('DC.js load');
 
 			//check if all the libraries
 			//are imported
@@ -449,7 +564,16 @@ angular.module('MainApp')
 			err_callback(null);
 		}
 
-		this.counter = function(container){
+		/**
+		* A local method that is used
+		* by <b>getChart()</b> method to 
+		* render the number of instances
+		* in the current filter
+		* @method counter
+		* @param {array} container An id of a html tag container of the chart
+		* @return A number DC.js chart that cab be rendered by calling the <i>render()</i> method
+		*/
+		var counter = function(container){
 
 			var chart = dc.numberDisplay('#' + container);
 
@@ -460,15 +584,24 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		this.traceOne = function(chart_type, container, key1, key2, ts_key){
+		/**
+		* A public method that returns a 
+		* DC.js chart specified by <code>chart_type</code>
+		* @method getChart
+		* @param {string} chart_type A type of chart from the <code>ChartsEnum</code>
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised 
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
+		this.getChart = function(chart_type, container, key1, key2, ts_key){
 
 			//render the counter
-			this.counter('counter').render();
+			counter.call(this,'counter').render();
 
 			//return chart
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
 		}
-
-		this.type = 'dc';
 
 	});

@@ -99,13 +99,58 @@
             "fors": {},
             "namespaces": {}
         },
-        "app/js/services/FieldsService.js": {
-            "name": "app/js/services/FieldsService.js",
+        "app/js/services/CanvasChartsService.js": {
+            "name": "app/js/services/CanvasChartsService.js",
             "modules": {
                 "Services": 1
             },
             "classes": {
+                "CanvasChartsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/DCChartsService.js": {
+            "name": "app/js/services/DCChartsService.js",
+            "modules": {},
+            "classes": {
+                "DCChartsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/FieldsService.js": {
+            "name": "app/js/services/FieldsService.js",
+            "modules": {},
+            "classes": {
                 "FieldsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/SourcesService.js": {
+            "name": "app/js/services/SourcesService.js",
+            "modules": {},
+            "classes": {
+                "SourcesService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/StoresService.js": {
+            "name": "app/js/services/StoresService.js",
+            "modules": {},
+            "classes": {
+                "StoresService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/TimeseriesService.js": {
+            "name": "app/js/services/TimeseriesService.js",
+            "modules": {},
+            "classes": {
+                "TimeseriesService": 1
             },
             "fors": {},
             "namespaces": {}
@@ -253,7 +298,12 @@
                 "MovableChartsCtrl": 1,
                 "RightNavCtrl": 1,
                 "ToolBarCtrl": 1,
+                "CanvasChartsService": 1,
+                "DCChartsService": 1,
                 "FieldsService": 1,
+                "SourcesService": 1,
+                "StoresService": 1,
+                "TimeseriesService": 1,
                 "main": 1
             },
             "fors": {},
@@ -292,16 +342,21 @@
             "submodules": {},
             "elements": {},
             "classes": {
-                "FieldsService": 1
+                "CanvasChartsService": 1,
+                "DCChartsService": 1,
+                "FieldsService": 1,
+                "SourcesService": 1,
+                "StoresService": 1,
+                "TimeseriesService": 1
             },
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
             "module": "client",
             "namespace": "",
-            "file": "app/js/services/FieldsService.js",
+            "file": "app/js/services/TimeseriesService.js",
             "line": 7,
-            "description": "Angualr.js controllers."
+            "description": "Angualr.js services."
         },
         "server": {
             "name": "server",
@@ -522,6 +577,36 @@
             "line": 7,
             "description": "A controller that serves the toolbar\nin the <code>index.html</code> view."
         },
+        "CanvasChartsService": {
+            "name": "CanvasChartsService",
+            "shortname": "CanvasChartsService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 7,
+            "description": "A service that wraps \na Canvas.js charting library and \noffers two public methods:\n- <b>load()</b>: loads the data (json array)\nthat should be visualysed\n- <b>getChart()</b>: returns the chart\nfilled with the data from the <b>load()</b> function.\nThe chart can be then traced by calling <i>render()</i>\nfunction on it."
+        },
+        "DCChartsService": {
+            "name": "DCChartsService",
+            "shortname": "DCChartsService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/DCChartsService.js",
+            "line": 7,
+            "description": "A service that wraps \na DC.js charting library and \noffers two public methods:\n- <b>load()</b>: loads the data (json array)\nthat should be visualysed\n- <b>getChart()</b>: returns the chart\nfilled with the data from the <b>load()</b> function.\nThe chart can be then traced by calling <i>render()</i>\nfunction on it."
+        },
         "FieldsService": {
             "name": "FieldsService",
             "shortname": "FieldsService",
@@ -536,6 +621,51 @@
             "file": "app/js/services/FieldsService.js",
             "line": 7,
             "description": "A service that talks\nto the REST api of the back-end\nto query the fields."
+        },
+        "SourcesService": {
+            "name": "SourcesService",
+            "shortname": "SourcesService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/SourcesService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query, modify, send, delete sources."
+        },
+        "StoresService": {
+            "name": "StoresService",
+            "shortname": "StoresService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/StoresService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query the stores."
+        },
+        "TimeseriesService": {
+            "name": "TimeseriesService",
+            "shortname": "TimeseriesService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query timeseries, <code>tsproc</code> module statistics\nand configuration."
         },
         "main": {
             "name": "main",
@@ -1350,7 +1480,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 17,
+            "line": 15,
             "itemtype": "property",
             "name": "max_size",
             "type": "integer",
@@ -1361,7 +1491,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 27,
+            "line": 25,
             "itemtype": "property",
             "name": "size_status",
             "type": "string",
@@ -1372,7 +1502,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 38,
+            "line": 36,
             "itemtype": "property",
             "name": "stats",
             "type": "json",
@@ -1383,7 +1513,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 55,
+            "line": 53,
             "itemtype": "property",
             "name": "options",
             "type": "json",
@@ -1394,7 +1524,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 106,
+            "line": 104,
             "itemtype": "property",
             "name": "enableDates",
             "type": "boolean",
@@ -1405,7 +1535,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 117,
+            "line": 115,
             "description": "A <b>root scope</b> method, that\ncollects all the choosen options\nfrom the right panel in \nthe <code>index.html</code>, and returns them \ncompacted into one json",
             "itemtype": "method",
             "name": "getOptions",
@@ -1419,7 +1549,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 176,
+            "line": 174,
             "description": "A <b>root scope</b> method, that\nis binded to all the options in the right panel \nof <code>index.html</code> view and\nsets them from the <code>config</code>\njson.",
             "itemtype": "method",
             "name": "setStats",
@@ -1436,7 +1566,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 230,
+            "line": 228,
             "description": "A <b>local scope</b> method, that\nserves the righ panel of <code>index.html</code>\nview and fires when the dragged field is dropped\non the input in the 'Reduction' section.\nWhen it is done, the input would have the name \nof the field on it.",
             "itemtype": "method",
             "name": "onDroppedField",
@@ -1453,7 +1583,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 251,
+            "line": 249,
             "description": "A <b>local scope</b> method, attached to \nright panel of the <code>index.html</code>\nthat shows a dialog (templated by <code>Alert.html</code>)\nwith alert message about the size of a timeseries.",
             "itemtype": "method",
             "name": "showAlert",
@@ -1469,7 +1599,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 282,
+            "line": 280,
             "description": "A <b>local scope</b> $watch method, attached\nto the right panel in the <code>index.html</code> that\nfires when the 'Correlation' section is toogled.\nIt then forces the values of the \n<code>$scope.options.count_negative</code> \nand <code>$scope.options.max_coef</code>.",
             "class": "RightNavCtrl",
             "module": "client",
@@ -1477,7 +1607,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 299,
+            "line": 297,
             "description": "A <b>root scope</b> $watch method, attached \nto the right panel in the <code>index.html</code>\nthat disables the correlation detection when \nthe usage of Canvas.js is forced.t",
             "class": "RightNavCtrl",
             "module": "client",
@@ -1485,7 +1615,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 313,
+            "line": 311,
             "itemtype": "property",
             "name": "hide_dataset",
             "type": "boolean",
@@ -1496,7 +1626,7 @@
         },
         {
             "file": "app/js/controllers/RightNavCtrl.js",
-            "line": 325,
+            "line": 323,
             "description": "A <b>local scope</b> method that\nserves the righ panel of <code>index.html</code>\nview and attached to the switch in the \n'Dataset' section.\nIt is used to show/hide the dataset (\nin a form of a table).",
             "class": "RightNavCtrl",
             "module": "client",
@@ -1555,6 +1685,818 @@
             "class": "ToolBarCtrl",
             "module": "client",
             "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 22,
+            "itemtype": "property",
+            "name": "dataset",
+            "type": "array",
+            "description": "A local variable\nthat holds the loaded dataset.",
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 30,
+            "description": "A private method that \ncounts the number of occurences\nof a specific field(key) in the array.\nCreted because Canvas.js is not doing this\noperation by default like DC.js.",
+            "itemtype": "method",
+            "name": "count_obj_occurs",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "A json array where the occurences should be counted",
+                    "type": "Array"
+                },
+                {
+                    "name": "key",
+                    "description": "A key which values should be counted",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A two-dimensional array with each value, and their respective count (cf example)",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var array = [{a:1}, {a:1}, {a:2}, {a:3}, {a:3}];\n    console.log(count_obj_occurs.call(this, array, 'a')); //[ [1,2,3], [2,1,2] ]"
+            ],
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 93,
+            "description": "A private method that returns a \nCavnas.js pie chart. \nOnly works with one field.",
+            "itemtype": "method",
+            "name": "pie_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 155,
+            "description": "A private method that returns a \nCavnas.js timeline.\nCan work with two fields.",
+            "itemtype": "method",
+            "name": "timeline",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 249,
+            "description": "A private method that returns a \nCavnas.js row chart.\nOnly works with one field.",
+            "itemtype": "method",
+            "name": "row_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 310,
+            "description": "A private method that returns a \nCavnas.js bar chart.\nOnly works with one field.",
+            "itemtype": "method",
+            "name": "bar_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 371,
+            "description": "A private method that returns a \nCavnas.js scatter plot.\nOnly works with two fields.",
+            "itemtype": "method",
+            "name": "scatter",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A x axis",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A y axis",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 432,
+            "itemtype": "property",
+            "name": "ChartsEnum",
+            "type": "json",
+            "description": "A local variable\nthat holds all the chart names\nand their related methods.",
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 448,
+            "description": "A public method that loads the data\nto visualise into the local\nvariable <code>dataset</code>.\nAlso checks the presence of the \nCanvas.js library.",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Data that should be visualised",
+                    "type": "Array"
+                },
+                {
+                    "name": "err_callback",
+                    "description": "An error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 473,
+            "description": "A public method that returns a \nCavnas.js chart specified by <code>chart_type</code>",
+            "itemtype": "method",
+            "name": "getChart",
+            "params": [
+                {
+                    "name": "chart_type",
+                    "description": "A type of chart from the <code>ChartsEnum</code>",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 22,
+            "itemtype": "property",
+            "name": "dataset",
+            "type": "array",
+            "description": "A local variable\nthat holds the loaded dataset.",
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 30,
+            "itemtype": "property",
+            "name": "ndx",
+            "type": "object",
+            "description": "A crossfilter\nobject.",
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 38,
+            "description": "A private method that returns a \nDC.js pie chart.\nCan work with two fieds.",
+            "itemtype": "method",
+            "name": "pie_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 83,
+            "description": "A private method that returns a \nDC.js timeline.\nCan work with two fields.",
+            "itemtype": "method",
+            "name": "timeline",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 210,
+            "description": "A private method that returns a \nDC.js row chart.\nCan work with two fields.",
+            "itemtype": "method",
+            "name": "row_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 257,
+            "description": "A private method that returns a \nDC.js bar chart.\nCan work with two fields, and also \nwith a timestamp field.",
+            "itemtype": "method",
+            "name": "bar_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 346,
+            "description": "A private method that is used\nby the correlation scatter plot\nto show the correlation <a href=\"http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/\"></a>\nbetween two attributes",
+            "itemtype": "method",
+            "name": "correlation",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first attribute to calculate the correlation",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second attribute to calculate the correlation",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A DC.js number chart, that can be rendered by calling the <i>render()</i> function"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 403,
+            "description": "A private method that returns a \nDC.js scatter plot.\nOnly works with two fields.",
+            "itemtype": "method",
+            "name": "scatter",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A x axis",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A y axis",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 441,
+            "description": "A local method used by <code>timeline</code>\nto color the correlated fields.\nIt is using an algorithm to generate a color \n(hexa format, without alpha) from a [0..1] value.",
+            "itemtype": "method",
+            "name": "color_gen",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "A [0..1] value from which the color should be generated",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "A color in hexa format",
+                "type": "String"
+            },
+            "example": [
+                "\n    console.log(color_gen.call(this, 0.7338)); //55aa2a\n    console.log(color_gen.call(this, 0.9321)); //341a69"
+            ],
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 515,
+            "itemtype": "property",
+            "name": "ChartsEnum",
+            "type": "json",
+            "description": "A local variable\nthat holds all the chart names\nand their related methods.",
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 531,
+            "description": "A public method that loads the data\nto visualise into the local\nvariable <code>dataset</code>.\nAlso checks the presence of the \nDC.js, D3.js and Crossfilter.js libraries.",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Data that should be visualised",
+                    "type": "Array"
+                },
+                {
+                    "name": "err_callback",
+                    "description": "An error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 567,
+            "description": "A local method that is used\nby <b>getChart()</b> method to \nrender the number of instances\nin the current filter",
+            "itemtype": "method",
+            "name": "counter",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "A number DC.js chart that cab be rendered by calling the <i>render()</i> method"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 587,
+            "description": "A public method that returns a \nDC.js chart specified by <code>chart_type</code>",
+            "itemtype": "method",
+            "name": "getChart",
+            "params": [
+                {
+                    "name": "chart_type",
+                    "description": "A type of chart from the <code>ChartsEnum</code>",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/FieldsService.js",
+            "line": 22,
+            "description": "A public method that queries the fields\npresent in stores from <code>wanted_stores</code>.",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "wanted_stores",
+                    "description": "An array of store configurations to determine their fields",
+                    "type": "Array"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with fields",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "FieldsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 31,
+            "description": "A public method that queries all the sources\nfrom the back-end.",
+            "itemtype": "method",
+            "name": "query",
+            "params": [
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with sources",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 43,
+            "description": "A public method that pushes the sources\n<code>source_conf</code> to the back-end.",
+            "itemtype": "method",
+            "name": "send",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A source configuration to add to the back-end",
+                    "type": "Json"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 60,
+            "description": "A public method that deletes the source with the name\n<code>source_name</code> from the back-end.",
+            "itemtype": "method",
+            "name": "delete",
+            "params": [
+                {
+                    "name": "source_name",
+                    "description": "A name of the source to be deleted from the back-end",
+                    "type": "Json"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 73,
+            "description": "A public method that modifies an existing\nsource configuration in the back-end.",
+            "itemtype": "method",
+            "name": "modify",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A new source configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/StoresService.js",
+            "line": 22,
+            "description": "A public method that queries the stores\npresent in sources from <code>wanted_sources</code>.",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "wanted_sources",
+                    "description": "An array of source configurations to determine their stores",
+                    "type": "Array"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with stores",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "StoresService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 26,
+            "description": "A public method that queries the timeseries\nwith the fields specified in the \n<code>fields</code> config.",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "fields",
+                    "description": "An array of field configurations to be in the timeseries",
+                    "type": "Array"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with timeseries",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "TimeseriesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 40,
+            "description": "A public method that queries the \n<code>tsproc</code> module \nstatistics.",
+            "itemtype": "method",
+            "name": "stats",
+            "params": [
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with statistics",
+                    "type": "Callback"
+                }
+            ],
+            "class": "TimeseriesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 52,
+            "description": "A public method that queries the \n<code>tsproc</code> module \nconfiguration.",
+            "itemtype": "method",
+            "name": "config",
+            "params": [
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with config",
+                    "type": "Callback"
+                }
+            ],
+            "class": "TimeseriesService",
+            "module": "client",
+            "submodule": "Services"
         },
         {
             "file": "app/js/canvasjs.js",
@@ -2338,15 +3280,15 @@
         },
         {
             "message": "Missing item type\nA <b>local scope</b> $watch method, attached\nto the right panel in the <code>index.html</code> that\nfires when the 'Correlation' section is toogled.\nIt then forces the values of the \n<code>$scope.options.count_negative</code> \nand <code>$scope.options.max_coef</code>.",
-            "line": " app/js/controllers/RightNavCtrl.js:282"
+            "line": " app/js/controllers/RightNavCtrl.js:280"
         },
         {
             "message": "Missing item type\nA <b>root scope</b> $watch method, attached \nto the right panel in the <code>index.html</code>\nthat disables the correlation detection when \nthe usage of Canvas.js is forced.t",
-            "line": " app/js/controllers/RightNavCtrl.js:299"
+            "line": " app/js/controllers/RightNavCtrl.js:297"
         },
         {
             "message": "Missing item type\nA <b>local scope</b> method that\nserves the righ panel of <code>index.html</code>\nview and attached to the switch in the \n'Dataset' section.\nIt is used to show/hide the dataset (\nin a form of a table).",
-            "line": " app/js/controllers/RightNavCtrl.js:325"
+            "line": " app/js/controllers/RightNavCtrl.js:323"
         },
         {
             "message": "Missing item type",

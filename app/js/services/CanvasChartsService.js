@@ -1,12 +1,46 @@
+/**
+ * Angualr.js services.
+ * @module client
+ * @submodule Services
+ */
+
+/**
+ * A service that wraps 
+ * a Canvas.js charting library and 
+ * offers two public methods:
+ * - <b>load()</b>: loads the data (json array)
+ * that should be visualysed
+ * - <b>getChart()</b>: returns the chart
+ * filled with the data from the <b>load()</b> function.
+ * The chart can be then traced by calling <i>render()</i>
+ * function on it.
+ * @class CanvasChartsService
+ */
 angular.module('MainApp')
 	.service('CanvasChartsService', function(){
 		
-		//data containers
+		/**
+		* @property dataset
+		* @type array
+		* @description A local variable
+		* that holds the loaded dataset.
+		*/
 		var dataset;
 
-		//calculate the occurences of specific key
-		//in the array of objects
-		//[{a:1}, {a:1}, {a:2}, {a:3}, {a:3}] ==> [ [1,2,3], [2,1,2] ]
+		/**
+		* A private method that 
+		* counts the number of occurences
+		* of a specific field(key) in the array.
+		* Creted because Canvas.js is not doing this
+		* operation by default like DC.js.
+		* @method count_obj_occurs
+		* @param {array} array A json array where the occurences should be counted
+		* @param {string} key A key which values should be counted
+		* @return {array} A two-dimensional array with each value, and their respective count (cf example)
+		* @example
+		*     var array = [{a:1}, {a:1}, {a:2}, {a:3}, {a:3}];
+		*     console.log(count_obj_occurs.call(this, array, 'a')); //[ [1,2,3], [2,1,2] ]
+		*/
 		var count_obj_occurs = function(array, key){
 
 			var counted = [];
@@ -56,7 +90,16 @@ angular.module('MainApp')
 			return [counted, count];
 		}
 
-		var pie_chart = function(container, key1, key2, ts_key){
+		/**
+		* A private method that returns a 
+		* Cavnas.js pie chart. 
+		* Only works with one field.
+		* @method pie_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
+		var pie_chart = function(container, key1){
 
 			var canvas_dataset = [];
 			var tmp;
@@ -109,6 +152,17 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		/**
+		* A private method that returns a 
+		* Cavnas.js timeline.
+		* Can work with two fields.
+		* @method timeline
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised 
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
 		var timeline = function(container, key1, key2, ts_key){
 			
 			var canvas_dataset = [];
@@ -192,7 +246,16 @@ angular.module('MainApp')
 			return composite_chart;
 		}
 
-		var row_chart = function(container, key1, key2){
+		/**
+		* A private method that returns a 
+		* Cavnas.js row chart.
+		* Only works with one field.
+		* @method row_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
+		var row_chart = function(container, key1){
 
 			var canvas_dataset = [];
 			var tmp;
@@ -244,7 +307,16 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		var bar_chart = function(container, key1, key2){
+		/**
+		* A private method that returns a 
+		* Cavnas.js bar chart.
+		* Only works with one field.
+		* @method bar_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
+		var bar_chart = function(container, key1){
 	
 			var canvas_dataset = [];
 			var tmp;
@@ -296,6 +368,16 @@ angular.module('MainApp')
 			return chart;
 		}
 
+		/**
+		* A private method that returns a 
+		* Cavnas.js scatter plot.
+		* Only works with two fields.
+		* @method scatter
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A x axis
+		* @param {string} key2 A y axis
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
 		var scatter = function(container, key1, key2){
 
 			var canvas_dataset = [];
@@ -347,7 +429,13 @@ angular.module('MainApp')
 			return chart;
 		}
 
-		//enum with all the renderers
+		/**
+		* @property ChartsEnum
+		* @type json
+		* @description A local variable
+		* that holds all the chart names
+		* and their related methods.
+		*/
 		var ChartsEnum = {
 
 			'Pie': pie_chart,
@@ -357,10 +445,18 @@ angular.module('MainApp')
 			'Bar': bar_chart
 		};
 
-		//load the dataset
+		/**
+		* A public method that loads the data
+		* to visualise into the local
+		* variable <code>dataset</code>.
+		* Also checks the presence of the 
+		* Canvas.js library.
+		* @method load
+		* @param {array} data Data that should be visualised
+		* @param {callback} err_callback An error callback
+		*/
 		this.load = function(data, err_callback){
 
-			console.log('Canvas.js load');
 			//check if all the libraries
 			//are imported
 			if (typeof CanvasJS === 'undefined'){
@@ -374,11 +470,19 @@ angular.module('MainApp')
 			err_callback(null);
 		}
 
-		this.traceOne = function(chart_type, container, key1, key2, ts_key){
+		/**
+		* A public method that returns a 
+		* Cavnas.js chart specified by <code>chart_type</code>
+		* @method getChart
+		* @param {string} chart_type A type of chart from the <code>ChartsEnum</code>
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised 
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the <i>render()</i> method
+		*/
+		this.getChart = function(chart_type, container, key1, key2, ts_key){
 
 			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
 		}
-
-		this.type = 'canvas';
-
 	});

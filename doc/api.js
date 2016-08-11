@@ -1,7 +1,9 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "CanvasChartsService",
         "ChartsCtrl",
+        "DCChartsService",
         "DeleteSource",
         "DeleteZoneCtrl",
         "DialogCtrl",
@@ -20,6 +22,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "MysqlConnector",
         "PutSource",
         "RightNavCtrl",
+        "SourcesService",
+        "StoresService",
+        "TimeseriesService",
         "ToolBarCtrl",
         "main",
         "routes",
@@ -61,7 +66,7 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "Services",
             "name": "Services",
-            "description": "Angualr.js controllers."
+            "description": "Angualr.js services."
         }
     ],
     "elements": []

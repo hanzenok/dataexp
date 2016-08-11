@@ -1,5 +1,5 @@
 /**
- * Angualr.js controllers.
+ * Angualr.js services.
  * @module client
  * @submodule Services
  */
@@ -20,7 +20,7 @@ angular.module('MainApp')
 		);
 
 		/**
-		* A method that queries the fields
+		* A public method that queries the fields
 		* present in stores from <code>wanted_stores</code>.
 		* @method post
 		* @param {array} wanted_stores An array of store configurations to determine their fields

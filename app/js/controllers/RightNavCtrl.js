@@ -12,8 +12,6 @@
 angular.module('MainApp')
 	.controller('RightNavCtrl', function($scope, $rootScope, $mdDialog){
 
-		//used to monitor with 
-		//oversized datasets
 		/**
 		* @property max_size
 		* @type integer

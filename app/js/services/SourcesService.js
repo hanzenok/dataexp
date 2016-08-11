@@ -1,5 +1,5 @@
 /**
- * Angualr.js controllers.
+ * Angualr.js services.
  * @module client
  * @submodule Services
  */
@@ -29,7 +29,7 @@ angular.module('MainApp')
 		);
 
 		/**
-		* A method that queries all the sources
+		* A public method that queries all the sources
 		* from the back-end.
 		* @method query
 		* @param {callback} succes_cb Success callback with sources
@@ -41,7 +41,7 @@ angular.module('MainApp')
 		}
 
 		/**
-		* A method that pushes the sources
+		* A public method that pushes the sources
 		* <code>source_conf</code> to the back-end.
 		* @method send
 		* @param {json} source_conf A source configuration to add to the back-end
@@ -58,7 +58,7 @@ angular.module('MainApp')
 		}
 
 		/**
-		* A method that deletes the source with the name
+		* A public method that deletes the source with the name
 		* <code>source_name</code> from the back-end.
 		* @method delete
 		* @param {json} source_name A name of the source to be deleted from the back-end
@@ -71,7 +71,7 @@ angular.module('MainApp')
 		}
 
 		/**
-		* A method that modifies an existing
+		* A public method that modifies an existing
 		* source configuration in the back-end.
 		* @method modify
 		* @param {json} source_conf A new source configuration
