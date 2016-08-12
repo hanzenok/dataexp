@@ -319,6 +319,11 @@
         color: green;
     }
 
+    .gray_font{
+
+        color: gray;
+    }
+
     #source_server {
 
         width:100px;
@@ -386,6 +391,11 @@
         outline:none;
     }
 
+    .tsformat_input{
+
+        margin:6px 8px;
+    }
+
     .cursor_pointer {
 
         cursor: pointer;
@@ -436,6 +446,11 @@
         margin-left: 10px;
     }
 
+    .margint_15{
+
+        margin-top: 15px;
+    }
+
     .height_100{
 
         height: 100px;
@@ -449,6 +464,11 @@
     .height_20{
 
         height: 20px;
+    }
+
+    .width_250{
+
+        width:250px;
     }
 
     .md_input{

@@ -9,11 +9,11 @@
 
 	<!-- Content -->
 	<div layout="column" class="list_container" layout-align="center center">
-		<div layout="row" flex="33" layout-align="center center" style="margin:10px;">
-			<md-input-container ng-hide="isCustom" style="margin:6px 8px;">
+		<div layout="row" flex="33" layout-align="center center" class="margin_10">
+			<md-input-container ng-hide="isCustom" class="tsformat_input">
 				<label>Format</label>
 
-					<md-select ng-model="format" aria-label="Format" style="width:250px;">
+					<md-select ng-model="format" aria-label="Format" class="width_250">
 						<md-option value="ISO"><span>ISO 8601</span></md-option>
 						<md-option value="YYYY"><span>YYYY</span></md-option>
 						<md-option value="UNIX"><span>UNIX Timestamp</span></md-option>
@@ -23,20 +23,20 @@
 					</md-select>
 			</md-input-container>
 
-			<md-input-container  ng-hide="!isCustom" style="margin:6px 8px;">
+			<md-input-container  ng-hide="!isCustom" class="tsformat_input">
 				<label>Custom Format</label>
 				<form ng-submit="saveFormat()"> <!-- used to enable enter click -->
-					<input type="text" ng-model="format" md-autofocus style="width:250px;">
+					<input type="text" ng-model="format" md-autofocus class="width_250">
 				</form>
 			</md-input-container>
 
 			<md-button class="md-raised" ng-click="saveFormat()">OK</md-button>
 		</div>
 
-		<span style="margin-top: 15px; font-size: 1.2em; color:gray;">
+		<span class="margint_15 font_1p2 gray_font">
 			{ {{data.field.name}} = '{{data.field.value}}' }
 		</span>
 
-		<i style="margin-top: 15px; font-size: 0.8em;">More info <a href='http://momentjs.com/docs/#/parsing/string-format/'>here</a></i>
+		<i class="margint_15 font_0p8">More info <a href='http://momentjs.com/docs/#/parsing/string-format/'>here</a></i>
 	</div>
 </md-dialog>
