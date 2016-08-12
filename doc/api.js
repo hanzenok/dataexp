@@ -60,8 +60,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "server",
-            "name": "server",
-            "description": "Rest API's offered by server."
+            "name": "server"
         },
         {
             "displayName": "Services",

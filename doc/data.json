@@ -382,8 +382,7 @@
             "namespaces": {},
             "tag": "module",
             "file": "server.js",
-            "line": 12,
-            "description": "Rest API's offered by server."
+            "line": 11
         },
         "Connectors": {
             "name": "Connectors",
@@ -836,7 +835,7 @@
             "module": "server",
             "namespace": "",
             "file": "server.js",
-            "line": 12,
+            "line": 11,
             "description": "A script that configures the server\npart."
         }
     },

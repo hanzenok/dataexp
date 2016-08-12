@@ -5,7 +5,6 @@ var app = express();
 var port = process.env.PORT || 8080; 
 
 /**
- * Rest API's offered by server.
  * @module server
  */
 
