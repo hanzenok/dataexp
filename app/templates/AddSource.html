@@ -1,4 +1,6 @@
 <md-dialog aria-label="Add Source" ng-controller="DialogCtrl" ng-cloak>
+
+	<!-- Toolbar -->
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>{{getToolbarTitle()}}</h2>
@@ -12,9 +14,12 @@
 		</div>
 	</md-toolbar>
 
+	<!-- Content -->
 	<md-dialog-content layout-padding="">
 		<form name="dialogForm">
 			<div layout-gt-sm="row">
+
+				<!-- Name -->
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Name</label>
 					<input name="name" required ng-model="source_conf.source.name" ng-readonly="deletable">
@@ -23,6 +28,7 @@
 					</div>
 				</md-input-container>
 
+				<!-- Type -->
 				<md-input-container class="md-block" flex-gt-sm="">
 					<label>Type</label>
 					<md-select name="type" ng-model="source_conf.source.type">
@@ -33,11 +39,13 @@
 					</md-select>
 				</md-input-container>
 
+				<!-- User -->
 				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>User</label>
 					<input name="user" ng-model="source_conf.source.user">
 				</md-input-container>
 
+				<!-- Password -->
 				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Password</label>
 					<input name="passw" type="password" ng-model="source_conf.source.passw">
@@ -49,8 +57,12 @@
 				<!-- If the source is a file -->
 				<div layout="column" ng-hide="source_conf.source.type !== 'json' && source_conf.source.type !== 'csv'" layout-align="start center">
 					<div layout="row">
-						<input class="ng-hide" id="input-file" type="file" onchange="angular.element(this).scope().saveSourceFile(this)"/>
-						<label for="input-file" class="md-button md-raised md-primary" ng-disabled="!source_conf.source.name" >Choose File</label>
+
+						<!-- Done this way in order to have a styled button -->
+						<input class="ng-hide" id="input-file" type="file" onclick="angular.element(this).scope().saveSourceFile(this)"/>
+						<!-- using two labels to simulate 'unclickability' -->
+						<label class="md-button md-raised md-primary" ng-disabled="true" ng-if="!source_conf.source.name">Choose File</label>
+						<label for="input-file" class="md-button md-raised md-primary" ng-if="source_conf.source.name">Choose File</label>
 						<md-input-container class="md-block margin_0">
 							<input type="text" ng-model="source_conf.source.db" ng-disabled="true" aria-label="Source Database">
 						</md-input-container>
@@ -63,6 +75,7 @@
 				</div>
 				
 				<!-- If the source is a db -->
+				<!-- Server -->
 				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Server</label>
 					<input name="server" required ng-model="source_conf.source.server">
@@ -71,6 +84,7 @@
 					</div>
 				</md-input-container>
 
+				<!-- Port -->
 				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Port</label>
 					<input name="port" type="number" min="0" max="65535" ng-model="source_conf.source.port" ng-pattern="/^\d*$/">
@@ -81,6 +95,7 @@
 					</div>
 				</md-input-container>
 
+				<!-- Database -->
 				<md-input-container class="md-block" flex-gt-sm="" ng-hide="source_conf.source.type === 'json' || source_conf.source.type === 'csv'">
 					<label>Database</label>
 					<input name="db" required ng-model="source_conf.source.db">
@@ -92,6 +107,7 @@
 		</form>
 	</md-dialog-content>
 
+	<!-- Button -->
 	<md-dialog-actions layout="row">
 		<md-button target="_blank" md-autofocus ng-click="connect()">
 			{{getButtonLabel()}}
