@@ -53,6 +53,7 @@ var putSource = function(req, res){
 		}
 		else{
 
+			//read the file
 			fs.readFile(config_file, function(err, data){
 				if (err){
 
@@ -60,6 +61,11 @@ var putSource = function(req, res){
 					return;
 				}
 				if (data){
+
+					//if for some reason, the config file exists,
+					//but completely empty (does not contains 
+					//even the '[]')
+					if (data.length === 0) data = '[]';
 
 					//sources configuration file
 					var sources_conf = JSON.parse(data);

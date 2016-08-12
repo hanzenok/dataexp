@@ -3106,7 +3106,7 @@
         {
             "file": "server/rest/GetSources.js",
             "line": 16,
-            "description": "A method that returns (via the object <code>res</code>) a JSON file\nwith configuration of sources (ex: MySQL database).\n<br/>\nThe configuration on the server is stored in the file\n<code>./server/config/sources.json</code>.",
+            "description": "A method that returns (via the object <code>res</code>) a JSON file\nwith configuration of sources (ex: MySQL database).\n<br/>\nThe configuration on the server is stored in the file\n<code>./server/config/sources.json</code>.\nIt the config is missing, it would be created.",
             "itemtype": "method",
             "name": "getSources",
             "params": [

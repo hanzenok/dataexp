@@ -122,6 +122,7 @@ var config_file = &#x27;./server/config/sources.json&#x27;;
  * &lt;br/&gt;
  * The configuration on the server is stored in the file
  * &lt;code&gt;./server/config/sources.json&lt;/code&gt;.
+ * It the config is missing, it would be created.
  * @method getSources
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -130,9 +131,14 @@ var getSources = function(req, res){
 
 	fs.readFile(config_file, &#x27;utf-8&#x27;, function(err, data){
 
+		//file does not exists
 		if (err){
-		
-			res.status(500).send(&#x27;Sources config file error&#x27;);
+			
+			fs.writeFile(config_file, &#x27;[]&#x27;, function(erR){
+
+				if (erR) res.status(500).send(&#x27;Sources config missing, cannot create a new one&#x27;);
+				else res.status(500).send(&#x27;Sources config missing, created a new one&#x27;);
+			});
 		}
 		else{
 
