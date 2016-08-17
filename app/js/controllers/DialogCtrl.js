@@ -269,8 +269,10 @@ angular.module('MainApp')
 			if ($scope.source_conf.source.name) {
 
 				//get the file (only one)
+				console.log(element);
 				var file = element.files[0];
-
+				console.log('type:');
+				console.log(file);
 				//check the type
 				if (file.type.split('/')[1] !== $scope.source_conf.source.type){
 
