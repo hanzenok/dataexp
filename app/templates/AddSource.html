@@ -59,7 +59,7 @@
 					<div layout="row">
 
 						<!-- Done this way in order to have a styled button -->
-						<input class="ng-hide" id="input-file" type="file" onclick="angular.element(this).scope().saveSourceFile(this)"/>
+						<input class="ng-hide" id="input-file" type="file" onchange="angular.element(this).scope().saveSourceFile(this)"/>
 						<!-- using two labels to simulate 'unclickability' -->
 						<label class="md-button md-raised md-primary" ng-disabled="true" ng-if="!source_conf.source.name">Choose File</label>
 						<label for="input-file" class="md-button md-raised md-primary" ng-if="source_conf.source.name">Choose File</label>
