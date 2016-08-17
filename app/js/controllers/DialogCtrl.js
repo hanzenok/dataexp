@@ -250,9 +250,6 @@ angular.module('MainApp')
 			);
 		}
 
-		//reads the file choosed in the 
-		//file dialog and saves it in the backend
-		//finally, closes the dialog
 		/**
 		* A <b>local scope</b> method that serves <code>AddSource.html</code> 
 		* and reads the choosen file on front-end 
@@ -269,10 +266,8 @@ angular.module('MainApp')
 			if ($scope.source_conf.source.name) {
 
 				//get the file (only one)
-				console.log(element);
 				var file = element.files[0];
-				console.log('type:');
-				console.log(file);
+
 				//check the type
 				if (file.type.split('/')[1] !== $scope.source_conf.source.type){
 
