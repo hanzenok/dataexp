@@ -338,4 +338,17 @@ angular.module('MainApp')
 			$scope.hide_quant = $scope.hide_dataset;
 		};
 
+		/**
+		* A <b>root scope</b> method that
+		* is used by the right and left panel and foot of <code>index.html</code> wiew
+		* It is used to determine wheater or not the value
+		* passed as a parameter is number or not.
+		* Used to distinguish 
+		* numeric and nominal attributes.
+		* @method isNumber
+		* @param value An object to check
+		* @return True if <code>value</code> is a number, false otherwise
+		*/
+		$rootScope.isNumber = angular.isNumber;
+
 	})
