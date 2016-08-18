@@ -1,0 +1,62 @@
+Diapo 1
+	
+	Bonjour à tous, je m'apelle Ganza Mykhailo, je suis la pour vous présenter le stage qui à été réalise dans une sociéte Maya Technologies, encadrée par François Nacabal, ici présent.
+	Le stage se pose dans un domaine d'IoT (les objets connéctés) et vise à repondre à une problematique d'analyse des données dans ce domaine.
+
+
+Diapo 2
+	
+	Avant de rentrer dans les details de sujet, je vais commencer par vous l'entreprise ou le stage a été réalisé, Maya Technologies. Ensuite, je vais décrire rapidement les objets connéctés. A la fin je vais vous parler d'une solution pour IoT proposée par MayaTechnologies, MayaNet, qui a beaucoup influencée les décisions prises pendant se stage
+
+
+Diapo 3
+	
+	Maya Technologies est une sociéte de service qui se spécialise en IoT. Ces ingénieurs sont competentes en matière des systèmes embarquées et sont disponibles pour le développement software ainsi que design hardware. L'entreprise intervient dans les secteurs d'aeronautique, multimédia, telephonie, energie est sante.
+
+	Fondée en 2007 à Grenoble, Maya Technologies compte aujourd'hui 130 emploiée, et a des centres à Paris, Toulouse, Valence.
+
+
+Diapo 4
+	
+	L'IoT (aussi les objets connéctés) est un terme qui correspond à une extension de internet classique, vers le monde phsyqiue grace aux systemes embarquees CONNECTES à l'internet.
+	Peu importe quel équipement électronique, qui ecahnge les données via réseau peut ^etre considére comme un objet d'internet.
+	Les exemples des tels objets sont, par exemple, un moniteur cardiaque connecté qui partage les données via réseau, smartphone (pokemon go), une lampe qui pourra ^etre commandée par internet, etc.
+
+	C'est un domaine en plein expansion actuellement, les acterus majeurs de l'industrie numérique investise dans ce secteurs: Google avec lancement de leur systeme d'exploitation Fuchia OS pour toutes les IoT, Intel avec leur carte Intel Edison.
+
+	Une de problematiques importantes de l'IoT est comment stocker, traiter et interpreter les données acquises par les objets connéctés.
+
+
+Diapo 5
+	
+	MayaNet est une solution de MayaTechnologies destinée pour la collecte, traitement et analyse des données provenant de differentes types d'objets connectés. Pour simplifier, c'est un logiciel de gestion d'un réseau des systèmes embarquées qui réalisent des captures.
+
+	Un des buts de ce logiciel, est de présenter les informations provenant des objets connectés à l'utilisateur. Une des evolutions eventuelles de MayaNet est de proposer à l'utilisateur un degre plus important d'analyse des données qui proviennes de differents sources.
+
+
+Diapo 6
+
+	Maintenant on va rentrer dans le sujet de stage, et je vais commencer par vous citer l'objectif initial de stage
+
+
+Diapo 7
+	
+	Il s'agit de decouvrire les problematiques d'analyse des données venant des differentes sources, et proposer un outil qui sera capable d'explorer tels données, et les rélations entre eux.
+	Aucucne autre contrainte ne donné, cela revient à staigaire de définir le cahier des charges, choisir les technologies appropriés et dresser le chemin de developpement qui va apporter une solution réel qui correspond à un objectif initial.
+
+
+Diapo 8
+	
+	Pour arriver à une solution réel, on doit se poser sur les notions de fiexes. Et vue la nature generique de l'objectif, une partie imporante de ce stage est la concretisation progressive de l'objectif initial. Définition de cahier de charges au fur et à mesure de travail.
+
+
+Diapo 9
+
+	Une prémiere astuce qu'on a est le fait qu'on travail avec les objets connectées. Cela peut nous aider pour définir avec quels type des données l'application à réaliser va travailler.
+	Dans l'IoT, la plupart du temps, il s'agit des séries temporelles.
+
+	Tout le monde connait les séries temporelles, il s'agit d'une suite de valeurs numériques, qui evoluent suivant le temps. Leur utilisation est tres adapté pour les objets connectés car chaque mesure est accompagné d'un timestamp, date de prise de mesure.
+
+	Donc, l'outil va gerer seulement les séries temporelles et a partir de maintenant, j'outiliserai les termes données et séries temporels interchangablemment.
+
+Le terme IoT
