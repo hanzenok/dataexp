@@ -20,7 +20,7 @@ angular.module('MainApp')
 		* timeseries accepted by DC.js in order
 		* to explore the data interactively.
 		*/
-		$rootScope.max_size = 300000;
+		$rootScope.max_size = 3000;
 
 		/**
 		* @property size_status
