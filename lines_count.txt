@@ -1,0 +1,17 @@
+dataexp
+
+source lines = source lines
+empty lines are not counted, single lines are not counted
+Canvas.js, DC.js, Crossfilter.js, D3.js are not counted
+
+/**Client**/
+HTML: 461 + 32 + 87 + 25 + 33 = 638
+
+Angular.js: 4+38+248+275+11+31+11+19+130+55+151+11+140+11+135+28+116+25 = 1439
+
+Documentation block comments: 13+113+144+19+42+19+35+80+34+118+18+125+36+83+27+174+40 = 1120
+
+/**Server**/
+Node.js: 26+114+161+202+49+33+17+54+128+83 = 867
+
+Documentation block comments: 20+247+268+264+23+15+19+15+233+23 = 1127
