@@ -10,8 +10,11 @@ var fs = require('fs');
  * @class GetSources
  */
 
+//config dir
+var config_dir = './server/config';
+
 //config file path
-var config_file = './server/config/sources.json';
+var config_file = config_dir + '/sources.json';
 
 /**
  * A method that returns (via the object <code>res</code>) a JSON file
@@ -26,22 +29,50 @@ var config_file = './server/config/sources.json';
  */
 var getSources = function(req, res){
 
-	fs.readFile(config_file, 'utf-8', function(err, data){
+	//callback launched
+	//on file creation
+	var cb_create_file = function(err){
 
-		//file does not exists
-		if (err){
-			
-			fs.writeFile(config_file, '[]', function(erR){
+		if (err) res.status(500).send('Sources config missing, cannot create a new one');
+		else res.status(500).send('Sources config missing, created a new one');
+	}
 
-				if (erR) res.status(500).send('Sources config missing, cannot create a new one');
-				else res.status(500).send('Sources config missing, created a new one');
-			});
+	//read the config file
+	fs.mkdir(config_dir, 0777, function(err){
+
+		//check if folder exists
+		if (err) {
+
+			//folder exists
+			if (err.code === 'EEXIST'){
+
+				//check if file exists
+				fs.readFile(config_file, 'utf-8', function(err, data){
+
+					//file does not exists
+					if (err){
+						
+						//create it
+						fs.writeFile(config_file, '[]', cb_create_file);
+					}
+					else{
+
+						//send the sources
+						var sources = (data.length) ? JSON.parse(data) : [];
+						res.json(sources);
+					}
+				});
+
+			}
+			//other errors
+			else res.status(500).send('Error checking the config folder existence');
 		}
+
+		//folder does not exists, created
 		else{
 
-			//send the sources
-			var sources = (data.length) ? JSON.parse(data) : [];
-			res.json(sources);
+			//create file
+			fs.writeFile(config_file, '[]', cb_create_file);
 		}
 	});
 }
