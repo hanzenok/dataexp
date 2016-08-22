@@ -1,0 +1,192 @@
+Diapo 1
+	
+	Bonjour à tous, je m'apelle Ganza Mykhailo, je suis la pour vous présenter mon stage de fin d'études. J'etait encardrée par François Nacabal, ici présent, sour responsabilite de Christelle Lecomte.
+	Le stage se pose dans un domaine d'IoT (les objets connéctés) et vise à repondre à une problematique d'analyse des données dans ce domaine.
+
+
+Diapo 2
+	
+	Avant de rentrer dans les details de sujet, je vais commencer par vous mettre en contexte de stage. Tout d'abord je vas présenter l'entreprise ou le stage a été réalisé, Maya Technologies. Ensuite, je vais décrire rapidement les objets connéctés. A la fin je vais vous parler d'une solution pour IoT proposée par MayaTechnologies, MayaNet, --qui a beaucoup influencée les décisions prises pendant se stage
+
+
+Diapo 3
+	
+	Maya Technologies est une sociéte de services en ingénierie qui se spécialise en IoT. Ces ingénieurs sont competentes en matière des systèmes embarquées et sont qualifiée pour le développement logiciel ainsi que la conception matérielle en électronique et microélectronique. L'entreprise intervient dans les secteurs d'aeronautique, multimédia, telephonie, etc.
+
+	Fondée en 2007 à Grenoble, Maya Technologies aujourd'hui a des centres à Paris, Toulouse, Valence.
+
+	L'entreprise a été choisi par moi parce-que le domain d'IoT m'interesse.
+	(Parler de choix d'entreprise?)
+
+
+Diapo 4
+	
+	L'IoT (aussi les objets connéctés) est un terme qui correspond à une extension de internet classique, vers le monde phsyqiue grace aux systemes embarquees qui réalisent certains mesures, la plupart de temps.
+	--En general, peu importe quel équipement électronique, qui ecahnge les données via réseau peut ^etre considére comme un objet connecté.
+	Les exemples des tels objets sont, par exemple, un moniteur cardiaque qui partage les données via internet, smartphone, une lampe qui pourra ^etre commandée par internet, etc.
+
+	C'est un domaine en plein expansion actuellement, --les acterus majeurs de l'industrie numérique investise dans ce secteurs: Google avec lancement de leur systeme d'exploitation Fuchia OS pour toutes les IoT, Intel avec leur carte de developpement toute minuscule Intel Edison.
+
+	Une des problematiques importantes de l'IoT est de comment stocker, traiter et interpreter les données acquises par les objets connéctés. Comment utiliser les données. MayaNet vise a repondre à cet problematique.
+
+
+Diapo 5
+	
+	MayaNet est une solution de MayaTechnologies destinée pour la collecte, traitement et analyse des données provenant de differentes types d'objets connectés. Pour simplifier, c'est un logiciel de gestion d'un réseau des systèmes embarquées qui (partagent des données) réalisent des captures.
+
+	but de ce logiciel, apart la collecte, est de présenter les informations provenant des objets connectés à l'utilisateur, d'une façon claire. Une des evolutions eventuelles de MayaNet est de proposer à l'utilisateur un degre encore plus important d'analyse et exploration des données.
+
+	MayaNet a infuencée certains choix technologiques lors de stage. Et certains fonctionalitées réalisées pendant le stage ont été adoptés par MayaNet.
+
+
+Diapo 6
+
+	Maintenant on va rentrer dans le sujet de stage, et je vais commencer par vous citer l'objectif initial de stage
+
+
+Diapo 7
+
+	Lire tout
+
+
+Diapo 8	
+
+	Il s'agit de decouvrire les problematiques d'analyse des données venant des differentes sources d'objets connectés, et proposer un outil qui sera capable d'explorer tels données, et les rélations entre eux.
+
+
+Diapo 9
+
+	Donc il s'agit de concevoir un logiciel, qui se place entre l'utilisateur et les données. Et le terme "different sources" vaut dire que les donnees peuvent etre genere par differentes types des objets connectées dans les environemments differentes. Mais de points de vue d'un outil qui va analyser des données, le source, correspond plutot à le type de stockage des données. Par exemple est-ce qui les données sont stockées dans une base des données, fichier texte, image, fichier binaire.
+
+	Aucucne autre contrainte ne donné, apart le fait de supporter au moins deux sources: MongoDB et MySQL,  cela revient à staigaire de définir le cahier des charges, choisir les technologies appropriés et de dresser le chemin de developpement --qui va apporter une solution réel qui répond aux contraintes initiales.
+
+
+Diapo 10
+	
+	Pour arriver à une solution réel, on doit se poser sur les notions fixes. Et vue la nature generique de l'objectif, une partie imporante de ce stage est la concretisation progressive de l'objectif initial. Définition de cahier de charges au fur et à mesure de travail.
+
+
+Diapo 11
+
+	Une prémiere astuce qu'on a est le fait qu'on travail avec les objets connectées. Cela peut nous aider pour définir avec quels type des données l'application doit travailler.
+	Dans l'IoT, la plupart du temps, il s'agit des séries temporelles.
+
+	Tout le monde connait les séries temporelles, c'est une suite des valeurs numériques, qui evoluent suivant le temps. Leur utilisation est adapté pour les objets connectés car chaque mesure est accompagné d'un timestamp, date de prise de mesure, et les mesures sont sauvegardées dans un ordre chronologique.
+
+	Les séries temporelles ont tojours un problematique de mutltitde des sources, par exemple ici vous pouvez voir les deux sources: fichiers CSV et JSON, qui ont une structure differente pour la meme serie temporelle
+
+	Donc, l'outil gere seulement les séries temporelles car c'est une facon tres repandu de savegarder les mesures en IoT, et a partir de maintenant, j'outiliserai les deux termes, données et séries temporels, interchangablemment.
+
+
+Diapo 12
+	
+	Ensuite il faut éclairer et définir le terme "l'exploration des données". L'exploration des données est un acte d'observation en analyse des données acquises afin de tirer certains connaissances supplementaires.
+
+	les deux candidats qu'on a considére pour explorer les données qu'on a considérés sont: utilisation de graphiques (comme historgrammes, nuage des points) ou l'utilisation des methodes statistiques avancées (comme etude des treands, machine learning, etc).
+
+	On a choisi la premiere approche, les graphiques, parce qu'ils ont plus simples à mettre en place, assez efficace pour analyser les données et parce qu'on a découvert une bibliotheque DC.js (que je vais expliquer par la suite).
+
+	De plus, pour approfondir l'exploration on utilise certains caracteristiques et methodes statistiques simpels comme la moyenne de mesures par jours, correlation entre les mesures, etc.
+
+	Une autre contrainte de l'objectif initial est de pouvoir explorer les relations entre les données. On défini "rélation entre les données" comme un étude d'influence d'une suite des valeurs numériques sur une autre suite. Cet étude est realisable grace à DC.js.
+
+
+Diapo 13
+
+	DC.js est une bibliotheque JavaScript pour generation des graphiques. La motivation principale derriere d'utilisation de cet librairie est que, apart le fait de visualiser les simples graphiques, c'est qui est déjà une bonne façon d'analyser les données, elle offre la posiblité d'appliquer des filtres pour approfondir l'exploration.
+
+	Par exemple, si on va retourner dans un diapo precedent, on peut voir la distribution initiale des donnéees
+ /*Par exemple, si on va retourner dans un diapo précedent, on peut voir les données venant d'une bases de données des voles. Ici vous pouvez voir la distribution des heurers de départ, retard d'arrivé en minutes, la longeur de vol en mille.*/
+	Grace à DC.js on peut appliquer un filtre, choisir les valeurs grandes, pour voir leur distribution immédiatement. /*et se rendre compte que les voles qui ont le plus de retard, depart tard le soir.*/
+	Et cet analyse on l'a fait avec un seul clique.
+
+	par contreLe prix que DC.js paye pour cet interactivité est latence, car elle utilise les images vectorielles, et si le nombre des objets visuelles à rendre est assez importante, cela produit de retard de fonctionemment.
+
+	Donc, on a choisi DC.js comme une solution pour explorer les données et les rélations entre eux.
+
+
+Diapo 14
+
+	Du coup, l'étape d'étude nous à permit de produire un cahier des charges, un objectif concret. Il s'agit de développer une outil graphique d'exploration des séries temporelles provenant de differentes sources d'obets connectés.
+
+	Il ya toujours aucune contrainte en tant que les langages à outiliser. La problematique des "differentes soureces" ést toujours à resoudre.
+
+
+Diapo 15
+
+	Maintenant, je vais vous présenter le travail réalisé
+
+
+Diapo 16
+	
+	Des le début, l'application etait vue comme une solution monolithique, qui recoit les données, et fourni des graphiques. Mais on a fini la séparer en deux couches independantes:
+		prémier: est un boite à outil pour traitement des séries temporelles
+		deuxiemme: une application tel quelle, qui engloble le premier module et permet d'explorer les données
+
+	La motivation principale de tel approche est de repondre à une problematique de multiple sources des données. Pour le faire, on a conçu notre premier module qui traite les séries temporelles d'un certain format fixe. Ensuite, toutes les autres formats sont transformés par l'application engobante en celui supporté par le module de traitement. Comme ça le traitement est détachée des sources.
+
+	--Aussi cet approche a autres avantages, comme re-utilisablité, il est plus simple d'importer un module de traitement, que de casser une application existante pour utiliser son code. Aussi, tel architecture et plus modulaire, traitement et détaché de visualisation, cela peut ^etre utile si par exemple l'utilisateur impose l'utilisation d'une autre bibliotheque de visuelle que DC.js.
+
+	Donc, on en ai deux modules,
+
+
+Diapo 17
+
+	Le premier, est un outil de traitement des séries temporelles, qu'on a appele tsproc (Time Series Processor). Il est écrit en JavaScript, et c'est un module Node.js.
+
+	Node.js a était choisi car, l'IHM (l'interface d'utilisateur) de MayaNet tourne sous un serveur Node.js, en on voulées garder la compatibilité.
+
+	De le début c'était plutot une module de traitement pour préparer les données avant les servir à DC.js, mais à la fin cela devenu une boite à outil pour traitement des séries temporelles en general. Le fonctionalités proposées sont, par exemple: 
+		sous échantillonage - pour diminuer la fréquence des mésures dans une séries temporelle
+		interpolation - pour syncroniser les mesures entre deux séries temporelles
+
+	Du coup, c'est un module qui ne gere qu'on seule format des séries temporelles.
+
+Diapo 18
+	
+	Le deuxiemme 'module', est un outil graphique d'exploration des séries temporelles, qu'on a appele dataexp (Data Exploration). Il a pour but de:
+		- permettre à utilisateur de gerer les sources
+		- choisir les mésures à explorer
+		- l'application converti toutes les formats de séries temporelle vers un format supporté par tsproc
+		- offre les options de traitement des séries temporrles ainsie que les graphiques pour les explorer
+
+
+
+
+Diapo 19
+
+	L'architecure d'application est composée de deux tiers: une partie back-end en Node.js qui s'en sert de module tsproc pour macher les données
+	Et une partie front-end avec l'interface écrit en html, css et angular.
+
+	Les techno web pour interface home machine ont été choisi, car tout d'abord l'outil DC.js est écrit en javascript --et s'utilise pouir les sites internet. Et, encore une fois, pour rester compatible avec MayaNet, --qui utilise l'interface web pour interagir avec l'utilisateur.
+
+	Angular.js et notamment un module Angular-Material ont était choisi pour faciliter le developpement et rendre l'interface dynamiqe.
+
+	Les sources supportées sont les basses des données MySQL, MongoDB et le fichier JSON et CSV.
+	--L'application a était testé pour les navigateurs Mozilla Firefox et Chrome.
+
+
+	Comme vous pouvez voir dans cet schema, on utilise aussi Canvas.js pour generer les graphiques, la ou DC.js ne pas à la hauteur à cause de sa pétit problemme lorsque nombre des objets à vislualiser est importante.
+
+
+Diapo 20
+	
+	Donc, maintenant on va passer à la demonstration
+
+
+Diapo 21
+
+	Donc, l'application est composée des deux modules écrites en JavaScript. Elle permet de charger les séries temporelles depuis les basées des données MySQL et MongoDB, ou les fichiers JSON et CSV, et les explorer via DC.js.
+
+
+Diapo 22
+
+	La problématique principale l'ors de développemnt était le passage d'un objectif genérique, vers un objectif concret. Aussi, gestion de format de timestamp n'était pas tout à fait évidente.
+
+	Les perspectives eventuelles sont la support d'autres sources, et la dédection de format de timestamp automatique
+
+	De point de vue personnels, j'ai appris pas mal des choses en tant que les technologies et le monde professionel, mais se qui plus importante pour moi, est que j'ai compris que je veux construire ma carriere autour de la genie logicielle.
+
+Diapo 23
+
+	Merci pour votre attention, si vous avez des questions
