@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app/js/services/DCChartsService.js - dataexp</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html"><img src="../assets/css/logo.png" width="117" height="52">dataexp: app/js/services/DCChartsService.js</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.0.1</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="modules" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Modules</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../modules/client.html">client</a>
+                                <ul>
+                                        <li><a href="../modules/client.html#Controllers">Controllers</a></li>
+                                        <li><a href="../modules/client.html#Services">Services</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../modules/server.html">server</a>
+                                <ul>
+                                        <li><a href="../modules/server.html#Connectors">Connectors</a></li>
+                                        <li><a href="../modules/server.html#RestApi">RestApi</a></li>
+                                </ul>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="classes" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Classes</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../classes/CanvasChartsService.html">CanvasChartsService</a></li>
+                            <li><a href="../classes/ChartsCtrl.html">ChartsCtrl</a></li>
+                            <li><a href="../classes/DCChartsService.html">DCChartsService</a></li>
+                            <li><a href="../classes/DeleteSource.html">DeleteSource</a></li>
+                            <li><a href="../classes/DeleteZoneCtrl.html">DeleteZoneCtrl</a></li>
+                            <li><a href="../classes/DialogCtrl.html">DialogCtrl</a></li>
+                            <li><a href="../classes/FabCtrl.html">FabCtrl</a></li>
+                            <li><a href="../classes/FieldsService.html">FieldsService</a></li>
+                            <li><a href="../classes/FileConnector.html">FileConnector</a></li>
+                            <li><a href="../classes/GetFields.html">GetFields</a></li>
+                            <li><a href="../classes/GetSources.html">GetSources</a></li>
+                            <li><a href="../classes/GetStores.html">GetStores</a></li>
+                            <li><a href="../classes/GetTimseries.html">GetTimseries</a></li>
+                            <li><a href="../classes/HideBtnCtrl.html">HideBtnCtrl</a></li>
+                            <li><a href="../classes/LeftNavCtrl.html">LeftNavCtrl</a></li>
+                            <li><a href="../classes/LoaderCtrl.html">LoaderCtrl</a></li>
+                            <li><a href="../classes/main.html">main</a></li>
+                            <li><a href="../classes/MongoConnector.html">MongoConnector</a></li>
+                            <li><a href="../classes/MovableChartsCtrl.html">MovableChartsCtrl</a></li>
+                            <li><a href="../classes/MysqlConnector.html">MysqlConnector</a></li>
+                            <li><a href="../classes/PutSource.html">PutSource</a></li>
+                            <li><a href="../classes/RightNavCtrl.html">RightNavCtrl</a></li>
+                            <li><a href="../classes/routes.html">routes</a></li>
+                            <li><a href="../classes/server.html">server</a></li>
+                            <li><a href="../classes/SourcesService.html">SourcesService</a></li>
+                            <li><a href="../classes/StoresService.html">StoresService</a></li>
+                            <li><a href="../classes/TimeseriesService.html">TimeseriesService</a></li>
+                            <li><a href="../classes/ToolBarCtrl.html">ToolBarCtrl</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            <div id="fileTree" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Files</h2>
+                </div>
+                <div class="bd">
+                    <ul><li>app/<ul><li>js/<ul><li><a href="../files/app_js_canvasjs.js.html">canvasjs.js</a></li><li>controllers/<ul><li><a href="../files/app_js_controllers_ChartsCtrl.js.html">ChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_DeleteZoneCtrl.js.html">DeleteZoneCtrl.js</a></li><li><a href="../files/app_js_controllers_DialogCtrl.js.html">DialogCtrl.js</a></li><li><a href="../files/app_js_controllers_FabCtrl.js.html">FabCtrl.js</a></li><li><a href="../files/app_js_controllers_HideBtnCtrl.js.html">HideBtnCtrl.js</a></li><li><a href="../files/app_js_controllers_LeftNavCtrl.js.html">LeftNavCtrl.js</a></li><li><a href="../files/app_js_controllers_LoaderCtrl.js.html">LoaderCtrl.js</a></li><li><a href="../files/app_js_controllers_MovableChartsCtrl.js.html">MovableChartsCtrl.js</a></li><li><a href="../files/app_js_controllers_RightNavCtrl.js.html">RightNavCtrl.js</a></li><li><a href="../files/app_js_controllers_ToolBarCtrl.js.html">ToolBarCtrl.js</a></li></ul></li><li><a href="../files/app_js_main.js.html">main.js</a></li><li>services/<ul><li><a href="../files/app_js_services_CanvasChartsService.js.html">CanvasChartsService.js</a></li><li><a href="../files/app_js_services_DCChartsService.js.html">DCChartsService.js</a></li><li><a href="../files/app_js_services_FieldsService.js.html">FieldsService.js</a></li><li><a href="../files/app_js_services_SourcesService.js.html">SourcesService.js</a></li><li><a href="../files/app_js_services_StoresService.js.html">StoresService.js</a></li><li><a href="../files/app_js_services_TimeseriesService.js.html">TimeseriesService.js</a></li></ul></li></ul></li></ul></li><li>server.js/<ul></ul></li><li>server/<ul><li>connectors/<ul><li><a href="../files/server_connectors_FileConnector.js.html">FileConnector.js</a></li><li><a href="../files/server_connectors_MongoConnector.js.html">MongoConnector.js</a></li><li><a href="../files/server_connectors_MysqlConnector.js.html">MysqlConnector.js</a></li></ul></li><li>rest/<ul><li><a href="../files/server_rest_DeleteSource.js.html">DeleteSource.js</a></li><li><a href="../files/server_rest_GetFields.js.html">GetFields.js</a></li><li><a href="../files/server_rest_GetSources.js.html">GetSources.js</a></li><li><a href="../files/server_rest_GetStores.js.html">GetStores.js</a></li><li><a href="../files/server_rest_GetTimeseries.js.html">GetTimeseries.js</a></li><li><a href="../files/server_rest_PutSource.js.html">PutSource.js</a></li></ul></li><li><a href="../files/server_routes.js.html">routes.js</a></li></ul></li></ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>app/js/services/DCChartsService.js</h4>
+
+<pre class="code prettyprint linenums">
+/**
+ * Angualr.js services.
+ * @module client
+ * @submodule Services
+ */
+
+/**
+ * A service that wraps 
+ * a DC.js charting library and 
+ * offers two public methods:
+ * - &lt;b&gt;load()&lt;/b&gt;: loads the data (json array)
+ * that should be visualysed
+ * - &lt;b&gt;getChart()&lt;/b&gt;: returns the chart
+ * filled with the data from the &lt;b&gt;load()&lt;/b&gt; function.
+ * The chart can be then traced by calling &lt;i&gt;render()&lt;/i&gt;
+ * function on it.
+ * @class DCChartsService
+ */
+angular.module(&#x27;MainApp&#x27;)
+	.service(&#x27;DCChartsService&#x27;, function(){
+		
+		/**
+		* @property dataset
+		* @type array
+		* @description A local variable
+		* that holds the loaded dataset.
+		*/
+		var dataset;
+
+		/**
+		* @property ndx
+		* @type object
+		* @description A crossfilter
+		* object.
+		*/
+		var ndx;
+
+		/**
+		* A private method that returns a 
+		* DC.js pie chart.
+		* Can work with two fieds.
+		* @method pie_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		var pie_chart = function(container, key1, key2){
+
+			//dimension
+			var dim = ndx.dimension(function(d){return d[key1];}); //+d for number representation of an object
+
+			//grouping
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+
+			//chart
+			var chart = dc.pieChart(&#x27;#&#x27; + container);
+
+			//default values
+			chart.width(319).height(319)
+			.dimension(dim).group(group)
+			.radius(145);
+
+			//on hover text
+			if (!key2){
+				chart.title(function(d){
+					return &quot;(&quot; + d.key + &quot;)&quot; 
+					+ &quot;\n&quot; + d.value;
+				});
+			}
+			else{
+				chart.title(function(d){
+					return &quot;(&quot; + d.key + &quot;)&quot;
+					+ &quot;\n&quot; + key2
+					+ &quot;: &quot; + d.value; 
+				});
+			}
+
+			//chart.render();
+			return chart;
+		}
+
+		/**
+		* A private method that returns a 
+		* DC.js timeline.
+		* Can work with two fields.
+		* @method timeline
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised 
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		var timeline = function(container, key1, key2, ts_key){
+
+			//check if correlation field is present
+			if (typeof dataset[0].correlation !== &#x27;undefined&#x27;){
+
+				//parse time format and correlation
+				dataset.forEach(function(doc){
+					
+					doc[ts_key] = new Date(doc[ts_key]);
+
+					if (!doc.correlation)
+						doc.correlation = 0.1;
+				});
+			}
+			else{
+
+				//parse only time format
+				dataset.forEach(function(doc){
+					
+					doc[ts_key] = new Date(doc[ts_key]);
+				});
+			}
+
+			//dimensions
+			var dim = ndx.dimension(function(d){return d[ts_key]});
+			
+			//grouping
+			var group1 = dim.group().reduceSum(function(d) {return +d[key1];});
+			var group2 = (key2) ? dim.group().reduceSum(function(d){return +d[key2];}) : null;
+			var group_bar = (key2 &amp;&amp; typeof dataset[0].correlation !== &#x27;undefined&#x27;) ? dim.group().reduceSum(function(d){return d.correlation;}) : group1;
+			
+			//min,max
+			var min_val={}, max_val={};
+			min_val = dim.bottom(1)[0][ts_key];
+			max_val = dim.top(1)[0][ts_key];
+			
+			//charts
+			var composite_chart = dc.compositeChart(&#x27;#&#x27; + container);
+			var line_chart1 = dc.lineChart(composite_chart);
+			var line_chart2 = dc.lineChart(composite_chart);
+			var bar_chart = dc.barChart(&#x27;#&#x27; + container + &#x27;_bar&#x27;);
+
+			//line_chart1
+			line_chart1.dimension(dim)
+			.group(group1, key1).colors(&#x27;red&#x27;)
+			.x(d3.time.scale().domain([min_val, max_val]));
+
+			//line_chart2
+			if (group2){
+
+				line_chart2.dimension(dim)
+				.group(group2, key2).colors(&#x27;blue&#x27;)
+				.x(d3.time.scale().domain([min_val, max_val]))
+				.useRightYAxis(true);
+			}
+
+			//composite chart
+			composite_chart.width(800).height(240)
+			.dimension(dim).group(group1)
+			.rangeChart(bar_chart).shareTitle(false)
+			.x(d3.time.scale().domain([min_val, max_val]))
+			.elasticY(true).elasticX(false)
+			.brushOn(false).yAxisLabel(key1)
+			.renderHorizontalGridLines(true)
+	    	.renderVerticalGridLines(true)
+			.margins({top: 20, right: 50, bottom: 20, left: 50});
+			
+			//composing
+			if (group2){
+
+				composite_chart.compose([line_chart1, line_chart2])
+				.rightYAxisLabel(key2);
+			}
+			else{
+				composite_chart.compose([line_chart1]);
+			}
+
+			//coloring
+			bar_chart.on(&#x27;pretransition&#x27;, function (chart) {
+
+				chart.selectAll(&#x27;g rect&#x27;).style(&#x27;fill&#x27;, function (d) {
+					if (d.data &amp;&amp; d.data.value &gt;= 0.6){
+
+						return &#x27;#&#x27; + color_gen.call(this, d.data.value);
+					}
+					else{
+						return &#x27;gray&#x27;;
+					}
+				});
+			});
+
+			/*=====Left because it could be useful=====*/
+		    // bar_chart.on(&#x27;renderlet&#x27;, function (chart) {
+		    //     chart.selectAll(&quot;circle.dot&quot;)
+		    //         .style(&quot;fill-opacity&quot;, 1)
+		    //         .on(&#x27;mousemove&#x27;, null)
+		    //         .on(&#x27;mouseout&#x27;, null);
+		    //     chart.selectAll(&quot;path.line&quot;)
+		    //          .style(&quot;stroke&quot;, function(d){
+		    //             console.log(d); 
+		    //             return &quot;green&quot;;
+		    //      });
+		    // });
+
+			//scroll bar_chart
+			bar_chart.width(800).height(75)
+			.dimension(dim).group(group_bar)
+			.x(d3.time.scale().domain([min_val, max_val]))
+			.margins({top: 20, right: 50, bottom: 20, left: 50});
+			bar_chart.yAxis().ticks(0);
+			bar_chart.xUnits(d3.time.hours);
+			bar_chart.render();
+
+			return composite_chart;
+		}
+
+		/**
+		* A private method that returns a 
+		* DC.js row chart.
+		* Can work with two fields.
+		* @method row_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised
+		* @return {chart} A chart that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		var row_chart = function(container, key1, key2){
+
+			//dimension
+			var dim = ndx.dimension(function(d){return d[key1];});
+			
+			//grouping
+			var group = (!key2) ? dim.group() : dim.group().reduceSum(function(d) {return d[key2];});
+
+			//chart
+			var chart = dc.rowChart(&#x27;#&#x27; + container);
+			
+			//default values
+			chart.width(600).height(319)
+			.elasticX(true)
+			.dimension(dim).group(group)
+			.margins({top: 20, right: 20, bottom: 20, left: 20})
+			.xAxis().tickFormat(d3.format(&#x27;s&#x27;));
+
+			//on hover text and axis labels
+			if (!key2){
+				chart.title(function(d){
+					return &quot;(&quot; + d.key + &quot;)&quot; 
+					+ &quot;\n&quot; + d.value;
+				});
+			}
+			else{
+				chart.title(function(d){
+					return &quot;(&quot; + d.key + &quot;)&quot;
+					+ &quot;\n&quot; + key2
+					+ &quot;: &quot; + d.value; 
+				});
+			}
+
+			//chart.render();
+			return chart;
+		}
+
+		/**
+		* A private method that returns a 
+		* DC.js bar chart.
+		* Can work with two fields, and also 
+		* with a timestamp field.
+		* @method bar_chart
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		var bar_chart = function(container, key1, key2, ts_key){
+
+			var pkey = key1; //primary key
+			var skey = key2; //secondary key
+
+			//timestamp field could be passes
+			//as key1 or key2
+			//so assure that it would always be pkey
+			if (skey === ts_key){
+
+				skey = pkey;
+				pkey = ts_key;
+			}
+
+			//parse dates if pkey is a timestamp
+			if (pkey === ts_key){
+
+				dataset.forEach(function(doc){
+					
+					doc[pkey] = new Date(doc[pkey]);
+				});
+			}
+
+			//dimension
+			var dim = ndx.dimension(function(d){return d[pkey];});
+			
+			//grouping
+			var group = (!skey) ? dim.group() : dim.group().reduceSum(function(d) {return +d[skey];});
+
+			//chart
+			var chart = dc.barChart(&#x27;#&#x27; + container);
+			
+			//default values
+			chart.width(600).height(319)
+			.dimension(dim).group(group)
+			.renderHorizontalGridLines(true)
+			.renderVerticalGridLines(true)
+			.elasticY(true).xAxisLabel(pkey)
+			.yAxis().tickFormat(d3.format(&#x27;s&#x27;));
+			chart.margins({top: 20, right: 20, bottom: 50, left: 50});
+
+			//x range
+			if (pkey === ts_key){
+
+				//min,max
+				var min_val={}, max_val={};
+				min_val = dim.bottom(1)[0][pkey];
+				max_val = dim.top(1)[0][pkey];
+
+				//time scale
+				chart.x(d3.time.scale().domain([min_val, max_val]));
+			}
+			else{
+
+				//ordinal scale
+				chart.x(d3.scale.ordinal().domain(dim))
+				.xUnits(dc.units.ordinal);
+			}
+
+			/*=====Left because it could be useful=====*/
+			// chart.on(&#x27;pretransition&#x27;, function (chart) {
+			// 	chart.selectAll(&quot;g rect&quot;).style(&quot;fill&quot;, function (d) {
+			// 		return &#x27;green&#x27;;
+			// 	});
+			// });
+
+			//on hover text and axis labels
+			if (!skey){
+				chart.yAxisLabel(&#x27;#&#x27;);
+			}
+			else{
+				chart.yAxisLabel(skey);
+			}
+
+			return chart;
+		}
+
+		/**
+		* A private method that is used
+		* by the correlation scatter plot
+		* to show the correlation &lt;a href=&quot;http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/&quot;&gt;&lt;/a&gt;
+		* between two attributes
+		* @method correlation
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first attribute to calculate the correlation
+		* @param {string} key2 A second attribute to calculate the correlation
+		* @return A DC.js number chart, that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; function
+		*/
+		var correlation = function(container, key1, key2){
+	
+			//reduce functions	
+			var freduceAdd = function(p, v){		
+				++p.n;
+				p.sum_xy += (+v[key1]*+v[key2]);
+				p.sum_x += +v[key1];
+				p.sum_y += +v[key2];
+				p.sum_x2 += (+v[key1]*+v[key1]);
+				p.sum_y2 += (+v[key2]*+v[key2]);		
+					
+				return p;
+			};
+
+			var freduceRemove = function(p, v){
+				--p.n;
+				p.sum_xy -= (+v[key1]*+v[key2]);
+				p.sum_x -= +v[key1];
+				p.sum_y -= +v[key2];
+				p.sum_x2 -= (+v[key1]*+v[key1]);
+				p.sum_y2 -= (+v[key2]*+v[key2]);	
+				return p;
+			};
+
+			var freduceInitial = function(){
+				return {n: 0, sum_xy: 0, sum_x: 0, sum_y:0, sum_x2:0, sum_y2:0};
+			}
+
+			//dimension
+			var dim = ndx.groupAll().reduce(freduceAdd, freduceRemove, freduceInitial);
+
+			//chart
+			var chart = dc.numberDisplay(&#x27;#&#x27; + container);
+
+			//default values
+			chart.formatNumber(d3.format(&quot;.4g&quot;))
+			.group(dim)
+			.valueAccessor(function(p){	
+				if(p.n == 0) return 0;
+
+				return (p.n*p.sum_xy - p.sum_x*p.sum_y) / (Math.sqrt( (p.n*p.sum_x2 - p.sum_x*p.sum_x) * (p.n*p.sum_y2 - p.sum_y*p.sum_y) ));
+			});
+
+			return chart;
+		}
+
+		/**
+		* A private method that returns a 
+		* DC.js scatter plot.
+		* Only works with two fields.
+		* @method scatter
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A x axis
+		* @param {string} key2 A y axis
+		* @return {chart} A chart that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		var scatter = function(container, key1, key2){
+
+			//dimensions
+			var dim = ndx.dimension(function(d){return [+d[key1], +d[key2]];});
+
+			//grouping
+			var group = dim.group();
+
+			//chart
+			var chart = dc.scatterPlot(&#x27;#&#x27; + container);
+
+			//default values
+			chart.width(600).height(300)
+			.dimension(dim).group(group)
+			.x(d3.scale.linear().domain([]))
+			.renderHorizontalGridLines(true)
+			.renderVerticalGridLines(true)
+			.elasticX(true).elasticY(true).brushOn(true)
+			.margins({top: 20, right: 30, bottom: 30, left: 50})
+			.xAxisLabel(key1).yAxisLabel(key2);
+
+			//render the correlation value
+			correlation(container  + &#x27;_correl&#x27;, key1, key2).render();
+
+			//chart.render();
+			return chart;
+		}
+
+		/**
+		* A local method used by &lt;code&gt;timeline&lt;/code&gt;
+		* to color the correlated fields.
+		* It is using an algorithm to generate a color 
+		* (hexa format, without alpha) from a [0..1] value.
+		* @method color_gen
+		* @param {float} value A [0..1] value from which the color should be generated
+		* @return {string} A color in hexa format
+		* @example
+		*     console.log(color_gen.call(this, 0.7338)); //55aa2a
+		*     console.log(color_gen.call(this, 0.9321)); //341a69
+		*/
+		var color_gen = function(value){
+
+			if (!value || value &gt; 1 || value &lt; 0)
+				return &#x27;gray&#x27;;
+
+			//multiply by 1000
+			//&#x27;value&#x27; is [0..1]
+			//with 4 digits after the dot
+			var digit = value*10000;
+
+			//modulo 256 to get 
+			//a digit [0..255]
+			var mod = digit%256;
+
+			//get the digits of mod
+			//144 --&gt; [1, 4, 4]
+			//we know that mod is [0..255]
+			var hundreds = Math.trunc(mod/100);
+			var tens = Math.trunc((mod - hundreds*100)/10);
+			var ones = Math.trunc(mod - hundreds*100 - tens*10);
+			var digits = [hundreds, tens, ones];
+
+			//calc min and max
+			var min = 10;
+			for (var i=0; i&lt;3; i++){
+				if (digits[i] &lt; min)
+					min = digits[i];
+			}
+			var max = -1;
+			for (var i=0; i&lt;3; i++){
+				if (digits[i] &gt; max)
+					max = digits[i];
+			}
+
+			//generate a color
+			var rgb = new Array(3);
+			for (var i=0; i&lt;3; i++){
+
+				//max
+				if (digits[i] === max){
+
+					rgb[i] = mod;
+					continue;
+				}
+
+				//min
+				if (digits[i] === min){
+
+					rgb[i] = Math.trunc(mod/4);
+					continue;
+				}
+
+				//middle
+				rgb[i] = Math.trunc(mod/2);
+			}
+
+			//compose a hex color
+			var color = rgb[0].toString(16) + &#x27;&#x27; +  rgb[1].toString(16) + &#x27;&#x27; + rgb[2].toString(16);
+
+			return color;
+		}
+
+		/**
+		* @property ChartsEnum
+		* @type json
+		* @description A local variable
+		* that holds all the chart names
+		* and their related methods.
+		*/
+		var ChartsEnum = {
+
+			&#x27;Pie&#x27;: pie_chart,
+			&#x27;Timeline&#x27;: timeline,
+			&#x27;Scatter&#x27;: scatter,
+			&#x27;Row&#x27;: row_chart,
+			&#x27;Bar&#x27;: bar_chart
+		};
+
+		/**
+		* A public method that loads the data
+		* to visualise into the local
+		* variable &lt;code&gt;dataset&lt;/code&gt;.
+		* Also checks the presence of the 
+		* DC.js, D3.js and Crossfilter.js libraries.
+		* @method load
+		* @param {array} data Data that should be visualised
+		* @param {callback} err_callback An error callback
+		*/
+		this.load = function(data, err_callback){
+
+			//check if all the libraries
+			//are imported
+			if (typeof crossfilter === &#x27;undefined&#x27;){
+
+				err_callback(new Error(&#x27;Crossfilter.js is missing&#x27;));
+				return;
+			}
+			if (typeof d3 === &#x27;undefined&#x27;){
+
+				err_callback(new Error(&#x27;D3.js is missing&#x27;));
+				return;
+			}
+			if (typeof dc === &#x27;undefined&#x27;){
+
+				err_callback(new Error(&#x27;DC.js is missing&#x27;));
+				return;
+			}
+
+			//all good
+			dataset = data;
+			ndx = crossfilter(dataset);
+			err_callback(null);
+		}
+
+		/**
+		* A local method that is used
+		* by &lt;b&gt;getChart()&lt;/b&gt; method to 
+		* render the number of instances
+		* in the current filter
+		* @method counter
+		* @param {array} container An id of a html tag container of the chart
+		* @return A number DC.js chart that cab be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		var counter = function(container){
+
+			var chart = dc.numberDisplay(&#x27;#&#x27; + container);
+
+			chart.group(ndx.groupAll())
+			.formatNumber(d3.format(&#x27;g&#x27;))
+			.valueAccessor(function(d){return d;});
+
+			return chart;
+		}
+
+		/**
+		* A public method that returns a 
+		* DC.js chart specified by &lt;code&gt;chart_type&lt;/code&gt;
+		* @method getChart
+		* @param {string} chart_type A type of chart from the &lt;code&gt;ChartsEnum&lt;/code&gt;
+		* @param {array} container An id of a html tag container of the chart
+		* @param {string} key1 A first key that should be visualised
+		* @param {string} key2 A second key that should be visualised 
+		* @param {string} ts_key A timestamp key
+		* @return {chart} A chart that can be rendered by calling the &lt;i&gt;render()&lt;/i&gt; method
+		*/
+		this.getChart = function(chart_type, container, key1, key2, ts_key){
+
+			//render the counter
+			counter.call(this,&#x27;counter&#x27;).render();
+
+			//return chart
+			return ChartsEnum[chart_type].call(this, container, key1, key2, ts_key);
+		}
+
+	});
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

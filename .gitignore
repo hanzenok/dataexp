@@ -1,4 +1,4 @@
 bower_components/
 node_modules/
 *log
-doc/
+yuidoc.json

@@ -1,0 +1,3316 @@
+{
+    "project": {
+        "name": "dataexp",
+        "description": "An application for exploring and visualizing the timeseries",
+        "version": "0.0.1",
+        "url": "http://www.maya-technologies.com/en/",
+        "themedir": "/usr/local/lib/node_modules/yuidocjs/themes/maya"
+    },
+    "files": {
+        "app/js/controllers/ChartsCtrl.js": {
+            "name": "app/js/controllers/ChartsCtrl.js",
+            "modules": {
+                "Controllers": 1
+            },
+            "classes": {
+                "ChartsCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/DeleteZoneCtrl.js": {
+            "name": "app/js/controllers/DeleteZoneCtrl.js",
+            "modules": {},
+            "classes": {
+                "DeleteZoneCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/DialogCtrl.js": {
+            "name": "app/js/controllers/DialogCtrl.js",
+            "modules": {},
+            "classes": {
+                "DialogCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/FabCtrl.js": {
+            "name": "app/js/controllers/FabCtrl.js",
+            "modules": {},
+            "classes": {
+                "FabCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/HideBtnCtrl.js": {
+            "name": "app/js/controllers/HideBtnCtrl.js",
+            "modules": {},
+            "classes": {
+                "HideBtnCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/LeftNavCtrl.js": {
+            "name": "app/js/controllers/LeftNavCtrl.js",
+            "modules": {},
+            "classes": {
+                "LeftNavCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/LoaderCtrl.js": {
+            "name": "app/js/controllers/LoaderCtrl.js",
+            "modules": {},
+            "classes": {
+                "LoaderCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/MovableChartsCtrl.js": {
+            "name": "app/js/controllers/MovableChartsCtrl.js",
+            "modules": {},
+            "classes": {
+                "MovableChartsCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/RightNavCtrl.js": {
+            "name": "app/js/controllers/RightNavCtrl.js",
+            "modules": {},
+            "classes": {
+                "RightNavCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/controllers/ToolBarCtrl.js": {
+            "name": "app/js/controllers/ToolBarCtrl.js",
+            "modules": {},
+            "classes": {
+                "ToolBarCtrl": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/CanvasChartsService.js": {
+            "name": "app/js/services/CanvasChartsService.js",
+            "modules": {
+                "Services": 1
+            },
+            "classes": {
+                "CanvasChartsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/DCChartsService.js": {
+            "name": "app/js/services/DCChartsService.js",
+            "modules": {},
+            "classes": {
+                "DCChartsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/FieldsService.js": {
+            "name": "app/js/services/FieldsService.js",
+            "modules": {},
+            "classes": {
+                "FieldsService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/SourcesService.js": {
+            "name": "app/js/services/SourcesService.js",
+            "modules": {},
+            "classes": {
+                "SourcesService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/StoresService.js": {
+            "name": "app/js/services/StoresService.js",
+            "modules": {},
+            "classes": {
+                "StoresService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/TimeseriesService.js": {
+            "name": "app/js/services/TimeseriesService.js",
+            "modules": {},
+            "classes": {
+                "TimeseriesService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/canvasjs.js": {
+            "name": "app/js/canvasjs.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/main.js": {
+            "name": "app/js/main.js",
+            "modules": {
+                "client": 1
+            },
+            "classes": {
+                "main": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/connectors/FileConnector.js": {
+            "name": "server/connectors/FileConnector.js",
+            "modules": {
+                "Connectors": 1
+            },
+            "classes": {
+                "FileConnector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/connectors/MongoConnector.js": {
+            "name": "server/connectors/MongoConnector.js",
+            "modules": {},
+            "classes": {
+                "MongoConnector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/connectors/MysqlConnector.js": {
+            "name": "server/connectors/MysqlConnector.js",
+            "modules": {},
+            "classes": {
+                "MysqlConnector": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/DeleteSource.js": {
+            "name": "server/rest/DeleteSource.js",
+            "modules": {
+                "RestApi": 1
+            },
+            "classes": {
+                "DeleteSource": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetFields.js": {
+            "name": "server/rest/GetFields.js",
+            "modules": {},
+            "classes": {
+                "GetFields": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetSources.js": {
+            "name": "server/rest/GetSources.js",
+            "modules": {},
+            "classes": {
+                "GetSources": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetStores.js": {
+            "name": "server/rest/GetStores.js",
+            "modules": {},
+            "classes": {
+                "GetStores": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/GetTimeseries.js": {
+            "name": "server/rest/GetTimeseries.js",
+            "modules": {},
+            "classes": {
+                "GetTimseries": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/rest/PutSource.js": {
+            "name": "server/rest/PutSource.js",
+            "modules": {},
+            "classes": {
+                "PutSource": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server/routes.js": {
+            "name": "server/routes.js",
+            "modules": {},
+            "classes": {
+                "routes": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "server.js": {
+            "name": "server.js",
+            "modules": {
+                "server": 1
+            },
+            "classes": {
+                "server": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "client": {
+            "name": "client",
+            "submodules": {
+                "Controllers": 1,
+                "Services": 1
+            },
+            "elements": {},
+            "classes": {
+                "ChartsCtrl": 1,
+                "DeleteZoneCtrl": 1,
+                "DialogCtrl": 1,
+                "FabCtrl": 1,
+                "HideBtnCtrl": 1,
+                "LeftNavCtrl": 1,
+                "LoaderCtrl": 1,
+                "MovableChartsCtrl": 1,
+                "RightNavCtrl": 1,
+                "ToolBarCtrl": 1,
+                "CanvasChartsService": 1,
+                "DCChartsService": 1,
+                "FieldsService": 1,
+                "SourcesService": 1,
+                "StoresService": 1,
+                "TimeseriesService": 1,
+                "main": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "app/js/main.js",
+            "line": 5
+        },
+        "Controllers": {
+            "name": "Controllers",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "ChartsCtrl": 1,
+                "DeleteZoneCtrl": 1,
+                "DialogCtrl": 1,
+                "FabCtrl": 1,
+                "HideBtnCtrl": 1,
+                "LeftNavCtrl": 1,
+                "LoaderCtrl": 1,
+                "MovableChartsCtrl": 1,
+                "RightNavCtrl": 1,
+                "ToolBarCtrl": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "client",
+            "namespace": "",
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 7,
+            "description": "Angualr.js controllers."
+        },
+        "Services": {
+            "name": "Services",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "CanvasChartsService": 1,
+                "DCChartsService": 1,
+                "FieldsService": 1,
+                "SourcesService": 1,
+                "StoresService": 1,
+                "TimeseriesService": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "client",
+            "namespace": "",
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 7,
+            "description": "Angualr.js services."
+        },
+        "server": {
+            "name": "server",
+            "submodules": {
+                "Connectors": 1,
+                "RestApi": 1
+            },
+            "elements": {},
+            "classes": {
+                "FileConnector": 1,
+                "MongoConnector": 1,
+                "MysqlConnector": 1,
+                "DeleteSource": 1,
+                "GetFields": 1,
+                "GetSources": 1,
+                "GetStores": 1,
+                "GetTimseries": 1,
+                "PutSource": 1,
+                "routes": 1,
+                "server": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "server.js",
+            "line": 11
+        },
+        "Connectors": {
+            "name": "Connectors",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "FileConnector": 1,
+                "MongoConnector": 1,
+                "MysqlConnector": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "server",
+            "namespace": "",
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 9,
+            "description": "Connectors to different types of storages."
+        },
+        "RestApi": {
+            "name": "RestApi",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DeleteSource": 1,
+                "GetFields": 1,
+                "GetSources": 1,
+                "GetStores": 1,
+                "GetTimseries": 1,
+                "PutSource": 1,
+                "routes": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "server",
+            "namespace": "",
+            "file": "server/routes.js",
+            "line": 17,
+            "description": "Rest API's offered by server."
+        }
+    },
+    "classes": {
+        "ChartsCtrl": {
+            "name": "ChartsCtrl",
+            "shortname": "ChartsCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 7,
+            "description": "A controller that serves \nthe container of DC.js and Canvas.js charts\nin the <code>index.html</code> view.\n<br/>\nIt uses two custom angular services:\n- <b>DCChartsService</b>: generates the DC.js charts\n- <b>CanvasChartsService</b>: generates the Canvas.js charts\n\nIt defines three methods which should be explained:\n- <b>renderAll()</b>: a method that launches automatically\nwhen all the DOM elements needed for rendering all \nthe charts from the <code>$rootScope.droppedCharts</code> list where generated\n(but charts not yet traced). This is done by using angular <code>$last</code> directive.\nWhen the method is launched, if the boolean <code>$scope.reload</code> is true, it traces\nall the charts from the <code>$rootScope.droppedCharts</code> list.\nIt is done this way, because in order to trace a DC.js or Canvas.js charts,\nall the DOM containers (divs) should be already present (and we are generating them progrmatically).\n- <b>onDropChart()</b>: a method that traces only one chart, when the 'movable chart'\nis dropped to the charts container. It also adds it to the <code>$rootScope.droppedCharts</code>\nlist, which will trigger automatically the <b>renderAll()</b> function, that will retrace all\nfor the second time. To prevent this, the <b>onDropChart()</b> method sets the variable \n<code>$scope.reload</code> to false.\n- <b>reloadCharts()</b>: a method that reloads all the DOM elements chart containers,\nand then reintroduces them. Which triggers the <b>renderAll()</b> method that traces all the \ncharts. To allow it, the <b>reloadCharts()</b> sets the variable <code>$scope.reload</code> to true."
+        },
+        "DeleteZoneCtrl": {
+            "name": "DeleteZoneCtrl",
+            "shortname": "DeleteZoneCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/DeleteZoneCtrl.js",
+            "line": 7,
+            "description": "A controller that serves the delete zone\n(where all the Drag&Drop objects can be dropped)\nin the footer of  <code>index.html</code> view."
+        },
+        "DialogCtrl": {
+            "name": "DialogCtrl",
+            "shortname": "DialogCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 7,
+            "description": "A controller that serves the two templates\nfor dialog windows: <code>AddSource.html</code>\nand <code>SaveFormat.html</code>.\n<br/>\nIt uses two custom angular services:\n- <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources from/to/to/from the backend\n- <b>CSV2JSONService</b>: used for csv type sources"
+        },
+        "FabCtrl": {
+            "name": "FabCtrl",
+            "shortname": "FabCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/FabCtrl.js",
+            "line": 7,
+            "description": "A controller that serves a fab button\nin the <code>index.html</code> view\nthat is used to add a new source."
+        },
+        "HideBtnCtrl": {
+            "name": "HideBtnCtrl",
+            "shortname": "HideBtnCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 7,
+            "description": "A controller that serves a button\nthat hides a footer\nin the <code>index.html</code> view."
+        },
+        "LeftNavCtrl": {
+            "name": "LeftNavCtrl",
+            "shortname": "LeftNavCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 7,
+            "description": "A controller that serves all the left panel\nin the <code>index.html</code> view.\n<br/>\nIt uses three custom angular services:\n- <b>SourcesService</b>: deals with getting/sendig/adding/deleting sources from/to/to/from the backend\n- <b>StoresService</b>: deals with getting stores from the backend\n- <b>FieldsService</b>: deals with getting fields from the backend"
+        },
+        "LoaderCtrl": {
+            "name": "LoaderCtrl",
+            "shortname": "LoaderCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 7,
+            "description": "A controller that serves loader zone\nin the footer of <code>index.html</code> view.\n<br/>\nIt uses three custom angular services:\n- <b>TimeseriesService</b>: deals with getting the timeseries, <code>tsproc</code> config and timeseries statistics from the back-end\n- <b>DCChartService</b>: used to load data to the DC.js charting library \n- <b>CanvasChartService</b>: used to load data to the Canvas.js charting library"
+        },
+        "MovableChartsCtrl": {
+            "name": "MovableChartsCtrl",
+            "shortname": "MovableChartsCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/MovableChartsCtrl.js",
+            "line": 7,
+            "description": "A controller that serves all the \nmovable charts in the footer of <code>index.html</code> view.\n<br/>\nThere are 5 chart types:\n- Pie Chart\n- Timeline\n- Scatter Plot\n- Row Chart\n- Bar Chart"
+        },
+        "RightNavCtrl": {
+            "name": "RightNavCtrl",
+            "shortname": "RightNavCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 7,
+            "description": "A controller that serves all the \nright panel in the <code>index.html</code> view."
+        },
+        "ToolBarCtrl": {
+            "name": "ToolBarCtrl",
+            "shortname": "ToolBarCtrl",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Controllers",
+            "namespace": "",
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 7,
+            "description": "A controller that serves the toolbar\nin the <code>index.html</code> view."
+        },
+        "CanvasChartsService": {
+            "name": "CanvasChartsService",
+            "shortname": "CanvasChartsService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 7,
+            "description": "A service that wraps \na Canvas.js charting library and \noffers two public methods:\n- <b>load()</b>: loads the data (json array)\nthat should be visualysed\n- <b>getChart()</b>: returns the chart\nfilled with the data from the <b>load()</b> function.\nThe chart can be then traced by calling <i>render()</i>\nfunction on it."
+        },
+        "DCChartsService": {
+            "name": "DCChartsService",
+            "shortname": "DCChartsService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/DCChartsService.js",
+            "line": 7,
+            "description": "A service that wraps \na DC.js charting library and \noffers two public methods:\n- <b>load()</b>: loads the data (json array)\nthat should be visualysed\n- <b>getChart()</b>: returns the chart\nfilled with the data from the <b>load()</b> function.\nThe chart can be then traced by calling <i>render()</i>\nfunction on it."
+        },
+        "FieldsService": {
+            "name": "FieldsService",
+            "shortname": "FieldsService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/FieldsService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query the fields."
+        },
+        "SourcesService": {
+            "name": "SourcesService",
+            "shortname": "SourcesService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/SourcesService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query, modify, send, delete sources."
+        },
+        "StoresService": {
+            "name": "StoresService",
+            "shortname": "StoresService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/StoresService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query the stores."
+        },
+        "TimeseriesService": {
+            "name": "TimeseriesService",
+            "shortname": "TimeseriesService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 7,
+            "description": "A service that talks\nto the REST api of the back-end\nto query timeseries, <code>tsproc</code> module statistics\nand configuration."
+        },
+        "main": {
+            "name": "main",
+            "shortname": "main",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "namespace": "",
+            "file": "app/js/main.js",
+            "line": 5,
+            "description": "A main angular module.\n<br/>\nThe dependencies are:\n- <b>ngMaterial</b>: UI components framework <a href=\"https://material.angularjs.org/latest/\">Angular-Material</a>\n- <b>ngDraggable</b>: a Drag&Drop <a href=\"https://github.com/fatlinesofcode/ngDraggable\">module</a>\n- <b>ngResource</b>: lets to use a <a href=\"https://docs.angularjs.org/api/ngResource\">$resource</a> factory with RESTful communication with the back-end\n- <b>ngMessages</b>: angular <a href=\"https://docs.angularjs.org/api/ngMessages/directive/ngMessages\">directory</a> that lets to show and hide messages"
+        },
+        "FileConnector": {
+            "name": "FileConnector",
+            "shortname": "FileConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "Connectors",
+            "namespace": "",
+            "file": "server/connectors/FileConnector.js",
+            "line": 11,
+            "description": "A connector to the files (JSON and CSV)"
+        },
+        "MongoConnector": {
+            "name": "MongoConnector",
+            "shortname": "MongoConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "Connectors",
+            "namespace": "",
+            "file": "server/connectors/MongoConnector.js",
+            "line": 9,
+            "description": "A connector to the MongoDB database"
+        },
+        "MysqlConnector": {
+            "name": "MysqlConnector",
+            "shortname": "MysqlConnector",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "Connectors",
+            "namespace": "",
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 9,
+            "description": "A connector to the MySQL database"
+        },
+        "DeleteSource": {
+            "name": "DeleteSource",
+            "shortname": "DeleteSource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/DeleteSource.js",
+            "line": 9
+        },
+        "GetFields": {
+            "name": "GetFields",
+            "shortname": "GetFields",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetFields.js",
+            "line": 20
+        },
+        "GetSources": {
+            "name": "GetSources",
+            "shortname": "GetSources",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetSources.js",
+            "line": 9
+        },
+        "GetStores": {
+            "name": "GetStores",
+            "shortname": "GetStores",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetStores.js",
+            "line": 20
+        },
+        "GetTimseries": {
+            "name": "GetTimseries",
+            "shortname": "GetTimseries",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/GetTimeseries.js",
+            "line": 32
+        },
+        "PutSource": {
+            "name": "PutSource",
+            "shortname": "PutSource",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/rest/PutSource.js",
+            "line": 10
+        },
+        "routes": {
+            "name": "routes",
+            "shortname": "routes",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "submodule": "RestApi",
+            "namespace": "",
+            "file": "server/routes.js",
+            "line": 17,
+            "description": "A class (module) that defines all \nthe API URLs, and the related methods.\n<br/>\nHere are some of the URLs: <br/>\n- <b>/api/sources</b>: GET a JSON with sources configuration\n- <b>/api/sources</b>: POST a new source, returns an empty array\n- <b>/api/sources/:source_name</b>: DELETE source, returns an empty array\n- <b>/api/stores</b>: POST a sources config, returns an array of stores\n- <b>/api/fields</b>: POST a stores config, returns an array of fields\n- <b>/api/timeseries</b>: POST a fields config, returns the realted dataset\n- <b>/api/stats</b>: GET statistics from tsproc\n- <b>/api/config</b>: GET configuration JSON of tsproc"
+        },
+        "server": {
+            "name": "server",
+            "shortname": "server",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "server",
+            "namespace": "",
+            "file": "server.js",
+            "line": 11,
+            "description": "A script that configures the server\npart."
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 46,
+            "itemtype": "property",
+            "name": "reload",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat is used to trigger (or not)\nthe <b>renderAll()</b> method\nto reload all the charts.",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 56,
+            "itemtype": "property",
+            "name": "hideTitle",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat is used to show/hide\nthe message 'Rendering ...' while\nthe chart (DC.js or Canvas.js) is rendering.",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 66,
+            "itemtype": "property",
+            "name": "droppedCharts",
+            "type": "array",
+            "description": "A <b>root scope</b> variable\nthat holds all the dropped movable charts\non the charts container in the <code>index.html</code>.",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 75,
+            "description": "A <b>local scope</b> method that fires\nwhen a movable chart is dropped on the \ncharts container in the <code>index.html</code>\nand traces a chart (DC.js or Canvas.js).",
+            "itemtype": "method",
+            "name": "onDropChart",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Dropped object"
+                }
+            ],
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 216,
+            "description": "A <b>root scope</b> method that fires\non clicking the FAB button in the main \ncontainer. It reloads all the charts (DC.js or Canvas.js)\nfrom the <code>$rootScope.droppedCharts</code>.",
+            "itemtype": "method",
+            "name": "reloadCharts",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ChartsCtrl.js",
+            "line": 269,
+            "description": "A <b>local scope</b> method that\nlaunches automatically when all the DOM\nelements-containers for charts from the \n<code>$rootScope.droppedCharts</code> where generated.\nWhen launched, it traces all the charts from the <code>$rootScope.droppedCharts</code>\nlist.",
+            "itemtype": "method",
+            "name": "renderAll",
+            "class": "ChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DeleteZoneCtrl.js",
+            "line": 16,
+            "description": "A <b>local scope</b> method tha removes \na dropped object from the list of objects\nof its type.\n<br/>\nDropped objects could be:\n- normal fields\n- timestamp fields\n- DC.js or Canvas.js charts\n- movable charts",
+            "itemtype": "method",
+            "name": "onDropRemove",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "A dropped object"
+                }
+            ],
+            "class": "DeleteZoneCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DeleteZoneCtrl.js",
+            "line": 104,
+            "description": "A <b>local scope</b> method that fires \nwhen the delete zone (placed in the footer of <code>index.html</code>)\nis clicked.\n<br/>\nIt clears all the Drag&Drop objects from\ntheir respective lists.\nIt also deletes a loaded dataset.",
+            "itemtype": "method",
+            "name": "clearAll",
+            "class": "DeleteZoneCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 21,
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 24,
+            "itemtype": "property",
+            "name": "showHints",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat manages the error\nhints in a form at <code>AddSource.html</code>\ndialog.",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 34,
+            "itemtype": "property",
+            "name": "deletable",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat defines wheather the <code>AddSource.html</code>\nis used for adding a new source or for modifying \nthe existing one.\n<br/>\n<code>$scope.deletable</code> is <b>true</b> if \nthe source is modifyable.",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 47,
+            "itemtype": "property",
+            "name": "source_conf",
+            "type": "json",
+            "description": "A <b>local scope</b> variable\nthat holds the source config.\n<br/>\nBinded to the <code>AddSource.html</code> dialog.",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 82,
+            "description": "A <b>local scope</b> method\nthat returns the title of a toolbar.\n<br/>\nIts value depends on wheather or not \nthe <code>AddSource.html</code> dialog was called to add or modify a source.",
+            "itemtype": "method",
+            "name": "getToobarTitle",
+            "return": {
+                "description": "A toolbar title",
+                "type": "String"
+            },
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 99,
+            "description": "A <b>local scope</b> method\nthat returns the label of the OK button\nin the  dialog.\n<br/>\nIts value depends on wheather or not \nthe <code>AddSource.html</code> dialog was called to add or modify a source.",
+            "itemtype": "method",
+            "name": "getButtonLabel",
+            "return": {
+                "description": "A button label",
+                "type": "String"
+            },
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 117,
+            "description": "A <b>local scope</b> method, attached to \nthe OK button in the <code>AddSource.html</code> dialog, that\nuses services <b>SourcesService</b> and\n<b>CSV2JSONService</b> to add or modify a source in the back-end.",
+            "itemtype": "method",
+            "name": "connect",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 216,
+            "description": "A <b>local scope</b> method, attached \nto the delete button in the toolbar of the \n<code>AddSource.html</code> dialog, that uses \na service <b>SourcesService</b> to delete a source from the\nback-end.",
+            "itemtype": "method",
+            "name": "deleteSource",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 253,
+            "description": "A <b>local scope</b> method that serves <code>AddSource.html</code> \nand reads the choosen file on front-end \nand saves it on the back-end.\n<br/>\nCalled when the added source is of the \n'file' type (JSON or CSV).",
+            "itemtype": "method",
+            "name": "saveSourceFile",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "Used to get the choosen file on the front-end"
+                }
+            ],
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 313,
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 316,
+            "itemtype": "property",
+            "name": "format",
+            "type": "string",
+            "description": "A <b>local scope</b> variable\nthat is binded to the <code>SaveFormat.html</code>\ndialog and holds the choosen timestamp format.\n<br/>\nThe default value is 'ISO' (ISO8601).",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 327,
+            "description": "A <b>local scope</b> method that serves\n<code>SaveFormat.html</code> dialog and saves\nthe the timestamp format specified by user.\n<br/>\nIt is done by calling the method <code>hide()</code>\nof <b>$mdDialog</b> service and passing it the format.\nThis way the format can be grabbed in the <code>.then()</code>\nmethod in the controller <b>LoaderCtrl</b>.",
+            "itemtype": "method",
+            "name": "saveFormat",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 343,
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/DialogCtrl.js",
+            "line": 344,
+            "description": "A <b>local scope</b> method that serves \nthe <code>AddSource.html</code> and <code>SaveFormat.html</code>\ndialogs and is used to close the dialog.\n<br/>\nDone by calling the <code>cancel()</code> method\nof <b>$mdDialog</b> service.",
+            "itemtype": "method",
+            "name": "cancel",
+            "class": "DialogCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/FabCtrl.js",
+            "line": 16,
+            "description": "A <b>local scope</b> method that renders a view\n(from <code>AddSource.html</code> template) with\ninputs to add a new source.",
+            "itemtype": "method",
+            "name": "showDialog",
+            "params": [
+                {
+                    "name": "ev",
+                    "description": "event"
+                }
+            ],
+            "class": "FabCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 16,
+            "itemtype": "property",
+            "name": "hideFooter",
+            "type": "boolean",
+            "description": "A <b>root scope</b> variable\nthat sets the state of a footer (wheather it's hided or not) \nin the <code>index.html</cdoe> view.",
+            "class": "HideBtnCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 25,
+            "itemtype": "property",
+            "name": "image",
+            "type": "string",
+            "description": "A <b>local scope</b> variable\nthat is binded to the footer \nin the <code>index.html</code> view and holds\npath to the buttons image.",
+            "class": "HideBtnCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 35,
+            "description": "A <b>local scope</b> method that hides/shows\nthe footer at the <code>index.htlm</code> view.",
+            "itemtype": "method",
+            "name": "toggle",
+            "class": "HideBtnCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/HideBtnCtrl.js",
+            "line": 46,
+            "description": "A <b>root scope</b> $watch method that swithces\nthe image on the hide button depending on its state.",
+            "itemtype": "method",
+            "name": "switchImage",
+            "class": "HideBtnCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 20,
+            "itemtype": "property",
+            "name": "stores_conf",
+            "type": "array",
+            "description": "A <b>root scope</b> variable,\nbinded to the left panel in the <code>index.html</code> view,\nthat holds the store configs.",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 29,
+            "itemtype": "property",
+            "name": "fields_conf",
+            "type": "array",
+            "description": "A <b>root scope</b> variable,\nbinded to the left panel in the <code>index.html</code> view,\nthat holds the field configs.",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 38,
+            "itemtype": "property",
+            "name": "sources_conf",
+            "type": "array",
+            "description": "A <b>local scope</b> variable,\nbinded to the left panel in the <code>index.html</code> view,\nthat holds the source configs.",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 47,
+            "description": "A <b>root scope</b> method that is used by \n<b>$rootScope.loadStores()</b> to add the store configs from\nthe <code>stores_conf</code> to the <code>$rootScope.stores_conf</code> list.",
+            "itemtype": "method",
+            "name": "addStores",
+            "params": [
+                {
+                    "name": "stores_conf",
+                    "description": "A list of store configs to add to the <code>$rootScope.stores_conf</code> list",
+                    "type": "Json array"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 62,
+            "description": "A <b>root scope</b> method that removes the store configs\nthat are part of source config <code>source_conf</code> from the\n<code>$rootScope.sources_conf</code> list.",
+            "itemtype": "method",
+            "name": "removeStores",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "Source config whoose store configs should be removed from the <code>$rootScope.sources_conf</code> list",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 89,
+            "description": "A <b>root scope</b> method that clears the \n<code>$rootScope.stores_conf</code> list.",
+            "itemtype": "method",
+            "name": "clearStores",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 99,
+            "description": "A <b>root scope</b> method that is used by \n<b>$rootScope.loadFields()</b> to add the field configs from\nthe <code>fields_conf</code> to the <code>$rootScope.fields_conf</code> list.",
+            "itemtype": "method",
+            "name": "addFields",
+            "params": [
+                {
+                    "name": "fields_conf",
+                    "description": "A list of field configs to add to the <code>$rootScope.fields_conf</code> list",
+                    "type": "Json array"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 114,
+            "description": "A <b>root scope</b> method that removes the field configs\nthat are part of store config <code>store_conf</code> from the\n<code>$rootScope.fields_conf</code> list.",
+            "itemtype": "method",
+            "name": "removeFields",
+            "params": [
+                {
+                    "name": "store_conf",
+                    "description": "Store config whoose field configs should be removed from the <code>$rootScope.fields_conf</code> list",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 138,
+            "description": "A <b>root scope</b> method that clears the \n<code>$rootScope.fields_conf</code> list.",
+            "itemtype": "method",
+            "name": "clearFields",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 148,
+            "description": "A <b>root scope</b> method that is \nusing a <b>SourcesService</b> service to query\na list of source configs from the back-end and\nloads it to the <code>$scope.sources_conf</code>",
+            "itemtype": "method",
+            "name": "loadSources",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 188,
+            "description": "A <b>root scope</b> method that is using\nthe <b>StoresServie</b> service to query\na list of store configs that are part \nof the source config <code>source_conf</code>.\nThen by using the <b>$rootScope.addStores()</b> method\nit adds them to the <code>$rootScope.stores_conf</code>.",
+            "itemtype": "method",
+            "name": "loadStores",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A source config whoose stores configs should be loaded",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 244,
+            "description": "A <b>local scope</b> method that returns\na formatted name of the type of source specified\nby <code>source_conf</code>.",
+            "itemtype": "method",
+            "name": "getSourceType",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A source config to get the type from",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "A type name",
+                "type": "String"
+            },
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 266,
+            "description": "A <b>local scope</b> method that launches\na dialog to modify a source config.\n<br/>\nThe template used by dialog is <code>AddSource.html</code>.",
+            "itemtype": "method",
+            "name": "modifySource",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event"
+                },
+                {
+                    "name": "source_conf",
+                    "description": "A source config to modify",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 295,
+            "description": "A <b>local scope</b> method that is using \na <code>FieldsService</code> service to query\na list of field config that are part of the \nstore config <code>store_config</code>.\nThen by using the <b>$rootScope.addFields()</b> method\nit adds them to the <code>$scope.fields_conf</code>.",
+            "itemtype": "method",
+            "name": "loadFields",
+            "params": [
+                {
+                    "name": "store_conf",
+                    "description": "A store config whoose field configs should be loaded into <code>$scope.fields_conf</code>",
+                    "type": "Json"
+                }
+            ],
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LeftNavCtrl.js",
+            "line": 340,
+            "description": "A <b>local scope</b> method that is \ncalled by clicking on the 'clear all' link\non the left panel. It clears all the \nchoosen sources, stores and fields.",
+            "itemtype": "method",
+            "name": "clear",
+            "class": "LeftNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 20,
+            "itemtype": "property",
+            "name": "droppedFields",
+            "type": "array",
+            "description": "A <b>root scope</b> variable,\nbinded to the footer in the <code>index.html</code> view,\nthat holds the list of dropped field configs\nto the area 'Fields' of the loader.",
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 30,
+            "itemtype": "property",
+            "name": "droppedTSFields",
+            "type": "array",
+            "description": "A <b>root scope</b> variable,\nbinded to the footer in the <code>index.html</code> view,\nthat holds the list of dropped timestamp field configs\nto the area 'Timestamp Fields' of the loader.",
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 40,
+            "itemtype": "property",
+            "name": "chartFields",
+            "type": "array",
+            "description": "A <b>root scope</b> variable,\nbinded to the footer in the <code>index.html</code> view,\nthat holds the list of dropped field configs\nto the 'movable charts' area.",
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 50,
+            "itemtype": "property",
+            "name": "dataset",
+            "type": "array",
+            "description": "A <b>root scope</b> variable,\nbinded to the in the <code>index.html</code> view,\nthat holds the loaded from the back-end dataset.",
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 59,
+            "itemtype": "property",
+            "name": "loaded",
+            "type": "boolean",
+            "description": "A <b>root scope</b> variable,\nbinded to the <code>index.html</code> view,\nthat sets the state of dataset, wheather it is \nloaded or not.",
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 69,
+            "description": "A <b>local scope</b> method that is launched\nwhen the field config is dropped into the 'Fields' area.\nThen it adds it to the <code>$rootScope.droppedFields</code>.",
+            "itemtype": "method",
+            "name": "onDropComplete",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Dropped field config",
+                    "type": "Json"
+                }
+            ],
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 96,
+            "description": "A <b>local scope</b> method that is launched\nwhen the field config is dropped into the 'Timestamp Fields' area.\nThen it adds it to the <code>$rootScope.droppedTSFields</code>.",
+            "itemtype": "method",
+            "name": "onTSDropComplete",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Dropped field config",
+                    "type": "Json"
+                }
+            ],
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/LoaderCtrl.js",
+            "line": 156,
+            "description": "A <b>local scope</b> method that is fired\nwhen the download button in the loader zone is clicked.\nIt uses the <b>TimeseriesService</b> to pass all the \nfield configs and option to the backend, and then \nit receives a dataset with all the queried fields.\nOn the back-end side, this request goes through <code>tsproc</code>\nmodule.\n<br/>\nIt initiates one of the charting libraries (either by\nDCChartsService or CanvasChartsService) withe loaded dataset.\n<br/>\nThe method also lets the <code>tsproc</code> configuration json\nto be downloadable, as well as loaded dataset (as a json).",
+            "class": "LoaderCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/MovableChartsCtrl.js",
+            "line": 22,
+            "description": "A <b>local scope</b> method that is fired\nwhen the field is dropped into one of the movable\ncharts in the footer of <code>index.html</code>.\n<br/>\nIt adds the fields into the <code>$rootScope.chartFields</code> list.",
+            "itemtype": "method",
+            "name": "onDropComplete",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Dropped field"
+                },
+                {
+                    "name": "type",
+                    "description": "Chart type"
+                }
+            ],
+            "class": "MovableChartsCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 15,
+            "itemtype": "property",
+            "name": "max_size",
+            "type": "integer",
+            "description": "A <b>global scope</b> variable\nthat holds the maximal size of the \ntimeseries accepted by DC.js in order\nto explore the data interactively.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 25,
+            "itemtype": "property",
+            "name": "size_status",
+            "type": "string",
+            "description": "A <b>global scope</b> variable\nthat holds the state of the timeseries size.\nIt is equal to 'overflow' when the size is bigger\nthan <code>$rootScope.max_size</code> or 'normal'\notherwise.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 36,
+            "itemtype": "property",
+            "name": "stats",
+            "type": "json",
+            "description": "A <b>local scope</b> variable\nthat holds three timeseries statistics:\n- <i>homogen</i>: wheater or not \none or multiple timeseries where \nhomogeneous before the merge\n- <i>size</i>: a size of the final fused timeseries\n- <i>per_day</i>: an average number of datapoints\nper day in the timeseries",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 53,
+            "itemtype": "property",
+            "name": "options",
+            "type": "json",
+            "description": "A <b>local scope</b> variable\nthat holds some <code>tsproc</code> configurations.\n<br/>Transformation configs:\n- <i>transform_type</i>: the type\nof transformation to apply in order\nto synchronise multiple timeseries.\nPossible values are 'interp' (interpolation)\nand 'inters' (intersection)\n- <i>interp_type</i>: interpolation method.\nPossible values are: 'linear', 'cubic', <a href=\"https://en.wikipedia.org/wiki/Lanczos_resampling\">\n'lanczos'</a>, 'nearest' (nearest neighbor)\n\nReduction configs:\n- <i>reduc_type</i>: the reduction method to combine <code>$scope.options.reduc_size</code>\ndatapoints into one. Possible values are: 'skip', 'sum', 'avg', 'max', 'min'\n- <i>reduc_size</i>: the number of datapoints to be reduced into one \nthe <code>$scope.options.reduc_type</code> method\n- <i>target_field</i>: a target field used for 'max' and 'min' methods\n\nDate configs:\n- <i>from_date</i>: a date from which to cut the dates\n- <i>to_date</i>: a date till withc to cut the dates\n\nCorrelation configs:\n- <i>count_negative</i>: wheather or not to count \nthe negative correlation as a correaltion\n- <i>max_coef</i>: wheather or not to use the\nmaximum correlation value as a criteria to consider\nthe set of datapoints as correlated. If <code>max_coef</code>\nis false, use max number of datapoints as a criteria\n\nQuantification config:\n- <i>tsfield_quantum</i>: the quantum of the \ntimestamp attribute. Possible values are: \n'none', 'day', 'month', 'year'",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 104,
+            "itemtype": "property",
+            "name": "enableDates",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat serves the right panel \nin the <code>index.html</code> view and\nis used to enable/disable the dates\nsection.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 115,
+            "description": "A <b>root scope</b> method, that\ncollects all the choosen options\nfrom the right panel in \nthe <code>index.html</code>, and returns them \ncompacted into one json",
+            "itemtype": "method",
+            "name": "getOptions",
+            "return": {
+                "description": "All the options from the right panel",
+                "type": "Json"
+            },
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 174,
+            "description": "A <b>root scope</b> method, that\nis binded to all the options in the right panel \nof <code>index.html</code> view and\nsets them from the <code>config</code>\njson.",
+            "itemtype": "method",
+            "name": "setStats",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "A json with options to set",
+                    "type": "Json"
+                }
+            ],
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 228,
+            "description": "A <b>local scope</b> method, that\nserves the righ panel of <code>index.html</code>\nview and fires when the dragged field is dropped\non the input in the 'Reduction' section.\nWhen it is done, the input would have the name \nof the field on it.",
+            "itemtype": "method",
+            "name": "onDroppedField",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "A dropped field",
+                    "type": "Json"
+                }
+            ],
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 249,
+            "description": "A <b>local scope</b> method, attached to \nright panel of the <code>index.html</code>\nthat shows a dialog (templated by <code>Alert.html</code>)\nwith alert message about the size of a timeseries.",
+            "itemtype": "method",
+            "name": "showAlert",
+            "params": [
+                {
+                    "name": "ev",
+                    "description": "Event"
+                }
+            ],
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 280,
+            "description": "A <b>local scope</b> $watch method, attached\nto the right panel in the <code>index.html</code> that\nfires when the 'Correlation' section is toogled.\nIt then forces the values of the \n<code>$scope.options.count_negative</code> \nand <code>$scope.options.max_coef</code>.",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 297,
+            "description": "A <b>root scope</b> $watch method, attached \nto the right panel in the <code>index.html</code>\nthat disables the correlation detection when \nthe usage of Canvas.js is forced.t",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 311,
+            "itemtype": "property",
+            "name": "hide_dataset",
+            "type": "boolean",
+            "description": "A <b>local scope</b> variable\nthat serves the right panel \nin the <code>index.html</code> view and\nis used to indicate the state of the\nsection 'Dataset' (wheather it is \nactivated or not).",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 323,
+            "description": "A <b>local scope</b> method that\nserves the righ panel of <code>index.html</code>\nview and attached to the switch in the \n'Dataset' section.\nIt is used to show/hide the dataset (\nin a form of a table).",
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/RightNavCtrl.js",
+            "line": 341,
+            "description": "A <b>root scope</b> method that\nis used by the right and left panel and foot of <code>index.html</code> wiew\nIt is used to determine wheater or not the value\npassed as a parameter is number or not.\nUsed to distinguish \nnumeric and nominal attributes.",
+            "itemtype": "method",
+            "name": "isNumber",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "An object to check"
+                }
+            ],
+            "return": {
+                "description": "True if <code>value</code> is a number, false otherwise"
+            },
+            "class": "RightNavCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 15,
+            "itemtype": "property",
+            "name": "showPanels",
+            "type": "boolean",
+            "description": "A <b>root scope</b> variable,\nbinded to the <code>index.html</code> view,\nthat sets the state of left, right and footer panels \n(wheather they are hided or not).",
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 25,
+            "description": "A <b>root scope</b> method that hides/shows\nall the panels (and also footer) in the\n<code>index.html</code>.",
+            "itemtype": "method",
+            "name": "togglePanels",
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 40,
+            "description": "A <b>root scope</b> method that hides/shows\na progress bar. Also activates/desactivates\nall the inputs in the <code>index.html</code>.",
+            "itemtype": "method",
+            "name": "showPB",
+            "params": [
+                {
+                    "name": "activate",
+                    "description": "Wheather to activate or not the progress\nbar and inputs",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/controllers/ToolBarCtrl.js",
+            "line": 61,
+            "description": "A <b>local scope</b> method that shows\nan about dialog.\n<br/>\nDialog view is specified in hte <code>About.html</code> template.",
+            "itemtype": "method",
+            "name": "showAbout",
+            "params": [
+                {
+                    "name": "ev",
+                    "description": "Event"
+                }
+            ],
+            "class": "ToolBarCtrl",
+            "module": "client",
+            "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 22,
+            "itemtype": "property",
+            "name": "dataset",
+            "type": "array",
+            "description": "A local variable\nthat holds the loaded dataset.",
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 30,
+            "description": "A private method that \ncounts the number of occurences\nof a specific field(key) in the array.\nCreted because Canvas.js is not doing this\noperation by default like DC.js.",
+            "itemtype": "method",
+            "name": "count_obj_occurs",
+            "params": [
+                {
+                    "name": "array",
+                    "description": "A json array where the occurences should be counted",
+                    "type": "Array"
+                },
+                {
+                    "name": "key",
+                    "description": "A key which values should be counted",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A two-dimensional array with each value, and their respective count (cf example)",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var array = [{a:1}, {a:1}, {a:2}, {a:3}, {a:3}];\n    console.log(count_obj_occurs.call(this, array, 'a')); //[ [1,2,3], [2,1,2] ]"
+            ],
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 93,
+            "description": "A private method that returns a \nCavnas.js pie chart. \nOnly works with one field.",
+            "itemtype": "method",
+            "name": "pie_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 155,
+            "description": "A private method that returns a \nCavnas.js timeline.\nCan work with two fields.",
+            "itemtype": "method",
+            "name": "timeline",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 249,
+            "description": "A private method that returns a \nCavnas.js row chart.\nOnly works with one field.",
+            "itemtype": "method",
+            "name": "row_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 310,
+            "description": "A private method that returns a \nCavnas.js bar chart.\nOnly works with one field.",
+            "itemtype": "method",
+            "name": "bar_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 371,
+            "description": "A private method that returns a \nCavnas.js scatter plot.\nOnly works with two fields.",
+            "itemtype": "method",
+            "name": "scatter",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A x axis",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A y axis",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 432,
+            "itemtype": "property",
+            "name": "ChartsEnum",
+            "type": "json",
+            "description": "A local variable\nthat holds all the chart names\nand their related methods.",
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 448,
+            "description": "A public method that loads the data\nto visualise into the local\nvariable <code>dataset</code>.\nAlso checks the presence of the \nCanvas.js library.",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Data that should be visualised",
+                    "type": "Array"
+                },
+                {
+                    "name": "err_callback",
+                    "description": "An error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/CanvasChartsService.js",
+            "line": 473,
+            "description": "A public method that returns a \nCavnas.js chart specified by <code>chart_type</code>",
+            "itemtype": "method",
+            "name": "getChart",
+            "params": [
+                {
+                    "name": "chart_type",
+                    "description": "A type of chart from the <code>ChartsEnum</code>",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "CanvasChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 22,
+            "itemtype": "property",
+            "name": "dataset",
+            "type": "array",
+            "description": "A local variable\nthat holds the loaded dataset.",
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 30,
+            "itemtype": "property",
+            "name": "ndx",
+            "type": "object",
+            "description": "A crossfilter\nobject.",
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 38,
+            "description": "A private method that returns a \nDC.js pie chart.\nCan work with two fieds.",
+            "itemtype": "method",
+            "name": "pie_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 83,
+            "description": "A private method that returns a \nDC.js timeline.\nCan work with two fields.",
+            "itemtype": "method",
+            "name": "timeline",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 210,
+            "description": "A private method that returns a \nDC.js row chart.\nCan work with two fields.",
+            "itemtype": "method",
+            "name": "row_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 257,
+            "description": "A private method that returns a \nDC.js bar chart.\nCan work with two fields, and also \nwith a timestamp field.",
+            "itemtype": "method",
+            "name": "bar_chart",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 346,
+            "description": "A private method that is used\nby the correlation scatter plot\nto show the correlation <a href=\"http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/\"></a>\nbetween two attributes",
+            "itemtype": "method",
+            "name": "correlation",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first attribute to calculate the correlation",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second attribute to calculate the correlation",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A DC.js number chart, that can be rendered by calling the <i>render()</i> function"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 403,
+            "description": "A private method that returns a \nDC.js scatter plot.\nOnly works with two fields.",
+            "itemtype": "method",
+            "name": "scatter",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A x axis",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A y axis",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 441,
+            "description": "A local method used by <code>timeline</code>\nto color the correlated fields.\nIt is using an algorithm to generate a color \n(hexa format, without alpha) from a [0..1] value.",
+            "itemtype": "method",
+            "name": "color_gen",
+            "params": [
+                {
+                    "name": "value",
+                    "description": "A [0..1] value from which the color should be generated",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "A color in hexa format",
+                "type": "String"
+            },
+            "example": [
+                "\n    console.log(color_gen.call(this, 0.7338)); //55aa2a\n    console.log(color_gen.call(this, 0.9321)); //341a69"
+            ],
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 515,
+            "itemtype": "property",
+            "name": "ChartsEnum",
+            "type": "json",
+            "description": "A local variable\nthat holds all the chart names\nand their related methods.",
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 531,
+            "description": "A public method that loads the data\nto visualise into the local\nvariable <code>dataset</code>.\nAlso checks the presence of the \nDC.js, D3.js and Crossfilter.js libraries.",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Data that should be visualised",
+                    "type": "Array"
+                },
+                {
+                    "name": "err_callback",
+                    "description": "An error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 567,
+            "description": "A local method that is used\nby <b>getChart()</b> method to \nrender the number of instances\nin the current filter",
+            "itemtype": "method",
+            "name": "counter",
+            "params": [
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "A number DC.js chart that cab be rendered by calling the <i>render()</i> method"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/DCChartsService.js",
+            "line": 587,
+            "description": "A public method that returns a \nDC.js chart specified by <code>chart_type</code>",
+            "itemtype": "method",
+            "name": "getChart",
+            "params": [
+                {
+                    "name": "chart_type",
+                    "description": "A type of chart from the <code>ChartsEnum</code>",
+                    "type": "String"
+                },
+                {
+                    "name": "container",
+                    "description": "An id of a html tag container of the chart",
+                    "type": "Array"
+                },
+                {
+                    "name": "key1",
+                    "description": "A first key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "key2",
+                    "description": "A second key that should be visualised",
+                    "type": "String"
+                },
+                {
+                    "name": "ts_key",
+                    "description": "A timestamp key",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "A chart that can be rendered by calling the <i>render()</i> method",
+                "type": "Chart"
+            },
+            "class": "DCChartsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/FieldsService.js",
+            "line": 22,
+            "description": "A public method that queries the fields\npresent in stores from <code>wanted_stores</code>.",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "wanted_stores",
+                    "description": "An array of store configurations to determine their fields",
+                    "type": "Array"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with fields",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "FieldsService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 31,
+            "description": "A public method that queries all the sources\nfrom the back-end.",
+            "itemtype": "method",
+            "name": "query",
+            "params": [
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with sources",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 43,
+            "description": "A public method that pushes the sources\n<code>source_conf</code> to the back-end.",
+            "itemtype": "method",
+            "name": "send",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A source configuration to add to the back-end",
+                    "type": "Json"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 60,
+            "description": "A public method that deletes the source with the name\n<code>source_name</code> from the back-end.",
+            "itemtype": "method",
+            "name": "delete",
+            "params": [
+                {
+                    "name": "source_name",
+                    "description": "A name of the source to be deleted from the back-end",
+                    "type": "Json"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/SourcesService.js",
+            "line": 73,
+            "description": "A public method that modifies an existing\nsource configuration in the back-end.",
+            "itemtype": "method",
+            "name": "modify",
+            "params": [
+                {
+                    "name": "source_conf",
+                    "description": "A new source configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "SourcesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/StoresService.js",
+            "line": 22,
+            "description": "A public method that queries the stores\npresent in sources from <code>wanted_sources</code>.",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "wanted_sources",
+                    "description": "An array of source configurations to determine their stores",
+                    "type": "Array"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with stores",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "StoresService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 26,
+            "description": "A public method that queries the timeseries\nwith the fields specified in the \n<code>fields</code> config.",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "fields",
+                    "description": "An array of field configurations to be in the timeseries",
+                    "type": "Array"
+                },
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with timeseries",
+                    "type": "Callback"
+                },
+                {
+                    "name": "error_cb",
+                    "description": "Error callback",
+                    "type": "Callback"
+                }
+            ],
+            "class": "TimeseriesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 40,
+            "description": "A public method that queries the \n<code>tsproc</code> module \nstatistics.",
+            "itemtype": "method",
+            "name": "stats",
+            "params": [
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with statistics",
+                    "type": "Callback"
+                }
+            ],
+            "class": "TimeseriesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/services/TimeseriesService.js",
+            "line": 52,
+            "description": "A public method that queries the \n<code>tsproc</code> module \nconfiguration.",
+            "itemtype": "method",
+            "name": "config",
+            "params": [
+                {
+                    "name": "succes_cb",
+                    "description": "Success callback with config",
+                    "type": "Callback"
+                }
+            ],
+            "class": "TimeseriesService",
+            "module": "client",
+            "submodule": "Services"
+        },
+        {
+            "file": "app/js/canvasjs.js",
+            "line": 1,
+            "preserve": "CanvasJS HTML5 & JavaScript Charts - v1.8.1 GA - http://canvasjs.com/ \nCopyright 2013 fenopix",
+            "class": "main",
+            "module": "client"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 17,
+            "description": "A public method that returns the \nname of the store (single one because it's\na file) that are present in the specified by\nconfig file database.",
+            "itemtype": "method",
+            "name": "getStoreNames",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (file) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (file) configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var source_config = { \n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t} \n    };\n\n    //requesting the stores\n    file_connnector.getStoreNames(source_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[ \n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'test'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'json',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'file',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test.json'\n    \t\t//\t\t}\n    \t\t//\t}\n    \t\t//]\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 88,
+            "description": "A public method that adds a field 'size'\nto the store (file) configuration\nspecified in <code>store_config</code>.",
+            "itemtype": "method",
+            "name": "getStoreSize",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (file) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (file) configuration with\nadditional 'size' field",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'test'},\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t} \n    };\n\n    //requesting the size\n    file_connnector.getStoreSize(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//{ \n    \t\t//\tstore: {name: 'test', size: 4},\n    \t\t//\tsource: { \n    \t\t//\t\tname: 'test',\n    \t\t//\t\ttype: 'json',\n    \t\t//\t\tuser: '',\n    \t\t//\t\tpassw: '',\n    \t\t//\t\tserver: 'file',\n    \t\t//\t\tport: null,\n    \t\t//\t\tdb: 'test.json'\n    \t\t//\t}\n    \t\t//}\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 171,
+            "description": "A public method that returns\nthe field names present in each\ndocument.<br/>\nFields are only checked in the \nfirst document of store (file).<br/>\nAlso the value of each field is saved (cf exemple).<br/>",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (file) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of fields configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'test', size: 4}, //presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t} \n    };\n\n    //requesting the fields\n    file_connnector.getFields(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ \n    \t\t//\t\tfield: {name: 'a', value: 18.11},\n    \t\t//\t\tstore: {name: 'test', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'json',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'file',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test.json'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{\n    \t\t//\t\tfield: {name: 'year', value: '2011'},\n    \t\t//\t\tstore: {name: 'test', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test',\n    \t\t//\t\t\ttype: 'json',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'file',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test.json'\n    \t\t//\t\t}\n    \t\t//\t}\n         //]\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 290,
+            "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
+            "itemtype": "method",
+            "name": "getDataset",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "A requested dataset",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var file_connector = require('../connectors/FileConnector');\n\n    //the json file called 'test.json'\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t],\n    \tstore: {name: 'test', size: 4}, //presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test',\n    \t\t\ttype: 'json',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'file',\n    \t\t\tport: null,\n    \t\t\tdb: 'test.json'\n    \t}\n    };\n\n    //requesting the dataset\n    file_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+            ],
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 383,
+            "description": "A private method that checks\nthe validity of source (file)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidSourceConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (file) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 406,
+            "description": "A private method that checks\nthe validity of store (file)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidStoreConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (file) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/FileConnector.js",
+            "line": 429,
+            "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidDatasetConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "FileConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 15,
+            "description": "A public method that returns the \nnames of the stores (mongo collections)\nthat are present in the specified by\nconfig file database.",
+            "itemtype": "method",
+            "name": "getStoreNames",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (mongo database) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (mongo collections) configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the MongoDB database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var source_config = { \n    \tsource: {\n    \t\t\tname: 'test_mongo',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the stores\n    mongo_connnector.getStoreNames(source_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[ \n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'collection1'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mongo',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'collection2'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mongo',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t}\n    \t\t//]\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 143,
+            "description": "A public method that adds a field 'size'\nto the store (mongo collection) configuration\nspecified in <code>store_config</code>.",
+            "itemtype": "method",
+            "name": "getStoreSize",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mongo collection) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (mongo collections) configuration with\nadditional 'size' field",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the MongoDB database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'collection1'},\n    \tsource: {\n    \t\t\tname: 'test_mongo',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the size\n    mongo_connnector.getStoreSize(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//{ \n    \t\t//\tstore: {name: 'collection1', size: 4},\n    \t\t//\tsource: { \n    \t\t//\t\tname: 'test_mongo',\n    \t\t//\t\ttype: 'mongo',\n    \t\t//\t\tuser: '',\n    \t\t//\t\tpassw: '',\n    \t\t//\t\tserver: 'localhost',\n    \t\t//\t\tport: null,\n    \t\t//\t\tdb: 'test_database'\n    \t\t//\t}\n    \t\t//}\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 227,
+            "description": "A public method that returns\nthe field names present in each\ndocument.<br/>\nFields are only checked in the \nfirst document of store (mongo collection).<br/>\nAlso the value of each field is saved (cf exemple).<br/>\nThe mongodb '_id' field is ommited.",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mongo collection) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of fields configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the MongoDB database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'collection1', size: 4}, //presence of 'size' is optional \n    \tsource: {\n    \t\t\tname: 'test_mongo',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the fields\n    mongo_connnector.getFields(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ \n    \t\t//\t\tfield: {name: 'a', value: 18.11},\n    \t\t//\t\tstore: {name: 'collection1', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mongo',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{\n    \t\t//\t\tfield: {name: 'year', value: '2011'},\n    \t\t//\t\tstore: {name: 'collection2', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mongo',\n    \t\t//\t\t\ttype: 'mongo',\n    \t\t//\t\t\tuser: '',\n    \t\t//\t\t\tpassw: '',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t}\n         //]\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 369,
+            "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
+            "itemtype": "method",
+            "name": "getDataset",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "A requested dataset",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mongo_connector = require('../connectors/MongoConnector');\n\n    //the MongoDB database 'test_database' has the following collections:\n    //\t- collection1\n    //\t- collection2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t],\n    \tstore: {name: 'collection1', size: 3},\t//presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test_mongo',\n    \t\t\ttype: 'mongo',\n    \t\t\tuser: '',\n    \t\t\tpassw: '',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mongo_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+            ],
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 463,
+            "description": "A private method that checks\nthe validity of source (mongo database)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidSourceConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (mongo database) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 486,
+            "description": "A private method that checks\nthe validity of store (mongo collection)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidStoreConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mongo collection) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MongoConnector.js",
+            "line": 509,
+            "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidDatasetConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MongoConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 15,
+            "description": "A public method that returns the \nnames of the stores (mysql tables)\nthat are present in the specified by\nconfig file database.",
+            "itemtype": "method",
+            "name": "getStoreNames",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (mysql database) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (mysql tables) configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mysql_connector = require('../connectors/MysqlConnector');\n\n    //the MySQL database 'test_database' has the following tables:\n    //\t- table1\n    //\t- table2\n\n    //config file\n    var source_config = { \n    \tsource: {\n    \t\t\tname: 'test_mysql',\n    \t\t\ttype: 'mysql',\n    \t\t\tuser: 'root',\n    \t\t\tpassw: 'root',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the stores\n    mysql_connnector.getStoreNames(source_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[ \n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'table1'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mysql',\n    \t\t//\t\t\ttype: 'mysql',\n    \t\t//\t\t\tuser: 'root',\n    \t\t//\t\t\tpassw: 'root',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{ \n    \t\t//\t\tstore: {name: 'table2'},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mysql',\n    \t\t//\t\t\ttype: 'mysql',\n    \t\t//\t\t\tuser: 'root',\n    \t\t//\t\t\tpassw: 'root',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t}\n    \t\t//]\n    });\n"
+            ],
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 155,
+            "description": "A public method that adds a field 'size'\nto the store (mysql table) configuration\nspecified in <code>store_config</code>.",
+            "itemtype": "method",
+            "name": "getStoreSize",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mysql table) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of stores (mysql tables) configuration with\nadditional 'size' field",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mysql_connector = require('../connectors/MysqlConnector');\n\n    //the MySQL database 'test_database' has the following tables:\n    //\t- table1\n    //\t- table2\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'table1'},\n    \tsource: {\n    \t\t\tname: 'test_mysql',\n    \t\t\ttype: 'mysql',\n    \t\t\tuser: 'root',\n    \t\t\tpassw: 'root',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the size\n    mysql_connnector.getStoreSize(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//{ \n    \t\t//\tstore: {name: 'table1', size: 4},\n    \t\t//\tsource: { \n    \t\t//\t\tname: 'test_mysql',\n    \t\t//\t\ttype: 'mysql',\n    \t\t//\t\tuser: 'root',\n    \t\t//\t\tpassw: 'root',\n    \t\t//\t\tserver: 'localhost',\n    \t\t//\t\tport: null,\n    \t\t//\t\tdb: 'test_database'\n    \t\t//\t}\n    \t\t//}\n    });\n"
+            ],
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 260,
+            "description": "A public method that returns\nthe column names of the table.<br/>\nAlso the first value of each column is saved (cf exemple).<br/>",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mysql table) configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "An array of fields configuration",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mysql_connector = require('../connectors/MysqlConnector');\n\n    //the MySQL database 'test_database' has the following tables:\n    //\t- table1\n    //\t- table2\n\n    //config file\n    var store_config = {\n    \tstore: {name: 'table1', size: 4}, //presence of 'size' is optional \n    \tsource: {\n    \t\t\tname: 'test_mysql',\n    \t\t\ttype: 'mysql',\n    \t\t\tuser: 'root',\n    \t\t\tpassw: 'root',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the fields\n    mysql_connnector.getFields(store_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ \n    \t\t//\t\tfield: {name: 'a', value: 18.11},\n    \t\t//\t\tstore: {name: 'table1', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mysql',\n    \t\t//\t\t\ttype: 'mysql',\n    \t\t//\t\t\tuser: 'root',\n    \t\t//\t\t\tpassw: 'root',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t},\n    \t\t//\t{\n    \t\t//\t\tfield: {name: 'year', value: '2011'},\n    \t\t//\t\tstore: {name: 'table1', size: 4},\n    \t\t//\t\tsource: { \n    \t\t//\t\t\tname: 'test_mysql',\n    \t\t//\t\t\ttype: 'mysql',\n    \t\t//\t\t\tuser: 'root',\n    \t\t//\t\t\tpassw: 'root',\n    \t\t//\t\t\tserver: 'localhost',\n    \t\t//\t\t\tport: null,\n    \t\t//\t\t\tdb: 'test_database'\n    \t\t//\t\t}\n    \t\t//\t}\n         //]\n    });\n"
+            ],
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 406,
+            "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
+            "itemtype": "method",
+            "name": "getDataset",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                },
+                {
+                    "name": "callback",
+                    "description": "Callback function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "A requested dataset",
+                "type": "Array"
+            },
+            "example": [
+                "\n    var mysql_connector = require('../connectors/MysqlConnector');\n\n    //the MySQL database 'test_database' has the following tables:\n    //\t- table1\n    //\t- table2\n\n    //config file\n    var dataset_config = {\n    \tfields: [\n    \t\t{name: 'year', value: '2011', format: 'YYYY'}, //'value' and 'format' fields are optional\n    \t\t{name: 'a', value: 18.11}\n    \t]\n    \tstore: {name: 'table1', size: 4},\t//presence of 'size' is optional\n    \tsource: {\n    \t\t\tname: 'test_mysql',\n    \t\t\ttype: 'mysql',\n    \t\t\tuser: 'root',\n    \t\t\tpassw: 'root',\n    \t\t\tserver: 'localhost',\n    \t\t\tport: null,\n    \t\t\tdb: 'test_database'\n    \t} \n    };\n\n    //requesting the dataset\n    mysql_connnector.getDataset(dataset_config, function(err, data){\n\t\n    \t\tif (data) console.log(data);\n    \t\t//the result is:\n    \t\t//[\n    \t\t//\t{ a: 18.11, year: '2011' },\n    \t\t//\t{ a: 21.07, year: '2012' },\n    \t\t//\t{ a: 23.23, year: '2013' },\n    \t\t//\t{ a: 24.24, year: '2014' }\n    \t\t//]\n    });\n"
+            ],
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 529,
+            "description": "A private method that checks\nthe validity of source (mysql database)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidSourceConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "source_config",
+                    "description": "Source (mysql database) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 552,
+            "description": "A private method that checks\nthe validity of store (mysql table)\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidStoreConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "store_config",
+                    "description": "Store (mysql table) configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/connectors/MysqlConnector.js",
+            "line": 575,
+            "description": "A private method that checks\nthe validity of store dataset\nconfiguration",
+            "itemtype": "method",
+            "name": "isValidDatasetConfig",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "dataset_config",
+                    "description": "Dataset configuration",
+                    "type": "Json"
+                }
+            ],
+            "return": {
+                "description": "true if config is valid, false if not",
+                "type": "Boolean"
+            },
+            "class": "MysqlConnector",
+            "module": "server",
+            "submodule": "Connectors"
+        },
+        {
+            "file": "server/rest/DeleteSource.js",
+            "line": 16,
+            "description": "A method that removes a source configuration\nfrom the <code>./server/config/sources.json</code>\nfile. The source to delete is specified\nby it's name in the <code>req</code> object.\n<br/>\nIf the source to delete is a file (JSON or CSV),\nthen it would be deleted from the directory \n<code>./server/datasets/</code>.\n<br/>\nAn empty array is returned by the <code>res</code> object.",
+            "itemtype": "method",
+            "name": "deleteSource",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "DeleteSource",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetFields.js",
+            "line": 24,
+            "description": "A method that returns (via the object <code>res</code>) the fields\nconfiguration of the requested (via the object <code>req</code>) stores.",
+            "itemtype": "method",
+            "name": "getFields",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetFields",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetSources.js",
+            "line": 16,
+            "description": "A method that returns (via the object <code>res</code>) a JSON file\nwith configuration of sources (ex: MySQL database).\n<br/>\nThe configuration on the server is stored in the file\n<code>./server/config/sources.json</code>.\nIt the config is missing, it would be created.",
+            "itemtype": "method",
+            "name": "getSources",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetSources",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetStores.js",
+            "line": 24,
+            "description": "A method that returns (via the object <code>res</code>) the stores\nconfiguration of the requested (via the object <code>req</code>) sources.",
+            "itemtype": "method",
+            "name": "getStores",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetStores",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 37,
+            "description": "A method that returns (via the object <code>res</code>) the full\ntimeseries with all requested (via the object <code>req</code>) fields.\nThe tsproc configuration is also passed by <code>req</code> object.\n<br/>\nThe method passes all the timeseries through the tsproc module.",
+            "itemtype": "method",
+            "name": "getTimeseries",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 179,
+            "description": "A method that returns (via the object <code>res</code>) the stats\nthat were pulled from tsproc module during the call of the getTimeseries() method.",
+            "itemtype": "method",
+            "name": "getStats",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 191,
+            "description": "A method that returns (via the object <code>res</code>) the configuration file\nthat were pulled from tsproc module during the call of the getTimeseries() method.\n<br/>\nThe config is pulled from tsproc before it starts to process data, which can modify the config.\nthe getConfig() method to return",
+            "itemtype": "method",
+            "name": "getConfig",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/GetTimeseries.js",
+            "line": 206,
+            "description": "A method that receives an array of size 3 (from front-end) that contains:\n- 0: tsproc module options\n- 1: array of timestamp fields configuration\n- 2: array of other fields configuration\n<br/>\nThen it pulls from it the two arays, and returns\na single configuration which has all the fields\nregrouped by store (cf example)\n<br/>\nThe method is used to prepare a configuration file for the tsproc.",
+            "itemtype": "method",
+            "name": "regroupFields",
+            "params": [
+                {
+                    "name": "configs",
+                    "description": "An array of configurations for tsproc module",
+                    "type": "Json array"
+                }
+            ],
+            "example": [
+                "\n    //config in\n    var old_config = \n    [\n         //tspoc config\n         {\n           \"transform\": {\n                \"type\": \"interp\",\n                \"interp_type\": \"linear\"\n            },\n            \"reduction\": {\n                \"type\": \"skip\",\n                \"size\": 1,\n                \"target_field\": \"\"\n            },\n            \"date_borders\": {\n                \"from\": {\n                   \"date\": \"\"\n                },\n                \"to\": {\n                    \"date\": \"\"\n                }\n            },\n            \"correlation\": null,\n            \"tsfield_quantum\": \"none\"\n        },\n\n        //timestamp fields\n        [\n            {\n                \"field\": {\n                    \"name\": \"year\",\n                    \"value\": 1911,\n                    \"format\": \"YYYY\",\n                    \"quantum\": \"none\"\n                },\n                \"store\": {\n                    \"name\": \"colorado_river\",\n                    \"size\": 61,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            },\n            {\n                \"field\": {\n                    \"name\": \"year\",\n                    \"value\": 1919,\n                    \"format\": \"YYYY\",\n                    \"quantum\": \"none\"\n                },\n                \"store\": {\n                    \"name\": \"funder_river\",\n                    \"size\": 37,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            }\n        ],\n\n        //other fields\n        [\n           {\n                \"field\": {\n                    \"name\": \"flows_colorado\",\n                    \"value\": 18.11,\n                    \"quantum\": 0\n                },\n                \"store\": {\n                    \"name\": \"colorado_river\",\n                    \"size\": 61,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            },\n            {\n                \"field\": {\n                    \"name\": \"flows_funder\",\n                    \"value\": 26.42,\n                    \"quantum\": 0\n                },\n                \"store\": {\n                    \"name\": \"funder_river\",\n                    \"size\": 37,\n                },\n                \"source\": {\n                    \"name\": \"rivers\",\n                    \"type\": \"mongo\",\n                    \"user\": \"\",\n                    \"passw\": \"\",\n                    \"server\": \"localhost\",\n                    \"port\": null,\n                    \"db\": \"river_flows\"\n                }\n            }\n        ]\n    ];\n\n    //config out\n    var new_config = regroupFields.call(this, old_config);\n    console.log(JSON.stringify(new_config, null, 4));\n    //the result is:\n    // [\n    //    {\n    //        \"fields\": [\n    //            {\n    //                \"name\": \"year\",\n    //                \"value\": 1911,\n    //                \"format\": \"YYYY\",\n    //                \"quantum\": \"none\"\n    //            },\n    //            {\n    //                \"name\": \"flows_colorado\",\n    //                \"value\": 18.11,\n    //                \"quantum\": 0\n    //            }\n    //        ],\n    //        \"store\": {\n    //            \"name\": \"colorado_river\",\n    //            \"size\": 61\n    //        },\n    //        \"source\": {\n    //            \"name\": \"rivers\",\n    //            \"type\": \"mongo\",\n    //            \"user\": \"\",\n    //            \"passw\": \"\",\n    //            \"server\": \"localhost\",\n    //            \"port\": null,\n    //            \"db\": \"river_flows\"\n    //        }\n    //    },\n    //    {\n    //        \"fields\": [\n    //            {\n    //                \"name\": \"year\",\n    //                \"value\": 1919,\n    //                \"format\": \"YYYY\",\n    //                \"quantum\": \"none\"\n    //            },\n    //            {\n    //                \"name\": \"flows_funder\",\n    //                \"value\": 26.42,\n    //                \"status\": \"loaded\",\n    //                \"quantum\": 0\n    //            }\n    //        ],\n    //        \"store\": {\n    //            \"name\": \"funder_river\",\n    //            \"size\": 37\n    //        },\n    //        \"source\": {\n    //            \"name\": \"rivers\",\n    //            \"type\": \"mongo\",\n    //            \"user\": \"\",\n    //            \"passw\": \"\",\n    //            \"server\": \"localhost\",\n    //            \"port\": null,\n    //            \"db\": \"river_flows\"\n    //        }\n    //    }\n    //]\n    //all the fields are regrouped by store"
+            ],
+            "class": "GetTimseries",
+            "module": "server",
+            "submodule": "RestApi"
+        },
+        {
+            "file": "server/rest/PutSource.js",
+            "line": 17,
+            "description": "A method that adds a new source configuration\nto the <code>./server/config/sources.json</code>\nfile. The source to add is passed via the <code>req</code>\nobject.\n<br/>\nIf the new source is a file (JSON or CSV),\nthen it would be saved as a json to the directory \n<code>./server/datasets/</code>.\n<br/>\nAn empty array is returned by the <code>res</code> object.",
+            "itemtype": "method",
+            "name": "putSource",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "Express.js request",
+                    "type": "Request"
+                },
+                {
+                    "name": "res",
+                    "description": "Express.js response",
+                    "type": "Response"
+                }
+            ],
+            "class": "PutSource",
+            "module": "server",
+            "submodule": "RestApi"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: preserve",
+            "line": " app/js/canvasjs.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/DialogCtrl.js:21"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/DialogCtrl.js:313"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/controllers/DialogCtrl.js:343"
+        },
+        {
+            "message": "Missing item type\nA <b>local scope</b> method that is fired\nwhen the download button in the loader zone is clicked.\nIt uses the <b>TimeseriesService</b> to pass all the \nfield configs and option to the backend, and then \nit receives a dataset with all the queried fields.\nOn the back-end side, this request goes through <code>tsproc</code>\nmodule.\n<br/>\nIt initiates one of the charting libraries (either by\nDCChartsService or CanvasChartsService) withe loaded dataset.\n<br/>\nThe method also lets the <code>tsproc</code> configuration json\nto be downloadable, as well as loaded dataset (as a json).",
+            "line": " app/js/controllers/LoaderCtrl.js:156"
+        },
+        {
+            "message": "Missing item type\nA <b>local scope</b> $watch method, attached\nto the right panel in the <code>index.html</code> that\nfires when the 'Correlation' section is toogled.\nIt then forces the values of the \n<code>$scope.options.count_negative</code> \nand <code>$scope.options.max_coef</code>.",
+            "line": " app/js/controllers/RightNavCtrl.js:280"
+        },
+        {
+            "message": "Missing item type\nA <b>root scope</b> $watch method, attached \nto the right panel in the <code>index.html</code>\nthat disables the correlation detection when \nthe usage of Canvas.js is forced.t",
+            "line": " app/js/controllers/RightNavCtrl.js:297"
+        },
+        {
+            "message": "Missing item type\nA <b>local scope</b> method that\nserves the righ panel of <code>index.html</code>\nview and attached to the switch in the \n'Dataset' section.\nIt is used to show/hide the dataset (\nin a form of a table).",
+            "line": " app/js/controllers/RightNavCtrl.js:323"
+        },
+        {
+            "message": "Missing item type",
+            "line": " app/js/canvasjs.js:1"
+        }
+    ]
+}
