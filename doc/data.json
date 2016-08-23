@@ -99,11 +99,20 @@
             "fors": {},
             "namespaces": {}
         },
-        "app/js/services/CanvasChartsService.js": {
-            "name": "app/js/services/CanvasChartsService.js",
+        "app/js/services/CSV2JSONService.js": {
+            "name": "app/js/services/CSV2JSONService.js",
             "modules": {
                 "Services": 1
             },
+            "classes": {
+                "CSV2JSONService": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "app/js/services/CanvasChartsService.js": {
+            "name": "app/js/services/CanvasChartsService.js",
+            "modules": {},
             "classes": {
                 "CanvasChartsService": 1
             },
@@ -298,6 +307,7 @@
                 "MovableChartsCtrl": 1,
                 "RightNavCtrl": 1,
                 "ToolBarCtrl": 1,
+                "CSV2JSONService": 1,
                 "CanvasChartsService": 1,
                 "DCChartsService": 1,
                 "FieldsService": 1,
@@ -342,6 +352,7 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "CSV2JSONService": 1,
                 "CanvasChartsService": 1,
                 "DCChartsService": 1,
                 "FieldsService": 1,
@@ -575,6 +586,21 @@
             "file": "app/js/controllers/ToolBarCtrl.js",
             "line": 7,
             "description": "A controller that serves the toolbar\nin the <code>index.html</code> view."
+        },
+        "CSV2JSONService": {
+            "name": "CSV2JSONService",
+            "shortname": "CSV2JSONService",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "client",
+            "submodule": "Services",
+            "namespace": "",
+            "file": "app/js/services/CSV2JSONService.js",
+            "line": 7,
+            "description": "A service that is used \nto transform a CSV file (as a string)\ninto the array of JSONs"
         },
         "CanvasChartsService": {
             "name": "CanvasChartsService",
@@ -1703,6 +1729,27 @@
             "class": "ToolBarCtrl",
             "module": "client",
             "submodule": "Controllers"
+        },
+        {
+            "file": "app/js/services/CSV2JSONService.js",
+            "line": 70,
+            "description": "A public method that takes in a csv file\n(as a string) and returns an array of JSONs",
+            "itemtype": "method",
+            "name": "csv2json",
+            "params": [
+                {
+                    "name": "csv",
+                    "description": "A CSV file to transform",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "An array of JSONs",
+                "type": "Array"
+            },
+            "class": "CSV2JSONService",
+            "module": "client",
+            "submodule": "Services"
         },
         {
             "file": "app/js/services/CanvasChartsService.js",
@@ -3124,7 +3171,7 @@
         },
         {
             "file": "server/rest/GetSources.js",
-            "line": 16,
+            "line": 19,
             "description": "A method that returns (via the object <code>res</code>) a JSON file\nwith configuration of sources (ex: MySQL database).\n<br/>\nThe configuration on the server is stored in the file\n<code>./server/config/sources.json</code>.\nIt the config is missing, it would be created.",
             "itemtype": "method",
             "name": "getSources",

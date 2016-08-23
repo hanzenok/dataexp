@@ -1,3 +1,15 @@
+/**
+ * Angualr.js services.
+ * @module client
+ * @submodule Services
+ */
+
+/**
+ * A service that is used 
+ * to transform a CSV file (as a string)
+ * into the array of JSONs
+ * @class CSV2JSONService
+ */
 angular.module('MainApp')
 	.service('CSV2JSONService', function(){
 
@@ -55,6 +67,13 @@ angular.module('MainApp')
 		    return (arrData);
 		}
 
+		/**
+		* A public method that takes in a csv file
+		* (as a string) and returns an array of JSONs
+		* @method csv2json
+		* @param {string} csv A CSV file to transform
+		* @return {array} An array of JSONs
+		*/
 		this.csv2json = function (csv) {
 		    var array = CSVToArray(csv);
 		    var objArray = [];

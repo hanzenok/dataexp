@@ -1,6 +1,7 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
+        "CSV2JSONService",
         "CanvasChartsService",
         "ChartsCtrl",
         "DCChartsService",
