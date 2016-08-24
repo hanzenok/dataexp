@@ -6,7 +6,7 @@ Diapo 1
 
 Diapo 2
 	
-	Avant de rentrer dans les details de sujet, je vais commencer par vous mettre en contexte de stage. Tout d'abord je vas présenter l'entreprise ou le stage a été réalisé, Maya Technologies. Ensuite, je vais décrire rapidement les objets connéctés. A la fin je vais vous parler d'une solution pour IoT proposée par MayaTechnologies, MayaNet, --qui a beaucoup influencée les décisions prises pendant se stage
+	Avant de rentrer dans les details de sujet, je vais commencer par vous mettre en contexte de stage. Tout d'abord je vas présenter l'entreprise ou le stage a été réalisé, Maya Technologies. Ensuite, je vais décrire rapidement les objets connéctés. A la fin je vais vous parler d'une solution pour IoT proposée par MayaTechnologies, MayaNet
 
 
 Diapo 3
@@ -15,17 +15,14 @@ Diapo 3
 
 	Fondée en 2007 à Grenoble, Maya Technologies aujourd'hui a des centres à Paris, Toulouse, Valence.
 
-	L'entreprise a été choisi par moi parce-que le domain d'IoT m'interesse.
-	(Parler de choix d'entreprise?)
+	L'entreprise a été choisi par moi parce-que j'etait interessee par le domaine d'IoT.
 
 
 Diapo 4
 	
 	L'IoT (aussi les objets connéctés) est un terme qui correspond à une extension de internet classique, vers le monde phsyqiue grace aux systemes embarquees qui réalisent certains mesures, la plupart de temps.
-	--En general, peu importe quel équipement électronique, qui ecahnge les données via réseau peut ^etre considére comme un objet connecté.
-	Les exemples des tels objets sont, par exemple, un moniteur cardiaque qui partage les données via internet, smartphone, une lampe qui pourra ^etre commandée par internet, etc.
 
-	C'est un domaine en plein expansion actuellement, --les acterus majeurs de l'industrie numérique investise dans ce secteurs: Google avec lancement de leur systeme d'exploitation Fuchia OS pour toutes les IoT, Intel avec leur carte de developpement toute minuscule Intel Edison.
+	Les exemples des tels objets sont, par exemple, un moniteur cardiaque qui partage les données via internet, smartphone, une lampe qui pourra ^etre commandée par internet, etc.
 
 	Une des problematiques importantes de l'IoT est de comment stocker, traiter et interpreter les données acquises par les objets connéctés. Comment utiliser les données. MayaNet vise a repondre à cet problematique.
 
@@ -56,9 +53,11 @@ Diapo 8
 
 Diapo 9
 
-	Donc il s'agit de concevoir un logiciel, qui se place entre l'utilisateur et les données. Et le terme "different sources" vaut dire que les donnees peuvent etre genere par differentes types des objets connectées dans les environemments differentes. Mais de points de vue d'un outil qui va analyser des données, le source, correspond plutot à le type de stockage des données. Par exemple est-ce qui les données sont stockées dans une base des données, fichier texte, image, fichier binaire.
+	Donc il s'agit de concevoir un logiciel, qui se place entre l'utilisateur et les données acquises. 
+	
+	Le terme "different sources" vaut dire que les donnees peuvent etre genere par differentes types des objets connectées dans les environemments differentes. Mais de points de vue d'un outil, le source, correspond plutot à le type de stockage des données. Par exemple est-ce qui les données sont stockées dans une base des données, fichier texte, image, fichier binaire.
 
-	Aucucne autre contrainte ne donné, apart le fait de supporter au moins deux sources: MongoDB et MySQL,  cela revient à staigaire de définir le cahier des charges, choisir les technologies appropriés et de dresser le chemin de developpement --qui va apporter une solution réel qui répond aux contraintes initiales.
+	Aucucne autre contrainte ne donné, apart le fait de supporter au moins deux sources: MongoDB et MySQL,  cela revient à staigaire de définir le cahier des charges, choisir les technologies appropriés et de dresser le chemin de developpement.
 
 
 Diapo 10
@@ -109,7 +108,7 @@ Diapo 14
 
 	Du coup, l'étape d'étude nous à permit de produire un cahier des charges, un objectif concret. Il s'agit de développer une outil graphique d'exploration des séries temporelles provenant de differentes sources d'obets connectés.
 
-	Il ya toujours aucune contrainte en tant que les langages à outiliser. La problematique des "differentes soureces" ést toujours à resoudre.
+	?Il ya toujours aucune contrainte en tant que les langages à outiliser. La problematique des "differentes soureces" ést toujours à resoudre.
 
 
 Diapo 15
@@ -124,8 +123,6 @@ Diapo 16
 		deuxiemme: une application tel quelle, qui engloble le premier module et permet d'explorer les données
 
 	La motivation principale de tel approche est de repondre à une problematique de multiple sources des données. Pour le faire, on a conçu notre premier module qui traite les séries temporelles d'un certain format fixe. Ensuite, toutes les autres formats sont transformés par l'application engobante en celui supporté par le module de traitement. Comme ça le traitement est détachée des sources.
-
-	--Aussi cet approche a autres avantages, comme re-utilisablité, il est plus simple d'importer un module de traitement, que de casser une application existante pour utiliser son code. Aussi, tel architecture et plus modulaire, traitement et détaché de visualisation, cela peut ^etre utile si par exemple l'utilisateur impose l'utilisation d'une autre bibliotheque de visuelle que DC.js.
 
 	Donc, on en ai deux modules,
 
@@ -143,17 +140,8 @@ Diapo 17
 	Du coup, c'est un module qui ne gere qu'on seule format des séries temporelles.
 
 Diapo 18
-	
-	Le deuxiemme 'module', est un outil graphique d'exploration des séries temporelles, qu'on a appele dataexp (Data Exploration). Il a pour but de:
-		- permettre à utilisateur de gerer les sources
-		- choisir les mésures à explorer
-		- l'application converti toutes les formats de séries temporelle vers un format supporté par tsproc
-		- offre les options de traitement des séries temporrles ainsie que les graphiques pour les explorer
 
-
-
-
-Diapo 19
+	Le deuxiemme 'module', est un outil graphique d'exploration des séries temporelles, qu'on a appele dataexp (Data Exploration).
 
 	L'architecure d'application est composée de deux tiers: une partie back-end en Node.js qui s'en sert de module tsproc pour macher les données
 	Et une partie front-end avec l'interface écrit en html, css et angular.
@@ -163,13 +151,8 @@ Diapo 19
 	Angular.js et notamment un module Angular-Material ont était choisi pour faciliter le developpement et rendre l'interface dynamiqe.
 
 	Les sources supportées sont les basses des données MySQL, MongoDB et le fichier JSON et CSV.
-	--L'application a était testé pour les navigateurs Mozilla Firefox et Chrome.
 
-
-	Comme vous pouvez voir dans cet schema, on utilise aussi Canvas.js pour generer les graphiques, la ou DC.js ne pas à la hauteur à cause de sa pétit problemme lorsque nombre des objets à vislualiser est importante.
-
-
-Diapo 20
+Diapo 19
 	
 	Donc, maintenant on va passer à la demonstration
 
