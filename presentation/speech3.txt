@@ -6,7 +6,7 @@ Diapo 1
 
 Diapo 2
 	
-	Avant de rentrer dans les details de sujet, je vais commencer par vous mettre en contexte de stage. Tout d'abord je vas présenter l'entreprise ou le stage a été réalisé, Maya Technologies. Ensuite, je vais décrire rapidement les objets connéctés. Et je vais parler d'une solution pour IoT proposée par MayaTechnologies, MayaNet
+	Avant de rentrer dans les details de sujet, je vais commencer par vous mettre en contexte de stage. Tout d'abord je vas présenter l'entreprise ou le stage a eu lieu, Maya Technologies. Ensuite, je vais décrire rapidement les objets connéctés. Et je vais parler d'une solution pour IoT proposée par MayaTechnologies, MayaNet
 
 
 Diapo 3
@@ -29,10 +29,11 @@ Diapo 4
 
 Diapo 5
 	
-	MayaNet est une solution de MayaTechnologies destinée pour la collecte, traitement et analyse des données provenant de differentes types d'objets connectés. Pour simplifier, c'est un logiciel de gestion d'un réseau des systèmes embarquées qui (partagent des données) réalisent des captures.
+	MayaNet est une solution de MayaTechnologies destinée pour la collecte, traitement et analyse des données provenant de differentes types d'objets connectés. Pour simplifier, c'est un logiciel de gestion d'un réseau des systèmes embarquées qui partagent des données.
 
-	but de ce logiciel, apart la collecte, est de présenter les informations provenant des objets connectés à l'utilisateur, d'une façon claire. Une des evolutions eventuelles de MayaNet est de proposer à l'utilisateur un degre encore plus important d'analyse et exploration des données.
+	But de ce logiciel, apart la collecte, est de présenter les informations provenant des objets connectés à l'utilisateur, d'une façon claire et comprehensible. Une des evolutions eventuelles de MayaNet est de proposer à l'utilisateur un degre encore plus important d'analyse et exploration des données.
 
+	MayaNet sert de cadre pour ce stage.
 	?MayaNet a infuencée certains choix technologiques lors de stage. Et certains fonctionalitées réalisées pendant le stage ont été adoptés par MayaNet.
 
 
@@ -55,11 +56,11 @@ Diapo 8
 
 Diapo 9
 
-	Donc il s'agit de concevoir un logiciel, qui se place entre l'utilisateur et les données acquises. 
+	Donc il s'agit de concevoir un logiciel, qui se place entre les données déjà acquises et l'utilisateur.
 	
 	Le terme "different sources" vaut dire que les donnees peuvent etre generes par differentes types des objets connectées dans les environemments differentes. Mais de points de vue d'un outil, le source, correspond plutot à le type de stockage des données. Par exemple est-ce qui les données sont stockées dans une base des données, fichier texte, image, fichier binaire.
 
-	Aucucne autre contrainte ne donné, apart le fait de supporter au moins deux sources: MongoDB et MySQL,  cela revient à staigaire de définir le cahier des charges, choisir les technologies appropriés et de dresser le chemin de developpement.
+	Aucucne autre contrainte ne donné, apart le fait de supporter au moins deux types des stockages, deux sources: MongoDB et MySQL,  cela revient à staigaire de définir le cahier des charges, choisir les technologies appropriés et de dresser le chemin de developpement.
 
 
 Diapo 10
@@ -87,7 +88,7 @@ Diapo 12
 
 	On a choisi la premiere approche, les graphiques, parce qu'ils ont plus simples à mettre en place, assez efficace pour analyser les données et parce qu'on a découvert une bibliotheque DC.js (que je vais expliquer par la suite).
 
-	De plus, pour approfondir l'exploration on utilise certains caracteristiques et methodes statistiques simpels comme la moyenne de mesures par jours, correlation entre les mesures, etc.
+	De plus, pour approfondir l'exploration on utilise certains caracteristiques et methodes statistiques simpels comme le nomber moyenne de mesures par jours, correlation entre les mesures, etc.
 
 	Une autre contrainte de l'objectif initial est de pouvoir explorer les relations entre les données. On défini "rélation entre les données" comme un étude d'influence d'une suite des valeurs numériques sur une autre suite. Cet étude est realisable grace à DC.js.
 
@@ -108,7 +109,7 @@ Diapo 14
 
 	Du coup, l'étape d'étude nous à permit de produire un cahier des charges, un objectif concret. Il s'agit de développer une outil graphique d'exploration des séries temporelles provenant de differentes sources d'obets connectés.
 
-	Il ya toujours aucune contrainte en tant que les langages à outiliser. La problematique des "differentes soureces" ést toujours à resoudre.
+	Il ya toujours aucune contrainte en tant que les langages à outiliser. La problematique de "multitude des sources" ést toujours à resoudre.
 
 
 Diapo 15
@@ -122,7 +123,7 @@ Diapo 16
 		prémier: est un boite à outil pour traitement des séries temporelles
 		deuxiemme: une application tel quelle, qui engloble le premier module et permet d'explorer les données
 
-	La motivation principale de tel approche est de repondre à une problematique de multiple sources des données. Pour le faire, on a conçu notre premier module qui traite les séries temporelles d'un certain format fixe. Ensuite, toutes les autres formats sont transformés par l'application engobante en celui supporté par le module de traitement. Comme ça le traitement est détachée des sources.
+	La motivation principale de tel approche est de repondre à une problematique de multiple sources des données. Pour le faire, on a conçu notre premier module qui traite les séries temporelles d'un certain format fixe. Ensuite, les seris temporelles venant de toutes les sources possibles sont transformés par l'application engobante en celui supporté par le module de traitement. Comme ça le traitement est détachée des sources.
 
 	Donc, on en ai deux modules,
 
@@ -146,20 +147,24 @@ Diapo 18
 	L'architecure d'application est composée de deux tiers: une partie back-end en Node.js qui s'en sert de module tsproc pour macher les données
 	Et une partie front-end avec l'interface écrit en html, css et angular.
 
-	Les techno web pour interface home-machine ont été choisi, car tout d'abord l'outil DC.js est écrit en javascript Et, encore une fois, pour rester compatible avec MayaNet
+	Les techno web pour interface home-machine ont été choisi, car tout d'abord l'outil DC.js est fais pour les sites web. Et, encore une fois, pour rester compatible avec MayaNet
 
 	Angular.js et notamment un module Angular-Material ont était choisi pour faciliter le developpement et rendre l'interface dynamiqe.
 
-	Les sources supportées sont les basses des données MySQL, MongoDB et le fichier JSON et CSV.
+	Et ici vous pouvez voir toutes les sources supportées:  sont les basses des données MySQL, MongoDB et les fichiers JSON et CSV.
 
 Diapo 19
 	
 	Donc, maintenant on va passer à la demonstration
 
+Diapo 20
+
+	Donc, l'application est composée des deux modules écrites en JavaScript. Elle permet de charger les séries temporelles depuis plusieurs sources, et les explorer via DC.js.	
+
 
 Diapo 21
 
-	Donc, l'application est composée des deux modules écrites en JavaScript. Elle permet depuis plusieurs sources et les explorer via DC.js.
+	Les graphiques DC.js et le module de traitement ont fini par etre adoptés par MayaNet, pour leur client de la collecte des données d'un eclairage publique. Cela prouve la réutilsabilité et modularité des solutions developpées lors de stage.
 
 
 Diapo 22
@@ -168,7 +173,7 @@ Diapo 22
 
 	Les perspectives eventuelles sont la support d'autres sources, et la dédection de format de timestamp automatique
 
-	De point de vue personnels, j'ai appris pas mal des choses en tant que les technologies et le monde professionel, mais se qui plus importante pour moi, est que j'ai compris que je veux construire ma carriere autour de la genie logicielle.
+	De point de vue personnels, j'ai appris pas mal des choses en tant que les technologies et le monde professionel, mais se qui plus importante pour moi, est que j'ai compris que je veux construire ma carriere autour de la genie logicielle. C'est une conclusion importante pour mon futur.
 
 Diapo 23
 
