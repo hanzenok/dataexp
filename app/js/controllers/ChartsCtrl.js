@@ -13,7 +13,7 @@
  * - <b>DCChartsService</b>: generates the DC.js charts
  * - <b>CanvasChartsService</b>: generates the Canvas.js charts
  *
- * It defines three methods which should be explained:
+ * It defines three methods that should be explained:
  * - <b>renderAll()</b>: a method that launches automatically
  * when all the DOM elements needed for rendering all 
  * the charts from the <code>$rootScope.droppedCharts</code> list where generated
@@ -27,7 +27,7 @@
  * list, which will trigger automatically the <b>renderAll()</b> function, that will retrace all
  * for the second time. To prevent this, the <b>onDropChart()</b> method sets the variable 
  * <code>$scope.reload</code> to false.
- * - <b>reloadCharts()</b>: a method that reloads all the DOM elements chart containers,
+ * - <b>reloadCharts()</b>: a method that deletes all the DOM elements chart containers,
  * and then reintroduces them. Which triggers the <b>renderAll()</b> method that traces all the 
  * charts. To allow it, the <b>reloadCharts()</b> sets the variable <code>$scope.reload</code> to true.
  * @class ChartsCtrl

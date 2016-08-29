@@ -145,7 +145,7 @@ angular.module(&#x27;MainApp&#x27;)
 		* - &lt;i&gt;homogen&lt;/i&gt;: wheater or not 
 		* one or multiple timeseries where 
 		* homogeneous before the merge
-		* - &lt;i&gt;size&lt;/i&gt;: a size of the final fused timeseries
+		* - &lt;i&gt;size&lt;/i&gt;: a size of the final merged timeseries
 		* - &lt;i&gt;per_day&lt;/i&gt;: an average number of datapoints
 		* per day in the timeseries 
 		*/
@@ -159,7 +159,8 @@ angular.module(&#x27;MainApp&#x27;)
 		* @type json
 		* @description A &lt;b&gt;local scope&lt;/b&gt; variable
 		* that holds some &lt;code&gt;tsproc&lt;/code&gt; configurations.
-		* &lt;br/&gt;Transformation configs:
+		*
+		* Transformation configs:
 		* - &lt;i&gt;transform_type&lt;/i&gt;: the type
 		* of transformation to apply in order
 		* to synchronise multiple timeseries.
@@ -172,7 +173,7 @@ angular.module(&#x27;MainApp&#x27;)
 		* Reduction configs:
 		* - &lt;i&gt;reduc_type&lt;/i&gt;: the reduction method to combine &lt;code&gt;$scope.options.reduc_size&lt;/code&gt;
 		* datapoints into one. Possible values are: &#x27;skip&#x27;, &#x27;sum&#x27;, &#x27;avg&#x27;, &#x27;max&#x27;, &#x27;min&#x27;
-		* - &lt;i&gt;reduc_size&lt;/i&gt;: the number of datapoints to be reduced into one 
+		* - &lt;i&gt;reduc_size&lt;/i&gt;: the number of datapoints to be reduced into one by
 		* the &lt;code&gt;$scope.options.reduc_type&lt;/code&gt; method
 		* - &lt;i&gt;target_field&lt;/i&gt;: a target field used for &#x27;max&#x27; and &#x27;min&#x27; methods
 		* 
@@ -186,7 +187,7 @@ angular.module(&#x27;MainApp&#x27;)
 		* - &lt;i&gt;max_coef&lt;/i&gt;: wheather or not to use the
 		* maximum correlation value as a criteria to consider
 		* the set of datapoints as correlated. If &lt;code&gt;max_coef&lt;/code&gt;
-		* is false, use max number of datapoints as a criteria
+		* is false, max number of datapoints is used as a criteria
 		*
 		* Quantification config:
 		* - &lt;i&gt;tsfield_quantum&lt;/i&gt;: the quantum of the 
@@ -444,8 +445,8 @@ angular.module(&#x27;MainApp&#x27;)
 
 		/**
 		* A &lt;b&gt;root scope&lt;/b&gt; method that
-		* is used by the right and left panel and foot of &lt;code&gt;index.html&lt;/code&gt; wiew
-		* It is used to determine wheater or not the value
+		* is used by the right and left panel and footer of &lt;code&gt;index.html&lt;/code&gt; view.
+		* It is used to determine wheather or not the value
 		* passed as a parameter is number or not.
 		* Used to distinguish 
 		* numeric and nominal attributes.

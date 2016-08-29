@@ -41,7 +41,7 @@ angular.module('MainApp')
 		}
 
 		/**
-		* A public method that pushes the sources
+		* A public method that pushes a source
 		* <code>source_conf</code> to the back-end.
 		* @method send
 		* @param {json} source_conf A source configuration to add to the back-end

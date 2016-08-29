@@ -132,10 +132,9 @@
         <a href="../files/server_rest_GetTimeseries.js.html#l191"><code>server&#x2F;rest&#x2F;GetTimeseries.js:191</code></a>
     </span><br>
     <p>A method that returns (via the object <code>res</code>) the configuration file
-that were pulled from tsproc module during the call of the getTimeseries() method.
+that was pulled from <code>tsproc</code> module during the call of the <b>getTimeseries()</b> method.
 <br/>
-The config is pulled from tsproc before it starts to process data, which can modify the config.
-the getConfig() method to return</p>
+The config is pulled from <code>tsproc</code> before it starts to process data, which can modify the config.</p>
 
     <strong>Parameters:</strong>
     <ul class="params">
@@ -160,7 +159,7 @@ the getConfig() method to return</p>
         <a href="../files/server_rest_GetTimeseries.js.html#l179"><code>server&#x2F;rest&#x2F;GetTimeseries.js:179</code></a>
     </span><br>
     <p>A method that returns (via the object <code>res</code>) the stats
-that were pulled from tsproc module during the call of the getTimeseries() method.</p>
+that were pulled from <code>tsproc</code> module during the call of the <b>getTimeseries()</b> method.</p>
 
     <strong>Parameters:</strong>
     <ul class="params">
@@ -186,9 +185,9 @@ that were pulled from tsproc module during the call of the getTimeseries() metho
     </span><br>
     <p>A method that returns (via the object <code>res</code>) the full
 timeseries with all requested (via the object <code>req</code>) fields.
-The tsproc configuration is also passed by <code>req</code> object.
+The <code>tsproc</code> configuration is also passed by <code>req</code> object.
 <br/>
-The method passes all the timeseries through the tsproc module.</p>
+The method passes all the timeseries through the <code>tsproc</code> module.</p>
 
     <strong>Parameters:</strong>
     <ul class="params">
@@ -210,20 +209,19 @@ The method passes all the timeseries through the tsproc module.</p>
     <br>
     <span class="foundat">
         
-        <a href="../files/server_rest_GetTimeseries.js.html#l206"><code>server&#x2F;rest&#x2F;GetTimeseries.js:206</code></a>
+        <a href="../files/server_rest_GetTimeseries.js.html#l205"><code>server&#x2F;rest&#x2F;GetTimeseries.js:205</code></a>
     </span><br>
     <p>A method that receives an array of size 3 (from front-end) that contains:</p>
 <ul>
-<li>0: tsproc module options</li>
+<li>0: <code>tsproc</code> module options</li>
 <li>1: array of timestamp fields configuration</li>
-<li>2: array of other fields configuration
-<br/>
-Then it pulls from it the two arays, and returns
+<li>2: array of other fields configuration</li>
+</ul>
+<p>Then it pulls from it the two arays, and returns
 a single configuration which has all the fields
 regrouped by store (cf example)
 <br/>
-The method is used to prepare a configuration file for the tsproc.</li>
-</ul>
+The method is used to prepare a configuration file for the <code>tsproc</code>.</p>
 
     <strong>Parameters:</strong>
     <ul class="params">

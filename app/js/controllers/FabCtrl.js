@@ -5,7 +5,7 @@
  */
 
 /**
- * A controller that serves a fab button
+ * A controller that serves the left FAB button
  * in the <code>index.html</code> view
  * that is used to add a new source.
  * @class FabCtrl

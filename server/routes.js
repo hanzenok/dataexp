@@ -18,7 +18,7 @@ var deleteSource = require('./rest/DeleteSource');
  * A class (module) that defines all 
  * the API URLs, and the related methods.
  * <br/>
- * Here are some of the URLs: <br/>
+ * Here are the list of URLs: <br/>
  * - <b>/api/sources</b>: GET a JSON with sources configuration
  * - <b>/api/sources</b>: POST a new source, returns an empty array
  * - <b>/api/sources/:source_name</b>: DELETE source, returns an empty array

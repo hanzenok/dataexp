@@ -141,9 +141,9 @@ var TS = {};
 /**
  * A method that returns (via the object &lt;code&gt;res&lt;/code&gt;) the full
  * timeseries with all requested (via the object &lt;code&gt;req&lt;/code&gt;) fields.
- * The tsproc configuration is also passed by &lt;code&gt;req&lt;/code&gt; object.
+ * The &lt;code&gt;tsproc&lt;/code&gt; configuration is also passed by &lt;code&gt;req&lt;/code&gt; object.
  * &lt;br/&gt;
- * The method passes all the timeseries through the tsproc module.
+ * The method passes all the timeseries through the &lt;code&gt;tsproc&lt;/code&gt; module.
  * @method getTimeseries
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -282,7 +282,7 @@ TS.getTimeseries = function(req, res){
 
 /**
  * A method that returns (via the object &lt;code&gt;res&lt;/code&gt;) the stats
- * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * that were pulled from &lt;code&gt;tsproc&lt;/code&gt; module during the call of the &lt;b&gt;getTimeseries()&lt;/b&gt; method.
  * @method getStats
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -294,10 +294,9 @@ TS.getStats = function(req, res){
 
 /**
  * A method that returns (via the object &lt;code&gt;res&lt;/code&gt;) the configuration file
- * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * that was pulled from &lt;code&gt;tsproc&lt;/code&gt; module during the call of the &lt;b&gt;getTimeseries()&lt;/b&gt; method.
  * &lt;br/&gt;
- * The config is pulled from tsproc before it starts to process data, which can modify the config.
- * the getConfig() method to return 
+ * The config is pulled from &lt;code&gt;tsproc&lt;/code&gt; before it starts to process data, which can modify the config.
  * @method getConfig
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -309,15 +308,15 @@ TS.getConfig = function(req, res){
 
 /**
  * A method that receives an array of size 3 (from front-end) that contains:
- * - 0: tsproc module options
+ * - 0: &lt;code&gt;tsproc&lt;/code&gt; module options
  * - 1: array of timestamp fields configuration
  * - 2: array of other fields configuration
- * &lt;br/&gt;
+ *
  * Then it pulls from it the two arays, and returns
  * a single configuration which has all the fields
  * regrouped by store (cf example)
  * &lt;br/&gt;
- * The method is used to prepare a configuration file for the tsproc.
+ * The method is used to prepare a configuration file for the &lt;code&gt;tsproc&lt;/code&gt;.
  * @method regroupFields
  * @param {json array} configs An array of configurations for tsproc module
  * 

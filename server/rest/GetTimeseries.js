@@ -37,9 +37,9 @@ var TS = {};
 /**
  * A method that returns (via the object <code>res</code>) the full
  * timeseries with all requested (via the object <code>req</code>) fields.
- * The tsproc configuration is also passed by <code>req</code> object.
+ * The <code>tsproc</code> configuration is also passed by <code>req</code> object.
  * <br/>
- * The method passes all the timeseries through the tsproc module.
+ * The method passes all the timeseries through the <code>tsproc</code> module.
  * @method getTimeseries
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -178,7 +178,7 @@ TS.getTimeseries = function(req, res){
 
 /**
  * A method that returns (via the object <code>res</code>) the stats
- * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * that were pulled from <code>tsproc</code> module during the call of the <b>getTimeseries()</b> method.
  * @method getStats
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -190,10 +190,9 @@ TS.getStats = function(req, res){
 
 /**
  * A method that returns (via the object <code>res</code>) the configuration file
- * that were pulled from tsproc module during the call of the getTimeseries() method.
+ * that was pulled from <code>tsproc</code> module during the call of the <b>getTimeseries()</b> method.
  * <br/>
- * The config is pulled from tsproc before it starts to process data, which can modify the config.
- * the getConfig() method to return 
+ * The config is pulled from <code>tsproc</code> before it starts to process data, which can modify the config.
  * @method getConfig
  * @param {request} req Express.js request
  * @param {response} res Express.js response
@@ -205,15 +204,15 @@ TS.getConfig = function(req, res){
 
 /**
  * A method that receives an array of size 3 (from front-end) that contains:
- * - 0: tsproc module options
+ * - 0: <code>tsproc</code> module options
  * - 1: array of timestamp fields configuration
  * - 2: array of other fields configuration
- * <br/>
+ *
  * Then it pulls from it the two arays, and returns
  * a single configuration which has all the fields
  * regrouped by store (cf example)
  * <br/>
- * The method is used to prepare a configuration file for the tsproc.
+ * The method is used to prepare a configuration file for the <code>tsproc</code>.
  * @method regroupFields
  * @param {json array} configs An array of configurations for tsproc module
  * 

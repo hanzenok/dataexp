@@ -295,7 +295,7 @@ angular.module('MainApp')
 		/**
 		* A <b>local scope</b> method that is using 
 		* a <code>FieldsService</code> service to query
-		* a list of field config that are part of the 
+		* a list of field configs that are part of the 
 		* store config <code>store_config</code>.
 		* Then by using the <b>$rootScope.addFields()</b> method
 		* it adds them to the <code>$scope.fields_conf</code>.

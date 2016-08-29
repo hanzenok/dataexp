@@ -345,7 +345,7 @@ angular.module('MainApp')
 
 		/**
 		* A private method that is used
-		* by the correlation scatter plot
+		* by <b>scatter</b> method
 		* to show the correlation <a href="http://www.statisticshowto.com/what-is-the-correlation-coefficient-formula/"></a>
 		* between two attributes
 		* @method correlation
@@ -439,10 +439,10 @@ angular.module('MainApp')
 		}
 
 		/**
-		* A local method used by <code>timeline</code>
+		* A local method used by <b>timeline</b> method
 		* to color the correlated fields.
 		* It is using an algorithm to generate a color 
-		* (hexa format, without alpha) from a [0..1] value.
+		* (hexa format, without alpha) from a [0..1] value (cf example).
 		* @method color_gen
 		* @param {float} value A [0..1] value from which the color should be generated
 		* @return {string} A color in hexa format

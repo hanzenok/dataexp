@@ -41,7 +41,7 @@ angular.module('MainApp')
 		* - <i>homogen</i>: wheater or not 
 		* one or multiple timeseries where 
 		* homogeneous before the merge
-		* - <i>size</i>: a size of the final fused timeseries
+		* - <i>size</i>: a size of the final merged timeseries
 		* - <i>per_day</i>: an average number of datapoints
 		* per day in the timeseries 
 		*/
@@ -55,7 +55,8 @@ angular.module('MainApp')
 		* @type json
 		* @description A <b>local scope</b> variable
 		* that holds some <code>tsproc</code> configurations.
-		* <br/>Transformation configs:
+		*
+		* Transformation configs:
 		* - <i>transform_type</i>: the type
 		* of transformation to apply in order
 		* to synchronise multiple timeseries.
@@ -68,7 +69,7 @@ angular.module('MainApp')
 		* Reduction configs:
 		* - <i>reduc_type</i>: the reduction method to combine <code>$scope.options.reduc_size</code>
 		* datapoints into one. Possible values are: 'skip', 'sum', 'avg', 'max', 'min'
-		* - <i>reduc_size</i>: the number of datapoints to be reduced into one 
+		* - <i>reduc_size</i>: the number of datapoints to be reduced into one by
 		* the <code>$scope.options.reduc_type</code> method
 		* - <i>target_field</i>: a target field used for 'max' and 'min' methods
 		* 
@@ -82,7 +83,7 @@ angular.module('MainApp')
 		* - <i>max_coef</i>: wheather or not to use the
 		* maximum correlation value as a criteria to consider
 		* the set of datapoints as correlated. If <code>max_coef</code>
-		* is false, use max number of datapoints as a criteria
+		* is false, max number of datapoints is used as a criteria
 		*
 		* Quantification config:
 		* - <i>tsfield_quantum</i>: the quantum of the 
@@ -340,8 +341,8 @@ angular.module('MainApp')
 
 		/**
 		* A <b>root scope</b> method that
-		* is used by the right and left panel and foot of <code>index.html</code> wiew
-		* It is used to determine wheater or not the value
+		* is used by the right and left panel and footer of <code>index.html</code> view.
+		* It is used to determine wheather or not the value
 		* passed as a parameter is number or not.
 		* Used to distinguish 
 		* numeric and nominal attributes.

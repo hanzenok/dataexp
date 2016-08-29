@@ -508,7 +508,7 @@ function isValidStoreConfig(store_config){
 
 /**
  * A private method that checks
- * the validity of store dataset
+ * the validity of dataset
  * configuration 
  * @method isValidDatasetConfig
  * @private
