@@ -22,7 +22,7 @@ Then, the server and client dependencies can be installed by launching:
 
 ```
 sudo npm install
-sudo bower install
+bower install
 ```
 Finally, execute this command in the root directory of the project:
 
