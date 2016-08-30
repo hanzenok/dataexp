@@ -122,6 +122,19 @@ MongoConnector.getStoreNames = function(source_config, callback){
 				//call the callback
 				if (stores.length){
 
+					//check the names of the stores
+					//they shouldn't have whitespaces
+					stores.forEach(function(store_conf, index){
+
+						//check for the whitespace
+						if (store_conf.store.name.indexOf(' ') !== -1){
+
+							if (callback)
+								callback(new Error('One of the collections has a whitespace in it\'s name'));
+						}
+					});
+
+					//send the store configs
 					if (callback)
 						callback(null, stores);
 				}
@@ -217,7 +230,7 @@ MongoConnector.getStoreSize = function(store_config, callback){
 			//add size to store config
 			store_config.store.size = count;
 
-			//send
+			//send the store configs
 			if (callback)
 				callback(null, store_config);
 		}
@@ -351,7 +364,7 @@ MongoConnector.getFields = function(store_config, callback){
 
 			connection.close();
 
-			//send the repsonse
+			//send field configs
 			if (fields.length){
 
 				if (callback)
