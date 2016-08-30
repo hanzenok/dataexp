@@ -337,7 +337,7 @@ MysqlConnector.getStoreSize = function(store_config, callback){
 		else{
 
 			//query
-			connection.query(&#x27;SELECT COUNT(*) AS count FROM &#x27; + store_config.store.name + &#x27;;&#x27;, function(err, rows){
+			connection.query(&#x27;SELECT COUNT(*) AS count FROM &#x60;&#x27; + store_config.store.name + &#x27;&#x60;;&#x27;, function(err, rows){
 
 				if (err) {
 
@@ -457,7 +457,7 @@ MysqlConnector.getFields = function(store_config, callback){
 		else{
 			
 			//query only one row from database
-			connection.query(&#x27;SELECT * FROM &#x27; + store_config.store.name + &#x27; LIMIT 1;&#x27;, function(err, rows){
+			connection.query(&#x27;SELECT * FROM &#x60;&#x27; + store_config.store.name + &#x27;&#x60; LIMIT 1;&#x27;, function(err, rows){
 
 				if (err) {
 
@@ -594,7 +594,7 @@ MysqlConnector.getDataset = function(dataset_config, callback){
 			fields += dataset_config.fields[i].name;
 
 			//query
-			connection.query(&#x27;SELECT &#x27; + fields + &#x27; FROM &#x27; + dataset_config.store.name + &#x27;;&#x27;, function(err, rows){
+			connection.query(&#x27;SELECT &#x27; + fields + &#x27; FROM &#x60;&#x27; + dataset_config.store.name + &#x27;&#x60;;&#x27;, function(err, rows){
 
 				if (err) {
 

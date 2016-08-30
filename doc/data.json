@@ -2786,7 +2786,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 143,
+            "line": 156,
             "description": "A public method that adds a field 'size'\nto the store (mongo collection) configuration\nspecified in <code>store_config</code>.",
             "itemtype": "method",
             "name": "getStoreSize",
@@ -2815,7 +2815,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 227,
+            "line": 240,
             "description": "A public method that returns\nthe field names present in each\ndocument.<br/>\nFields are only checked in the \nfirst document of store (mongo collection).<br/>\nAlso the value of each field is saved (cf exemple).<br/>\nThe mongodb '_id' field is ommited.",
             "itemtype": "method",
             "name": "getFields",
@@ -2844,7 +2844,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 369,
+            "line": 382,
             "description": "A public method that takes in the fields configuration file\n(<code>dataset_config</code>) and returns the requested dataset.",
             "itemtype": "method",
             "name": "getDataset",
@@ -2873,7 +2873,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 463,
+            "line": 476,
             "description": "A private method that checks\nthe validity of source (mongo database)\nconfiguration",
             "itemtype": "method",
             "name": "isValidSourceConfig",
@@ -2896,7 +2896,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 486,
+            "line": 499,
             "description": "A private method that checks\nthe validity of store (mongo collection)\nconfiguration",
             "itemtype": "method",
             "name": "isValidStoreConfig",
@@ -2919,7 +2919,7 @@
         },
         {
             "file": "server/connectors/MongoConnector.js",
-            "line": 509,
+            "line": 522,
             "description": "A private method that checks\nthe validity of dataset\nconfiguration",
             "itemtype": "method",
             "name": "isValidDatasetConfig",
