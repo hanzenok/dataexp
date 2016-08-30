@@ -295,6 +295,17 @@ angular.module('MainApp')
 			}
 		});
 
+		$rootScope.download_icon =  'images/download2_empty.png';
+		$scope.$watchGroup(['options.transform_type', 'options.interp_type',
+			'options.reduc_type', 'options.reduc_size', 'options.target_field',
+			'options.from_date', 'options.to_date', 'options.count_negative',
+			'options.max_coef', 'options.tsfield_quantum',
+			'toogled_correlation'], function(){
+
+			$rootScope.download_icon =  'images/download2_empty.png';
+
+		});
+
 		/**
 		* A <b>root scope</b> $watch method, attached 
 		* to the right panel in the <code>index.html</code>

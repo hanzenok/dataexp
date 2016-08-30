@@ -245,6 +245,9 @@ angular.module('MainApp')
 								//SHOULD BE LAUNCHED SYNCHRONIOUSLY
 								//=================================
 
+								//change the download icon
+								$rootScope.download_icon = 'images/download2.png';
+
 								//let the dataset to be downloadable
 								var dataset = JSON.stringify($rootScope.dataset, null, 4);
 								var blob2 = new Blob([dataset], {type: 'text/json'});

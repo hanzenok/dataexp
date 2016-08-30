@@ -71,6 +71,9 @@ angular.module('MainApp')
 
 					//claer movable charts
 					$rootScope.chartFields = [];
+
+					//change the download icon
+					$rootScope.download_icon =  'images/download2_empty.png';
 				}
 			}
 			//charts
