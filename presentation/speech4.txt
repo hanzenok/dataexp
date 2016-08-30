@@ -132,9 +132,9 @@ Diapo 17
 
 	Le premier, est un outil de traitement des séries temporelles, qu'on a appele tsproc (Time Series Processor). Il est écrit en JavaScript, et c'est un module Node.js.
 
-	Node.js a était choisi car, l'IHM (l'interface d'utilisateur) de MayaNet tourne sous un serveur Node.js, en on voulées garder la compatibilité.
+	Node.js a était choisi pour etre compatible avec MayaNet.
 
-	De le début c'était plutot une module de traitement pour préparer les données avant les servir à DC.js, mais à la fin cela devenu une boite à outil pour traitement des séries temporelles en general. Le fonctionalités proposées sont, par exemple: 
+	Le fonctionalités proposées sont, par exemple: 
 		sous échantillonage - pour diminuer la fréquence des mésures dans une séries temporelle
 		interpolation - pour syncroniser les mesures entre deux séries temporelles
 
@@ -147,7 +147,7 @@ Diapo 18
 	L'architecure d'application est composée de deux tiers: une partie back-end en Node.js qui s'en sert de module tsproc pour macher les données
 	Et une partie front-end avec l'interface écrit en html, css et angular.
 
-	Les techno web pour interface home-machine ont été choisi, car tout d'abord l'outil DC.js est fais pour les sites web. Et, encore une fois, pour rester compatible avec MayaNet
+	Les techno web ont etait choisi pour etre compatible avec MayaNet
 
 	Angular.js et notamment un module Angular-Material ont était choisi pour faciliter le developpement et rendre l'interface dynamiqe.
 
@@ -158,16 +158,16 @@ Diapo 19
 	Donc, maintenant on va passer à la demonstration
 
 	L'application est composee de 5 zones principaux: un barre d'outil, une zone de choix de sources, choix des graphiques, 
-choix des options, et une zone d'exploration. On va commencer par charger une series temporelles a partir d'une base des donnes MySQL. On va choisir celui la: une base des vols. Ensuite, on va choisir les attributs, les mesures a explorer. Pour le faire il faut les glisser dans cet panel, et il faut bien separer les timestamps avec les mesures normaux.
+choix des options, et une zone d'exploration. On va commencer par charger une series temporelles a partir d'une base des donnes MySQL. Elle contient deux series temporelles, on va choisir cela avec les vols. Ensuite, on va choisir les attributs, les mesures a explorer. Pour le faire il faut les glisser dans cet panel, et il faut bien separer les timestamps avec les mesures normaux.
 Il faut preciser le format de timestamp. On peut voir ici le contenu de timestamp, il s'agit de format temporelle ISO.
 
-Une fois on a chosi les mesures, on peut tout telecharger. Pour tout explorer il faut glisser les mesures sur les graphiques desirees. On va voir tout d'abord la distribution temporelle. On peut voir que chaque timestamp n'apparait qu'une seule fois. Donc, on va regrouper tout par jour.
+Une fois on a chosi les mesures, on peut tout telecharger. Pour tout explorer il faut glisser les mesures sur les graphiques desirees. On va voir tout d'abord la distribution temporelle. On peut voir que chaque timestamp n'apparait qu'une seule fois. Donc, on va regrouper tout par jour. Ensuite on va visualiser d'autres mesures
 
-Volia ca va mieux, on peut voir, il n'y a pas beaucoup des vols les samedis par exemple. Ensuite on va visualiser le temps de retard, on va regrouper par 20, distance parcouru par 100. Et on va visualiser la ville de depart et arrivee. Donc, que'est qu'on peut faire ici. Par exemple, on peut voir qu'il y a beaucoup des vols a partir de Phoenix, jusqau, par exemple Albuquerque. On peut voir qu'il y eu 1 vols, d'approxivement trois heures de retard. Si on va etudier tout les vols, qui on eu trois heures de depart, on peut se rendre compte qu'ils ont eu lieu tous le janvier 12, et les deux fois dans un airport de Phoenix.
+Donc, que'est qu'on peut faire ici. Par exemple, on peut voir qu'il y a beaucoup des vols a partir de Phoenix, jusqau, par exemple Albuquerque. On peut voir qu'il y eu 1 vols, d'approxivement trois heures de retard. Si on va etudier tout les vols, qui on eu trois heures de depart, on peut se rendre compte qu'ils ont eu lieu tous le janvier 12, et les deux fois dans un airport de Phoenix.
 
 On a vue les possibilites de DC.js d'exploration, mais l'application doit pouvoir explorer plusieurs sources.
 On va charger une serie temporelle depuis un fichier JSON et base des donnes MySQL. Decrire les mesures et timestamps. On peut voir que le format de timestamp est mensuelle. Du coup on le specifie. On va commencer par visualisation de timeline. On peut voir qu'il y a une mesure qui commence plutot que l'autre, et une apres. Du coup on va ne laisser que des points communes.
-En voyant les noms des timestamps, on peut comprendre qu'il y a une mesure qui varie mensuellement et autre annuellement. Et donc pour pouvoir les comparer, il faut passer par interpolation. On peut le voir ici, ces valeurs ont etait interpolees. Il s'agit de l'interpolation lineaire, on peut choisir une autre. Volia. Ensuite, on peut voir, est-ce que les deux series sont similaires grace a scatter plot, le chiffre en bas affiche le coefficient de correlation entre les deux signaux. Si on veut plus des details, on peut appliquer la detection de la correlation locale. Les barres de la meme coluelur et taille correspondent a les sequence correll2es.
+On a vu qu'il y a une mesure qui varie mensuellement et autre annuellement. Et donc pour pouvoir les comparer, il faut passer par interpolation. On peut le voir ici, ces valeurs ont etait interpolees. Il s'agit de l'interpolation lineaire, on peut choisir une autre. Volia. Ensuite, on peut voir, est-ce que les deux series sont similaires grace a scatter plot, le chiffre en bas affiche le coefficient de correlation entre les deux signaux. Si cela nous suffit pas, on veut plus des details, on peut appliquer la detection de la correlation locale. Les barres de la meme coluelur et taille correspondent a les sequence correll2es.
 
 Diapo 20
 
