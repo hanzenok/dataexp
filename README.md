@@ -1,6 +1,6 @@
 # dataexp
 
-dataexp (Data Exploration) is a graphical tool, based on the _tsproc_ module, for exploration and visualisation of the timeseries from different sources such as MongoDB and MySQL databases and also JSON and CSS files. It is using [Angular-Material](https://material.angularjs.org/latest/) for the interface, the server side runs on the Node.js server.
+dataexp (Data Exploration) is a graphical tool, based on the [tsproc](https://github.com/hanzenok/tsproc) module, for exploration and visualisation of the timeseries from different sources such as MongoDB and MySQL databases and also JSON and CSS files. It is using [Angular-Material](https://material.angularjs.org/latest/) for the interface, the server side runs on the Node.js server.
 
 ## Versions
 The application is using a local Node.js module _tsproc_, in order to import it (instructions bellow) __npm__ (package manager for Node.js) should be at least version 2 (3.8.2 used).
